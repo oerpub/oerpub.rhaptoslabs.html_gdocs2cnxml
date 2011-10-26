@@ -1,0 +1,968 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>SELFHTML: Perl / Perl-Sprachelemente / Reguläre Ausdrücke</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Was reguläre Ausdrücke sind, welche Aufgaben sie in Perl haben, wie Sie reguläre Ausdrücke definieren und innerhalb von Perl-Scripts anwenden.">
+<meta name="keywords"       content="SELFHTML, Perl, reguläre Ausdrücke, regular expressions, Transliteration, Suchen und Ersetzen">
+<meta name="author"         content="Redaktion SELFHTML, selfhtml81@selfhtml.org">
+<meta name="DC.Publisher"   content="SELFHTML e. V.">
+<meta name="DC.Date"        content="2005-11-09T00:29:27+01:00">
+<meta name="DC.Identifier"  content="http://de.selfhtml.org/perl/sprache/regexpr.htm">
+<meta name="DC.Language"    content="de">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.created" content="2001-10-27T08:00+01:00">
+<meta name="SELF.Pagetype"  content="page">
+<link rel="alternate" type="application/atom+xml" title="SELFHTML-Weblog (Atom, gesamt)" href="http://aktuell.de.selfhtml.org/weblog/atom-feed">
+<link rel="alternate" type="application/rss+xml" title="SELFHTML-Weblog (RSS, Auszüge)" href="http://aktuell.de.selfhtml.org/weblog/rss-feed">
+<link rel="shortcut icon" type="image/x-icon" href="../../src/favicon.ico">
+<link rel="author" title="Impressum" href="../../editorial/impressum.htm">
+<link rel="contents" title="Inhaltsverzeichnis" href="../../navigation/inhalt.htm">
+<link rel="index" title="Stichwortverzeichnis" href="../../navigation/stichwort.htm">
+<link rel="search" title="Suche" href="../../navigation/suche/index.htm">
+<link rel="help" title="Hilfe" href="../../editorial/index.htm">
+<link rel="copyright" title="Urheberrecht" href="../../editorial/copyright.htm">
+<link rel="top" title="SELFHTML" href="../../index.htm">
+<link rel="up" title="Perl-Sprachelemente" href="index.htm">
+<link rel="next" title="Subroutinen" href="subroutinen.htm">
+<link rel="prev" title="Operatoren" href="operatoren.htm">
+<link rel="first" title="CGI-notwendige Anweisungen in Perl" href="cginotwendig.htm">
+<link rel="last" title="CGI-typische Aufgaben in Perl" href="cgitypisch.htm">
+</head>
+<body>
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td colspan="2" class="nav"><a class="an" name="top"><img src="../../src/refkap.gif" width="16" height="13" alt="Teil von"></a> <a href="../../index.htm">SELFHTML</a>/<a href="../../navigation/index.htm" target="_parent" class="navh">Navigationshilfen</a> <img src="../../src/refkap.gif" width="16" height="13" alt="Teil von">&nbsp;<a href="../index.htm">Perl</a> <img src="../../src/refkap.gif" width="16" height="13" alt="Teil von">&nbsp;<a href="index.htm">Perl-Sprachelemente</a></td>
+</tr>
+<tr>
+<td class="doc" width="110"><a href="../../index.htm"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></a></td>
+<td class="docbot" width="100%"><h1 class="ph1">Reguläre Ausdrücke</h1></td>
+</tr>
+<tr>
+<td class="doctop">
+<img src="../../src/dokx.gif" width="30" height="20" vspace="6" alt="Informationsseite">
+</td>
+<td valign="top" nowrap="nowrap">
+<p>
+<img src="../../src/down.gif" width="14" height="10" alt="nach unten">&nbsp;<a href="#allgemeines">Allgemeines zu regulären Ausdrücken</a><br>
+<img src="../../src/down.gif" width="14" height="10" alt="nach unten">&nbsp;<a href="#anwenden">Reguläre Ausdrücke anwenden</a><br>
+<img src="../../src/down.gif" width="14" height="10" alt="nach unten">&nbsp;<a href="#zeichen">Reguläre Ausdrücke für einzelne Zeichen</a><br>
+<img src="../../src/down.gif" width="14" height="10" alt="nach unten">&nbsp;<a href="#zeichenketten">Reguläre Ausdrücke für Zeichenketten</a><br>
+<img src="../../src/down.gif" width="14" height="10" alt="nach unten">&nbsp;<a href="#maskierung">Maskierung von Zeichen in regulären Ausdrücken</a><br>
+<img src="../../src/down.gif" width="14" height="10" alt="nach unten">&nbsp;<a href="#gierig_genuegsam">Gierige und genügsame Suchmuster</a><br>
+<img src="../../src/down.gif" width="14" height="10" alt="nach unten">&nbsp;<a href="#alternativen">Reguläre Ausdrücke mit Alternativen</a><br>
+<img src="../../src/down.gif" width="14" height="10" alt="nach unten">&nbsp;<a href="#merken">Teilausdrücke merken mit Klammerung</a><br>
+<img src="../../src/down.gif" width="14" height="10" alt="nach unten">&nbsp;<a href="#rangfolge">Rangfolge in regulären Ausdrücken</a><br>
+<img src="../../src/down.gif" width="14" height="10" alt="nach unten">&nbsp;<a href="#flags">Flags hinter regulären Ausdrücken</a><br>
+<img src="../../src/down.gif" width="14" height="10" alt="nach unten">&nbsp;<a href="#suchen_ersetzen">Suchen und Ersetzen mit regulären Ausdrücken</a><br>
+<img src="../../src/down.gif" width="14" height="10" alt="nach unten">&nbsp;<a href="#transliteration">Transliteration</a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" class="doc">&nbsp;<a href="#bottom"><img src="../../src/down.gif" width="14" height="10" border="0" alt="nach unten"></a>&nbsp;</td></tr>
+</table>
+
+
+
+<h2><a class="an" name="allgemeines">Allgemeines zu regulären Ausdrücken</a></h2>
+
+<p>Reguläre Ausdrücke sind genau definierte Suchmuster. Mit Hilfe dieser Suchmuster können Sie beispielsweise Variableninhalte durchsuchen und bestimmte Inhalte daraus herausziehen oder ersetzen. So können Sie mit Hilfe von regulären Ausdrücken etwa beim Einlesen von Dateien (z.B. einer Datei mit Einträgen eines Gästebuchs) anhand der Konventionen, nach denen die Datei aufgebaut ist, die einzelnen Einträge geordnet einlesen und als HTML-Code an den aufrufenden Browser übertragen lassen. Reguläre Ausdrücke sind auch ein mächtiges Mittel, um große Datenbestände nach komplexen Suchausdrücken zu durchforsten.</p>
+
+<p>Reguläre Ausdrücke sind allerdings für Neulinge, die nicht aus der Unix-Welt kommen, sehr ungewohnt und der Hauptgrund dafür, warum in manchen Perl-Scripts ziemlich merkwürdige, kryptisch anmutende Zeichenfolgen vorkommen. Wer allerdings mit dem Unix-Befehl <code>grep</code> vertraut ist, kommt auch mit den regulären Ausdrücken in Perl zurecht.</p>
+
+
+
+<p class="doc"><a href="#top"><img src="../../src/up.gif" width="14" height="10" border="0" alt="nach oben"></a><a href="#bottom"><img src="../../src/down.gif" width="14" height="10" border="0" alt="nach unten"></a></p>
+
+
+
+<h2><a class="an" name="anwenden">Reguläre Ausdrücke anwenden</a></h2>
+
+<p>Zwei kleine einführende Beispiele sollen zeigen, in welchen Situationen reguläre Ausdrücke typischerweise zum Einsatz kommen.</p>
+
+<h3 class="xmp"><a class="an" name="beispiel1">Beispiel eines vollständigen CGI-Scripts in Perl:</a></h3>
+
+<p><img src="../../src/dokf.gif" width="15" height="10" alt="Beispiel-Seite">&nbsp;<a href="http://de.selfhtml.org/cgi-bin/812/regexpr1.pl">Anzeigebeispiel: So sieht's aus</a> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</p>
+
+<pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print "Content-type: text/html\n\n";
+print '&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"&gt;', "\n";
+print "&lt;html&gt;&lt;head&gt;&lt;title&gt;Testausgabe&lt;/title&gt;\n";
+print "&lt;/head&gt;&lt;body&gt;\n";
+
+my @Orte = ("Madrid","London","Mailand","Paris","Rom","M&amp;uuml;nchen");
+
+foreach(@Orte) {
+ if( $_ =~ /^M/ ) {
+  print "$_ f&amp;auml;ngt mit M an&lt;br&gt;\n";
+ }
+}
+
+print "&lt;/body&gt;&lt;/html&gt;\n";
+</pre>
+
+<h3 class="xpl">Erläuterung:</h3>
+
+<p>Das Beispiel deklariert einen <img src="../../src/dok.gif" width="15" height="10" alt="Seite">&nbsp;<a href="listen.htm">Array</a> namens <code>@Orte</code> mit sechs Städtenamen. Dann geht es die Einträge des Arrays mit einer <img src="../../src/dok.gif" width="15" height="10" alt="Seite">&nbsp;<a href="schleifen.htm#foreach">foreach</a>-Schleife der Reihe nach durch. Im Schleifenblock wird überprüft, ob der Städtename im aktuellen Schleifendurchlauf mit M anfängt. Dazu wird die <img src="../../src/dok.gif" width="15" height="10" alt="Seite">&nbsp;<a href="vordefiniert.htm">vordefinierte Variablen</a> <code>$_</code>, in der ja in einer <code>foreach</code>-Schleife der aktuelle Wert enthalten ist, mit dem Operator <code>=~</code> an einen regulären Ausdruck gebunden. Der Operator <code>=~</code> ist speziell für reguläre Ausdrücke gedacht. Der reguläre Ausdruck selbst steht per Voreinstellung in Schrägstrichen. Innerhalb der Schrägstriche wird ein Suchmuster definiert. Das Suchmuster <code>^M</code> im Beispiel bedeutet so viel wie "fängt mit M an".<br>
+Die ganze Anweisung <code>if( $_ =~ /^M/ )</code> ist also so zu lesen: wenn die Bedingung erfüllt ist, dass der Wert des aktuellen Schleifeninhalts mit einem M anfängt ...<br>
+Genaugenommen können Sie die Zeichenfolge <code>$_ =~</code> auch weglassen, da der reguläre Ausdruck dann automatisch an die vordefinierte Variable <code>$_</code> gebunden wird. Um eine bessere Verständlichkeit zu erhalten, wurde hier die ausführliche Notation gewählt.</p>
+
+<p>Das Beispiel gibt in diesem Fall den Schleifeninhalt aus. Am Ende werden also aus dem Array <code>@Orte</code> die drei Städte ausgegeben, die mit M beginnen.</p>
+
+<p>Das folgende Beispiel ist etwas anspruchsvoller:</p>
+
+<h3 class="xmp"><a class="an" name="beispiel2">Beispiel eines vollständigen CGI-Scripts in Perl:</a></h3>
+
+<p><img src="../../src/dokf.gif" width="15" height="10" alt="Beispiel-Seite">&nbsp;<a href="http://de.selfhtml.org/cgi-bin/812/regexpr2.pl">Anzeigebeispiel: So sieht's aus</a> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</p>
+
+<pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print "Content-type: text/html\n\n";
+print '&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"&gt;', "\n";
+print "&lt;html&gt;&lt;head&gt;&lt;title&gt;Testausgabe&lt;/title&gt;\n";
+print "&lt;/head&gt;&lt;body&gt;\n";
+
+my $Zeile = "{link:http://de.selfhtml.org/{SELFHTML-Seiten}}";
+$Zeile =~ /\{link:(.*)\{(.*)\}\}/;
+my $Link = $1;
+my $Linktext = $2;
+print "&lt;a href=\"$Link\"&gt;$Linktext&lt;/a&gt;";
+
+print "&lt;/body&gt;&lt;/html&gt;\n";
+</pre>
+
+<h3 class="xpl">Erläuterung:</h3>
+
+<p>In diesem Script gibt es einen Skalar namens <code>$Zeile</code>, der als Wert eine Zeichenkette speichert, die offensichtlich eine bestimmte Struktur hat. Sie steht in geschweiften Klammern. Zuerst ist <code>link:</code> notiert, dann folgt ein URI, und dann folgt, nochmals in geschweifte Klammern gesetzt, ein Text. Diese Struktur mit den geschweiften Klammern ist jetzt frei erfunden. Doch fast die gesamte EDV besteht daraus, Daten nach irgendwelchen für Computer wiedererkennbaren Strukturen oder Konventionen zu speichern. Reguläre Ausdrücke sind dafür geeignet, aus solchen Strukturen etwas Bestimmtes herauszufiltern. Im Beispiel filtert das Script mit Hilfe eines regulären Ausdrucks aus der Zeichenkette den URI und den Text in der zweiten, inneren geschweiften Klammer heraus und bastelt aus diesen beiden Teilwerten einen HTML-Verweis, den es am Ende mit <code>print</code> ausgibt.</p>
+
+<p>Mit der Anweisung <code>$Zeile =~ /\{link:(.*)\{(.*)\}\}/;</code> wird der reguläre Ausdruck, der zwischen den beiden Schrägstrichen steht, auf den Wert des Skalars <code>$Zeile</code> angewendet. Um die fürchterliche Ansammlung von Zeichen erst einmal etwas zu entwirren, seien zunächst die Backslashes <code>\</code> darin erwähnt. Diese dienen zur Maskierung des jeweils nachfolgenden Zeichens und bedeuten einfach nur: das nächste Zeichen soll als das Zeichen behandelt werden, das da steht. Also <code>\{</code> heißt beispielsweise einfach nur: das folgende Zeichen <code>{</code> bitte nicht anders interpretieren als es da steht.<br>
+Das, worauf der reguläre Ausdruck passen soll, soll also demnach mit der Zeichenfolge <code>{link:</code> anfangen. Danach kann erst mal kommen was will. Ausgedrückt wird dies durch <code>.*</code> Irgendwann soll dann noch einmal eine öffnende geschweifte Klammer <code>{</code> in dem durchsuchten Wert vorkommen. Dahinter kann wieder kommen was will, also <code>.*</code>, und am Ende sollen nochmals zwei schließende geschweifte Klammern vorkommen. So wird also ein "Muster" mit Hilfe des regulären Ausdrucks definiert, das auf den untersuchten Wert passt, aber einige Dinge variabel lässt.<br>
+Auch hier wurde der Verständlichkeit halber eine Vereinfachung gewählt. Der Teilausdruck <code>.*</code> funktioniert zwar bei diesem Beispiel, kann jedoch in ungünstigen Fällen aufgrund seiner <img src="../../src/down.gif" width="14" height="10" alt="nach unten">&nbsp;<a href="#gierig_genuegsam">Gierigkeit</a> zuviel erkennen.</p>
+
+<p>Die beiden variablen Bereiche, also jene, die durch <code>.*</code> markiert sind, werden im Beispiel jeweils in runde Klammern eingeschlossen. Die runden Klammern zeigen den Wunsch an, dass Perl sich das, was zwischen diesen Klammern steht, merken soll. Im Beispiel merkt es sich auf diese Weise zwei variable Bereiche:<br>
+<code>{link:</code><strong>http://www.selfhtml.org/</strong><code>{</code><strong>SELFHTML-Seiten</strong><code>}}</code><br>
+Die fett dargestellten Bereiche sind nun in den beiden Klammern gespeichert.</p>
+
+<p>Um an die gespeicherten Werte heranzukommen, stellt Perl vordefinierte Variablen namens <code>$1</code>, <code>$2</code>, <code>$3</code> usw. zur Verfügung. In <code>$1</code> ist der Inhalt der ersten runden Klammer im regulären Ausdruck gespeichert, in <code>$2</code> der Inhalt der zweiten runden Klammer. Das Beispiel-Script deklariert zwei Skalare namens <code>$Link</code> und <code>$Linktext</code>, denen es die beiden in den runden Klammern gespeicherten Werte zuweist.</p>
+
+<p>Der Rest ist dann nicht mehr schwer: in einer <code>print</code>-Anweisung, die den Code für einen HTML-Verweis ausgibt, werden die beiden Skalare <code>$Link</code> und <code>$Linktext</code> an den Stellen eingefügt, wo ihre Werte hingehören.</p>
+
+<h3 class="inf">Beachten Sie:</h3>
+
+<p>Ein wichtiger Anwendungsbereich für reguläre Ausdrücke ist auch das <img src="../../src/down.gif" width="14" height="10" alt="nach unten">&nbsp;<a href="#suchen_ersetzen">Suchen und Ersetzen mit regulären Ausdrücken</a>. Reguläre Ausdrücke können ferner in einigen Perl-Funktionen als zu übergebende Parameter vorkommen, beispielsweise in der Funktion <img src="../../src/dok.gif" width="15" height="10" alt="Seite">&nbsp;<a href="../funktionen/zeichenketten.htm#split">split</a>.</p>
+
+
+
+<p class="doc"><a href="#top"><img src="../../src/up.gif" width="14" height="10" border="0" alt="nach oben"></a><a href="#bottom"><img src="../../src/down.gif" width="14" height="10" border="0" alt="nach unten"></a></p>
+
+
+
+<h2><a class="an" name="zeichen">Reguläre Ausdrücke für einzelne Zeichen</a></h2>
+
+<p>Sie können in einer Zeichenkette</p>
+<ul>
+<li>nach einem bestimmten Zeichen suchen</li>
+<li>nach mehreren bestimmten Zeichen suchen</li>
+<li>nach einem Zeichen aus einem bestimmten Bereich suchen</li>
+</ul>
+
+<p>Solche Ausdrücke eignen sich weniger zur Mustererkennung als dazu, herauszufinden, ob in einem Wert bestimmte Zeichen, z.B. unerlaubte Zeichen, vorkommen.</p>
+
+<table class="reftable" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th>Nr.</th>
+<th nowrap="nowrap">Regulärer Ausdruck (Beispiel)</th>
+<th nowrap="nowrap">passt auf eine Zeichenkette, die (mindestens)</th>
+</tr>
+<tr>
+<th>1.</th>
+<td class="code" nowrap="nowrap"><code>/a/</code></td>
+<td class="tabxpl">ein 'a' enthält</td>
+</tr>
+<tr>
+<th>2.</th>
+<td class="code" nowrap="nowrap"><code>/[ab]/</code></td>
+<td class="tabxpl">ein 'a' oder ein 'b' enthält</td>
+</tr>
+<tr>
+<th>3.</th>
+<td class="code" nowrap="nowrap"><code>/[A-Z]/</code></td>
+<td class="tabxpl">einen Großbuchstaben enthält (passt nicht auf Umlaute)</td>
+</tr>
+<tr>
+<th>4.</th>
+<td class="code" nowrap="nowrap"><code>/[0-9]/</code></td>
+<td class="tabxpl">eine Ziffer enthält</td>
+</tr>
+<tr>
+<th>5.</th>
+<td class="code" nowrap="nowrap"><code>/\d/</code></td>
+<td class="tabxpl">eine Ziffer enthält - genau wie (4.)</td>
+</tr>
+<tr>
+<th>6.</th>
+<td class="code" nowrap="nowrap"><code>/\D/</code></td>
+<td class="tabxpl">ein Zeichen enthält, das keine Ziffer ist</td>
+</tr>
+<tr>
+<th>7.</th>
+<td class="code" nowrap="nowrap"><code>/[-\d]/</code></td>
+<td class="tabxpl">eine Ziffer oder ein Minuszeichen enthält</td>
+</tr>
+<tr>
+<th>8.</th>
+<td class="code" nowrap="nowrap"><code>/[\[\]]/</code></td>
+<td class="tabxpl">eine eckige Klammer enthält</td>
+</tr>
+<tr>
+<th>9.</th>
+<td class="code" nowrap="nowrap"><code>/[a-zA-Z0-9_]/</code></td>
+<td class="tabxpl">eins der Zeichen vom Typ Buchstabe (ohne Umlaute), vom Typ Ziffer oder einen Unterstrich enthält</td>
+</tr>
+<tr>
+<th>10.</th>
+<td class="code" nowrap="nowrap"><code>/\w/</code></td>
+<td class="tabxpl">eins der Zeichen vom Typ Buchstabe, vom Typ Ziffer oder einen Unterstrich enthält - (fast) genau wie (9.); ob Umlaute erkannt werden können, hängt von der Systemkonfiguration ab</td>
+</tr>
+<tr>
+<th>11.</th>
+<td class="code" nowrap="nowrap"><code>/\W/</code></td>
+<td class="tabxpl">ein Zeichen enthält, was weder Buchstabe noch Ziffer noch Unterstrich ist; ob Umlaute ausgeschlossen werden können, hängt von der Systemkonfiguration ab</td>
+</tr>
+<tr>
+<th>12.</th>
+<td class="code" nowrap="nowrap"><code>/\r/</code></td>
+<td class="tabxpl">ein Steuerzeichen für den Wagenrücklauf enthält</td>
+</tr>
+<tr>
+<th>13.</th>
+<td class="code" nowrap="nowrap"><code>/\n/</code></td>
+<td class="tabxpl">ein Steuerzeichen für den Zeilenvorschub enthält</td>
+</tr>
+<tr>
+<th>14.</th>
+<td class="code" nowrap="nowrap"><code>/\t/</code></td>
+<td class="tabxpl">ein Steuerzeichen für den Tabulator enthält</td>
+</tr>
+<tr>
+<th>15.</th>
+<td class="code" nowrap="nowrap"><code>/\f/</code></td>
+<td class="tabxpl">ein Steuerzeichen für den Seitenvorschub enthält</td>
+</tr>
+<tr>
+<th>16.</th>
+<td class="code" nowrap="nowrap"><code>/\s/</code></td>
+<td class="tabxpl">ein Leerzeichen oder ein Steuerzeichen aus (12.-15.) enthält</td>
+</tr>
+<tr>
+<th>17.</th>
+<td class="code" nowrap="nowrap"><code>/\S/</code></td>
+<td class="tabxpl">ein Zeichen enthält, das kein Leerzeichen oder Steuerzeichen aus (12.-15.) ist</td>
+</tr>
+<tr>
+<th>18.</th>
+<td class="code" nowrap="nowrap"><code>/[^äöüÄÖÜ]/</code></td>
+<td class="tabxpl">ein Zeichen enthält, was kein deutscher Umlaut (in der entsprechenden Zeichenkodierung) ist</td>
+</tr>
+<tr>
+<th>19.</th>
+<td class="code" nowrap="nowrap"><code>/[^a-zA-Z]/</code></td>
+<td class="tabxpl">ein Zeichen enthält, welches kein Buchstabe ist (ohne Umlaute)</td>
+</tr>
+</table>
+
+<p>Wenn Sie mit einem regulären Ausdruck prüfen wollen, ob in einer Zeichenkette ein bestimmtes Zeichen vorkommt, genügt es, dieses Zeichen innerhalb der Begrenzer (hier: der Schrägstriche) zu notieren, so wie in den Beispielen (<strong>1.</strong>) und (<strong>12.-15.</strong>). Wenn das gesuchte Zeichen innerhalb von regulären Ausdrücken ein reserviertes Zeichen ist, wie beispielsweise ein <code>+</code>, müssen Sie es mit einem umgekehrten Schrägstrich maskieren (<code>\+</code>). Reservierte Zeichen sind auf jeden Fall <code>+?.*^$()[]{}|\</code>.<br>
+Wenn Sie allerdings wirklich nur das Vorkommen eines festen Zeichens oder einer festen Zeichenkette überprüfen wollen, ist die Funktion <img src="../../src/dok.gif" width="15" height="10" alt="Seite">&nbsp;<a href="../funktionen/zeichenketten.htm#index">index</a> die bessere Wahl.</p>
+
+<p>Für reguläre Ausdrücke interessanter sind Fälle, in denen Sie prüfen wollen, ob ein Zeichen vorkommt, das auf verschiedene Möglichkeiten passen soll, oder explizit nicht passen soll, wie in den Beispielen (<strong>2.-11.</strong>) und (<strong>16.-19.</strong>). Dafür gibt es innerhalb der regulären Ausdrücke die so genannten Zeichenklassen. Eine Zeichenklasse wird grundsätzlich innerhalb eckiger Klammern <code>[...]</code> notiert, wie in den Beispielen (<strong>2.-4.</strong>), (<strong>7.-9.</strong>) und (<strong>18.-19.</strong>). Eine Zeichenklasse passt immer genau auf ein Zeichen. Innerhalb dieser Zeichenklasse können Sie nun die verschiedenen Zeichen dieser Klasse aufzählen, indem Sie die Zeichen nacheinander notieren. Reservierte Zeichen müssen auch hierbei explizit mit einem umgekehrten Schrägstrich maskiert werden, wie in Beispiel (<strong>8.</strong>). Wenn Sie einen größeren Zeichenbereich haben, der passen soll, können Sie diesen angeben, indem Sie das erste Zeichen des Bereichs notieren, danach ein Minuszeichen als Bindestrich <code>-</code> und danach das letzte Zeichen des Bereichs, wie in den Beispielen (<strong>3.</strong>), (<strong>4.</strong>), (<strong>9.</strong>) und (<strong>19.</strong>). Wenn Sie den Bindestrich als wirkliches Zeichen meinen, notieren Sie ihn am Anfang der Zeichenklasse, wie in Beispiel (<strong>7.</strong>).</p>
+
+<p>Für bestimmte häufig vorkommende Zeichenklassen gibt es Abkürzungen. So entspricht <code>[0-9]</code> <code>\d</code> und <code>[&nbsp;\r\n\t\f]</code> entspricht <code>\s</code>. <code>[a-zA-Z0-9_]</code> entspricht im allgemeinen der Abkürzung <code>\w</code>. Sie können diese Abkürzungen auch innerhalb von Zeichenklassen verwenden, wie in Beispiel (<strong>7.</strong>).</p>
+
+<p>Sie können Zeichenklassen negieren, um festzulegen, dass sie auf ein bestimmtes Zeichen <strong>nicht</strong> passen sollen, wie in den Beispielen (<strong>18.</strong>) und (<strong>19.</strong>). Dazu notieren Sie direkt nach der öffnenden eckigen Klammer <code>[</code> das Hütchensymbol <code>^</code>. Beachten Sie, dass auch dann mindestens ein Zeichen in der durchsuchten Zeichenkette vorhanden sein muss, auf das der reguläre Ausdruck nicht passt, obwohl kein Buchstabe in der Zeichenkette vorkommt. Wenn Sie also Beispiel (<strong>19.</strong>) auf eine leere Zeichenkette anwenden, bekommen Sie als Ergebnis, dass der reguläre Ausdruck <strong>nicht</strong> passt. Um abgekürzte Zeichenklassen wie etwa <code>\s</code> oder <code>\d</code> zu negieren, ändern Sie einfach den "Namen" der Abkürzung in einen Großbuchstaben, also <code>\S</code> oder <code>\D</code>.</p>
+
+
+
+<p class="doc"><a href="#top"><img src="../../src/up.gif" width="14" height="10" border="0" alt="nach oben"></a><a href="#bottom"><img src="../../src/down.gif" width="14" height="10" border="0" alt="nach unten"></a></p>
+
+
+
+<h2><a class="an" name="zeichenketten">Reguläre Ausdrücke für Zeichenketten</a></h2>
+
+<p>Sie können</p>
+<ul>
+<li>nach einer bestimmten Zeichenkette suchen</li>
+<li>nach einer Zeichenkette mit Gruppierungsoperatoren (Platzhalter, Wildcards) suchen</li>
+<li>nach Zeichenketten am Anfang oder Ende eines Wortes suchen</li>
+<li>nach Zeichenketten am Anfang oder Ende einer Zeile suchen</li>
+</ul>
+
+<p>Diese Art von regulären Ausdrücken ist dazu gedacht, um etwa in einem Wert nach dem Vorkommen eines bestimmten Wortes, einer beliebigen Teilzeichenkette oder nach einem Muster zu suchen.</p>
+
+<table class="reftable" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th>Nr.</th>
+<th nowrap="nowrap">Regulärer Ausdruck (Beispiel)</th>
+<th>Wirkung</th>
+</tr>
+<tr>
+<th>1.</th>
+<td class="code" nowrap="nowrap"><code>/aus/</code></td>
+<td class="tabxpl">passt auf 'aus' - auch in 'Haus' oder 'Mausi'</td>
+</tr>
+<tr>
+<th>2.</th>
+<td class="code" nowrap="nowrap"><code>/aus?/</code></td>
+<td class="tabxpl">passt auf 'aus' usw. - aber auch 'au' und 'auf'</td>
+</tr>
+<tr>
+<th>3.</th>
+<td class="code" nowrap="nowrap"><code>/a./</code></td>
+<td class="tabxpl">passt auf 'ab' und 'an' (ein beliebiges Zeichen hinter 'a', außer <code>\n</code>)</td>
+</tr>
+<tr>
+<th>4.</th>
+<td class="code" nowrap="nowrap"><code>/a+/</code></td>
+<td class="tabxpl">passt auf 'a' und 'aa' und 'aaaaa' (ein oder beliebig viele 'a')</td>
+</tr>
+<tr>
+<th>5.</th>
+<td class="code" nowrap="nowrap"><code>/a*/</code></td>
+<td class="tabxpl">passt auf 'a' und 'aa' und 'aaaaa' und 'b' (kein oder beliebig viele 'a')</td>
+</tr>
+<tr>
+<th>6.</th>
+<td class="code" nowrap="nowrap"><code>/Ha.s/</code></td>
+<td class="tabxpl">passt auf 'Haus' und 'Hans' aber nicht 'Hannes'</td>
+</tr>
+<tr>
+<th>7.</th>
+<td class="code" nowrap="nowrap"><code>/Ha.+s/</code></td>
+<td class="tabxpl">passt auf 'Haus' und 'Hans' und 'Hannes' (ein oder beliebig viele beliebige Zeichen, außer <code>\n</code>)</td>
+</tr>
+<tr>
+<th>8.</th>
+<td class="code" nowrap="nowrap"><code>/Ha.*s/</code></td>
+<td class="tabxpl">passt auf 'Haus' und 'Hans' und 'Hannes' (kein oder beliebig viele beliebige Zeichen, außer <code>\n</code>)</td>
+</tr>
+<tr>
+<th>9.</th>
+<td class="code" nowrap="nowrap"><code>/Ha.?s/</code></td>
+<td class="tabxpl">passt auf 'Haus' und 'Hans' und 'Hase'</td>
+</tr>
+<tr>
+<th>10.</th>
+<td class="code" nowrap="nowrap"><code>/x{10,20}/</code></td>
+<td class="tabxpl">passt auf zwischen 10 und 20 'x' in Folge</td>
+</tr>
+<tr>
+<th>11.</th>
+<td class="code" nowrap="nowrap"><code>/x{10,}/</code></td>
+<td class="tabxpl">passt auf 10 und mehr 'x' in Folge</td>
+</tr>
+<tr>
+<th>12.</th>
+<td class="code" nowrap="nowrap"><code>/x.{2}y/</code></td>
+<td class="tabxpl">passt auf 'xxxy' oder 'xaby' usw. (zwei beliebige Zeichen zwischen 'x' und 'y', außer <code>\n</code>)</td>
+</tr>
+<tr>
+<th>13.</th>
+<td class="code" nowrap="nowrap"><code>/Hans\b/</code></td>
+<td class="tabxpl">passt auf 'Hans' aber nicht 'Hansel' (Wortgrenze)</td>
+</tr>
+<tr>
+<th>14.</th>
+<td class="code" nowrap="nowrap"><code>/\baus/</code></td>
+<td class="tabxpl">passt auf 'aus' oder 'außen' aber nicht 'Haus' (Wortgrenze)</td>
+</tr>
+<tr>
+<th>15.</th>
+<td class="code" nowrap="nowrap"><code>/\baus\b/</code></td>
+<td class="tabxpl">passt auf 'aus' aber nicht 'Haus' und auch nicht 'außen' (Wortgrenze)</td>
+</tr>
+<tr>
+<th>16.</th>
+<td class="code" nowrap="nowrap"><code>/\baus\B/</code></td>
+<td class="tabxpl">passt auf 'außen' aber nicht 'aus' und auch nicht 'Haus' (Wortgrenze und "negative" Wortgrenze)</td>
+</tr>
+<tr>
+<th>17.</th>
+<td class="code" nowrap="nowrap"><code>/^Hans/</code></td>
+<td class="tabxpl">passt auf 'Hans' nur am Anfang des zu durchsuchenden Bereichs</td>
+</tr>
+<tr>
+<th>18.</th>
+<td class="code" nowrap="nowrap"><code>/Hans$/</code></td>
+<td class="tabxpl">passt auf 'Hans' nur am Ende des zu durchsuchenden Bereichs</td>
+</tr>
+<tr>
+<th>19.</th>
+<td class="code" nowrap="nowrap"><code>/^\s*$/</code></td>
+<td class="tabxpl">passt auf Zeilen, die nur aus Leerzeichen und anderen Leerraumzeichen bestehen oder leer sind</td>
+</tr>
+<tr>
+<th>20.</th>
+<td class="code" nowrap="nowrap"><code>/$Name/</code></td>
+<td class="tabxpl">interpretiert den Inhalt des Skalars <code>$Name</code> als regulären Ausdruck</td>
+</tr>
+</table>
+
+<p>Wenn Sie in einem regulären Ausdruck nach einer bestimmten Zeichenkette suchen wollen, notieren Sie die Zeichenkette einfach zwischen den beiden Schrägstrichen des regulären Ausdrucks, so wie in Beispiel (<strong>1.</strong>). Allerdings gilt auch hier wie bei den <img src="../../src/up.gif" width="14" height="10" alt="nach oben">&nbsp;<a href="#zeichen">regulären Ausdrücken für einzelne Zeichen</a>: wenn Sie nach einer festen Zeichenfolge suchen, sind Sie mit der Funktion <img src="../../src/dok.gif" width="15" height="10" alt="Seite">&nbsp;<a href="../funktionen/zeichenketten.htm#index">index</a> besser beraten.</p>
+
+<p>Reguläre Ausdrücke sind sozusagen eine eigene Sprache, die durch Wörter, die anhand grammatischer Regeln verknüpft werden, dargestellt wird. Die Verknüpfung erfolgt durch Operatoren. Der Grund, warum reguläre Ausdrücke so kompliziert erscheinen, ist die hohe Komprimierung in der Notation.</p>
+
+<p>Ein Wort in der Sprache der regulären Ausdrücke wird <strong>Atom</strong> genannt. Atome stellen immer genau <strong>ein</strong> gesuchtes Zeichen dar, beispielsweise <code>a</code>, <code>[abc]</code>, <code>.</code> oder <code>\[</code>. Die Zeichenklasse <code>[abc]</code> stellt ein Zeichen dar, das 'a', 'b' oder 'c' sein kann. Der Punkt <code>.</code> ist die Abkürzung für eine ganz spezielle Zeichenklasse, die alle Zeichen außer dem Zeilenumbruch beinhaltet. Er entspricht also in der DOS-Eingabeaufforderung beispielsweise dem <code>?</code>. Das Konstrukt <code>\[</code> stellt eine eckige Klammer dar, die aber durch den umgekehrten Schrägstrich <img src="../../src/down.gif" width="14" height="10" alt="nach unten">&nbsp;<a href="#maskierung">maskiert</a> werden muss, wenn sie nicht als Steuerzeichen verstanden werden soll.<br>
+Um aus Atomen ein zusammenhängendes Muster zu bilden, notieren Sie die Atome einfach ohne Leerzeichen aneinander.</p>
+
+<p>Zeichenwiederholungen können Sie mit Wiederholungsoperatoren kennzeichnen.<br>
+Das Fragezeichen <code>?</code> bedeutet in einem regulären Ausdruck: das Zeichen vor dem Fragezeichen oder auch nicht. Siehe dazu Beispiel (<strong>2.</strong>).<br>
+Das Pluszeichen <code>+</code> bedeutet: eine oder mehrere Wiederholungen des Zeichens, das vor dem Pluszeichen steht. Siehe dazu Beispiel (<strong>4.</strong>).<br>
+Das Sternzeichen <code>*</code> bedeutet: keine, eine oder mehrere Wiederholungen des Zeichens, das vor dem Sternzeichen steht. Siehe dazu Beispiel (<strong>5.</strong>).<br>
+Wenn Sie vor den Zeichen <code>+</code> oder <code>*</code> einen Punkt notieren (der für ein beliebiges Zeichen steht), erzeugen Sie einen Platzhalter, der dem <code>*</code> in der DOS/Windows-Welt, etwa bei Dateinamen, entspricht. Siehe dazu Beispiele (<strong>6.</strong>) bis (<strong>9.</strong>).<br>
+Geschweifte Klammern mit einer Zahl oder zwei Zahlen n darin <code>{n}</code> stehen für n Wiederholungen des Zeichens vor der geschweiften Klammer an der betreffenden Stelle - siehe dazu Beispiele (<strong>10.</strong>) bis (<strong>12.</strong>). Dabei können Sie auch das Punktzeichen vor der geschweiften Klammer notieren. In diesem Fall bedeutet die Angabe innerhalb der geschweiften Klammer: so viele beliebige Zeichen wie angegeben - siehe dazu Beispiel (<strong>12.</strong>)</p>
+
+<p>Sie können nach Zeichenketten suchen, die nur dann gefunden werden, wenn sie am Anfang oder am Ende eines Wortes vorkommen. Auch die Umkehrung davon ist möglich: Sie können nach Zeichenketten suchen, die nur dann gefunden werden, wenn sie nicht am Anfang oder am Ende eines Wortes vorkommen.<br>
+Mit <code>\b</code> vor einer Zeichenkette wird die Zeichenkette nur gefunden, wenn ein Wort damit anfängt.<br>
+Mit <code>\b</code> nach einer Zeichenkette wird die Zeichenkette nur gefunden, wenn ein Wort damit endet.<br>
+Mit <code>\B</code> vor einer Zeichenkette wird die Zeichenkette nur gefunden, wenn ein Wort nicht damit anfängt.<br>
+Mit <code>\B</code> nach einer Zeichenkette wird die Zeichenkette nur gefunden, wenn ein Wort nicht damit endet.<br>
+Zu diesen Möglichkeiten siehe Beispiele (<strong>13.</strong>) bis (<strong>16.</strong>).<br>
+Genau gesagt definiert <code>\b</code> die Grenze zwischen <code>\w</code> und <code>\W</code> (oder Zeichenkettenanfang oder -ende).</p>
+
+<p>Sie können Zeichenketten suchen, die nur dann gefunden werden, wenn sie am Anfang oder am Ende einer Zeile im zu durchsuchenden Bereich vorkommen. Dies ist vor allem im Zusammenhang mit Zeilen in Textdateien interessant.<br>
+Mit dem Hütchensymbol <code>^</code> am Beginn des Suchausdrucks wird die Zeichenkette nur gefunden, wenn sie am Anfang des Bereichs steht.<br>
+Mit dem Dollarzeichen <code>$</code> am Ende des Suchausdrucks wird die Zeichenkette nur gefunden, wenn sie am Ende des Bereichs steht.<br>
+Zu diesen Möglichkeiten siehe Beispiele (<strong>17.</strong>) bis (<strong>19.</strong>).</p>
+
+<p>Innerhalb von regulären Ausdrücken können Sie auch Variablen verwenden. Auf diese Weise können Sie dynamische Daten als Suchmuster einsetzen. Im Zusammenhang mit CGI können Sie z.B. die Anwendereingabe aus einem Formularfeld in ein Suchmuster übernehmen. Siehe dazu Beispiel (<strong>20.</strong>).</p>
+
+
+
+<p class="doc"><a href="#top"><img src="../../src/up.gif" width="14" height="10" border="0" alt="nach oben"></a><a href="#bottom"><img src="../../src/down.gif" width="14" height="10" border="0" alt="nach unten"></a></p>
+
+
+
+<h2><a class="an" name="maskierung">Maskierung von Zeichen in regulären Ausdrücken</a></h2>
+
+<p>Da es bei regulären Ausdrücken einige Zeichen mit Sonderbedeutung gibt, müssen Sie solche Zeichen maskieren, wenn Sie nicht die Sonderbedeutung des Zeichens meinen, sondern seine literale, normale Bedeutung, also einen Senkrechtstrich als Senkrechtstrich oder einen Punkt als Punkt meinen. Das Maskierungszeichen ist in allen Fällen der Backslash.</p>
+
+<table class="reftable" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th>Zeichen</th>
+<th>Maskierung</th>
+<th>Grund</th>
+<th>Beispiel</th>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>/</code></td>
+<td class="code" nowrap="nowrap"><code>\/</code></td>
+<td class="tabxpl">Wenn der Schrägstrich den regulären Ausdruck begrenzt, muss er innerhalb davon maskiert werden.</td>
+<td class="code" nowrap="nowrap"><code>/\/usr\/bin\/perl/</code></td>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>.</code></td>
+<td class="code" nowrap="nowrap"><code>\.</code></td>
+<td class="tabxpl">Der Punkt steht in regulären Ausdrücken ansonsten für ein beliebiges anderes Zeichen.</td>
+<td class="code" nowrap="nowrap"><code>/Ende aus\./</code></td>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>+</code></td>
+<td class="code" nowrap="nowrap"><code>\+</code></td>
+<td class="tabxpl">Das Pluszeichen steht ansonsten für ein oder mehrmaliges Vorkommen des davorstehenden Zeichens.</td>
+<td class="code" nowrap="nowrap"><code>/\d\+\d/</code></td>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>*</code></td>
+<td class="code" nowrap="nowrap"><code>\*</code></td>
+<td class="tabxpl">Das Sternzeichen steht ansonsten für kein, ein oder mehrmaliges Vorkommen des davorstehenden Zeichens.</td>
+<td class="code" nowrap="nowrap"><code>/\*char/</code></td>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>?</code></td>
+<td class="code" nowrap="nowrap"><code>\?</code></td>
+<td class="tabxpl">Das Fragezeichen steht ansonsten für kein oder einmaliges Vorkommen des davorstehenden Zeichens.</td>
+<td class="code" nowrap="nowrap"><code>/Wie geht das\?/</code></td>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>^</code></td>
+<td class="code" nowrap="nowrap"><code>\^</code></td>
+<td class="tabxpl">Das Dach- oder Hütchensymbol kann ansonsten eine Zeichenklasse verneinen oder bei Zeichenketten angeben, dass das nachfolgende Suchmuster am Anfang des Suchbereichs vorkommen muss.</td>
+<td class="code" nowrap="nowrap"><code>/ein \^ über dem Kopf/</code></td>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>$</code></td>
+<td class="code" nowrap="nowrap"><code>\$</code></td>
+<td class="tabxpl">Das Dollarzeichen kann einen Skalar einleiten oder bei Zeichenketten angeben, dass das voranstehende Suchmuster am Ende des Suchbereichs vorkommen muss.</td>
+<td class="code" nowrap="nowrap"><code>/Preis (US-Dollar): \d*\$/</code></td>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>|</code></td>
+<td class="code" nowrap="nowrap"><code>\|</code></td>
+<td class="tabxpl">Der Senkrechtstrich kann ansonsten alternative Ausdrücke auseinanderhalten.</td>
+<td class="code" nowrap="nowrap"><code>/find (.*) \| sort/</code></td>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>\</code></td>
+<td class="code" nowrap="nowrap"><code>\\</code></td>
+<td class="tabxpl">Der Backslash würde ansonsten das nachfolgende Zeichen maskieren.</td>
+<td class="code" nowrap="nowrap"><code>/C:\\/</code></td>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>( )</code></td>
+<td class="code" nowrap="nowrap"><code>\( \)</code></td>
+<td class="tabxpl">Runde Klammern können ansonsten Teilausdrücke gruppieren und zum Merken einklammern.</td>
+<td class="code" nowrap="nowrap"><code>/\(Hinweis: (.*)\)/</code></td>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>[]</code></td>
+<td class="code" nowrap="nowrap"><code>\[ \]</code></td>
+<td class="tabxpl">Eckige Klammern begrenzen ansonsten eine Zeichenklasse.</td>
+<td class="code" nowrap="nowrap"><code>/\$(.*)\[\d+\]/</code></td>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>{ }</code></td>
+<td class="code" nowrap="nowrap"><code>\{ \}</code></td>
+<td class="tabxpl">Geschweifte Klammern bedeuten ansonsten eine Wiederholungs-Angabe für davorstehende Zeichen.</td>
+<td class="code" nowrap="nowrap"><code>/ENV\{.*\}/</code></td>
+</tr>
+</table>
+<br>&nbsp;
+
+
+
+
+
+<p class="doc"><a href="#top"><img src="../../src/up.gif" width="14" height="10" border="0" alt="nach oben"></a><a href="#bottom"><img src="../../src/down.gif" width="14" height="10" border="0" alt="nach unten"></a></p>
+
+
+
+<h2><a class="an" name="gierig_genuegsam">Gierige und genügsame Suchmuster</a></h2>
+
+<p>Normalerweise sind alle regulären Ausdrücke, die Wildcard-Ausdrücke wie <code>.*</code> enthalten, sehr "gierig". Sie holen sich so viele Zeichen wie möglich. Es gibt jedoch die Möglichkeit, solche Ausdrücke zu mehr Genügsamkeit zu zwingen.</p>
+
+<h3 class="xmp"><a class="an" name="beispiel3">Beispiel eines vollständigen CGI-Scripts in Perl:</a></h3>
+
+<p><img src="../../src/dokf.gif" width="15" height="10" alt="Beispiel-Seite">&nbsp;<a href="http://de.selfhtml.org/cgi-bin/812/regexpr3.pl">Anzeigebeispiel: So sieht's aus</a> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</p>
+
+<pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print "Content-type: text/html\n\n";
+print '&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"&gt;', "\n";
+print "&lt;html&gt;&lt;head&gt;&lt;title&gt;Testausgabe&lt;/title&gt;\n";
+print "&lt;/head&gt;&lt;body&gt;\n";
+
+my $HTML_Zeile = "&lt;html&gt;&lt;head&gt;&lt;title&gt;Testausgabe&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;&amp;Uuml;berschrift&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;";
+
+$HTML_Zeile =~ /(^&lt;.+&gt;)/;
+my $gierig = $1;
+$HTML_Zeile =~ /(^&lt;.+?&gt;)/;
+my $genuegsam = $1;
+
+$gierig =~ s/&lt;/&amp;lt;/g;    # nur wegen HTML-Ausgabe
+$gierig =~ s/&gt;/&amp;gt;/g;    # nur wegen HTML-Ausgabe
+$genuegsam =~ s/&lt;/&amp;lt;/g; # nur wegen HTML-Ausgabe
+$genuegsam =~ s/&gt;/&amp;gt;/g; # nur wegen HTML-Ausgabe
+
+print "&lt;p&gt;&lt;b&gt;Gierige Version:&lt;/b&gt; &lt;tt&gt;$gierig&lt;/tt&gt;&lt;/p&gt;";
+print "&lt;p&gt;&lt;b&gt;Gen&amp;uuml;gsame Version:&lt;/b&gt; &lt;tt&gt;$genuegsam&lt;/tt&gt;&lt;/p&gt;";
+
+print "&lt;/body&gt;&lt;/html&gt;\n";
+</pre>
+
+<h3 class="xpl">Erläuterung:</h3>
+
+<p>Das Beispiel-Script demonstriert die Gier regulärer Ausdrücke und zeigt auch, wie sich diese Gier unterbinden lässt. Ein Skalar namens <code>$HTML_Zeile</code> wird deklariert und erhält als Anfangswert den Code einer kompletten kleinen HTML-Datei. Anschließend wird dieser Skalar mit einem regulären Ausdruck bewertet, der darin nach einem Muster <code>/(^&lt;.+&gt;)/</code> sucht. In runde Klammern eingeschlossen ist das gesamte Suchmuster, weil anschließend ausgegeben werden soll, was gefunden wurde. Das Suchergebnis wird im Skalar <code>$gierig</code> gespeichert. Anschließend wird die Prozedur noch einmal wiederholt. Diesmal ist der reguläre Ausdruck nur minimal anders: er enthält hinter dem Pluszeichen noch ein Fragezeichen.</p>
+
+<p>Beide Suchergebnisse werden anschließend noch für die HTML-Ausgabe vorbereitet, und zwar werden die spitzen Klammern HTML-gerecht ersetzt (siehe dazu auch <img src="../../src/down.gif" width="14" height="10" alt="nach unten">&nbsp;<a href="#suchen_ersetzen">Suchen und Ersetzen mit regulären Ausdrücken</a>).</p>
+
+<p>Die Ausgabe von <code>$gierig</code> bewirkt:<br>
+<code>&lt;html&gt;&lt;head&gt;&lt;title&gt;Testausgabe&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;Überschrift&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;</code><br>
+Die Ausgabe von <code>$genuegsam</code> dagegen:<br>
+<code>&lt;html&gt;</code></p>
+
+<p>Der Wildcard-Ausdruck <code>.+</code>, der "alles" bis zum Zeichen <code>&gt;</code> holen soll, macht nämlich nicht beim nächsten <code>&gt;</code> Stopp, sondern erst beim allerletzten. Durch das Anhängen des Fragezeichens, also durch Erweiterung auf <code>.+?</code>, beschränkt sich das Muster auf das Auffinden des nächsten <code>&gt;</code>-Zeichens.</p>
+
+
+
+<p class="doc"><a href="#top"><img src="../../src/up.gif" width="14" height="10" border="0" alt="nach oben"></a><a href="#bottom"><img src="../../src/down.gif" width="14" height="10" border="0" alt="nach unten"></a></p>
+
+
+
+<h2><a class="an" name="alternativen">Reguläre Ausdrücke mit Alternativen</a></h2>
+
+<p>Sie können mehrere Suchausdrücke angeben. Dann passt der Ausdruck auf alle Zeichenketten, in denen wenigstens eine der Alternativen vorkommt.</p>
+
+<h3 class="xmp"><a class="an" name="beispiel4">Beispiel eines vollständigen CGI-Scripts in Perl:</a></h3>
+
+<p><img src="../../src/dokf.gif" width="15" height="10" alt="Beispiel-Seite">&nbsp;<a href="http://de.selfhtml.org/cgi-bin/812/regexpr4.pl">Anzeigebeispiel: So sieht's aus</a> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</p>
+
+<pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print "Content-type: text/html\n\n";
+print '&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"&gt;', "\n";
+print "&lt;html&gt;&lt;head&gt;&lt;title&gt;Testausgabe&lt;/title&gt;\n";
+print "&lt;/head&gt;&lt;body&gt;\n";
+
+my $Text = "Kaffee ohne Milch";
+print "egal ob mit oder ohne&lt;br&gt;\n" if ($Text =~ /mit|ohne/);
+$Text = "Kaffee mit Milch";
+print "sag ich doch: egal ob mit oder ohne&lt;br&gt;\n" if ($Text =~ /mit|ohne/);
+
+print "&lt;/body&gt;&lt;/html&gt;\n";
+</pre>
+
+<h3 class="xpl">Erläuterung:</h3>
+
+<p>Das Beispiel-Script deklariert einen Skalar <code>$Text</code> mit dem Anfangswert <code>Kaffee ohne Milch</code>. Abhängig vom Erfolg des regulären Ausdrucks <code>/mit|ohne/</code>, der auf diesen Skalar angewendet wird, wird im aufrufenden Browser ausgegeben: <code>egal ob mit oder ohne</code>. Der Senkrechtstrich <code>|</code> teilt den regulären Ausdruck in zwei Alternativen auf, bei denen es reicht, wenn eine davon zutrifft. Da dies der Fall ist, wird der Satz im Browser ausgegeben. Zur Kontrolle wird der Text anschließend zu <code>Kaffee mit Milch</code> geändert. Der anschließend angewendete gleiche reguläre Ausdruck führt wieder zum Erfolg, und es wird <code>sag ich doch: egal ob mit oder ohne</code> ausgegeben.</p>
+
+
+
+<p class="doc"><a href="#top"><img src="../../src/up.gif" width="14" height="10" border="0" alt="nach oben"></a><a href="#bottom"><img src="../../src/down.gif" width="14" height="10" border="0" alt="nach unten"></a></p>
+
+
+
+<h2><a class="an" name="merken">Teilausdrücke merken mit Klammerung</a></h2>
+
+<p>Mit Hilfe von Klammerung einzelner Teile eines regulären Ausdrucks können Sie Teilmuster speichern und an einer späteren Stelle wiederverwenden.</p>
+
+<h3 class="xmp"><a class="an" name="beispiel5">Beispiel eines vollständigen CGI-Scripts in Perl:</a></h3>
+
+<p><img src="../../src/dokf.gif" width="15" height="10" alt="Beispiel-Seite">&nbsp;<a href="http://de.selfhtml.org/cgi-bin/812/regexpr5.pl">Anzeigebeispiel: So sieht's aus</a> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</p>
+
+<pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print "Content-type: text/html\n\n";
+print '&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"&gt;', "\n";
+print "&lt;html&gt;&lt;head&gt;&lt;title&gt;Testausgabe&lt;/title&gt;\n";
+print "&lt;/head&gt;&lt;body&gt;\n";
+
+my $CTIME = localtime(time);
+$CTIME =~ /^([A-Za-z]*?)\s*([A-Za-z]*?)\s*(\d*?)\s*(\d*?):(\d*?):(\d*)\s*(\d*)$/;
+my $Tag = $1;
+my $Monat = $2;
+my $Monatstag = $3;
+my $Stunden = $4;
+my $Minuten = $5;
+my $Sekunden = $6;
+my $Jahr = $7;
+my %Tage   = (Mon =&gt; "Montag", Tue =&gt; "Dienstag", Wed =&gt; "Mittwoch",
+              Thu =&gt; "Donnerstag", Fri =&gt; "Freitag", Sat =&gt; "Samstag", Sun =&gt; "Sonntag");
+my %Monate = (Jan =&gt; "01", Feb =&gt; "02", Mar =&gt; "03", Apr =&gt; "04", May =&gt; "05", Jun =&gt; "06",
+              Jul =&gt; "07", Aug =&gt; "08", Sep =&gt; "09", Oct =&gt; "10", Nov =&gt; "11", Dec =&gt; "12");
+
+print "&lt;b&gt;Heute ist $Tage{$Tag}, der $Monatstag.$Monate{$Monat}.$Jahr, es ist $Stunden.$Minuten Uhr&lt;/b&gt;\n";
+
+print "&lt;/body&gt;&lt;/html&gt;\n";
+</pre>
+
+<h3 class="xpl">Erläuterung:</h3>
+
+<p>Das Beispiel ruft die Perl-Funktion <img src="../../src/dok.gif" width="15" height="10" alt="Seite">&nbsp;<a href="../funktionen/datumzeit.htm#localtime">localtime</a> mit dem Rückgabewert der Funktion <img src="../../src/dok.gif" width="15" height="10" alt="Seite">&nbsp;<a href="../funktionen/datumzeit.htm#time">time</a> auf und speichert den Rückgabewert von <code>localtime</code> im Skalar <code>$CTIME</code>. Darin ist anschließend eine Zeichenkette gespeichert, die so aufgebaut ist:<br>
+<code>Sun Jun 17 21:37:40 2006</code></p>
+
+<p>In der darauffolgenden Anweisung wird <code>$CTIME</code> mit einem langen regulären Suchausdruck bewertet. Der reguläre Ausdruck versucht, das gesamte typische Muster des Datum-Uhrzeit-Strings zu erfassen. Die Nutzdaten darin, also Wochentag, Monatsname, Monatstag, Stunden, Minuten, Sekunden und Jahr werden innerhalb des regulären Ausdrucks geklammert. Jeden Inhalt dieser Klammern merkt sich Perl und stellt ihn in den <img src="../../src/dok.gif" width="15" height="10" alt="Seite">&nbsp;<a href="vordefiniert.htm">vordefinierten Variablen</a> <code>$1</code>, <code>$2</code>, <code>$3</code> usw. zur Verfügung. Die anschließend deklarierten Skalare holen sich die Werte aus den Klammern, indem ihnen die entsprechenden vordefinierten Variablen zugewiesen werden.</p>
+
+<p>Die beiden Hashes <code>%Tage</code> und <code>%Monate</code> werden zum Zweck eines deutschsprachigen Datum-Uhrzeit-Formats verwendet. Das Script gibt am Ende so etwas aus wie:<br>
+<strong>Heute ist Sonntag, der 18.02.2007, es ist 17.39 Uhr</strong>.</p>
+
+
+
+<p class="doc"><a href="#top"><img src="../../src/up.gif" width="14" height="10" border="0" alt="nach oben"></a><a href="#bottom"><img src="../../src/down.gif" width="14" height="10" border="0" alt="nach unten"></a></p>
+
+
+
+<h2><a class="an" name="rangfolge">Rangfolge in regulären Ausdrücken</a></h2>
+
+<p>Die Sonderzeichen innerhalb von regulären Ausdrücken werden vom Perl-Interpreter nach einer bestimmten Rangfolge bewertet.</p>
+<ol>
+<li>Rangstufe: <code>()</code> (Klammerung)</li>
+<li>Rangstufe: <code>+ * ? {#,#}</code> (Wiederholungsoperatoren)</li>
+<li>Rangstufe: <code>abc ^ $ \b \B</code> (Zeichen/Zeichenketten, Zeilenanfang/-ende, Wortanfang/-ende)</li>
+<li>Rangstufe: <code>|</code> (Alternativen)</li>
+</ol>
+<p>Dadurch ist jeder reguläre Ausdruck eindeutig bewertbar. Wenn Sie in einem Ausdruck jedoch anders bewerten möchten, als es nach der Rangfolge geschieht, können Sie innerhalb des Ausdrucks Klammern setzen, um eine andere Bewertung zu erzwingen.</p>
+
+<h3 class="xmp">Beispiele:</h3>
+<pre>
+/a|bc|d/       # findet 'a' oder 'bc' oder 'd'
+/(a|b)(c|d)/   # findet 'ac' oder 'ad' oder 'bc' oder 'bd'
+</pre>
+
+<h3 class="xpl">Erläuterung:</h3>
+
+<p>Laut der Rangfolge haben Zeichen bzw. Zeichenketten Vorrang vor dem Trennzeichen für Alternativen. Mit Hilfe von Klammern können Sie eine andere Bewertung erzwingen (siehe Beispiel).<br>
+Wenn Sie die Klammern zur Bewertungsänderung benutzen möchten, ohne sich die entsprechenden <img src="../../src/up.gif" width="14" height="10" alt="nach oben">&nbsp;<a href="#merken">Teilausdrücke merken</a> zu wollen, können Sie auch Klammern benutzen, die nur gruppieren. Dabei wird direkt hinter der öffnenden Klammer die Zeichenfolge <code>?:</code> notiert, im Beispiel wäre das <code>(?:a|b)(?:c|d)</code>.</p>
+
+
+
+<p class="doc"><a href="#top"><img src="../../src/up.gif" width="14" height="10" border="0" alt="nach oben"></a><a href="#bottom"><img src="../../src/down.gif" width="14" height="10" border="0" alt="nach unten"></a></p>
+
+
+
+<h2><a class="an" name="flags">Flags hinter regulären Ausdrücken</a></h2>
+
+<p>Hinter dem beendenden Begrenzerzeichen (normalerweise: Schrägstrich) eines regulären Ausdrucks können noch ein oder mehrere Buchstaben notiert werden - so genannte Flags. Damit können Sie das Verhalten der Suche zusätzlich beeinflussen. Mit einer Notation wie <code>/aus/g</code> suchen Sie beispielsweise global nach dem Vorkommen von <code>aus</code>, und mit <code>/aus/gim</code> suchen Sie die Zeichenfolge <code>aus</code> global, egal ob groß oder klein geschrieben, und die Zeichenkette kann auch aus mehreren Zeilen bestehen. Flags können Sie also beliebig kombinieren. Die folgende Tabelle listet die möglichen Flags auf.</p>
+
+<table class="reftable" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th>Flag</th>
+<th>Bedeutung</th>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>c</code></td>
+<td class="tabxpl">Bei einem auftretenden Fehler <strong>nicht</strong> die Suchposition zurücksetzen.</td>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>e</code></td>
+<td class="tabxpl">Führt bei <img src="../../src/down.gif" width="14" height="10" border="0" alt="nach unten">&nbsp;<a href="#suchen_ersetzen">Ersetzungen</a> die Ersatzzeichenkette als Perl-Code aus.</td>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>g</code></td>
+<td class="tabxpl">Global suchen, d.h. alle Vorkommen finden.</td>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>i</code></td>
+<td class="tabxpl">Groß-/Kleinschreibung ignorieren</td>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>m</code></td>
+<td class="tabxpl">Zeichenketten können aus mehreren Zeilen bestehen</td>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>o</code></td>
+<td class="tabxpl">Suchmuster nur einmal anwenden</td>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>s</code></td>
+<td class="tabxpl">Zeichenketten als eine einzige Zeile betrachten</td>
+</tr>
+<tr>
+<td class="code" nowrap="nowrap"><code>x</code></td>
+<td class="tabxpl">Erweiterte Syntax verwenden</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+
+
+
+<p class="doc"><a href="#top"><img src="../../src/up.gif" width="14" height="10" border="0" alt="nach oben"></a><a href="#bottom"><img src="../../src/down.gif" width="14" height="10" border="0" alt="nach unten"></a></p>
+
+
+
+<h2><a class="an" name="suchen_ersetzen">Suchen und Ersetzen mit regulären Ausdrücken</a></h2>
+
+<p>Reguläre Ausdrücke sind das Mittel, mit dem in Perl in Zeichenketten etwas gesucht und ersetzt wird.</p>
+
+<h3 class="xmp"><a class="an" name="beispiel6">Beispiel eines vollständigen CGI-Scripts in Perl:</a></h3>
+
+<p><img src="../../src/dokf.gif" width="15" height="10" alt="Beispiel-Seite">&nbsp;<a href="http://de.selfhtml.org/cgi-bin/812/regexpr6.pl">Anzeigebeispiel: So sieht's aus</a> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</p>
+
+<pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print "Content-type: text/plain\n\n";
+
+my $Text = "Franz jagt im komplett verwahrlosten Taxi quer durch Bayern 1234567890";
+$Text =~ s/[a-z]| //gi;
+
+print "$Text\n";
+</pre>
+
+<h3 class="xpl">Erläuterung:</h3>
+
+<p>Das Schema für alle Suche-Ersetze-Vorgänge in Perl lautet:<br>
+<code>$Zeichenkette =~ s/Suchmuster/Ersatzzeichenkette/[Flags]</code></p>
+
+<p><code>$Zeichenkette</code> ist ein Skalar, in dem eine Zeichenkette gespeichert ist, so wie etwa <code>$Text</code> im obigen Beispiel 1. Dieser Skalar wird mit dem Operator <code>=~</code> an die Ersetzung gebunden, d.h. der Suche-Ersetze-Vorgang gilt für den Inhalt des Skalars. Dahinter notieren Sie die Ersetzung. Sie wird durch ein kleines <code>s</code> eingeleitet. Nach dem <code>s</code> notieren Sie das erste Begrenzerzeichen (per Voreinstellung ein Schrägstrich), und danach das Suchmuster, das mit dem zweiten Begrenzerzeichen abgeschlossen wird. Danach folgen das Zeichen oder die Zeichenfolge, mit dem/mit der die Fundstellen ersetzt werden sollen, abgeschlossen wird dieses Ersetzungsmuster mit dem dritten Begrenzerzeichen. Falls benötigt, notieren Sie nach dem letzten Begrenzerzeichen noch Flags für den Such-Ersetze-Vorgang. Im Beispiel wurden folgende Flags verwendet:<br>
+<code>g</code> sucht/ersetzt <strong>alle</strong> Fundstellen (ansonsten wird nur die erste Fundstelle ersetzt)<br>
+<code>i</code> sucht/ersetzt Buchstaben unabhängig davon, ob sie groß oder klein geschrieben sind (ansonsten wird Groß-/Kleinschreibung unterschieden).</p>
+
+<p>Im obigen Beispiel werden aus dem Skalar <code>$Text</code> alle Buchstaben (groß und klein) und alle Leerzeichen entfernt. Es bleiben anschließend also nur noch die Ziffern am Ende stehen. Das Ergebnis wird zur Kontrolle ausgegeben.</p>
+
+<h3 class="xmp"><a class="an" name="beispiel7">Beispiel eines vollständigen CGI-Scripts in Perl:</a></h3>
+
+<p><img src="../../src/dokf.gif" width="15" height="10" alt="Beispiel-Seite">&nbsp;<a href="http://de.selfhtml.org/cgi-bin/812/regexpr7.pl">Anzeigebeispiel: So sieht's aus</a> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</p>
+
+<pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print "Content-type: text/plain\n\n";
+
+my $Text = "In München steht ein Hofbräuhaus, dort gibt es Bier in Maßen";
+$Text =~ s/ä/&amp;auml;/g;
+$Text =~ s/ö/&amp;ouml;/g;
+$Text =~ s/ü/&amp;uuml;/g;
+$Text =~ s/Ä/&amp;Auml;/g;
+$Text =~ s/Ö/&amp;Ouml;/g;
+$Text =~ s/Ü/&amp;Uuml;/g;
+$Text =~ s/ß/&amp;szlig;/g;
+
+print "$Text\n";
+</pre>
+
+<h3 class="xpl">Erläuterung:</h3>
+
+<p>In diesem Beispiel werden in <code>$Text</code> alle deutschen Umlaute und scharfes S durch ihre HTML-gerechten Umschreibungen ersetzt. Das Ergebnis wird zur Kontrolle ausgegeben.</p>
+
+<h3 class="xmp"><a class="an" name="beispiel8">Beispiel eines vollständigen CGI-Scripts in Perl:</a></h3>
+
+<p><img src="../../src/dokf.gif" width="15" height="10" alt="Beispiel-Seite">&nbsp;<a href="http://de.selfhtml.org/cgi-bin/812/regexpr8.pl">Anzeigebeispiel: So sieht's aus</a> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</p>
+
+<pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print "Content-type: text/plain\n\n";
+
+my $Text = "Dieses Script dreht alle Wörter um";
+$Text =~ s/(\w+)/reverse $1/ge;
+
+print "$Text\n";
+</pre>
+
+<h3 class="xpl">Erläuterung:</h3>
+
+<p>In diesem Beispiel werden in <code>$Text</code> alle Wörter mit Hilfe des <img src="../../src/up.gif" width="14" height="10" border="0" alt="nach oben">&nbsp;<a href="#flags"><code>e</code>-Flags</a> und der <img src="../../src/dok.gif" width="15" height="10" alt="Beispiel-Seite">&nbsp;<a href="../funktionen/zeichenketten.htm#reverse">reverse</a>-Funktion umgedreht. Das Ergebnis wird zur Kontrolle ausgegeben.</p>
+
+
+
+<p class="doc"><a href="#top"><img src="../../src/up.gif" width="14" height="10" border="0" alt="nach oben"></a><a href="#bottom"><img src="../../src/down.gif" width="14" height="10" border="0" alt="nach unten"></a></p>
+
+
+
+<h2><a class="an" name="transliteration">Transliteration</a></h2>
+
+<p>Für "kleinere" Aufgaben wie Suchen und Ersetzen oder das Zählen von einzelnen Zeichen gibt es in Perl die Möglichkeit, ohne reguläre Ausdrücke zu arbeiten. Dafür gibt es eine spezielle Syntax, den Transliterationsoperator <code>tr</code>.</p>
+
+<h3 class="xmp"><a class="an" name="beispiel9">Beispiel eines vollständigen CGI-Scripts in Perl:</a></h3>
+
+<p><img src="../../src/dokf.gif" width="15" height="10" alt="Beispiel-Seite">&nbsp;<a href="http://de.selfhtml.org/cgi-bin/812/regexpr9.pl">Anzeigebeispiel: So sieht's aus</a> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</p>
+
+<pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print "Content-type: text/plain\n\n";
+
+my $Prinzip = "abc";
+$Prinzip =~ tr/ac/xy/;
+print "Prinzip = $Prinzip\n";
+
+my $chinesisch = "chinesisches Roulette rigoros";
+$chinesisch =~ tr/Rr/Ll/;
+print "chinesisch = $chinesisch\n";
+
+my $Geschrei = "WIE GEHT DAS ALLES MIT PERL?";
+$Geschrei =~ tr/A-Z/a-z/;
+print "Geschrei = $Geschrei\n";
+
+my $Variablenname = "Sügümälüxümülä";
+$Variablenname =~ tr/A-Za-z_0-9/_/c;
+print "Variablenname = $Variablenname\n";
+
+my $unsauber = "ein   Satz mit  überflüssigen    Leerzeichen";
+$unsauber =~ tr/ //s;
+print "unsauber = $unsauber\n";
+
+my $WSatz = "Wir Westerwälder Waschweiber wollen weiße Wäsche waschen";
+my $WZaehler = ($WSatz =~ tr/Ww//);
+print "W/w kommt in WSatz $WZaehler mal vor!\n";
+
+my $AchtBitWort = "überschüssig";
+$AchtBitWort =~ tr/\200-\377/\000-\177/;
+print "AchtBitWort = $AchtBitWort\n";
+
+my $ROT13_Satz = "ihr seid ja solche Deppen da!";
+$ROT13_Satz =~ tr/a-zA-Z/n-za-mN-ZA-M/;
+print "ROT13_Satz = $ROT13_Satz\n";
+</pre>
+
+<h3 class="xpl">Erläuterung:</h3>
+
+<p>Eine Transliteration besteht darin, einzelne Zeichen durch andere Zeichen zu ersetzen. Das Schema für eine Transliteration in Perl lautet:<br>
+<code>$Zeichenkette =~ tr/Suchmuster/Ersetzmuster/[Optionen]</code><br>
+Dabei sind sowohl das Such- als auch das Ersetzungsmuster keine Zeichenketten, sondern nur einzelne Zeichen oder Zeichenbereiche. Die Muster sind sozusagen zwei Listen von Zeichen. Wenn in <code>$Zeichenkette</code> ein Zeichen gefunden wird, das in der Suchliste vorkommt, wird es mit dem Zeichen ersetzt, das an derselben Position in der Ersetzungsliste steht.</p>
+
+<p>Alle Beispiele des obigen Scripts sind gleich aufgebaut. Es wird ein Skalar mit einem "interessanten" Wert deklariert. Dann wird eine Transliteration auf diesen Wert angewendet, und anschließend wird das Ergebnis ausgegeben.</p>
+
+<p>Im Fall von <code>$Prinzip</code> wird das Prinzip der Transliteration deutlich: in dem Beispiel wird <code>a</code> durch <code>x</code> ersetzt und <code>c</code> durch <code>y</code>. Die Ausgabe lautet daher:<br>
+<code>Prinzip = xby</code></p>
+
+<p>Im Fall von <code>$chinesisch</code> werden die Buchstaben <code>R</code> und <code>r</code> durch <code>L</code> und <code>l</code> ersetzt. Die Ausgabe lautet daher:<br>
+<code>chinesisch = chinesisches Loulette ligolos</code></p>
+
+<p>Im Fall von <code>$Geschrei</code> werden alle Großbuchstaben durch entsprechende Kleinbuchstaben ersetzt (entspricht etwa der Funktion <img src="../../src/dok.gif" width="15" height="10" alt="Seite">&nbsp;<a href="../funktionen/zeichenketten.htm#lc">lc</a>). Die Ausgabe lautet daher:<br>
+<code>Geschrei = wie geht das alles mit perl?</code></p>
+
+<p>Im Fall von <code>$Variablenname</code> werden alle Zeichen, die kein Buchstabe von A bis Z oder a bis z oder eine Ziffer oder ein Unterstrich sind, durch den Unterstrich <code>_</code> ersetzt. Die Ausgabe lautet daher:<br>
+<code>Variablenname = S_g_m_l_x_m_l_</code></p>
+
+<p>Im Fall von <code>$unsauber</code> werden alle doppelten oder mehrfachen Leerzeichen entfernt. Die Ausgabe lautet daher:<br>
+<code>unsauber = ein Satz mit überflüssigen Leerzeichen</code></p>
+
+<p>Im Fall von <code>$WSatz</code> wird sich der Rückgabewert einer Transliteration zu eigen gemacht. Dem Skalar <code>$WSatz</code> passiert dabei nichts weiter, aber der Rückgabewert ermittelt, wie oft die Buchstaben <code>W</code> oder <code>w</code> in dem Satz vorkommen. Die Ausgabe lautet daher:<br>
+<code>W/w kommt in WSatz 9 mal vor!</code></p>
+
+<p>Im Fall von <code>$AchtBitWort</code> werden alle Zeichen mit Zeichenwerten zwischen 128 und 255 in Zeichen mit entsprechenden Zeichenwerten zwischen 0 und 127 umgewandelt. Die Ausgabe lautet daher:<br>
+<code>AchtBitWort = |berfl|ssig</code></p>
+
+<p>Im Fall von <code>$ROT13_Satz</code> werden alle Zeichen des ersten Alphabethälfte in solche der zweiten verwandelt und umgekehrt (sie werden sozusagen um 13 Zeichenwerte rotiert). Die Ausgabe lautet:<br>
+<code>ROT13_Satz = vue frvq wn fbypur Qrccra qn!</code><br>
+(das ROT13-Prinzip wird in den Newsgroups manchmal angewendet, um Dinge zu sagen, die nicht jeder verstehen können soll).</p>
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" class="doc">
+&nbsp;<a href="#top"><img src="../../src/up.gif" width="14" height="10" border="0" alt="nach oben"></a>
+</td></tr>
+<tr><td class="doc"><a href="subroutinen.htm"><img src="../../src/next.gif" width="10" height="10" border="0" hspace="10" alt="weiter"></a></td>
+<td width="100%"><img src="../../src/dok.gif" width="15" height="10" alt="Seite">&nbsp;<a href="subroutinen.htm">Subroutinen</a>
+</td></tr>
+<tr>
+<td class="doc"><a href="operatoren.htm"><img src="../../src/prev.gif" width="10" height="10" border="0" hspace="10" alt="zurück"></a></td>
+<td><img src="../../src/dok.gif" width="15" height="10" alt="Seite">&nbsp;<a href="operatoren.htm">Operatoren</a>
+</td>
+</tr>
+<tr><td colspan="2" class="doc">&nbsp;</td>
+</tr>
+<tr>
+<td colspan="2" class="nav"><a class="an" name="bottom"><img src="../../src/refkap.gif" width="16" height="13" alt="Teil von"></a> <a href="../../index.htm">SELFHTML</a>/<a href="../../navigation/index.htm" target="_parent" class="navh">Navigationshilfen</a> <img src="../../src/refkap.gif" width="16" height="13" alt="Teil von">&nbsp;<a href="../index.htm">Perl</a> <img src="../../src/refkap.gif" width="16" height="13" alt="Teil von">&nbsp;<a href="index.htm">Perl-Sprachelemente</a></td>
+</tr>
+</table>
+
+<p>&copy; 2007 <img src="../../src/dok.gif" width="15" height="10" alt="Seite">&nbsp;<a href="../../editorial/impressum.htm">Impressum</a> <a href="http://flattr.com/thing/41584/SELFHTML" target="_blank"><img src="//src.selfhtml.org/flattr-100x17.png" alt="Flattr this" title="Flattr this" border="0" /></a></p>
+
+</body>
+</html>

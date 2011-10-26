@@ -1,0 +1,154 @@
+#! /usr/bin/env python
+import sys
+import os
+import urllib2
+#from urlparse import urlparse
+import subprocess
+#from Globals import package_home
+import libxml2
+import libxslt
+from tidylib import tidy_document
+from xhtmlpremailer import xhtmlPremailer
+from lxml import etree
+import magic
+
+XHTML_ENTITIES = os.path.join('www', 'catalog_xhtml', 'catalog.xml')
+GDOCS2CNXML_XSL1 = os.path.join('www', 'gdocs_meta1.xsl')
+GDOCS2CNXML_XSL2 = os.path.join('www', 'gdocs_meta2.xsl')
+
+# Tidy up the Google Docs HTML Soup
+def tidy_and_premail(content):
+    # HTML Tidy
+    strTidiedHtml, strErrors = tidy_document(content, options={
+        'output-xhtml': 1,     # XHTML instead of HTML4
+        'indent': 0,           # Don't use indent, add's extra linespace or linefeeds which are big problems
+        'tidy-mark': 0,        # No tidy meta tag in output
+        'wrap': 0,             # No wrapping
+        'alt-text': '',        # Help ensure validation
+        'doctype': 'strict',   # Little sense in transitional for tool-generated markup...
+        'force-output': 1,     # May not get what you expect but you will get something
+        'numeric-entities': 1, # remove HTML entities like e.g. nbsp
+        'clean': 1,            # remove
+        'bare': 1,
+        'word-2000': 1,
+        'drop-proprietary-attributes': 1,
+        'enclose-text': 1,     # enclose text in body always with <p>...</p>
+        'logical-emphasis': 1  # transforms <i> and <b> text to <em> and <strong> text
+        })
+
+	# Move CSS from stylesheet inside the tags with. BTW: Premailer do this usually for old email clients.
+    # Use a special XHTML Premailer which does not destroy the XML structure.
+    premailer = xhtmlPremailer(strTidiedHtml)
+    strTidiedPremailedHtml = premailer.transform()
+    return strTidiedPremailedHtml
+
+# Use Blahtex transformation from TeX to XML. http://gva.noekeon.org/blahtexml/
+def tex2mathml(xml):
+    xpathFormulars = etree.XPath('//cnxtra:tex[@tex]', namespaces={'cnxtra':'http://cnxtra'})
+    formularList = xpathFormulars(xml)
+    for formular in formularList:
+        strTex = urllib2.unquote(formular.get('tex'))
+        strCmdBlahtex = ['blahtex','--mathml']
+        # run the program with subprocess and pipe the input and output to variables
+        p = subprocess.Popen(strCmdBlahtex, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        strMathMl, strErr = p.communicate(strTex) # set STDIN and STDOUT and wait till the program finishes
+        mathMl = etree.fromstring(strMathMl)
+        formular.append(mathMl)
+    return xml
+
+# Get the filename without extension form a URL
+#def getNameFromUrl(s):
+#    return os.path.splitext(urllib2.unquote(os.path.basename(urlparse(s).path)))[0]
+
+# Downloads images from Google Docs and sets metadata for further processing
+def downloadImages(xml):
+    objects = {}    # image contents will be saved here
+    xpathImages = etree.XPath('//cnxtra:image', namespaces={'cnxtra':'http://cnxtra'})
+    imageList = xpathImages(xml)
+    for position, image in enumerate(imageList):
+        strImageUrl = image.get('src')
+        strImageContent = urllib2.urlopen(strImageUrl).read()
+        # get Mime type from image
+        strImageMime = magic.whatis(strImageContent)
+        # only allow this three image formats
+        if strImageMime in ('image/png', 'image/jpeg', 'image/gif'):
+            image.set('mime-type', strImageMime)
+            strImageName = "gd-%04d" % (position + 1)  # gd0001.jpg
+            if strImageMime == 'image/jpeg':
+                strImageName += '.jpg'
+            elif strImageMime == 'image/png':
+                strImageName += '.png'
+            elif strImageMime == 'image/gif':
+                strImageName += '.gif'
+            strAlt = image.get('alt')
+            if not strAlt:
+                image.set('alt', strImageUrl) # getNameFromUrl(strImageUrl))
+            image.text = strImageName
+            # add contents of image to object
+            objects[strImageName] = strImageContent
+
+            # just for debugging
+            #myfile = open(strImageName, "wb")
+            #myfile.write(strImageContent)
+            #myfile.close
+    return xml, objects
+
+# Main method. Doing all steps for the Google Docs to CNXML transformation
+def xsl_transform(content, bDownloadImages):
+    # 1
+    strTidiedHtml = tidy_and_premail(content)
+
+    # 2 Settings for libxml2 for transforming XHTML entities  to valid XML
+    libxml2.loadCatalog(XHTML_ENTITIES)
+    libxml2.lineNumbersDefault(1)
+    libxml2.substituteEntitiesDefault(1)
+
+    # 3 First XSLT transformation
+    styleDoc1 = libxml2.parseFile(GDOCS2CNXML_XSL1)
+    style1 = libxslt.parseStylesheetDoc(styleDoc1)
+    # doc1 = libxml2.parseFile(afile))
+    doc1 = libxml2.parseDoc(strTidiedHtml)
+    result1 = style1.applyStylesheet(doc1, None)
+    #style1.saveResultToFilename(os.path.join('output', docFilename + '_meta.xml'), result1, 1)
+    strResult1 = style1.saveResultToString(result1)
+    style1.freeStylesheet()
+    doc1.freeDoc()
+    result1.freeDoc()
+
+    # Parse XML with etree from lxml for TeX2MathML and image download
+    etreeXml = etree.fromstring(strResult1)
+
+    # 4 Convert TeX to MathML with Blahtex
+    etreeXml = tex2mathml(etreeXml)
+
+    # 5 Optional: Download Google Docs Images
+    imageObjects = {}
+    if bDownloadImages:
+        etreeXml, imageObjects = downloadImages(etreeXml)
+
+    # Convert etree back to string
+    strXml = etree.tostring(etreeXml) # pretty_print=True)
+
+    # 6 Second transformation
+    styleDoc2 = libxml2.parseFile(GDOCS2CNXML_XSL2)
+    style2 = libxslt.parseStylesheetDoc(styleDoc2)
+    doc2 = libxml2.parseDoc(strXml)
+    result2 = style2.applyStylesheet(doc2, None)
+    #style2.saveResultToFilename('tempresult.xml', result2, 0) # just for debugging
+    strResult2 = style2.saveResultToString(result2)
+    style2.freeStylesheet()
+    doc2.freeDoc()
+    result2.freeDoc()
+
+    return strResult2, imageObjects
+
+# the function which is called from outside to start transformation
+def gdocs_to_cnxml(content, bDownloadImages=False):
+    objects = {}
+    content, objects = xsl_transform(content, bDownloadImages)
+    return content, objects
+
+if __name__ == "__main__":
+    f = open(sys.argv[1])
+    content = f.read()
+    print gdocs_to_cnxml(content)

@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="http://www.hut.fi/u/hsivonen/test/xhtml-suite/pi.css" type="text/css"?>
+<?xml-stylesheet href="#arbitrary" type="text/css"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css"/>
+<base href="http://www.hut.fi/u/hsivonen/test/base-test/"/>
+<meta name="author" content="Henri Sivonen"/>
+<link href="http://www.hut.fi/u/hsivonen/test/xhtml-suite/link.css" rel="stylesheet" type="text/css"/>
+<link rel="Copyright" href="http://www.hut.fi/u/hsivonen/test/xhtml-suite/copyright"/>
+<style type="text/css">
+<![CDATA[
+#style {
+  color: green;
+}
+]]>
+</style>
+<title>XHTML 1.1 as application/xhtml+xml</title>
+</head>
+<body>
+<h1>XHTML 1.1 as application/xhtml+xml</h1>
+<p>This document is believed to be a strictly conforming XHTML 1.1 document.</p>
+<h2>Testing Area</h2>
+<p>This should look like a paragraph. The string “Testing Area” above this paragraph should look like a second-level heading. If this is not the case, the user agent doesn’t associate a default UA style sheet with this document. Next, there should be a third-level heading.</p>
+<h3>XHTML Basic</h3>
+<p>This section tests elements included in XHTML Basic (a subset of XHTML 1.1 and XHTML 1.0 Strict)</p>
+<h4>Structure Module</h4>
+<p>The title of this document is the first heading. The user agent is expected to display the title somehow—eg. in the title bar of the browser window if a windowing system is used.</p>
+<h4>Text Module</h4>
+<h5>Block-Level Elements</h5>
+<p>This should look like a paragraph. The string “Block-Level Elements” above should look like a fifth-level heading. The string “Text Module” above it should look like a fourth-level heading. The string “XHTML Basic” above it should look like a third-level heading. Even earlier in the document the string “Testing Area” should look like a second-level heading. There shoudl be a first-level heading at the top of the page.</p>
+<blockquote cite="http://www.hut.fi/u/hsivonen/test/xhtml-suite/dtdless-generic.xml">
+<p>This is a paragraph inside a blockquote whose citation source is http://www.hut.fi/u/hsivonen/test/xhtml-suite/dtdless-generic.xml</p>
+</blockquote>
+<div>
+<p>This is a paragraph inside a division.</p>
+<p>This is another paragraph inside the same division.</p>
+</div>
+<address>
+This is an address.
+</address>
+<h6>This is a sixth-level heading</h6>
+<pre xml:space="preserve">
+This text is preformatted. There is a line break here:
+          ^ The caret on the left is supposed to be under
+            the letter &apos;i&apos; in the word &quot;is&quot;.
+            The words &quot;the&quot; on the left should be aliged.
+            On the two lines above this one, characters
+            QUOTATION MARK (U+0022) and APOSTROPHE (U+0027) have
+            been used. No ampersand should be displayed in this 
+            block.
+</pre>
+<h5>Inline Elements</h5>
+<p>The following is an abbreviation whose expanded form may be made available somehow (eg. via tooltip or the status bar): <abbr title="abbreviation">abbr</abbr>. The following is an acronym whose expanded form may be made available somehow (eg. via tooltip or the status bar): <acronym title="Extended Three-Letter Acronym">ETLA</acronym>. The following is a quotation whose citation source is http://www.hut.fi/u/hsivonen/test/xhtml-suite/dtdless-generic.xml: <q cite="http://www.hut.fi/u/hsivonen/test/xhtml-suite/dtdless-generic.xml">quotation</q>. There should be a line break here:<br/><cite>Citation</cite>, <code>code</code>, <dfn>defining instance</dfn>, <em>emphasis</em>, <kbd>keyboard input</kbd>, <samp>sample output</samp>, <strong>strong emphasis</strong>, <var>variable</var>, <span>generic span</span></p>
+<h4>Hypertext Module</h4>
+<p><a accesskey="t" title="The main page of this test suite" href="http://www.hut.fi/u/hsivonen/test/xhtml-suite/">This is a link to the <acronym title="Extensible HyperText Markup Language">XHTML</acronym> test suite table of contents.</a> The link contain inline markup (<code>&lt;acronym&gt;</code>), has a title and an accesskey ‘t’.</p>
+<h4>List Module</h4>
+<dl>
+<dt>Definition list</dt>
+<dd>A list of terms and their definitions. This list is a definition list.</dd>
+<dt>Ordered list</dt>
+<dd>A list with numbered items—such as the list after this list</dd>
+<dt>Unordered list</dt>
+<dd>A list with bulleted or otherwise unnumbered list—such as the list after the ordered list</dd>
+</dl>
+<ol>
+<li>This is an ordered list.</li>
+<li>This is the second item.</li>
+<li>This is the third item.</li>
+</ol>
+<ul>
+<li>This is an unordered list.</li>
+<li>This is the second item.</li>
+<li>This is the third item.</li>
+</ul>
+<h4>Basic Forms Module</h4>
+<form action="" method="post">
+<p>
+<label for="textfield">Input field: </label><input name="textfield" id="textfield" size="10" type="text"/><br/>
+<label for="passfield">Password field: </label><input name="passfield" id="passfield" size="10" type="password"/><br/>
+<input name="checkbox" id="checkbox" type="checkbox"/><label for="checkbox"> a checkbox (should be selectable by clicking this label, if the mouse is supported)</label><br/>
+<label for="submit">Submit button: </label><input name="submit" value="Submit" id="submit" type="submit"/><br/>
+<label for="reset">Reset button: </label><input name="submit" value="Reset" id="reset" type="reset"/><br/>
+<input name="radio" id="radio1" type="radio"/><label for="radio1"> First radio button (should be checkable by clicking this label, if the mouse is supported)</label><br/>
+<input name="radio" id="radio2" type="radio"/><label for="radio2"> Second radio button (can’t be selected if the first one is)</label><br/>
+<label for="select1">Pop-up menu: </label><select id="select1" name="popup" size="1">
+<option value="opt1">First item</option>
+<option selected="selected" value="opt2">Second item (selected by default)</option>
+<option value="opt3">Third item</option>
+</select><br/>
+<label for="select2">Multiselection: </label><select id="select2" name="multiselect" size="3" multiple="multiple">
+<option value="opt1">First item</option>
+<option selected="selected" value="opt2">Second item (selected by default)</option>
+<option value="opt3">Third item</option>
+</select><br/>
+<label for="textarea">Text area: </label><textarea id="textarea" cols="20" rows="5">Editable text</textarea>
+</p></form>
+<h4>Basic Table Module</h4>
+<p>The following table has five columns, three rows, a summary and a caption.</p>
+<table summary="This is the summary attribute of a basic table">
+<caption>Basic Table (this is the caption)</caption>
+<tr><th>First row heading</th><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td></tr>
+<tr><th>Second row heading</th><td colspan="2">Cell spanning two columns</td><td rowspan="2" colspan="2">Cell spanning two<br/>rows and columns</td></tr>
+<tr><th>Third row heading</th><td>Cell</td><td>Cell</td></tr>
+</table>
+<h4>Image Module</h4>
+<p>There is a JPEG image here: <img alt="An embossed blue circle" src="http://www.hut.fi/u/hsivonen/test/xhtml-suite/test-img.jpeg"/></p>
+<h4>Object Module</h4>
+<p>There is a JPEG object here: <object data="http://www.hut.fi/u/hsivonen/test/xhtml-suite/test-img.jpeg" type="image/jpeg">
+An embossed blue circle
+</object></p>
+<h4>Link Module</h4>
+<p>This document has a <code>&lt;link/&gt;</code> to a copyright notice. The user interface for following the link is user-agent-specific.</p>
+<h4>Base Module</h4>
+<p><a href="base-target">This is a relative link.</a> If the link points to http://www.hut.fi/u/hsivonen/test/base-test/base-target, the user agent supports <code>&lt;base/&gt;</code>. if it points to http://www.hut.fi/u/hsivonen/test/xhtml-suite/base-target, the user agent has failed the test.</p>
+<h3>XHTML 1.0 Strict</h3>
+<p>This section tests elements that are included in XHTML 1.0 Strict and in XHTML 1.1 but are not included in XHTML Basic.</p>
+<h4>Presentation module</h4>
+<p><b>bold</b>, <big>big</big>, <i>italic</i>, <small>small</small>, <sub>subscript</sub>, <sup>superscript</sup>, <tt>teletype</tt></p>
+<p>There should be a horizontal rule below here:</p><hr/>
+<h4>Edit Module</h4>
+<p><del>This has been deleted.</del> <ins>This has been inserted.</ins></p>
+<h4>Bi-directional Text Module</h4>
+<p>No bidi tests at this time. Sorry.</p>
+<h4>Forms Module</h4>
+<form action="" method="post">
+<fieldset>
+<legend>The controls of this form are in a fieldset. This is the legend.</legend>
+<label for="imgsubmit">JPEG submit button: </label><input src="http://www.hut.fi/u/hsivonen/test/xhtml-suite/submit.jpeg" alt="Submit" name="submit" value="Submit" id="imgsubmit" type="image"/><br/>
+<label for="select3">Pop-up menu with grouping: </label><select id="select3" name="groupedpopup" size="1">
+<optgroup label="First groups of three items">
+<option value="opt1">First item</option>
+<option selected="selected" value="opt2">Second item (selected by default)</option>
+<option value="opt3">Third item</option>
+</optgroup>
+<optgroup label="Second groups of three items">
+<option value="opt4">Fourth item</option>
+<option value="opt5">Fifth item</option>
+<option value="opt6">Sixth item</option>
+</optgroup>
+</select><br/>
+<label for="button">Button with block content: </label><button id="button" name="button" value="button"><h5>Button heading</h5><p>This button has a heading and <em>2</em> paragraphs in it. The number ‘2’ is emphasized in the previous sentence.</p>
+<p>Second paragraph.</p></button>
+</fieldset></form>
+<h4>Tables Module</h4>
+<table cellspacing="10" border="1" summary="This is the summary attribute of an advanced table with one-pixel border and ten-pixel cell spacing">
+<caption>Advanced Table with one-pixel border and ten-pixel cell spacing (this is the caption)</caption>
+<thead align="left">
+<tr><td>Left</td><td>aligned</td><td>header</td><td>Cell</td><td>Cell</td></tr>
+</thead>
+<tfoot align="right">
+<tr><td>Right</td><td>aligned</td><td>footer</td><td>Cell</td><td>Cell</td></tr>
+</tfoot>
+<tbody align="center">
+<tr><th>First row heading</th><td>Centered</td><td>table</td><td>body</td><td>Cell</td></tr>
+<tr><th>Second row heading</th><td colspan="2">Cell spanning two columns</td><td rowspan="2" colspan="2">Cell spanning two<br/>rows and columns</td></tr>
+<tr><th>Third row heading</th><td>Cell</td><td>Cell</td></tr>
+</tbody>
+</table>
+<h4>Image Map Modules</h4>
+<p>No image map tests at this time. Sorry.</p>
+<h4>Intrinsic Events and Scripting Modules</h4>
+<p>No scripting tests at this time. Sorry.</p>
+<h4>Metainformation Module</h4>
+<p>This document contains the name of the author as metainformation.</p>
+<h3>Ruby Annotation</h3>
+<p>This section tests XHTML 1.1 Ruby Annotation support.</p>
+<h4>Ruby Module</h4>
+<p>Simple case with parenthesis fallback: <ruby><rb>XHTML</rb><rp> (</rp><rt>Extensible HyperText Markup Language</rt><rp>)</rp></ruby></p>
+<p>The following acronym whould have each letter annotated and the entire acronym annotated: <ruby><rbc><rb>T</rb><rb>L</rb><rb>A</rb></rbc><rtc><rt>Three</rt><rt>Letter</rt><rt>Acronym</rt></rtc><rtc><rt rbspan="3">Generic three-letter technology</rt></rtc></ruby></p>
+<h3>Style</h3>
+<p id="pi">If this paragraph is green, the user agent supports CSS via <code>&lt;?xml-stylesheet?&gt;</code>.</p>
+<p id="link">If this paragraph is green, the user agent supports CSS via <code>&lt;link/&gt;</code>.</p>
+<p id="style">If this paragraph is green, the user agent supports CSS via <code>&lt;style&gt;</code>.</p>
+<p style="color: green;">If this paragraph is green, the user agent supports CSS via the <code>style</code> attribute.</p>
+<p id="other">If this paragraph is green, the user agent supports CSS via CDATA in an arbitrary element designated as a <code>&lt;style&gt;</code> equivalent using a processing instruction.</p>
+<p id="arbitrary"><![CDATA[/* Rule for the last style test */ #other { color: green; }]]></p>
+<hr/>
+<p>Copyright 2001 Henri Sivonen</p>
+</body>
+</html>

@@ -1,4 +1,30 @@
 oerpub.rhaptoslabs.html_gdocs2cnxml
 -----------------------------------
 
-TODO
+Folders for all transformations
+    jing                  Jing Relax NG validator and validation files.
+    www                   XSLT transformation files.
+    www/catalog_xhtml     XHTML Entity Catalog files.
+
+Files for all transformations
+    todo.txt              TODO list.
+
+
+Folders for HTML transformation
+    testbed_html          HTML testbed. Contains a set of HTML which should be converted.
+    testbed_html_output   CNXML output of the HTML testbed.
+
+Files for HTML transformation
+    htmlsoup2cnxml.py     Transformation HTML (String) to CNXML (String).
+                          This file is a slightly modified version of htmlsoup2cnxml.py in Products.CNXMLTransforms.
+    xhtmlpremailer.py     XHTML Premailer (moves CSS into tags).
+    testbed_html.py       Main program for HTML testbed processing.
+
+
+Folders for GDocs transformation
+    testbed_gdocs         GDocs testbed.
+    testbed_gdocs_output  CNXML output of the GDocs testbed.
+
+Files for GDocs transformation
+    TODO: Description
+

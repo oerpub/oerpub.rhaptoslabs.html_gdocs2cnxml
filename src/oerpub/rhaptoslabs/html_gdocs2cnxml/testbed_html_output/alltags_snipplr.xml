@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" cnxml-version="0.7" module-id="new">
+  <title>Untitled</title>
+  <content>
+    <section>
+      <title>CSS Basic Elements</title>
+      <para>The purpose of this HTML is to help determine what default settings are with CSS and to make sure that all possible HTML Elements are included in this HTML so as to not miss any possible Elements when designing a site.</para>
+    </section>
+    <section>
+      <title>Headings</title>
+      <para>
+        <newline/>
+      </para>
+    </section>
+    <section>
+      <title>Heading 1</title>
+      <para>
+        <newline/>
+      </para>
+      <section>
+        <title>Heading 2</title>
+        <para>
+          <newline/>
+        </para>
+        <section>
+          <title>Heading 3</title>
+          <para>
+            <newline/>
+          </para>
+          <section>
+            <title>Heading 4</title>
+            <para>
+              <newline/>
+            </para>
+            <section>
+              <title>Heading 5</title>
+              <para>
+                <newline/>
+              </para>
+              <section>
+                <title>Heading 6</title>
+                <para>
+                  <newline/>
+                </para>
+              </section>
+            </section>
+          </section>
+        </section>
+      </section>
+    </section>
+    <section>
+      <title>Paragraph</title>
+      <para>[Image]Lorem ipsum dolor sit amet, test link adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</para>
+      <para>Lorem ipsum dolor sit amet,  consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</para>
+    </section>
+    <section>
+      <title>List Types</title>
+      <para>
+        <newline/>
+      </para>
+      <section>
+        <title>Definition List</title>
+        <para>
+          <newline/>
+        </para>
+        <section>
+          <title>Ordered List</title>
+          <para>
+            <newline/>
+          </para>
+          <list list-type="bulleted">
+            <item>List Item 1</item>
+          </list>
+        </section>
+        <section>
+          <title>Unordered List</title>
+          <para>
+            <newline/>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Ordered List</title>
+        <para>
+          <newline/>
+        </para>
+        <list list-type="bulleted">
+          <item>List Item 1</item>
+        </list>
+        <section>
+          <title>Unordered List</title>
+          <para>
+            <newline/>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Unordered List</title>
+        <para>
+          <newline/>
+        </para>
+      </section>
+    </section>
+    <section>
+      <title>Fieldsets, Legends, and Form Elements</title>
+      <para>
+        <newline/>
+      </para>
+    </section>
+    <section>
+      <title>Tables</title>
+      <para>
+        <newline/>
+      </para>
+    </section>
+    <section>
+      <title>Misc Stuff - abbr, acronym, pre, code, sub, sup, etc.</title>
+      <para>Lorem  dolor  amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. . Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy.  Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus. </para>
+    </section>
+  </content>
+</document>

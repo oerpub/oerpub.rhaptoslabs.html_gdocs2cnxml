@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" cnxml-version="0.7" module-id="new">
+  <title>XHTML 1.1 as application/xhtml+xml</title>
+  <content>
+    <section>
+      <title>XHTML 1.1 as application/xhtml+xml</title>
+      <para>This document is believed to be a strictly conforming XHTML 1.1 document.</para>
+      <section>
+        <title>Testing Area</title>
+        <para>This should look like a paragraph. The string â€œTesting Areaâ€ above this paragraph should look like a second-level heading. If this is not the case, the user agent doesnâ€™t associate a default UA style sheet with this document. Next, there should be a third-level heading.</para>
+        <section>
+          <title>XHTML Basic</title>
+          <para>This section tests elements included in XHTML Basic (a subset of XHTML 1.1 and XHTML 1.0 Strict)</para>
+          <section>
+            <title>Structure Module</title>
+            <para>The title of this document is the first heading. The user agent is expected to display the title somehowâ€"eg. in the title bar of the browser window if a windowing system is used.</para>
+          </section>
+          <section>
+            <title>Text Module</title>
+            <para>
+              <newline/>
+            </para>
+            <section>
+              <title>Block-Level Elements</title>
+              <para>This should look like a paragraph. The string â€œBlock-Level Elementsâ€ above should look like a fifth-level heading. The string â€œText Moduleâ€ above it should look like a fourth-level heading. The string â€œXHTML Basicâ€ above it should look like a third-level heading. Even earlier in the document the string â€œTesting Areaâ€ should look like a second-level heading. There shoudl be a first-level heading at the top of the page.</para>
+              <para>This is a paragraph inside a division.</para>
+              <para>This is another paragraph inside the same division.</para>
+              <section>
+                <title>This is a sixth-level heading</title>
+                <para>
+                  <newline/>
+                </para>
+              </section>
+            </section>
+            <section>
+              <title>Inline Elements</title>
+              <para>The following is an abbreviation whose expanded form may be made available somehow (eg. via tooltip or the status bar): . The following is an acronym whose expanded form may be made available somehow (eg. via tooltip or the status bar): . The following is a quotation whose citation source is http://www.hut.fi/u/hsivonen/test/xhtml-suite/dtdless-generic.xml: . There should be a line break here:<newline/>, , , , , , , , generic span</para>
+            </section>
+          </section>
+          <section>
+            <title>Hypertext Module</title>
+            <para><link url="http://www.hut.fi/u/hsivonen/test/xhtml-suite/" window="new">This is a link to the  test suite table of contents.</link> The link contain inline markup (), has a title and an accesskey â€˜tâ€™.</para>
+          </section>
+          <section>
+            <title>List Module</title>
+            <para>
+              <newline/>
+            </para>
+            <list list-type="bulleted">
+              <item>This is an ordered list.</item>
+            </list>
+          </section>
+          <section>
+            <title>Basic Forms Module</title>
+            <para>
+              <newline/>
+            </para>
+          </section>
+          <section>
+            <title>Basic Table Module</title>
+            <para>The following table has five columns, three rows, a summary and a caption.</para>
+          </section>
+          <section>
+            <title>Image Module</title>
+            <para>There is a JPEG image here: [Image]</para>
+          </section>
+          <section>
+            <title>Object Module</title>
+            <para>There is a JPEG object here: </para>
+          </section>
+          <section>
+            <title>Link Module</title>
+            <para>This document has a  to a copyright notice. The user interface for following the link is user-agent-specific.</para>
+          </section>
+          <section>
+            <title>Base Module</title>
+            <para><link url="base-target" window="new">This is a relative link.</link> If the link points to http://www.hut.fi/u/hsivonen/test/base-test/base-target, the user agent supports . if it points to http://www.hut.fi/u/hsivonen/test/xhtml-suite/base-target, the user agent has failed the test.</para>
+          </section>
+        </section>
+        <section>
+          <title>XHTML 1.0 Strict</title>
+          <para>This section tests elements that are included in XHTML 1.0 Strict and in XHTML 1.1 but are not included in XHTML Basic.</para>
+          <section>
+            <title>Presentation module</title>
+            <para>, , , , , , </para>
+            <para>There should be a horizontal rule below here:</para>
+          </section>
+          <section>
+            <title>Edit Module</title>
+            <para id="gd-000043">
+              <newline/>
+            </para>
+          </section>
+          <section>
+            <title>Bi-directional Text Module</title>
+            <para>No bidi tests at this time. Sorry.</para>
+          </section>
+          <section>
+            <title>Forms Module</title>
+            <para>
+              <newline/>
+            </para>
+          </section>
+          <section>
+            <title>Tables Module</title>
+            <para>
+              <newline/>
+            </para>
+          </section>
+          <section>
+            <title>Image Map Modules</title>
+            <para>No image map tests at this time. Sorry.</para>
+          </section>
+          <section>
+            <title>Intrinsic Events and Scripting Modules</title>
+            <para>No scripting tests at this time. Sorry.</para>
+          </section>
+          <section>
+            <title>Metainformation Module</title>
+            <para>This document contains the name of the author as metainformation.</para>
+          </section>
+        </section>
+        <section>
+          <title>Ruby Annotation</title>
+          <para>This section tests XHTML 1.1 Ruby Annotation support.</para>
+          <section>
+            <title>Ruby Module</title>
+            <para>Simple case with parenthesis fallback: XHTML(Extensible HyperText Markup Language)</para>
+            <para>The following acronym whould have each letter annotated and the entire acronym annotated: TLAThreeLetterAcronymGeneric three-letter technology</para>
+          </section>
+        </section>
+        <section>
+          <title>Style</title>
+          <para>If this paragraph is green, the user agent supports CSS via .</para>
+          <para>If this paragraph is green, the user agent supports CSS via .</para>
+          <para>If this paragraph is green, the user agent supports CSS via .</para>
+          <para>If this paragraph is green, the user agent supports CSS via the  attribute.</para>
+          <para>If this paragraph is green, the user agent supports CSS via CDATA in an arbitrary element designated as a  equivalent using a processing instruction.</para>
+          <para>/* Rule for the last style test */ #other { color: green; }</para>
+          <para>Copyright 2001 Henri Sivonen</para>
+        </section>
+      </section>
+    </section>
+  </content>
+</document>

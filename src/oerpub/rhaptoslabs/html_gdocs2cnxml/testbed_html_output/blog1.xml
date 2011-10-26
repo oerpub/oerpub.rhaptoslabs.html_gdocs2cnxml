@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" cnxml-version="0.7" module-id="new">
+  <title>Kathi Fletcher's Blog: Not convinced yet that SWORD is sharp?</title>
+  <content>
+    <section>
+      <title>Kathi Fletcher's Blog</title>
+      <para id="gd-000003">
+        <newline/>
+      </para>
+      <section>
+        <title>Tuesday, June 28, 2011</title>
+        <para/>
+        <section>
+          <title>Not convinced yet that SWORD is sharp?</title>
+          <para>My <link url="http://kefletcher.blogspot.com/2011/06/choosing-sword-for-publishing-oer-pen.html" window="new">prior blog post</link> discussed the benefits of choosing SWORD for depositing open education resources (OER) in repositories that make it easy to share and remix. It was very general, however, and here I will attempt to make a few more details concrete.<newline/><newline/>
+The key to SWORD's appropriateness is that it is specifically geared toward exchanging  content along with some information () about that package, and SWORD includes metadata in a format common to OER (Dublin Core).<newline/><newline/> The key to SWORD over AtomPub (which it is built on top of) is that it has a notion of a "package". Connexions, for example, is a repository of modules and collections. These are educational packages and can properly be thought of as containers of stuff. A module contains document XML, resources (images, slides, attachments) etc, and some metadata (title, authors, subject etc). It is good to have an API that can deal with that whole thing at once as a logical unit. And SWORD also gives you a way to ask for the whole logical item back (perhaps transformed). For Connexions someone can then rightly ask for their module back as a zip of all its parts, as a web view, as an EPUB, etc.<newline/><newline/>
+SWORD would be too heavyweight to publish images to flickr or status updates to Facebook. SWORD also isn't appropriate in an environment where you could deposit a bunch of things at once, but they really aren't a logical unit. If you just wanted to upload 20 pictures in bulk to save time, SWORD wouldn't be the right protocol, because it would require the repository to be able to give you back precisely those 20. But it is just the right size for publishing modules or collections to the Connexions repository. There is really no extra overhead that isn't completely necessary to the process of submitting content to Connexions.<newline/><newline/>
+A protocol like WebDAV is much more complex, because its goal it to make collaborative, distributed authoring of web resources possible, or perhaps be a networked file system. It has all sorts of locking and detailed synchronization, along with ways to query individual properties on individual resources. This is just much more fine-grained than is needed for an educational repository like Connexions. Similarly for CMIS, which is a complete system for making general purpose content management systems interoperable, and like WebDAV it is oriented toward general purpose files and folders.<newline/><newline/> One more factor makes SWORD appropriate for educational repositories with modular, remixable content. SWORD uses Dublin Core metadata and Dublin Core support has become standard in the world of scholarly and educational content.
+Posted by Kathi Fletcherat <link url="http://kefletcher.blogspot.com/2011/06/not-convinced-yet-that-sword-is-sharp.html" window="new"/><link url="http://www.blogger.com/post-edit.g?blogID=3213242827617521584&amp;postID=5254316770268537324&amp;from=pencil" window="new">[Image]</link><link url="http://www.blogger.com/share-post.g?blogID=3213242827617521584&amp;postID=5254316770268537324&amp;target=email" window="new">Email This</link><link url="http://www.blogger.com/share-post.g?blogID=3213242827617521584&amp;postID=5254316770268537324&amp;target=blog" window="new">BlogThis!</link><link url="http://www.blogger.com/share-post.g?blogID=3213242827617521584&amp;postID=5254316770268537324&amp;target=twitter" window="new">Share to Twitter</link><link url="http://www.blogger.com/share-post.g?blogID=3213242827617521584&amp;postID=5254316770268537324&amp;target=facebook" window="new">Share to Facebook</link><link url="http://www.blogger.com/share-post.g?blogID=3213242827617521584&amp;postID=5254316770268537324&amp;target=buzz" window="new">Share to Google Buzz</link></para>
+          <section>
+            <title>1 comments:</title>
+            <para id="gd-000009">
+              <newline/>
+            </para>
+            <para/>
+          </section>
+          <section>
+            <title>Post a Comment</title>
+            <para>
+              <link url="http://www.blogger.com/comment-iframe.g?blogID=3213242827617521584&amp;postID=5254316770268537324" window="new"/>
+            </para>
+            <para>
+              <link url="" window="new"/>
+            </para>
+            <para><link url="http://kefletcher.blogspot.com/2011/07/have-sword-will-travel-sprinting-at.html" window="new">Newer Post</link><link url="http://kefletcher.blogspot.com/2011/06/oer-roadmap-first-quarter-in-review.html" window="new">Older Post</link><link url="http://kefletcher.blogspot.com/" window="new">Home</link>Subscribe to: <link url="http://kefletcher.blogspot.com/feeds/5254316770268537324/comments/default" window="new">Post Comments (Atom)</link></para>
+          </section>
+        </section>
+      </section>
+      <section>
+        <title>About Me</title>
+        <para>
+          <link url="http://www.blogger.com/profile/03495040783600739973" window="new">[Image]</link>
+        </para>
+        <para>
+          <link url="http://www.blogger.com/profile/03495040783600739973" window="new">View my complete profile</link>
+          <link url="http://www.blogger.com/rearrange?blogID=3213242827617521584&amp;widgetType=Profile&amp;widgetId=Profile1&amp;action=editWidget&amp;sectionId=sidebar-right-1" window="new">[Image]</link>
+          <link url="http://shuttleworthfoundation.org" window="new">[Image]</link>
+          <newline/>
+          <link url="http://www.blogger.com/rearrange?blogID=3213242827617521584&amp;widgetType=Image&amp;widgetId=Image1&amp;action=editWidget&amp;sectionId=sidebar-right-1" window="new">[Image]</link>
+        </para>
+      </section>
+      <section>
+        <title>More about me and the OER Roadmap project</title>
+        <para>
+          <link url="http://www.blogger.com/rearrange?blogID=3213242827617521584&amp;widgetType=TextList&amp;widgetId=TextList1&amp;action=editWidget&amp;sectionId=sidebar-right-1" window="new">[Image]</link>
+        </para>
+      </section>
+      <section>
+        <title>My Tweets</title>
+        <para>
+          <link url="http://twitter.com/statuses/user_timeline/47697352.rss" window="new">Loading...</link>
+          <link url="http://www.blogger.com/rearrange?blogID=3213242827617521584&amp;widgetType=Feed&amp;widgetId=Feed1&amp;action=editWidget&amp;sectionId=sidebar-right-1" window="new">[Image]</link>
+        </para>
+      </section>
+      <section>
+        <title>Subscribe To</title>
+        <para>[Image][Image] Posts<link url="http://www.google.com/ig/add?source=bstp&amp;feedurl=http%3A%2F%2Fkefletcher.blogspot.com%2Ffeeds%2Fposts%2Fdefault" window="new">[Image]</link><link url="http://www.netvibes.com/subscribe.php?url=http%3A%2F%2Fkefletcher.blogspot.com%2Ffeeds%2Fposts%2Fdefault" window="new">[Image]</link><link url="http://www.newsgator.com/ngs/subscriber/subext.aspx?url=http%3A%2F%2Fkefletcher.blogspot.com%2Ffeeds%2Fposts%2Fdefault" window="new">[Image]</link><link url="http://add.my.yahoo.com/content?url=http%3A%2F%2Fkefletcher.blogspot.com%2Ffeeds%2Fposts%2Fdefault" window="new">[Image]</link><link url="http://kefletcher.blogspot.com/feeds/posts/default" window="new">[Image] Atom</link>[Image][Image] Posts[Image][Image] Comments<link url="http://www.google.com/ig/add?source=bstp&amp;feedurl=http%3A%2F%2Fkefletcher.blogspot.com%2Ffeeds%2F5254316770268537324%2Fcomments%2Fdefault" window="new">[Image]</link><link url="http://www.netvibes.com/subscribe.php?url=http%3A%2F%2Fkefletcher.blogspot.com%2Ffeeds%2F5254316770268537324%2Fcomments%2Fdefault" window="new">[Image]</link><link url="http://www.newsgator.com/ngs/subscriber/subext.aspx?url=http%3A%2F%2Fkefletcher.blogspot.com%2Ffeeds%2F5254316770268537324%2Fcomments%2Fdefault" window="new">[Image]</link><link url="http://add.my.yahoo.com/content?url=http%3A%2F%2Fkefletcher.blogspot.com%2Ffeeds%2F5254316770268537324%2Fcomments%2Fdefault" window="new">[Image]</link><link url="http://kefletcher.blogspot.com/feeds/5254316770268537324/comments/default" window="new">[Image] Atom</link>[Image][Image] Comments<link url="http://www.blogger.com/rearrange?blogID=3213242827617521584&amp;widgetType=Subscribe&amp;widgetId=Subscribe1&amp;action=editWidget&amp;sectionId=sidebar-right-1" window="new">[Image]</link></para>
+      </section>
+      <section>
+        <title>Other Interesting Blogs</title>
+        <para>
+          <link url="http://www.blogger.com/rearrange?blogID=3213242827617521584&amp;widgetType=BlogList&amp;widgetId=BlogList1&amp;action=editWidget&amp;sectionId=sidebar-right-1" window="new">[Image]</link>
+        </para>
+      </section>
+      <section>
+        <title>Blog Archive</title>
+        <para>
+          <link url="http://www.blogger.com/rearrange?blogID=3213242827617521584&amp;widgetType=BlogArchive&amp;widgetId=BlogArchive1&amp;action=editWidget&amp;sectionId=sidebar-right-1" window="new">[Image]</link>
+        </para>
+      </section>
+      <section>
+        <title>Followers</title>
+        <para>
+          <newline/>
+        </para>
+      </section>
+    </section>
+  </content>
+</document>

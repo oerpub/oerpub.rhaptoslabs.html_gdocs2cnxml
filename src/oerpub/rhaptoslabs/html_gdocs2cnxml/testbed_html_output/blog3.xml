@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" cnxml-version="0.7" module-id="new">
+  <title>Connexions Rhaptos Developer Blog</title>
+  <content>
+    <para><link target-id="">skip to main</link> | <link target-id="">skip to sidebar</link><link url="http://devblog.cnx.org/" window="new">[Image]</link></para>
+    <section>
+      <title>What the developers are working on</title>
+      <para>
+        <link url="http://rhaptos.org/timeline?ticket=on&amp;changeset=on&amp;milestone=on&amp;wiki=on&amp;max=50&amp;daysback=90&amp;format=rss" window="new">Loading...</link>
+        <link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=Feed&amp;widgetId=Feed1&amp;action=editWidget&amp;sectionId=crosscol" window="new">[Image]</link>
+      </para>
+      <section>
+        <title>Tuesday, July 19, 2011</title>
+        <para/>
+        <section>
+          <title>Connexions Featured in Google Open Source Blog</title>
+          <para><link url="http://2.bp.blogspot.com/-b5BZ4RKbJAk/TiXsgvLkJEI/AAAAAAAAAOc/F0OsIFiroJM/s1600/gsoc-sm.png" window="new">[Image]</link>The Google Open Source blog is featuring organizations participating in Google Summer of Code 2011. Connexions was featured in the July 15th <link url="http://google-opensource.blogspot.com/2011/07/whos-new-in-google-summer-of-code-part_15.html" window="new">blog post</link>.
+Posted by Ed Woodwardat <link url="http://devblog.cnx.org/2011/07/connexions-featured-in-google-open.html" window="new"/><link url="http://devblog.cnx.org/2011/07/connexions-featured-in-google-open.html#comments" window="new">1 comments</link><link url="http://www.blogger.com/post-edit.g?blogID=7775252059028186398&amp;postID=2492416684194785120&amp;from=pencil" window="new">[Image]</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2492416684194785120&amp;target=email" window="new">Email This</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2492416684194785120&amp;target=blog" window="new">BlogThis!</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2492416684194785120&amp;target=twitter" window="new">Share to Twitter</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2492416684194785120&amp;target=facebook" window="new">Share to Facebook</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2492416684194785120&amp;target=buzz" window="new">Share to Google Buzz</link>Labels: <link url="http://devblog.cnx.org/search/label/GSoC" window="new">GSoC</link></para>
+        </section>
+      </section>
+      <section>
+        <title>Friday, May 20, 2011</title>
+        <para/>
+        <section>
+          <title>Connexions Sprint at Plone Symposium East</title>
+          <para>We are holding a coding sprint as part of the Plone Symposium East. Developers from across the globe have come together to improve Plone, the software Connexions is built on, and to improve Connexions itself. We will be working today and tomorrow if you want to join us. Info about the sprint is at <link url="https://trac.rhaptos.org/trac/rhaptos/" window="new">rhaptos.org</link>. Click on one of the links at the top of the page for details.<newline/><newline/><link url="http://1.bp.blogspot.com/-ZxaTw989g7A/TdamS_vZq2I/AAAAAAAAAL4/nIa3NWTtOC0/s1600/2011-05-20_09-40-40_773.jpg" window="new">[Image]</link><link url="http://3.bp.blogspot.com/-bTsmrJTlaLo/TdamczpHeOI/AAAAAAAAAMA/0txc_gs4II8/s1600/2011-05-20_09-40-51_542.jpg" window="new">[Image]</link><newline/><newline/><newline/><newline/><newline/><newline/><newline/><newline/><newline/><newline/>
+Coders gather to discuss sprint options.<newline/><newline/><newline/><newline/><newline/><link url="http://3.bp.blogspot.com/-IYlHpMbRnyY/TdamypLYMXI/AAAAAAAAAMI/4kd5kh4ULWM/s1600/2011-05-20_09-58-01_525.jpg" window="new">[Image]</link>Connexions Sprint participants at work. We have developers from US, South Africa, Sweden, Mexico, the UK and Vietnam working on Connexions today. Most are in the room, but some are working with us remotely.<newline/>Posted by Ed Woodwardat <link url="http://devblog.cnx.org/2011/05/connexions-sprint-at-plone-symposium.html" window="new"/><link url="http://devblog.cnx.org/2011/05/connexions-sprint-at-plone-symposium.html#comments" window="new">0 comments</link><link url="http://www.blogger.com/post-edit.g?blogID=7775252059028186398&amp;postID=8995198696366763838&amp;from=pencil" window="new">[Image]</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=8995198696366763838&amp;target=email" window="new">Email This</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=8995198696366763838&amp;target=blog" window="new">BlogThis!</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=8995198696366763838&amp;target=twitter" window="new">Share to Twitter</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=8995198696366763838&amp;target=facebook" window="new">Share to Facebook</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=8995198696366763838&amp;target=buzz" window="new">Share to Google Buzz</link></para>
+        </section>
+      </section>
+      <section>
+        <title>Friday, May 13, 2011</title>
+        <para/>
+        <section>
+          <title>New Release of Connexions for Android</title>
+          <para><link url="http://2.bp.blogspot.com/-Z5rKOoUtxso/Tc2PTGzSZjI/AAAAAAAAALw/dq2t7FvuW4A/s1600/content_sm.png" window="new">[Image]</link>Version 1.5 of Connexions for Android has been released. It contains cosmetic and usability changes along with a bug fix. The changes include:<newline/></para>
+          <para>
+I made most of these changes after reading the <link url="http://developer.apple.com/library/mac/#documentation/UserExperience/Conceptual/AppleHIGuidelines/XHIGIntro/XHIGIntro.html" window="new">Apple User Interface Guidelines</link> in anticipation of writing an iPhone app for Connexions. The previous versions of the Android app were made with functionality in mind, not looks. If you have tried the app in the past and were unimpressed, please try it again and give us some feedback. I want to continue to improve it.<newline/><newline/>
+As always, the code is open source and is in our <link url="https://trac.rhaptos.org/trac/rhaptos/browser/labs/CNXAndroid/trunk" window="new">repository</link>. You can <link url="http://cnx.org/android/splash.html" window="new">download</link> the app directly from Connexions or from the <link url="https://market.android.com/details?id=org.cnx.android" window="new">Android Market</link>. If you try the app and find it useful, please leave a comment in the Android Market.
+Posted by Ed Woodwardat <link url="http://devblog.cnx.org/2011/05/new-release-of-connexions-for-android.html" window="new"/><link url="http://devblog.cnx.org/2011/05/new-release-of-connexions-for-android.html#comments" window="new">0 comments</link><link url="http://www.blogger.com/post-edit.g?blogID=7775252059028186398&amp;postID=3180718313430745929&amp;from=pencil" window="new">[Image]</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=3180718313430745929&amp;target=email" window="new">Email This</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=3180718313430745929&amp;target=blog" window="new">BlogThis!</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=3180718313430745929&amp;target=twitter" window="new">Share to Twitter</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=3180718313430745929&amp;target=facebook" window="new">Share to Facebook</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=3180718313430745929&amp;target=buzz" window="new">Share to Google Buzz</link></para>
+        </section>
+      </section>
+      <section>
+        <title>Wednesday, April 20, 2011</title>
+        <para/>
+        <section>
+          <title>Version 1.4 of Connexions for Android Released</title>
+          <para>Version 1.4 of Connexions for Android was released today. It adds 2 new features and fixes a file downloading bug. The new features are a File Management screen that can be used to open or delete downloaded PDF or EPUB files and Pinch and Zoom was added to the web view for devices with Android 2.1 or above. The bug fix corrected a problem with phones rebooting while downloading a large PDF or EPUB file.<newline/><newline/>
+As always, the code is open source and is in our <link url="https://trac.rhaptos.org/trac/rhaptos/browser/labs/CNXAndroid/trunk" window="new">repository</link>. You can <link url="http://cnx.org/android/splash.html" window="new">download</link> the app directly from Connexions or from the <link url="https://market.android.com/details?id=org.cnx.android" window="new">Android Market</link>. If you try the app and find it useful, please leave a comment in the Android Market.
+Posted by Ed Woodwardat <link url="http://devblog.cnx.org/2011/04/version-14-of-connexions-for-android.html" window="new"/><link url="http://devblog.cnx.org/2011/04/version-14-of-connexions-for-android.html#comments" window="new">2 comments</link><link url="http://www.blogger.com/post-edit.g?blogID=7775252059028186398&amp;postID=969287135626396618&amp;from=pencil" window="new">[Image]</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=969287135626396618&amp;target=email" window="new">Email This</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=969287135626396618&amp;target=blog" window="new">BlogThis!</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=969287135626396618&amp;target=twitter" window="new">Share to Twitter</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=969287135626396618&amp;target=facebook" window="new">Share to Facebook</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=969287135626396618&amp;target=buzz" window="new">Share to Google Buzz</link></para>
+        </section>
+      </section>
+      <section>
+        <title>Tuesday, April 5, 2011</title>
+        <para/>
+        <section>
+          <title>Connexions Adds Like and Tweet Buttons</title>
+          <para><link url="http://2.bp.blogspot.com/-p_PjgZVnllI/TZu5pDGE1zI/AAAAAAAAAKo/vuUyNEeMXVs/s1600/Screenshot-2.png" window="new">[Image]</link>Last week, we released the addition of Like and Tweet buttons to all Connexions content. I thought I would share some of the details of coding the change. When we first discussed adding the buttons, we all thought it was going to be a quick and easy addition. Just grab the button code off Twitter and Facebook, tweak it a bit and off we go. We were very wrong.<newline/><newline/>
+Facebook changed how they display links while we were in the middle of developing the change. They started pulling some of the content for a thumbnail of the text instead of just displaying the title. Because of the way we structure our content, Facebook was pulling the definition of a EPUB file that we have embedded for a help popup for every piece of content that was "liked". To get around this, we added the content summary or abstract to a META tag in the content header. There were some additional problems with embedded CNXML in some of the collection summaries which were solved by creating a new function to provide a plain text version, and using that for the meta tag contents.<newline/><newline/>
+Thinking the buttons were ready to go, we started testing the devset. All went well until we tested in Internet Explorer 8. The addition of the Tweet button caused IE8 to no longer render math. The problem was caused by the JavaScript from Twitter creating an iFrame for the Tweet button interacting poorly with other javascript on the page. Rearrange where various bits were called lead to results ranging from nothing on the page rendering to any one functionality being missing (math, twitter, dynamic menus, etc.) The ultimate solution was to create the iFrame ourselves instead of letting Twitter's code handle it.<newline/><newline/>
+Many thanks to our developers, Phil and Max and our sys admin, Ross who worked to get this done.
+Posted by Ed Woodwardat <link url="http://devblog.cnx.org/2011/04/connexions-adds-like-and-tweet-buttons.html" window="new"/><link url="http://devblog.cnx.org/2011/04/connexions-adds-like-and-tweet-buttons.html#comments" window="new">0 comments</link><link url="http://www.blogger.com/post-edit.g?blogID=7775252059028186398&amp;postID=6513769216140828359&amp;from=pencil" window="new">[Image]</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=6513769216140828359&amp;target=email" window="new">Email This</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=6513769216140828359&amp;target=blog" window="new">BlogThis!</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=6513769216140828359&amp;target=twitter" window="new">Share to Twitter</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=6513769216140828359&amp;target=facebook" window="new">Share to Facebook</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=6513769216140828359&amp;target=buzz" window="new">Share to Google Buzz</link>Labels: <link url="http://devblog.cnx.org/search/label/Facebook" window="new">Facebook</link>, <link url="http://devblog.cnx.org/search/label/JavaScript" window="new">JavaScript</link>, <link url="http://devblog.cnx.org/search/label/Twitter" window="new">Twitter</link></para>
+        </section>
+      </section>
+      <section>
+        <title>Monday, March 28, 2011</title>
+        <para/>
+        <section>
+          <title>Apply for Google Summer of Code Projects</title>
+          <para><link url="http://2.bp.blogspot.com/-ik-_ylXDjJA/TZCs-Q0W8gI/AAAAAAAAAKA/fr00GkQ3Zks/s1600/gsoc-sm.png" window="new">[Image]</link><newline/>
+Starting today, students can apply for <link url="http://www.google-melange.com/gsoc/homepage/google/gsoc2011" window="new">Google Summer of Code</link> projects. <link url="http://www.google-melange.com/gsoc/org/google/gsoc2011/connexions" window="new">Connexions</link> has been selected as a participating organization and we have <link url="https://trac.rhaptos.org/trac/rhaptos/wiki/Google%20Summer%20Of%20Code%202011/Projects" window="new">2 projects</link> students can apply for. The deadline for applications is Friday, April 8. Get your application in today!
+Posted by Ed Woodwardat <link url="http://devblog.cnx.org/2011/03/apply-for-google-summer-of-code.html" window="new"/><link url="http://devblog.cnx.org/2011/03/apply-for-google-summer-of-code.html#comments" window="new">0 comments</link><link url="http://www.blogger.com/post-edit.g?blogID=7775252059028186398&amp;postID=272545987724136288&amp;from=pencil" window="new">[Image]</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=272545987724136288&amp;target=email" window="new">Email This</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=272545987724136288&amp;target=blog" window="new">BlogThis!</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=272545987724136288&amp;target=twitter" window="new">Share to Twitter</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=272545987724136288&amp;target=facebook" window="new">Share to Facebook</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=272545987724136288&amp;target=buzz" window="new">Share to Google Buzz</link></para>
+        </section>
+      </section>
+      <section>
+        <title>Friday, March 18, 2011</title>
+        <para/>
+        <section>
+          <title>Connexions Accepted into Google Summer of Code 2011</title>
+          <para>We are proud to announce that Connexions has been selected as a participant in the Google Summer of Code (GS0C) 2011. We will be looking for some great upperclassmen or grad students to help us complete our two GSoC projects. Our <link url="https://trac.rhaptos.org/trac/rhaptos/wiki/Google%20Summer%20Of%20Code%202011/Projects" window="new">projects</link> involve using Google Docs as an editor for Connexions and enhancing our author profiles. Students can review GSoC projects and apply at the <link url="http://www.google-melange.com/" window="new">Google Summer of Code site</link>. Thanks to all that had a hand in Connexions being selected.
+Posted by Ed Woodwardat <link url="http://devblog.cnx.org/2011/03/connexions-accepted-into-google-summer.html" window="new"/><link url="http://devblog.cnx.org/2011/03/connexions-accepted-into-google-summer.html#comments" window="new">0 comments</link><link url="http://www.blogger.com/post-edit.g?blogID=7775252059028186398&amp;postID=2994151596685011770&amp;from=pencil" window="new">[Image]</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2994151596685011770&amp;target=email" window="new">Email This</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2994151596685011770&amp;target=blog" window="new">BlogThis!</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2994151596685011770&amp;target=twitter" window="new">Share to Twitter</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2994151596685011770&amp;target=facebook" window="new">Share to Facebook</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2994151596685011770&amp;target=buzz" window="new">Share to Google Buzz</link>Labels: <link url="http://devblog.cnx.org/search/label/GSoC" window="new">GSoC</link><link url="http://devblog.cnx.org/search?updated-max=2011-03-18T12%3A42%3A00-07%3A00&amp;max-results=7" window="new">Older Posts</link><link url="http://devblog.cnx.org/" window="new">Home</link>Subscribe to: <link url="http://devblog.cnx.org/feeds/posts/default" window="new">Posts (Atom)</link></para>
+        </section>
+      </section>
+      <section>
+        <title>Search This Blog</title>
+        <para>Loading...<link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=CustomSearch&amp;widgetId=CustomSearch1&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link></para>
+      </section>
+      <section>
+        <title>About this Blog</title>
+        <para><link url="http://devblog.cnx.org/" window="new">The Connexions Rhaptos Developer Blog</link> is where developers come to discuss the software that runs <link url="http://cnx.org/" window="new">Connexions</link> (a global education site) and Rhaptos (the platform that does all the work). We will be discussing upcoming development projects and sharing technical questions and answers. If you are a Rhaptos developer and want to contribute posts to this blog, email cnx@cnx.org and let us know.<newline/><link url="http://devblog.cnx.org/2009/06/welcome-to-connexions-community.html" window="new">
+Welcome to the Connexions Developer Community!</link><link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=Text&amp;widgetId=Text1&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link></para>
+      </section>
+      <section>
+        <title>Follow Connexions and Rhaptos</title>
+        <para>
+          <link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=Text&amp;widgetId=Text2&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link>
+        </para>
+      </section>
+      <section>
+        <title>Labels</title>
+        <para><link url="http://devblog.cnx.org/search/label/technology-committee" window="new">technology-committee</link>(8)<link url="http://devblog.cnx.org/search/label/new%20features" window="new">new features</link>(4)<link url="http://devblog.cnx.org/search/label/sprint" window="new">sprint</link>(3)<link url="http://devblog.cnx.org/search/label/GSoC" window="new">GSoC</link>(2)<link url="http://devblog.cnx.org/search/label/performance" window="new">performance</link>(2)<link url="http://devblog.cnx.org/search/label/rhaptos%20release" window="new">rhaptos release</link>(2)<link url="http://devblog.cnx.org/search/label/Facebook" window="new">Facebook</link>(1)<link url="http://devblog.cnx.org/search/label/JavaScript" window="new">JavaScript</link>(1)<link url="http://devblog.cnx.org/search/label/OER%20Blogs" window="new">OER Blogs</link>(1)<link url="http://devblog.cnx.org/search/label/Twitter" window="new">Twitter</link>(1)<link url="http://devblog.cnx.org/search/label/cnx2010" window="new">cnx2010</link>(1)<link url="http://devblog.cnx.org/search/label/developer-testing" window="new">developer-testing</link>(1)<link url="http://devblog.cnx.org/search/label/plone%204" window="new">plone 4</link>(1)<link url="http://devblog.cnx.org/search/label/virtualization" window="new">virtualization</link>(1)<link url="http://devblog.cnx.org/search/label/welcome" window="new">welcome</link>(1)<link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=Label&amp;widgetId=Label1&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link></para>
+      </section>
+      <section>
+        <title>Blog Archive</title>
+        <para>
+          <link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=BlogArchive&amp;widgetId=BlogArchive1&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link>
+        </para>
+      </section>
+    </section>
+    <section>
+      <title>Tuesday, July 19, 2011</title>
+      <para/>
+      <section>
+        <title>Connexions Featured in Google Open Source Blog</title>
+        <para><link url="http://2.bp.blogspot.com/-b5BZ4RKbJAk/TiXsgvLkJEI/AAAAAAAAAOc/F0OsIFiroJM/s1600/gsoc-sm.png" window="new">[Image]</link>The Google Open Source blog is featuring organizations participating in Google Summer of Code 2011. Connexions was featured in the July 15th <link url="http://google-opensource.blogspot.com/2011/07/whos-new-in-google-summer-of-code-part_15.html" window="new">blog post</link>.
+Posted by Ed Woodwardat <link url="http://devblog.cnx.org/2011/07/connexions-featured-in-google-open.html" window="new"/><link url="http://devblog.cnx.org/2011/07/connexions-featured-in-google-open.html#comments" window="new">1 comments</link><link url="http://www.blogger.com/post-edit.g?blogID=7775252059028186398&amp;postID=2492416684194785120&amp;from=pencil" window="new">[Image]</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2492416684194785120&amp;target=email" window="new">Email This</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2492416684194785120&amp;target=blog" window="new">BlogThis!</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2492416684194785120&amp;target=twitter" window="new">Share to Twitter</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2492416684194785120&amp;target=facebook" window="new">Share to Facebook</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2492416684194785120&amp;target=buzz" window="new">Share to Google Buzz</link>Labels: <link url="http://devblog.cnx.org/search/label/GSoC" window="new">GSoC</link></para>
+      </section>
+    </section>
+    <section>
+      <title>Friday, May 20, 2011</title>
+      <para/>
+      <section>
+        <title>Connexions Sprint at Plone Symposium East</title>
+        <para>We are holding a coding sprint as part of the Plone Symposium East. Developers from across the globe have come together to improve Plone, the software Connexions is built on, and to improve Connexions itself. We will be working today and tomorrow if you want to join us. Info about the sprint is at <link url="https://trac.rhaptos.org/trac/rhaptos/" window="new">rhaptos.org</link>. Click on one of the links at the top of the page for details.<newline/><newline/><link url="http://1.bp.blogspot.com/-ZxaTw989g7A/TdamS_vZq2I/AAAAAAAAAL4/nIa3NWTtOC0/s1600/2011-05-20_09-40-40_773.jpg" window="new">[Image]</link><link url="http://3.bp.blogspot.com/-bTsmrJTlaLo/TdamczpHeOI/AAAAAAAAAMA/0txc_gs4II8/s1600/2011-05-20_09-40-51_542.jpg" window="new">[Image]</link><newline/><newline/><newline/><newline/><newline/><newline/><newline/><newline/><newline/><newline/>
+Coders gather to discuss sprint options.<newline/><newline/><newline/><newline/><newline/><link url="http://3.bp.blogspot.com/-IYlHpMbRnyY/TdamypLYMXI/AAAAAAAAAMI/4kd5kh4ULWM/s1600/2011-05-20_09-58-01_525.jpg" window="new">[Image]</link>Connexions Sprint participants at work. We have developers from US, South Africa, Sweden, Mexico, the UK and Vietnam working on Connexions today. Most are in the room, but some are working with us remotely.<newline/>Posted by Ed Woodwardat <link url="http://devblog.cnx.org/2011/05/connexions-sprint-at-plone-symposium.html" window="new"/><link url="http://devblog.cnx.org/2011/05/connexions-sprint-at-plone-symposium.html#comments" window="new">0 comments</link><link url="http://www.blogger.com/post-edit.g?blogID=7775252059028186398&amp;postID=8995198696366763838&amp;from=pencil" window="new">[Image]</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=8995198696366763838&amp;target=email" window="new">Email This</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=8995198696366763838&amp;target=blog" window="new">BlogThis!</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=8995198696366763838&amp;target=twitter" window="new">Share to Twitter</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=8995198696366763838&amp;target=facebook" window="new">Share to Facebook</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=8995198696366763838&amp;target=buzz" window="new">Share to Google Buzz</link></para>
+      </section>
+    </section>
+    <section>
+      <title>Friday, May 13, 2011</title>
+      <para/>
+      <section>
+        <title>New Release of Connexions for Android</title>
+        <para><link url="http://2.bp.blogspot.com/-Z5rKOoUtxso/Tc2PTGzSZjI/AAAAAAAAALw/dq2t7FvuW4A/s1600/content_sm.png" window="new">[Image]</link>Version 1.5 of Connexions for Android has been released. It contains cosmetic and usability changes along with a bug fix. The changes include:<newline/></para>
+        <para>
+I made most of these changes after reading the <link url="http://developer.apple.com/library/mac/#documentation/UserExperience/Conceptual/AppleHIGuidelines/XHIGIntro/XHIGIntro.html" window="new">Apple User Interface Guidelines</link> in anticipation of writing an iPhone app for Connexions. The previous versions of the Android app were made with functionality in mind, not looks. If you have tried the app in the past and were unimpressed, please try it again and give us some feedback. I want to continue to improve it.<newline/><newline/>
+As always, the code is open source and is in our <link url="https://trac.rhaptos.org/trac/rhaptos/browser/labs/CNXAndroid/trunk" window="new">repository</link>. You can <link url="http://cnx.org/android/splash.html" window="new">download</link> the app directly from Connexions or from the <link url="https://market.android.com/details?id=org.cnx.android" window="new">Android Market</link>. If you try the app and find it useful, please leave a comment in the Android Market.
+Posted by Ed Woodwardat <link url="http://devblog.cnx.org/2011/05/new-release-of-connexions-for-android.html" window="new"/><link url="http://devblog.cnx.org/2011/05/new-release-of-connexions-for-android.html#comments" window="new">0 comments</link><link url="http://www.blogger.com/post-edit.g?blogID=7775252059028186398&amp;postID=3180718313430745929&amp;from=pencil" window="new">[Image]</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=3180718313430745929&amp;target=email" window="new">Email This</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=3180718313430745929&amp;target=blog" window="new">BlogThis!</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=3180718313430745929&amp;target=twitter" window="new">Share to Twitter</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=3180718313430745929&amp;target=facebook" window="new">Share to Facebook</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=3180718313430745929&amp;target=buzz" window="new">Share to Google Buzz</link></para>
+      </section>
+    </section>
+    <section>
+      <title>Wednesday, April 20, 2011</title>
+      <para/>
+      <section>
+        <title>Version 1.4 of Connexions for Android Released</title>
+        <para>Version 1.4 of Connexions for Android was released today. It adds 2 new features and fixes a file downloading bug. The new features are a File Management screen that can be used to open or delete downloaded PDF or EPUB files and Pinch and Zoom was added to the web view for devices with Android 2.1 or above. The bug fix corrected a problem with phones rebooting while downloading a large PDF or EPUB file.<newline/><newline/>
+As always, the code is open source and is in our <link url="https://trac.rhaptos.org/trac/rhaptos/browser/labs/CNXAndroid/trunk" window="new">repository</link>. You can <link url="http://cnx.org/android/splash.html" window="new">download</link> the app directly from Connexions or from the <link url="https://market.android.com/details?id=org.cnx.android" window="new">Android Market</link>. If you try the app and find it useful, please leave a comment in the Android Market.
+Posted by Ed Woodwardat <link url="http://devblog.cnx.org/2011/04/version-14-of-connexions-for-android.html" window="new"/><link url="http://devblog.cnx.org/2011/04/version-14-of-connexions-for-android.html#comments" window="new">2 comments</link><link url="http://www.blogger.com/post-edit.g?blogID=7775252059028186398&amp;postID=969287135626396618&amp;from=pencil" window="new">[Image]</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=969287135626396618&amp;target=email" window="new">Email This</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=969287135626396618&amp;target=blog" window="new">BlogThis!</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=969287135626396618&amp;target=twitter" window="new">Share to Twitter</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=969287135626396618&amp;target=facebook" window="new">Share to Facebook</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=969287135626396618&amp;target=buzz" window="new">Share to Google Buzz</link></para>
+      </section>
+    </section>
+    <section>
+      <title>Tuesday, April 5, 2011</title>
+      <para/>
+      <section>
+        <title>Connexions Adds Like and Tweet Buttons</title>
+        <para><link url="http://2.bp.blogspot.com/-p_PjgZVnllI/TZu5pDGE1zI/AAAAAAAAAKo/vuUyNEeMXVs/s1600/Screenshot-2.png" window="new">[Image]</link>Last week, we released the addition of Like and Tweet buttons to all Connexions content. I thought I would share some of the details of coding the change. When we first discussed adding the buttons, we all thought it was going to be a quick and easy addition. Just grab the button code off Twitter and Facebook, tweak it a bit and off we go. We were very wrong.<newline/><newline/>
+Facebook changed how they display links while we were in the middle of developing the change. They started pulling some of the content for a thumbnail of the text instead of just displaying the title. Because of the way we structure our content, Facebook was pulling the definition of a EPUB file that we have embedded for a help popup for every piece of content that was "liked". To get around this, we added the content summary or abstract to a META tag in the content header. There were some additional problems with embedded CNXML in some of the collection summaries which were solved by creating a new function to provide a plain text version, and using that for the meta tag contents.<newline/><newline/>
+Thinking the buttons were ready to go, we started testing the devset. All went well until we tested in Internet Explorer 8. The addition of the Tweet button caused IE8 to no longer render math. The problem was caused by the JavaScript from Twitter creating an iFrame for the Tweet button interacting poorly with other javascript on the page. Rearrange where various bits were called lead to results ranging from nothing on the page rendering to any one functionality being missing (math, twitter, dynamic menus, etc.) The ultimate solution was to create the iFrame ourselves instead of letting Twitter's code handle it.<newline/><newline/>
+Many thanks to our developers, Phil and Max and our sys admin, Ross who worked to get this done.
+Posted by Ed Woodwardat <link url="http://devblog.cnx.org/2011/04/connexions-adds-like-and-tweet-buttons.html" window="new"/><link url="http://devblog.cnx.org/2011/04/connexions-adds-like-and-tweet-buttons.html#comments" window="new">0 comments</link><link url="http://www.blogger.com/post-edit.g?blogID=7775252059028186398&amp;postID=6513769216140828359&amp;from=pencil" window="new">[Image]</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=6513769216140828359&amp;target=email" window="new">Email This</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=6513769216140828359&amp;target=blog" window="new">BlogThis!</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=6513769216140828359&amp;target=twitter" window="new">Share to Twitter</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=6513769216140828359&amp;target=facebook" window="new">Share to Facebook</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=6513769216140828359&amp;target=buzz" window="new">Share to Google Buzz</link>Labels: <link url="http://devblog.cnx.org/search/label/Facebook" window="new">Facebook</link>, <link url="http://devblog.cnx.org/search/label/JavaScript" window="new">JavaScript</link>, <link url="http://devblog.cnx.org/search/label/Twitter" window="new">Twitter</link></para>
+      </section>
+    </section>
+    <section>
+      <title>Monday, March 28, 2011</title>
+      <para/>
+      <section>
+        <title>Apply for Google Summer of Code Projects</title>
+        <para><link url="http://2.bp.blogspot.com/-ik-_ylXDjJA/TZCs-Q0W8gI/AAAAAAAAAKA/fr00GkQ3Zks/s1600/gsoc-sm.png" window="new">[Image]</link><newline/>
+Starting today, students can apply for <link url="http://www.google-melange.com/gsoc/homepage/google/gsoc2011" window="new">Google Summer of Code</link> projects. <link url="http://www.google-melange.com/gsoc/org/google/gsoc2011/connexions" window="new">Connexions</link> has been selected as a participating organization and we have <link url="https://trac.rhaptos.org/trac/rhaptos/wiki/Google%20Summer%20Of%20Code%202011/Projects" window="new">2 projects</link> students can apply for. The deadline for applications is Friday, April 8. Get your application in today!
+Posted by Ed Woodwardat <link url="http://devblog.cnx.org/2011/03/apply-for-google-summer-of-code.html" window="new"/><link url="http://devblog.cnx.org/2011/03/apply-for-google-summer-of-code.html#comments" window="new">0 comments</link><link url="http://www.blogger.com/post-edit.g?blogID=7775252059028186398&amp;postID=272545987724136288&amp;from=pencil" window="new">[Image]</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=272545987724136288&amp;target=email" window="new">Email This</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=272545987724136288&amp;target=blog" window="new">BlogThis!</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=272545987724136288&amp;target=twitter" window="new">Share to Twitter</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=272545987724136288&amp;target=facebook" window="new">Share to Facebook</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=272545987724136288&amp;target=buzz" window="new">Share to Google Buzz</link></para>
+      </section>
+    </section>
+    <section>
+      <title>Friday, March 18, 2011</title>
+      <para/>
+      <section>
+        <title>Connexions Accepted into Google Summer of Code 2011</title>
+        <para>We are proud to announce that Connexions has been selected as a participant in the Google Summer of Code (GS0C) 2011. We will be looking for some great upperclassmen or grad students to help us complete our two GSoC projects. Our <link url="https://trac.rhaptos.org/trac/rhaptos/wiki/Google%20Summer%20Of%20Code%202011/Projects" window="new">projects</link> involve using Google Docs as an editor for Connexions and enhancing our author profiles. Students can review GSoC projects and apply at the <link url="http://www.google-melange.com/" window="new">Google Summer of Code site</link>. Thanks to all that had a hand in Connexions being selected.
+Posted by Ed Woodwardat <link url="http://devblog.cnx.org/2011/03/connexions-accepted-into-google-summer.html" window="new"/><link url="http://devblog.cnx.org/2011/03/connexions-accepted-into-google-summer.html#comments" window="new">0 comments</link><link url="http://www.blogger.com/post-edit.g?blogID=7775252059028186398&amp;postID=2994151596685011770&amp;from=pencil" window="new">[Image]</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2994151596685011770&amp;target=email" window="new">Email This</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2994151596685011770&amp;target=blog" window="new">BlogThis!</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2994151596685011770&amp;target=twitter" window="new">Share to Twitter</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2994151596685011770&amp;target=facebook" window="new">Share to Facebook</link><link url="http://www.blogger.com/share-post.g?blogID=7775252059028186398&amp;postID=2994151596685011770&amp;target=buzz" window="new">Share to Google Buzz</link>Labels: <link url="http://devblog.cnx.org/search/label/GSoC" window="new">GSoC</link><link url="http://devblog.cnx.org/search?updated-max=2011-03-18T12%3A42%3A00-07%3A00&amp;max-results=7" window="new">Older Posts</link><link url="http://devblog.cnx.org/" window="new">Home</link>Subscribe to: <link url="http://devblog.cnx.org/feeds/posts/default" window="new">Posts (Atom)</link></para>
+      </section>
+    </section>
+    <section>
+      <title>Search This Blog</title>
+      <para>Loading...<link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=CustomSearch&amp;widgetId=CustomSearch1&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link></para>
+      <section>
+        <title>About this Blog</title>
+        <para><link url="http://devblog.cnx.org/" window="new">The Connexions Rhaptos Developer Blog</link> is where developers come to discuss the software that runs <link url="http://cnx.org/" window="new">Connexions</link> (a global education site) and Rhaptos (the platform that does all the work). We will be discussing upcoming development projects and sharing technical questions and answers. If you are a Rhaptos developer and want to contribute posts to this blog, email cnx@cnx.org and let us know.<newline/><link url="http://devblog.cnx.org/2009/06/welcome-to-connexions-community.html" window="new">
+Welcome to the Connexions Developer Community!</link><link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=Text&amp;widgetId=Text1&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link></para>
+      </section>
+      <section>
+        <title>Follow Connexions and Rhaptos</title>
+        <para>
+          <link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=Text&amp;widgetId=Text2&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link>
+        </para>
+      </section>
+      <section>
+        <title>Labels</title>
+        <para><link url="http://devblog.cnx.org/search/label/technology-committee" window="new">technology-committee</link>(8)<link url="http://devblog.cnx.org/search/label/new%20features" window="new">new features</link>(4)<link url="http://devblog.cnx.org/search/label/sprint" window="new">sprint</link>(3)<link url="http://devblog.cnx.org/search/label/GSoC" window="new">GSoC</link>(2)<link url="http://devblog.cnx.org/search/label/performance" window="new">performance</link>(2)<link url="http://devblog.cnx.org/search/label/rhaptos%20release" window="new">rhaptos release</link>(2)<link url="http://devblog.cnx.org/search/label/Facebook" window="new">Facebook</link>(1)<link url="http://devblog.cnx.org/search/label/JavaScript" window="new">JavaScript</link>(1)<link url="http://devblog.cnx.org/search/label/OER%20Blogs" window="new">OER Blogs</link>(1)<link url="http://devblog.cnx.org/search/label/Twitter" window="new">Twitter</link>(1)<link url="http://devblog.cnx.org/search/label/cnx2010" window="new">cnx2010</link>(1)<link url="http://devblog.cnx.org/search/label/developer-testing" window="new">developer-testing</link>(1)<link url="http://devblog.cnx.org/search/label/plone%204" window="new">plone 4</link>(1)<link url="http://devblog.cnx.org/search/label/virtualization" window="new">virtualization</link>(1)<link url="http://devblog.cnx.org/search/label/welcome" window="new">welcome</link>(1)<link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=Label&amp;widgetId=Label1&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link></para>
+      </section>
+      <section>
+        <title>Blog Archive</title>
+        <para>
+          <link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=BlogArchive&amp;widgetId=BlogArchive1&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link>
+        </para>
+      </section>
+    </section>
+    <section>
+      <title>About this Blog</title>
+      <para><link url="http://devblog.cnx.org/" window="new">The Connexions Rhaptos Developer Blog</link> is where developers come to discuss the software that runs <link url="http://cnx.org/" window="new">Connexions</link> (a global education site) and Rhaptos (the platform that does all the work). We will be discussing upcoming development projects and sharing technical questions and answers. If you are a Rhaptos developer and want to contribute posts to this blog, email cnx@cnx.org and let us know.<newline/><link url="http://devblog.cnx.org/2009/06/welcome-to-connexions-community.html" window="new">
+Welcome to the Connexions Developer Community!</link><link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=Text&amp;widgetId=Text1&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link></para>
+      <section>
+        <title>Follow Connexions and Rhaptos</title>
+        <para>
+          <link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=Text&amp;widgetId=Text2&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link>
+        </para>
+      </section>
+      <section>
+        <title>Labels</title>
+        <para><link url="http://devblog.cnx.org/search/label/technology-committee" window="new">technology-committee</link>(8)<link url="http://devblog.cnx.org/search/label/new%20features" window="new">new features</link>(4)<link url="http://devblog.cnx.org/search/label/sprint" window="new">sprint</link>(3)<link url="http://devblog.cnx.org/search/label/GSoC" window="new">GSoC</link>(2)<link url="http://devblog.cnx.org/search/label/performance" window="new">performance</link>(2)<link url="http://devblog.cnx.org/search/label/rhaptos%20release" window="new">rhaptos release</link>(2)<link url="http://devblog.cnx.org/search/label/Facebook" window="new">Facebook</link>(1)<link url="http://devblog.cnx.org/search/label/JavaScript" window="new">JavaScript</link>(1)<link url="http://devblog.cnx.org/search/label/OER%20Blogs" window="new">OER Blogs</link>(1)<link url="http://devblog.cnx.org/search/label/Twitter" window="new">Twitter</link>(1)<link url="http://devblog.cnx.org/search/label/cnx2010" window="new">cnx2010</link>(1)<link url="http://devblog.cnx.org/search/label/developer-testing" window="new">developer-testing</link>(1)<link url="http://devblog.cnx.org/search/label/plone%204" window="new">plone 4</link>(1)<link url="http://devblog.cnx.org/search/label/virtualization" window="new">virtualization</link>(1)<link url="http://devblog.cnx.org/search/label/welcome" window="new">welcome</link>(1)<link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=Label&amp;widgetId=Label1&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link></para>
+      </section>
+      <section>
+        <title>Blog Archive</title>
+        <para>
+          <link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=BlogArchive&amp;widgetId=BlogArchive1&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link>
+        </para>
+      </section>
+    </section>
+    <section>
+      <title>Follow Connexions and Rhaptos</title>
+      <para>
+        <link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=Text&amp;widgetId=Text2&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link>
+      </para>
+      <section>
+        <title>Labels</title>
+        <para><link url="http://devblog.cnx.org/search/label/technology-committee" window="new">technology-committee</link>(8)<link url="http://devblog.cnx.org/search/label/new%20features" window="new">new features</link>(4)<link url="http://devblog.cnx.org/search/label/sprint" window="new">sprint</link>(3)<link url="http://devblog.cnx.org/search/label/GSoC" window="new">GSoC</link>(2)<link url="http://devblog.cnx.org/search/label/performance" window="new">performance</link>(2)<link url="http://devblog.cnx.org/search/label/rhaptos%20release" window="new">rhaptos release</link>(2)<link url="http://devblog.cnx.org/search/label/Facebook" window="new">Facebook</link>(1)<link url="http://devblog.cnx.org/search/label/JavaScript" window="new">JavaScript</link>(1)<link url="http://devblog.cnx.org/search/label/OER%20Blogs" window="new">OER Blogs</link>(1)<link url="http://devblog.cnx.org/search/label/Twitter" window="new">Twitter</link>(1)<link url="http://devblog.cnx.org/search/label/cnx2010" window="new">cnx2010</link>(1)<link url="http://devblog.cnx.org/search/label/developer-testing" window="new">developer-testing</link>(1)<link url="http://devblog.cnx.org/search/label/plone%204" window="new">plone 4</link>(1)<link url="http://devblog.cnx.org/search/label/virtualization" window="new">virtualization</link>(1)<link url="http://devblog.cnx.org/search/label/welcome" window="new">welcome</link>(1)<link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=Label&amp;widgetId=Label1&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link></para>
+      </section>
+      <section>
+        <title>Blog Archive</title>
+        <para>
+          <link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=BlogArchive&amp;widgetId=BlogArchive1&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link>
+        </para>
+      </section>
+    </section>
+    <section>
+      <title>Labels</title>
+      <para><link url="http://devblog.cnx.org/search/label/technology-committee" window="new">technology-committee</link>(8)<link url="http://devblog.cnx.org/search/label/new%20features" window="new">new features</link>(4)<link url="http://devblog.cnx.org/search/label/sprint" window="new">sprint</link>(3)<link url="http://devblog.cnx.org/search/label/GSoC" window="new">GSoC</link>(2)<link url="http://devblog.cnx.org/search/label/performance" window="new">performance</link>(2)<link url="http://devblog.cnx.org/search/label/rhaptos%20release" window="new">rhaptos release</link>(2)<link url="http://devblog.cnx.org/search/label/Facebook" window="new">Facebook</link>(1)<link url="http://devblog.cnx.org/search/label/JavaScript" window="new">JavaScript</link>(1)<link url="http://devblog.cnx.org/search/label/OER%20Blogs" window="new">OER Blogs</link>(1)<link url="http://devblog.cnx.org/search/label/Twitter" window="new">Twitter</link>(1)<link url="http://devblog.cnx.org/search/label/cnx2010" window="new">cnx2010</link>(1)<link url="http://devblog.cnx.org/search/label/developer-testing" window="new">developer-testing</link>(1)<link url="http://devblog.cnx.org/search/label/plone%204" window="new">plone 4</link>(1)<link url="http://devblog.cnx.org/search/label/virtualization" window="new">virtualization</link>(1)<link url="http://devblog.cnx.org/search/label/welcome" window="new">welcome</link>(1)<link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=Label&amp;widgetId=Label1&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link></para>
+      <section>
+        <title>Blog Archive</title>
+        <para>
+          <link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=BlogArchive&amp;widgetId=BlogArchive1&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link>
+        </para>
+      </section>
+    </section>
+    <section>
+      <title>Blog Archive</title>
+      <para>
+        <link url="http://www.blogger.com/rearrange?blogID=7775252059028186398&amp;widgetType=BlogArchive&amp;widgetId=BlogArchive1&amp;action=editWidget&amp;sectionId=sidebar" window="new">[Image]</link>
+      </para>
+    </section>
+  </content>
+</document>

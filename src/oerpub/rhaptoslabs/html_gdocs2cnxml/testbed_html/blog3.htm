@@ -1,0 +1,1442 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir='ltr'>
+<head>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<script type="text/javascript">(function() { var a=window;function c(b){this.t={};this.tick=function(b,i,d){d=d!=void 0?d:(new Date).getTime();this.t[b]=[d,i]};this.tick("start",null,b)}var e=new c;a.jstiming={Timer:c,load:e};try{var g=null;a.chrome&&a.chrome.csi&&(g=Math.floor(a.chrome.csi().pageT));g==null&&a.gtbExternal&&(g=a.gtbExternal.pageT());g==null&&a.external&&(g=a.external.pageT);g&&(a.jstiming.pt=g)}catch(h){};a.tickAboveFold=function(b){var f=0;if(b.offsetParent){do f+=b.offsetTop;while(b=b.offsetParent)}b=f;b<=750&&a.jstiming.load.tick("aft")};var j=!1;function k(){j||(j=!0,a.jstiming.load.tick("firstScrollTime"))}a.addEventListener?a.addEventListener("scroll",k,!1):a.attachEvent("onscroll",k);
+ })();</script>
+<meta content='true' name='MSSmartTagsPreventParsing'/>
+<meta content='blogger' name='generator'/>
+<link href='http://devblog.cnx.org/favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='http://devblog.cnx.org/' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="Connexions Rhaptos Developer Blog - Atom" href="http://devblog.cnx.org/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="Connexions Rhaptos Developer Blog - RSS" href="http://devblog.cnx.org/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="Connexions Rhaptos Developer Blog - Atom" href="http://www.blogger.com/feeds/7775252059028186398/posts/default" />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.blogger.com/rsd.g?blogID=7775252059028186398" />
+<link rel="me" href="http://www.blogger.com/profile/09968025681200810430" />
+<link rel="openid.server" href="http://www.blogger.com/openid-server.g" />
+<!--[if IE]> <script> (function() { var html5 = ("abbr,article,aside,audio,canvas,datalist,details," + "figure,footer,header,hgroup,mark,menu,meter,nav,output," + "progress,section,time,video").split(','); for (var i = 0; i < html5.length; i++) { document.createElement(html5[i]); } try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {} })(); </script> <![endif]-->
+<title>Connexions Rhaptos Developer Blog</title>
+<link type='text/css' rel='stylesheet' href='http://www.blogger.com/static/v1/widgets/129348724-widget_css_bundle.css' />
+<link type='text/css' rel='stylesheet' href='http://www.google.com/uds/css/gsearch.css' />
+ <link rel="stylesheet" type="text/css" href="http://www.blogger.com/dyn-css/authorization.css?targetBlogID=7775252059028186398&zx=dbd343a6-6731-4e89-8669-e82481974f7b"/>
+<style type="text/css">#navbar-iframe { display:block }
+</style>
+
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Minima
+Date:     26 Feb 2004
+Updated by: Blogger Team
+----------------------------------------------- */
+/* Variable definitions
+====================
+<Variable name="bgcolor" description="Page Background Color"
+type="color" default="#fff">
+<Variable name="textcolor" description="Text Color"
+type="color" default="#000">
+<Variable name="linkcolor" description="Link Color"
+type="color" default="#369">
+<Variable name="pagetitlecolor" description="Blog Title Color"
+type="color" default="#444">
+<Variable name="descriptioncolor" description="Blog Description Color"
+type="color" default="#666">
+<Variable name="titlecolor" description="Post Title Color"
+type="color" default="#c60">
+<Variable name="bordercolor" description="Border Color"
+type="color" default="#ccc">
+<Variable name="sidebarcolor" description="Sidebar Title Color"
+type="color" default="#333">
+<Variable name="sidebartextcolor" description="Sidebar Text Color"
+type="color" default="#000">
+<Variable name="visitedlinkcolor" description="Visited Link Color"
+type="color" default="#669">
+<Variable name="bodyfont" description="Text Font"
+type="font" default="normal normal 100% Georgia, Serif">
+<Variable name="headerfont" description="Sidebar Title Font"
+type="font"
+default="normal normal 78% 'Trebuchet MS',Trebuchet,Arial,Verdana,Sans-serif">
+<Variable name="pagetitlefont" description="Blog Title Font"
+type="font"
+default="normal normal 200% Georgia, Serif">
+<Variable name="descriptionfont" description="Blog Description Font"
+type="font"
+default="normal normal 78% 'Trebuchet MS', Trebuchet, Arial, Verdana, Sans-serif">
+<Variable name="postfooterfont" description="Post Footer Font"
+type="font"
+default="normal normal 78% 'Trebuchet MS', Trebuchet, Arial, Verdana, Sans-serif">
+<Variable name="startSide" description="Side where text starts in blog language"
+type="automatic" default="left">
+<Variable name="endSide" description="Side where text ends in blog language"
+type="automatic" default="right">
+*/
+/* Use this with templates/template-twocol.html */
+body {
+background:#ffffff;
+margin:0;
+color:#000000;
+font:x-small Georgia Serif;
+font-size/* */:/**/small;
+font-size: /**/small;
+text-align: center;
+}
+a:link {
+color:#336699;
+text-decoration:none;
+}
+a:visited {
+color:#666699;
+text-decoration:none;
+}
+a:hover {
+color:#cc6600;
+text-decoration:underline;
+}
+a img {
+border-width:0;
+}
+/* Header
+-----------------------------------------------
+*/
+#header-wrapper {
+width:760px;
+margin:0 auto 10px;
+border:1px solid #cccccc;
+}
+#header-inner {
+background-position: center;
+margin-left: auto;
+margin-right: auto;
+}
+#header {
+margin: 5px;
+border: 1px solid #cccccc;
+text-align: center;
+color:#444444;
+padding-top: .5em;
+padding-bottom: .75em;
+}
+#header h1 {
+margin:5px 5px 0;
+padding:15px 20px .25em;
+line-height:1.2em;
+text-transform:uppercase;
+letter-spacing:.2em;
+font: normal normal 200% Georgia, Serif;
+}
+#header a {
+color:#444444;
+text-decoration:none;
+}
+#header a:hover {
+color:#444444;
+}
+#header .description {
+margin:0 5px 5px;
+padding:0 20px 15px;
+max-width:700px;
+text-transform:uppercase;
+letter-spacing:.2em;
+line-height: 1.4em;
+font: normal normal 78% 'Trebuchet MS', Trebuchet, Arial, Verdana, Sans-serif;
+color: #666666;
+}
+#header img {
+margin-left: auto;
+margin-right: auto;
+}
+/* Outer-Wrapper
+----------------------------------------------- */
+#outer-wrapper {
+width: 760px;
+margin:0 auto;
+padding:10px;
+text-align:left;
+font: normal normal 100% Georgia, Serif;
+}
+#main-wrapper {
+width: 490px;
+float: left;
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;     /* fix for long non-text content breaking IE sidebar float */
+}
+#sidebar-wrapper {
+width: 240px;
+float: right;
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+/* Headings
+----------------------------------------------- */
+h2 {
+margin:1.5em 0 .75em;
+font:normal normal 78% 'Trebuchet MS',Trebuchet,Arial,Verdana,Sans-serif;
+line-height: 1.4em;
+text-transform:uppercase;
+letter-spacing:.2em;
+color:#333333;
+}
+/* Posts
+-----------------------------------------------
+*/
+h2.date-header {
+margin:1.5em 0 .5em;
+}
+.post {
+margin:.5em 0 1.5em;
+border-bottom:1px dotted #cccccc;
+padding-bottom:1.5em;
+}
+.post h3 {
+margin:.25em 0 0;
+padding:0 0 4px;
+font-size:140%;
+font-weight:normal;
+line-height:1.4em;
+color:#cc6600;
+}
+.post h3 a, .post h3 a:visited, .post h3 strong {
+display:block;
+text-decoration:none;
+color:#cc6600;
+font-weight:normal;
+}
+.post h3 strong, .post h3 a:hover {
+color:#000000;
+}
+.post-body {
+margin:0 0 .75em;
+line-height:1.6em;
+}
+.post-body blockquote {
+line-height:1.3em;
+}
+.post-footer {
+margin: .75em 0;
+color:#333333;
+text-transform:uppercase;
+letter-spacing:.1em;
+font: normal normal 78% 'Trebuchet MS', Trebuchet, Arial, Verdana, Sans-serif;
+line-height: 1.4em;
+}
+.comment-link {
+margin-left:.6em;
+}
+.post img, table.tr-caption-container {
+padding:4px;
+border:1px solid #cccccc;
+}
+.tr-caption-container img {
+border: none;
+padding: 0;
+}
+.post blockquote {
+margin:1em 20px;
+}
+.post blockquote p {
+margin:.75em 0;
+}
+/* Comments
+----------------------------------------------- */
+#comments h4 {
+margin:1em 0;
+font-weight: bold;
+line-height: 1.4em;
+text-transform:uppercase;
+letter-spacing:.2em;
+color: #333333;
+}
+#comments-block {
+margin:1em 0 1.5em;
+line-height:1.6em;
+}
+#comments-block .comment-author {
+margin:.5em 0;
+}
+#comments-block .comment-body {
+margin:.25em 0 0;
+}
+#comments-block .comment-footer {
+margin:-.25em 0 2em;
+line-height: 1.4em;
+text-transform:uppercase;
+letter-spacing:.1em;
+}
+#comments-block .comment-body p {
+margin:0 0 .75em;
+}
+.deleted-comment {
+font-style:italic;
+color:gray;
+}
+#blog-pager-newer-link {
+float: left;
+}
+#blog-pager-older-link {
+float: right;
+}
+#blog-pager {
+text-align: center;
+}
+.feed-links {
+clear: both;
+line-height: 2.5em;
+}
+/* Sidebar Content
+----------------------------------------------- */
+.sidebar {
+color: #000000;
+line-height: 1.5em;
+}
+.sidebar ul {
+list-style:none;
+margin:0 0 0;
+padding:0 0 0;
+}
+.sidebar li {
+margin:0;
+padding-top:0;
+padding-right:0;
+padding-bottom:.25em;
+padding-left:15px;
+text-indent:-15px;
+line-height:1.5em;
+}
+.sidebar .widget, .main .widget {
+border-bottom:1px dotted #cccccc;
+margin:0 0 1.5em;
+padding:0 0 1.5em;
+}
+.main .Blog {
+border-bottom-width: 0;
+}
+/* Profile
+----------------------------------------------- */
+.profile-img {
+float: left;
+margin-top: 0;
+margin-right: 5px;
+margin-bottom: 5px;
+margin-left: 0;
+padding: 4px;
+border: 1px solid #cccccc;
+}
+.profile-data {
+margin:0;
+text-transform:uppercase;
+letter-spacing:.1em;
+font: normal normal 78% 'Trebuchet MS', Trebuchet, Arial, Verdana, Sans-serif;
+color: #333333;
+font-weight: bold;
+line-height: 1.6em;
+}
+.profile-datablock {
+margin:.5em 0 .5em;
+}
+.profile-textblock {
+margin: 0.5em 0;
+line-height: 1.6em;
+}
+.profile-link {
+font: normal normal 78% 'Trebuchet MS', Trebuchet, Arial, Verdana, Sans-serif;
+text-transform: uppercase;
+letter-spacing: .1em;
+}
+/* Footer
+----------------------------------------------- */
+#footer {
+width:760px;
+clear:both;
+margin:0 auto;
+padding-top:15px;
+line-height: 1.6em;
+text-transform:uppercase;
+letter-spacing:.1em;
+text-align: center;
+}
+
+--></style>
+<script type="text/javascript">(function(){if(navigator.userAgent.indexOf("Mobile")!=-1&&navigator.userAgent.indexOf("WebKit")!=-1&&navigator.userAgent.indexOf("iPad")==-1){var a;a:{var b=window.location.href,c=b.split("?");switch(c.length){case 1:a=b+"?m=1";break a;case 2:a=c[1].search("(^|&)m=")>=0?null:b+"&m=1";break a;default:a=null}}a&&window.location.replace(a)};})();
+</script><script type="text/javascript">
+if (window.jstiming) window.jstiming.load.tick('headEnd');
+</script></head>
+<body>
+<div class='navbar section' id='navbar'><div class='widget Navbar' id='Navbar1'><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener("load",
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<iframe src="http://www.blogger.com/navbar.g?targetBlogID=7775252059028186398&amp;blogName=Connexions+Rhaptos+Developer+Blog&amp;publishMode=PUBLISH_MODE_HOSTED&amp;navbarType=BLUE&amp;layoutType=LAYOUTS&amp;searchRoot=http://devblog.cnx.org/search&amp;blogLocale=en&amp;homepageUrl=http://devblog.cnx.org/&amp;vt=8309221248168308503" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="30px" width="100%" id="navbar-iframe" allowtransparency="true" title="Blogger Navigation and Search"></iframe>
+<div></div></div></div>
+<div id='outer-wrapper'><div id='wrap2'>
+<!-- skip links for text browsers -->
+<span id='skiplinks' style='display:none;'>
+<a href='#main'>skip to main </a> |
+      <a href='#sidebar'>skip to sidebar</a>
+</span>
+<div id='header-wrapper'>
+<div class='header section' id='header'><div class='widget Header' id='Header1'>
+<div id='header-inner'>
+<a href='http://devblog.cnx.org/' style='display: block'>
+<img alt='Connexions Rhaptos Developer Blog' height='86px; ' id='Header1_headerimg' src='http://4.bp.blogspot.com/_dITEeDLh5C4/S1j2lNX1_uI/AAAAAAAAABk/vExzJG2MwmQ/S1600-R/devblog-logo-01.png' style='display: block' width='470px; '/>
+</a>
+</div>
+</div></div>
+</div>
+<div id='content-wrapper'>
+<div id='crosscol-wrapper' style='text-align:center'>
+<div class='crosscol section' id='crosscol'><div class='widget Feed' id='Feed1'>
+<h2>What the developers are working on</h2>
+<div class='widget-content' id='Feed1_feedItemListDisplay'>
+<span style='filter: alpha(25); opacity: 0.25;'>
+<a href='http://rhaptos.org/timeline?ticket=on&changeset=on&milestone=on&wiki=on&max=50&daysback=90&format=rss'>Loading...</a>
+</span>
+</div>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='http://www.blogger.com/rearrange?blogID=7775252059028186398&widgetType=Feed&widgetId=Feed1&action=editWidget&sectionId=crosscol' onclick='return _WidgetManager._PopupConfig(document.getElementById("Feed1"));' target='configFeed1' title='Edit'>
+<img alt='' height='18' src='http://img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div></div>
+</div>
+<div id='main-wrapper'>
+<div class='main section' id='main'><div class='widget Blog' id='Blog1'>
+<div class='blog-posts hfeed'>
+<!-- google_ad_section_start(name=default) -->
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Tuesday, July 19, 2011</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry'>
+<a name='2492416684194785120'></a>
+<h3 class='post-title entry-title'>
+<a href='http://devblog.cnx.org/2011/07/connexions-featured-in-google-open.html'>Connexions Featured in Google Open Source Blog</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content'>
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://2.bp.blogspot.com/-b5BZ4RKbJAk/TiXsgvLkJEI/AAAAAAAAAOc/F0OsIFiroJM/s1600/gsoc-sm.png"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer; width: 300px; height: 51px;" src="http://2.bp.blogspot.com/-b5BZ4RKbJAk/TiXsgvLkJEI/AAAAAAAAAOc/F0OsIFiroJM/s320/gsoc-sm.png" alt="" id="BLOGGER_PHOTO_ID_5631166956261614658" border="0" /></a>The Google Open Source blog is featuring organizations participating in Google Summer of Code 2011.  Connexions was featured in the July 15th <a href="http://google-opensource.blogspot.com/2011/07/whos-new-in-google-summer-of-code-part_15.html">blog post</a>.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'><span class='post-author vcard'>
+Posted by
+<span class='fn'>Ed Woodward</span>
+</span>
+<span class='post-timestamp'>
+at
+<a class='timestamp-link' href='http://devblog.cnx.org/2011/07/connexions-featured-in-google-open.html' rel='bookmark' title='permanent link'><abbr class='published' title='2011-07-19T13:42:00-07:00'>1:42 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='http://devblog.cnx.org/2011/07/connexions-featured-in-google-open.html#comments' onclick=''>1 comments</a>
+</span>
+<span class='post-icons'>
+<span class='item-control blog-admin pid-1615469320'>
+<a href='http://www.blogger.com/post-edit.g?blogID=7775252059028186398&postID=2492416684194785120&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='http://img2.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons'>
+<a class='goog-inline-block share-button sb-email' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=2492416684194785120&target=email' target='_blank' title='Email This'>
+<span class='share-button-link-text'>Email This</span>
+</a><a class='goog-inline-block share-button sb-blog' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=2492416684194785120&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'>
+<span class='share-button-link-text'>BlogThis!</span>
+</a><a class='goog-inline-block share-button sb-twitter' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=2492416684194785120&target=twitter' target='_blank' title='Share to Twitter'>
+<span class='share-button-link-text'>Share to Twitter</span>
+</a><a class='goog-inline-block share-button sb-facebook' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=2492416684194785120&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'>
+<span class='share-button-link-text'>Share to Facebook</span>
+</a><a class='goog-inline-block share-button sb-buzz' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=2492416684194785120&target=buzz' onclick='window.open(this.href, "_blank", "height=415,width=690"); return false;' target='_blank' title='Share to Google Buzz'>
+<span class='share-button-link-text'>Share to Google Buzz</span>
+</a>
+<div class='goog-inline-block dummy-container'><g:plusone source='blogger' href='http://devblog.cnx.org/2011/07/connexions-featured-in-google-open.html' size='medium'/></div>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'><span class='post-labels'>
+Labels:
+<a href='http://devblog.cnx.org/search/label/GSoC' rel='tag'>GSoC</a>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'></div>
+</div>
+</div>
+</div>
+<div id="latency-2492416684194785120"></div><script type="text/javascript">if (window['tickAboveFold']) {window['tickAboveFold'](document.getElementById("latency-2492416684194785120")); } </script>
+
+            </div></div>
+          
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Friday, May 20, 2011</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry'>
+<a name='8995198696366763838'></a>
+<h3 class='post-title entry-title'>
+<a href='http://devblog.cnx.org/2011/05/connexions-sprint-at-plone-symposium.html'>Connexions Sprint at Plone Symposium East</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content'>
+We are holding a coding sprint as part of the Plone Symposium East.  Developers from across the globe have come together to improve Plone, the software Connexions is built on, and to improve Connexions itself.  We will be working today and tomorrow if you want to join us. Info about the sprint is at <a href="https://trac.rhaptos.org/trac/rhaptos/">rhaptos.org</a>.  Click on one of the links at the top of the page for details.<br /><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://1.bp.blogspot.com/-ZxaTw989g7A/TdamS_vZq2I/AAAAAAAAAL4/nIa3NWTtOC0/s1600/2011-05-20_09-40-40_773.jpg"><img style="float:left; margin:0 10px 10px 0;cursor:pointer; cursor:hand;width: 320px; height: 181px;" src="http://1.bp.blogspot.com/-ZxaTw989g7A/TdamS_vZq2I/AAAAAAAAAL4/nIa3NWTtOC0/s320/2011-05-20_09-40-40_773.jpg" alt="" id="BLOGGER_PHOTO_ID_5608853231214635874" border="0" /></a><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/-bTsmrJTlaLo/TdamczpHeOI/AAAAAAAAAMA/0txc_gs4II8/s1600/2011-05-20_09-40-51_542.jpg"><img style="float:right; margin:0 0 10px 10px;cursor:pointer; cursor:hand;width: 320px; height: 181px;" src="http://3.bp.blogspot.com/-bTsmrJTlaLo/TdamczpHeOI/AAAAAAAAAMA/0txc_gs4II8/s320/2011-05-20_09-40-51_542.jpg" alt="" id="BLOGGER_PHOTO_ID_5608853399765743842" border="0" /></a><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />Coders gather to discuss sprint options.<br /><br /><br /><br /><br /><div style="text-align: left;"><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/-IYlHpMbRnyY/TdamypLYMXI/AAAAAAAAAMI/4kd5kh4ULWM/s1600/2011-05-20_09-58-01_525.jpg"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;width: 320px; height: 181px;" src="http://3.bp.blogspot.com/-IYlHpMbRnyY/TdamypLYMXI/AAAAAAAAAMI/4kd5kh4ULWM/s320/2011-05-20_09-58-01_525.jpg" alt="" id="BLOGGER_PHOTO_ID_5608853774913778034" border="0" /></a>Connexions Sprint participants at work.  We have developers from US, South Africa, Sweden, Mexico, the UK and Vietnam working on Connexions today. Most are in the room, but some are working with us remotely.<br /></div>
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'><span class='post-author vcard'>
+Posted by
+<span class='fn'>Ed Woodward</span>
+</span>
+<span class='post-timestamp'>
+at
+<a class='timestamp-link' href='http://devblog.cnx.org/2011/05/connexions-sprint-at-plone-symposium.html' rel='bookmark' title='permanent link'><abbr class='published' title='2011-05-20T10:27:00-07:00'>10:27 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='http://devblog.cnx.org/2011/05/connexions-sprint-at-plone-symposium.html#comments' onclick=''>0
+comments</a>
+</span>
+<span class='post-icons'>
+<span class='item-control blog-admin pid-1615469320'>
+<a href='http://www.blogger.com/post-edit.g?blogID=7775252059028186398&postID=8995198696366763838&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='http://img2.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons'>
+<a class='goog-inline-block share-button sb-email' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=8995198696366763838&target=email' target='_blank' title='Email This'>
+<span class='share-button-link-text'>Email This</span>
+</a><a class='goog-inline-block share-button sb-blog' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=8995198696366763838&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'>
+<span class='share-button-link-text'>BlogThis!</span>
+</a><a class='goog-inline-block share-button sb-twitter' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=8995198696366763838&target=twitter' target='_blank' title='Share to Twitter'>
+<span class='share-button-link-text'>Share to Twitter</span>
+</a><a class='goog-inline-block share-button sb-facebook' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=8995198696366763838&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'>
+<span class='share-button-link-text'>Share to Facebook</span>
+</a><a class='goog-inline-block share-button sb-buzz' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=8995198696366763838&target=buzz' onclick='window.open(this.href, "_blank", "height=415,width=690"); return false;' target='_blank' title='Share to Google Buzz'>
+<span class='share-button-link-text'>Share to Google Buzz</span>
+</a>
+<div class='goog-inline-block dummy-container'><g:plusone source='blogger' href='http://devblog.cnx.org/2011/05/connexions-sprint-at-plone-symposium.html' size='medium'/></div>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'><span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'></div>
+</div>
+</div>
+</div>
+<div id="latency-8995198696366763838"></div><script type="text/javascript">if (window['tickAboveFold']) {window['tickAboveFold'](document.getElementById("latency-8995198696366763838")); } </script>
+
+            </div></div>
+          
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Friday, May 13, 2011</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry'>
+<a name='3180718313430745929'></a>
+<h3 class='post-title entry-title'>
+<a href='http://devblog.cnx.org/2011/05/new-release-of-connexions-for-android.html'>New Release of Connexions for Android</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content'>
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://2.bp.blogspot.com/-Z5rKOoUtxso/Tc2PTGzSZjI/AAAAAAAAALw/dq2t7FvuW4A/s1600/content_sm.png"><img style="float:right; margin:0 0 10px 10px;cursor:pointer; cursor:hand;width: 100px; height: 152px;" src="http://2.bp.blogspot.com/-Z5rKOoUtxso/Tc2PTGzSZjI/AAAAAAAAALw/dq2t7FvuW4A/s320/content_sm.png" alt="" id="BLOGGER_PHOTO_ID_5606294669552150066" border="0" /></a>Version 1.5 of Connexions for Android has been released.  It contains cosmetic and usability changes along with a bug fix.  The changes include:<br /><ul><li>Search is now a popup window instead of a separate tab.  This makes search quickly and easily available on every screen.  I also removed the Google search.  Only Connexions search is used now.</li><li>The app is a little more colorful and better looking.</li><li>Added option menus to all of the views.  List views previously only had context (long press) menus.  The long press menus are still there and necessary for some operations.</li><li>The Lens tab is now the Content tab.  Added Connexions Featured Content to the Content tab to allow new users to quickly find something to view.  I will probably add the new content feed to this tab at some point.<br /></li><li>Added a one time popup Toast message that explains a little about using the app.  It is only displayed the first time a user opens the app after installing it.</li><li>Fixed a bug that caused the app to force close when the orientation was changed when viewing a list of lens items.</li></ul>I made most of these changes after reading the <a href="http://developer.apple.com/library/mac/#documentation/UserExperience/Conceptual/AppleHIGuidelines/XHIGIntro/XHIGIntro.html">Apple User Interface Guidelines</a> in anticipation of writing an iPhone app for Connexions.  The previous versions of the Android app were made with functionality in mind, not looks.  If you have tried the app in the past and were unimpressed, please try it again and give us some feedback.  I want to continue to improve it.<br /><br />As always, the code is open source and is in our <a href="https://trac.rhaptos.org/trac/rhaptos/browser/labs/CNXAndroid/trunk">repository</a>.  You can <a href="http://cnx.org/android/splash.html">download</a> the app directly from Connexions or from the <a href="https://market.android.com/details?id=org.cnx.android">Android Market</a>.  If you try the app and find it useful, please leave a comment in the Android Market.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'><span class='post-author vcard'>
+Posted by
+<span class='fn'>Ed Woodward</span>
+</span>
+<span class='post-timestamp'>
+at
+<a class='timestamp-link' href='http://devblog.cnx.org/2011/05/new-release-of-connexions-for-android.html' rel='bookmark' title='permanent link'><abbr class='published' title='2011-05-13T13:05:00-07:00'>1:05 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='http://devblog.cnx.org/2011/05/new-release-of-connexions-for-android.html#comments' onclick=''>0
+comments</a>
+</span>
+<span class='post-icons'>
+<span class='item-control blog-admin pid-1615469320'>
+<a href='http://www.blogger.com/post-edit.g?blogID=7775252059028186398&postID=3180718313430745929&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='http://img2.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons'>
+<a class='goog-inline-block share-button sb-email' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=3180718313430745929&target=email' target='_blank' title='Email This'>
+<span class='share-button-link-text'>Email This</span>
+</a><a class='goog-inline-block share-button sb-blog' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=3180718313430745929&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'>
+<span class='share-button-link-text'>BlogThis!</span>
+</a><a class='goog-inline-block share-button sb-twitter' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=3180718313430745929&target=twitter' target='_blank' title='Share to Twitter'>
+<span class='share-button-link-text'>Share to Twitter</span>
+</a><a class='goog-inline-block share-button sb-facebook' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=3180718313430745929&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'>
+<span class='share-button-link-text'>Share to Facebook</span>
+</a><a class='goog-inline-block share-button sb-buzz' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=3180718313430745929&target=buzz' onclick='window.open(this.href, "_blank", "height=415,width=690"); return false;' target='_blank' title='Share to Google Buzz'>
+<span class='share-button-link-text'>Share to Google Buzz</span>
+</a>
+<div class='goog-inline-block dummy-container'><g:plusone source='blogger' href='http://devblog.cnx.org/2011/05/new-release-of-connexions-for-android.html' size='medium'/></div>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'><span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'></div>
+</div>
+</div>
+</div>
+<div id="latency-3180718313430745929"></div><script type="text/javascript">if (window['tickAboveFold']) {window['tickAboveFold'](document.getElementById("latency-3180718313430745929")); } </script>
+
+            </div></div>
+          
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Wednesday, April 20, 2011</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry'>
+<a name='969287135626396618'></a>
+<h3 class='post-title entry-title'>
+<a href='http://devblog.cnx.org/2011/04/version-14-of-connexions-for-android.html'>Version 1.4 of Connexions for Android Released</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content'>
+Version 1.4 of Connexions for Android was released today.  It adds 2 new features and fixes a file downloading bug.  The new features are a File Management screen that can be used to open or delete downloaded PDF or EPUB files and Pinch and Zoom was added to the web view for devices with Android 2.1 or above.  The bug fix corrected a problem with phones rebooting while downloading a large PDF or EPUB file.<br /><br />As always, the code is open source and is in our <a href="https://trac.rhaptos.org/trac/rhaptos/browser/labs/CNXAndroid/trunk">repository</a>.  You can <a href="http://cnx.org/android/splash.html">download</a> the app directly from Connexions or from the <a href="https://market.android.com/details?id=org.cnx.android">Android Market</a>.  If you try the app and find it useful, please leave a comment in the Android Market.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'><span class='post-author vcard'>
+Posted by
+<span class='fn'>Ed Woodward</span>
+</span>
+<span class='post-timestamp'>
+at
+<a class='timestamp-link' href='http://devblog.cnx.org/2011/04/version-14-of-connexions-for-android.html' rel='bookmark' title='permanent link'><abbr class='published' title='2011-04-20T10:33:00-07:00'>10:33 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='http://devblog.cnx.org/2011/04/version-14-of-connexions-for-android.html#comments' onclick=''>2
+comments</a>
+</span>
+<span class='post-icons'>
+<span class='item-control blog-admin pid-1615469320'>
+<a href='http://www.blogger.com/post-edit.g?blogID=7775252059028186398&postID=969287135626396618&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='http://img2.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons'>
+<a class='goog-inline-block share-button sb-email' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=969287135626396618&target=email' target='_blank' title='Email This'>
+<span class='share-button-link-text'>Email This</span>
+</a><a class='goog-inline-block share-button sb-blog' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=969287135626396618&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'>
+<span class='share-button-link-text'>BlogThis!</span>
+</a><a class='goog-inline-block share-button sb-twitter' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=969287135626396618&target=twitter' target='_blank' title='Share to Twitter'>
+<span class='share-button-link-text'>Share to Twitter</span>
+</a><a class='goog-inline-block share-button sb-facebook' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=969287135626396618&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'>
+<span class='share-button-link-text'>Share to Facebook</span>
+</a><a class='goog-inline-block share-button sb-buzz' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=969287135626396618&target=buzz' onclick='window.open(this.href, "_blank", "height=415,width=690"); return false;' target='_blank' title='Share to Google Buzz'>
+<span class='share-button-link-text'>Share to Google Buzz</span>
+</a>
+<div class='goog-inline-block dummy-container'><g:plusone source='blogger' href='http://devblog.cnx.org/2011/04/version-14-of-connexions-for-android.html' size='medium'/></div>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'><span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'></div>
+</div>
+</div>
+</div>
+<div id="latency-969287135626396618"></div><script type="text/javascript">if (window['tickAboveFold']) {window['tickAboveFold'](document.getElementById("latency-969287135626396618")); } </script>
+
+            </div></div>
+          
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Tuesday, April 5, 2011</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry'>
+<a name='6513769216140828359'></a>
+<h3 class='post-title entry-title'>
+<a href='http://devblog.cnx.org/2011/04/connexions-adds-like-and-tweet-buttons.html'>Connexions Adds Like and Tweet Buttons</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content'>
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://2.bp.blogspot.com/-p_PjgZVnllI/TZu5pDGE1zI/AAAAAAAAAKo/vuUyNEeMXVs/s1600/Screenshot-2.png"><img style="margin: 0pt 10px 10px 0pt; float: left; cursor: pointer; width: 67px; height: 58px;" src="http://2.bp.blogspot.com/-p_PjgZVnllI/TZu5pDGE1zI/AAAAAAAAAKo/vuUyNEeMXVs/s320/Screenshot-2.png" alt="" id="BLOGGER_PHOTO_ID_5592267477167167282" border="0" /></a>Last week, we released the addition of Like and Tweet buttons to all Connexions content.  I thought I would share some of the details of coding the change.  When we first discussed adding the buttons, we all thought it was going to be a quick and easy addition.  Just grab the button code off Twitter and Facebook, tweak it a bit and off we go.  We were very wrong.<br /><br />Facebook changed how they display links while we were in the middle of developing the change.  They started pulling some of the content for a thumbnail of the text instead of just displaying the title.  Because of the way we structure our content, Facebook was pulling the definition of a EPUB file that we have embedded for a help popup for every piece of content that was "liked".  To get around this, we added the content summary or abstract to a META tag in the content header.  There were some additional problems with embedded CNXML in some of the collection summaries which were solved by creating a new function to provide a plain text version, and using that for the meta tag contents.<br /><br />Thinking the buttons were ready to go, we started testing the devset.  All went well until we tested in Internet Explorer 8.  The addition of the Tweet button caused IE8 to no longer render math. The problem was caused by the JavaScript from Twitter creating an iFrame for the Tweet button interacting poorly with other javascript on the page.  Rearrange where various bits were called lead to results ranging from nothing on the page rendering to any one functionality being missing (math, twitter, dynamic menus, etc.) The ultimate solution was to create the iFrame ourselves instead of letting Twitter's code handle it.<br /><br />Many thanks to our developers, Phil and Max and our sys admin, Ross who worked to get this done.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'><span class='post-author vcard'>
+Posted by
+<span class='fn'>Ed Woodward</span>
+</span>
+<span class='post-timestamp'>
+at
+<a class='timestamp-link' href='http://devblog.cnx.org/2011/04/connexions-adds-like-and-tweet-buttons.html' rel='bookmark' title='permanent link'><abbr class='published' title='2011-04-05T17:53:00-07:00'>5:53 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='http://devblog.cnx.org/2011/04/connexions-adds-like-and-tweet-buttons.html#comments' onclick=''>0
+comments</a>
+</span>
+<span class='post-icons'>
+<span class='item-control blog-admin pid-1615469320'>
+<a href='http://www.blogger.com/post-edit.g?blogID=7775252059028186398&postID=6513769216140828359&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='http://img2.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons'>
+<a class='goog-inline-block share-button sb-email' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=6513769216140828359&target=email' target='_blank' title='Email This'>
+<span class='share-button-link-text'>Email This</span>
+</a><a class='goog-inline-block share-button sb-blog' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=6513769216140828359&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'>
+<span class='share-button-link-text'>BlogThis!</span>
+</a><a class='goog-inline-block share-button sb-twitter' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=6513769216140828359&target=twitter' target='_blank' title='Share to Twitter'>
+<span class='share-button-link-text'>Share to Twitter</span>
+</a><a class='goog-inline-block share-button sb-facebook' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=6513769216140828359&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'>
+<span class='share-button-link-text'>Share to Facebook</span>
+</a><a class='goog-inline-block share-button sb-buzz' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=6513769216140828359&target=buzz' onclick='window.open(this.href, "_blank", "height=415,width=690"); return false;' target='_blank' title='Share to Google Buzz'>
+<span class='share-button-link-text'>Share to Google Buzz</span>
+</a>
+<div class='goog-inline-block dummy-container'><g:plusone source='blogger' href='http://devblog.cnx.org/2011/04/connexions-adds-like-and-tweet-buttons.html' size='medium'/></div>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'><span class='post-labels'>
+Labels:
+<a href='http://devblog.cnx.org/search/label/Facebook' rel='tag'>Facebook</a>,
+<a href='http://devblog.cnx.org/search/label/JavaScript' rel='tag'>JavaScript</a>,
+<a href='http://devblog.cnx.org/search/label/Twitter' rel='tag'>Twitter</a>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'></div>
+</div>
+</div>
+</div>
+<div id="latency-6513769216140828359"></div><script type="text/javascript">if (window['tickAboveFold']) {window['tickAboveFold'](document.getElementById("latency-6513769216140828359")); } </script>
+
+            </div></div>
+          
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Monday, March 28, 2011</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry'>
+<a name='272545987724136288'></a>
+<h3 class='post-title entry-title'>
+<a href='http://devblog.cnx.org/2011/03/apply-for-google-summer-of-code.html'>Apply for Google Summer of Code Projects</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content'>
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://2.bp.blogspot.com/-ik-_ylXDjJA/TZCs-Q0W8gI/AAAAAAAAAKA/fr00GkQ3Zks/s1600/gsoc-sm.png"><img style="display: block; margin: 0px auto 10px; text-align: center; cursor: pointer; width: 300px; height: 51px;" src="http://2.bp.blogspot.com/-ik-_ylXDjJA/TZCs-Q0W8gI/AAAAAAAAAKA/fr00GkQ3Zks/s320/gsoc-sm.png" alt="" id="BLOGGER_PHOTO_ID_5589157323233227266" border="0" /></a><br />Starting today, students can apply for <a href="http://www.google-melange.com/gsoc/homepage/google/gsoc2011">Google Summer of Code</a> projects.  <a href="http://www.google-melange.com/gsoc/org/google/gsoc2011/connexions">Connexions</a> has been selected as a participating organization and we have <a href="https://trac.rhaptos.org/trac/rhaptos/wiki/Google%20Summer%20Of%20Code%202011/Projects">2 projects</a> students can apply for. The deadline for applications is Friday, April 8.  Get your application in today!
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'><span class='post-author vcard'>
+Posted by
+<span class='fn'>Ed Woodward</span>
+</span>
+<span class='post-timestamp'>
+at
+<a class='timestamp-link' href='http://devblog.cnx.org/2011/03/apply-for-google-summer-of-code.html' rel='bookmark' title='permanent link'><abbr class='published' title='2011-03-28T08:43:00-07:00'>8:43 AM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='http://devblog.cnx.org/2011/03/apply-for-google-summer-of-code.html#comments' onclick=''>0
+comments</a>
+</span>
+<span class='post-icons'>
+<span class='item-control blog-admin pid-1615469320'>
+<a href='http://www.blogger.com/post-edit.g?blogID=7775252059028186398&postID=272545987724136288&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='http://img2.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons'>
+<a class='goog-inline-block share-button sb-email' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=272545987724136288&target=email' target='_blank' title='Email This'>
+<span class='share-button-link-text'>Email This</span>
+</a><a class='goog-inline-block share-button sb-blog' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=272545987724136288&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'>
+<span class='share-button-link-text'>BlogThis!</span>
+</a><a class='goog-inline-block share-button sb-twitter' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=272545987724136288&target=twitter' target='_blank' title='Share to Twitter'>
+<span class='share-button-link-text'>Share to Twitter</span>
+</a><a class='goog-inline-block share-button sb-facebook' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=272545987724136288&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'>
+<span class='share-button-link-text'>Share to Facebook</span>
+</a><a class='goog-inline-block share-button sb-buzz' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=272545987724136288&target=buzz' onclick='window.open(this.href, "_blank", "height=415,width=690"); return false;' target='_blank' title='Share to Google Buzz'>
+<span class='share-button-link-text'>Share to Google Buzz</span>
+</a>
+<div class='goog-inline-block dummy-container'><g:plusone source='blogger' href='http://devblog.cnx.org/2011/03/apply-for-google-summer-of-code.html' size='medium'/></div>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'><span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'></div>
+</div>
+</div>
+</div>
+<div id="latency-272545987724136288"></div><script type="text/javascript">if (window['tickAboveFold']) {window['tickAboveFold'](document.getElementById("latency-272545987724136288")); } </script>
+
+            </div></div>
+          
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Friday, March 18, 2011</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry'>
+<a name='2994151596685011770'></a>
+<h3 class='post-title entry-title'>
+<a href='http://devblog.cnx.org/2011/03/connexions-accepted-into-google-summer.html'>Connexions Accepted into Google Summer of Code 2011</a>
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content'>
+We are proud to announce that Connexions has been selected as a participant in the Google Summer of Code (GS0C) 2011.  We will be looking for some great upperclassmen or grad students to help us complete our two GSoC projects.  Our <a href="https://trac.rhaptos.org/trac/rhaptos/wiki/Google%20Summer%20Of%20Code%202011/Projects">projects</a> involve using Google Docs as an editor for Connexions and enhancing our author profiles.  Students can review GSoC projects and apply at the <a href="http://www.google-melange.com/">Google Summer of Code site</a>.  Thanks to all that had a hand in Connexions being selected.
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'><span class='post-author vcard'>
+Posted by
+<span class='fn'>Ed Woodward</span>
+</span>
+<span class='post-timestamp'>
+at
+<a class='timestamp-link' href='http://devblog.cnx.org/2011/03/connexions-accepted-into-google-summer.html' rel='bookmark' title='permanent link'><abbr class='published' title='2011-03-18T12:42:00-07:00'>12:42 PM</abbr></a>
+</span>
+<span class='post-comment-link'>
+<a class='comment-link' href='http://devblog.cnx.org/2011/03/connexions-accepted-into-google-summer.html#comments' onclick=''>0
+comments</a>
+</span>
+<span class='post-icons'>
+<span class='item-control blog-admin pid-1615469320'>
+<a href='http://www.blogger.com/post-edit.g?blogID=7775252059028186398&postID=2994151596685011770&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='http://img2.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons'>
+<a class='goog-inline-block share-button sb-email' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=2994151596685011770&target=email' target='_blank' title='Email This'>
+<span class='share-button-link-text'>Email This</span>
+</a><a class='goog-inline-block share-button sb-blog' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=2994151596685011770&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'>
+<span class='share-button-link-text'>BlogThis!</span>
+</a><a class='goog-inline-block share-button sb-twitter' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=2994151596685011770&target=twitter' target='_blank' title='Share to Twitter'>
+<span class='share-button-link-text'>Share to Twitter</span>
+</a><a class='goog-inline-block share-button sb-facebook' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=2994151596685011770&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'>
+<span class='share-button-link-text'>Share to Facebook</span>
+</a><a class='goog-inline-block share-button sb-buzz' href='http://www.blogger.com/share-post.g?blogID=7775252059028186398&postID=2994151596685011770&target=buzz' onclick='window.open(this.href, "_blank", "height=415,width=690"); return false;' target='_blank' title='Share to Google Buzz'>
+<span class='share-button-link-text'>Share to Google Buzz</span>
+</a>
+<div class='goog-inline-block dummy-container'><g:plusone source='blogger' href='http://devblog.cnx.org/2011/03/connexions-accepted-into-google-summer.html' size='medium'/></div>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'><span class='post-labels'>
+Labels:
+<a href='http://devblog.cnx.org/search/label/GSoC' rel='tag'>GSoC</a>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'></div>
+</div>
+</div>
+</div>
+<div id="latency-2994151596685011770"></div><script type="text/javascript">if (window['tickAboveFold']) {window['tickAboveFold'](document.getElementById("latency-2994151596685011770")); } </script>
+
+        </div></div>
+      
+<!-- google_ad_section_end -->
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href='http://devblog.cnx.org/search?updated-max=2011-03-18T12%3A42%3A00-07%3A00&max-results=7' id='Blog1_blog-pager-older-link' title='Older Posts'>Older Posts</a>
+</span>
+<a class='home-link' href='http://devblog.cnx.org/'>Home</a>
+</div>
+<div class='clear'></div>
+<div class='blog-feeds'>
+<div class='feed-links'>
+Subscribe to:
+<a class='feed-link' href='http://devblog.cnx.org/feeds/posts/default' target='_blank' type='application/atom+xml'>Posts (Atom)</a>
+</div>
+</div>
+<script src='https://apis.google.com/js/plusone.js'>{'lang': 'en', 'parsetags': 'explicit'}</script><script type='text/javascript'>gapi.plusone.go();</script>
+</div></div>
+</div>
+<div id='sidebar-wrapper'>
+<div class='sidebar section' id='sidebar'><div class='widget CustomSearch' id='CustomSearch1'>
+<h2 class='title'>Search This Blog</h2>
+<div class='widget-content'>
+<div id='CustomSearch1_form'>
+<span class='cse-status'>Loading...</span>
+</div>
+</div>
+<style type='text/css'>
+      #uds-searchControl .gs-result .gs-title,
+      #uds-searchControl .gs-result .gs-title *,
+      #uds-searchControl .gsc-results .gsc-trailing-more-results,
+      #uds-searchControl .gsc-results .gsc-trailing-more-results * {
+        color:#336699;
+      }
+
+      #uds-searchControl .gs-result .gs-title a:visited,
+      #uds-searchControl .gs-result .gs-title a:visited * {
+        color:#666699;
+      }
+
+      #uds-searchControl .gs-relativePublishedDate,
+      #uds-searchControl .gs-publishedDate {
+        color: #333333;
+      }
+
+      #uds-searchControl .gs-result a.gs-visibleUrl,
+      #uds-searchControl .gs-result .gs-visibleUrl {
+        color: #cc6600;
+      }
+
+      #uds-searchControl .gsc-results {
+        border-color: #cccccc;
+        background-color: #ffffff;
+      }
+
+      #uds-searchControl .gsc-tabhActive {
+        border-color: #cccccc;
+        border-top-color: #cc6600;
+        background-color: #ffffff;
+        color: #000000;
+      }
+
+      #uds-searchControl .gsc-tabhInactive {
+        border-color: #cccccc;
+        background-color: transparent;
+        color: #336699;
+      }
+
+      #uds-searchClearResults {
+        border-color: #cccccc;
+      }
+
+      #uds-searchClearResults:hover {
+        border-color: #cc6600;
+      }
+
+      #uds-searchControl .gsc-cursor-page {
+        color: #336699;
+      }
+
+      #uds-searchControl .gsc-cursor-current-page {
+        color: #000000;
+      }
+    </style>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='http://www.blogger.com/rearrange?blogID=7775252059028186398&widgetType=CustomSearch&widgetId=CustomSearch1&action=editWidget&sectionId=sidebar' onclick='return _WidgetManager._PopupConfig(document.getElementById("CustomSearch1"));' target='configCustomSearch1' title='Edit'>
+<img alt='' height='18' src='http://img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div><div class='widget Text' id='Text1'>
+<h2 class='title'>About this Blog</h2>
+<div class='widget-content'>
+<a href="http://devblog.cnx.org/">The Connexions Rhaptos Developer Blog</a> is where developers come to discuss the software that runs <a href="http://cnx.org/">Connexions</a> (a global education site) and Rhaptos (the platform that does all the work). We will be discussing upcoming development projects and sharing technical questions and answers. If you are a Rhaptos developer and want to contribute posts to this blog, email cnx@cnx.org and let us know.<br/><a href="http://devblog.cnx.org/2009/06/welcome-to-connexions-community.html"><br/>Welcome to the Connexions Developer Community!</a>
+</div>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='http://www.blogger.com/rearrange?blogID=7775252059028186398&widgetType=Text&widgetId=Text1&action=editWidget&sectionId=sidebar' onclick='return _WidgetManager._PopupConfig(document.getElementById("Text1"));' target='configText1' title='Edit'>
+<img alt='' height='18' src='http://img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div><div class='widget Text' id='Text2'>
+<h2 class='title'>Follow Connexions and Rhaptos</h2>
+<div class='widget-content'>
+<ul><li><a href="http://feeds2.feedburner.com/TheConnexionsBlog"><img style="margin-right: 6px;" src="http://2.bp.blogspot.com/_i1biWKLXoA0/SjpkrbYoGOI/AAAAAAAAADM/N2Z6daKnarc/s320/icon-rss.png" /></a><a href="http://feeds.feedburner.com/ConnexionsRhaptosDeveloperBlog">Subscribe to this blog via RSS</a> - Keep up with the Connexions blog in your favorite feed reader.</li><li><a href="https://trac.rhaptos.org/">Find developer documentation</a> - Find out how to run Enterprise Rhaptos and get involved developing new features<br /></li><li><a href="https://trac.rhaptos.org/">Use our bug tracking system<br /></a> - Report bugs, help diagnose bugs, and help fix and improve the software.<br /></li><li><a href="http://cnxconsortium.org/">Find out about Connexions Consortium</a> - Join to influence the direction of the software and partner with leaders in open education.<br /></li><li><a href="http://twitter.com/cnxorg"><img style="margin-right: 6px;" src="http://1.bp.blogspot.com/_CP-h6EKO_Bs/SjehpGo7Z5I/AAAAAAAAABw/p_fIvWgmlpI/s400/icon-twitter.png" />Follow Connexions on Twitter</a> - Keep up with the latest Connexions news and happenings.</li><li><a href="http://www.facebook.com/cnx.org"><img style="margin-right: 6px;" src="http://3.bp.blogspot.com/_CP-h6EKO_Bs/SjehozrG9II/AAAAAAAAABo/UWCSB_DNRZc/s400/icon-facebook.png" />Visit Connexions Facebook Page</a> - Become a fan of Connexions on Facebook and share with your friends!</li></ul>
+</div>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='http://www.blogger.com/rearrange?blogID=7775252059028186398&widgetType=Text&widgetId=Text2&action=editWidget&sectionId=sidebar' onclick='return _WidgetManager._PopupConfig(document.getElementById("Text2"));' target='configText2' title='Edit'>
+<img alt='' height='18' src='http://img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div><div class='widget Label' id='Label1'>
+<h2>Labels</h2>
+<div class='widget-content cloud-label-widget-content'>
+<span class='label-size label-size-5'>
+<a dir='ltr' href='http://devblog.cnx.org/search/label/technology-committee'>technology-committee</a>
+<span class='label-count' dir='ltr'>(8)</span>
+</span>
+<span class='label-size label-size-4'>
+<a dir='ltr' href='http://devblog.cnx.org/search/label/new%20features'>new features</a>
+<span class='label-count' dir='ltr'>(4)</span>
+</span>
+<span class='label-size label-size-3'>
+<a dir='ltr' href='http://devblog.cnx.org/search/label/sprint'>sprint</a>
+<span class='label-count' dir='ltr'>(3)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='http://devblog.cnx.org/search/label/GSoC'>GSoC</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='http://devblog.cnx.org/search/label/performance'>performance</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='http://devblog.cnx.org/search/label/rhaptos%20release'>rhaptos release</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='http://devblog.cnx.org/search/label/Facebook'>Facebook</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='http://devblog.cnx.org/search/label/JavaScript'>JavaScript</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='http://devblog.cnx.org/search/label/OER%20Blogs'>OER Blogs</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='http://devblog.cnx.org/search/label/Twitter'>Twitter</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='http://devblog.cnx.org/search/label/cnx2010'>cnx2010</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='http://devblog.cnx.org/search/label/developer-testing'>developer-testing</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='http://devblog.cnx.org/search/label/plone%204'>plone 4</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='http://devblog.cnx.org/search/label/virtualization'>virtualization</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='http://devblog.cnx.org/search/label/welcome'>welcome</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='http://www.blogger.com/rearrange?blogID=7775252059028186398&widgetType=Label&widgetId=Label1&action=editWidget&sectionId=sidebar' onclick='return _WidgetManager._PopupConfig(document.getElementById("Label1"));' target='configLabel1' title='Edit'>
+<img alt='' height='18' src='http://img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div>
+</div><div class='widget BlogArchive' id='BlogArchive1'>
+<h2>Blog Archive</h2>
+<div class='widget-content'>
+<div id='ArchiveList'>
+<div id='BlogArchive1_ArchiveList'>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>&#9660;&#160;</span>
+</a>
+<a class='post-count-link' href='http://devblog.cnx.org/search?updated-min=2011-01-01T00%3A00%3A00-08%3A00&updated-max=2012-01-01T00%3A00%3A00-08%3A00&max-results=17'>2011</a>
+<span class='post-count' dir='ltr'>(17)</span>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>&#9660;&#160;</span>
+</a>
+<a class='post-count-link' href='http://devblog.cnx.org/2011_07_01_archive.html'>July</a>
+<span class='post-count' dir='ltr'>(1)</span>
+<ul class='posts'>
+<li><a href='http://devblog.cnx.org/2011/07/connexions-featured-in-google-open.html'>Connexions Featured in Google Open Source Blog</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://devblog.cnx.org/2011_05_01_archive.html'>May</a>
+<span class='post-count' dir='ltr'>(2)</span>
+<ul class='posts'>
+<li><a href='http://devblog.cnx.org/2011/05/connexions-sprint-at-plone-symposium.html'>Connexions Sprint at Plone Symposium East</a></li>
+<li><a href='http://devblog.cnx.org/2011/05/new-release-of-connexions-for-android.html'>New Release of Connexions for Android</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://devblog.cnx.org/2011_04_01_archive.html'>April</a>
+<span class='post-count' dir='ltr'>(2)</span>
+<ul class='posts'>
+<li><a href='http://devblog.cnx.org/2011/04/version-14-of-connexions-for-android.html'>Version 1.4 of Connexions for Android Released</a></li>
+<li><a href='http://devblog.cnx.org/2011/04/connexions-adds-like-and-tweet-buttons.html'>Connexions Adds Like and Tweet Buttons</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://devblog.cnx.org/2011_03_01_archive.html'>March</a>
+<span class='post-count' dir='ltr'>(4)</span>
+<ul class='posts'>
+<li><a href='http://devblog.cnx.org/2011/03/apply-for-google-summer-of-code.html'>Apply for Google Summer of Code Projects</a></li>
+<li><a href='http://devblog.cnx.org/2011/03/connexions-accepted-into-google-summer.html'>Connexions Accepted into Google Summer of Code 201...</a></li>
+<li><a href='http://devblog.cnx.org/2011/03/consortium-technology-committee-working.html'>Consortium Technology Committee -- Working on focu...</a></li>
+<li><a href='http://devblog.cnx.org/2011/03/first-weekly-plone-4-sprint-success.html'>First Weekly Plone 4 Sprint A Success</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://devblog.cnx.org/2011_02_01_archive.html'>February</a>
+<span class='post-count' dir='ltr'>(6)</span>
+<ul class='posts'>
+<li><a href='http://devblog.cnx.org/2011/02/i-am-pleased-to-introduce-consortium.html'>Introducing Ted Creighton</a></li>
+<li><a href='http://devblog.cnx.org/2011/02/new-release-of-connexions-for-android.html'>New Release of Connexions for Android</a></li>
+<li><a href='http://devblog.cnx.org/2011/02/code-sprint-bug-fixes-released.html'>Code Sprint Bug Fixes Released</a></li>
+<li><a href='http://devblog.cnx.org/2011/02/more-information-about-upcoming.html'>More information about the upcoming Connexions spr...</a></li>
+<li><a href='http://devblog.cnx.org/2011/02/version-13-of-connexions-for-android.html'>Version 1.3 of Connexions for Android Released</a></li>
+<li><a href='http://devblog.cnx.org/2011/02/connexions-makes-switch-to-mathjax.html'>Connexions Makes the Switch to MathJax</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://devblog.cnx.org/2011_01_01_archive.html'>January</a>
+<span class='post-count' dir='ltr'>(2)</span>
+<ul class='posts'>
+<li><a href='http://devblog.cnx.org/2011/01/connexionsrhaptos-sprint-february-10th.html'>Connexions/Rhaptos Sprint February 10th, Houston T...</a></li>
+<li><a href='http://devblog.cnx.org/2011/01/introducing-j-cameron-cooper.html'>Introducing J. Cameron Cooper</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://devblog.cnx.org/search?updated-min=2010-01-01T00%3A00%3A00-08%3A00&updated-max=2011-01-01T00%3A00%3A00-08%3A00&max-results=27'>2010</a>
+<span class='post-count' dir='ltr'>(27)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://devblog.cnx.org/2010_12_01_archive.html'>December</a>
+<span class='post-count' dir='ltr'>(2)</span>
+<ul class='posts'>
+<li><a href='http://devblog.cnx.org/2010/12/connexions-for-android-updated.html'>Connexions for Android Updated</a></li>
+<li><a href='http://devblog.cnx.org/2010/12/switching-from-squid-to-varnish-and.html'>Switching from Squid to Varnish (and getting some ...</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://devblog.cnx.org/2010_11_01_archive.html'>November</a>
+<span class='post-count' dir='ltr'>(4)</span>
+<ul class='posts'>
+<li><a href='http://devblog.cnx.org/2010/11/enterprise-rhaptos-16-released.html'>Enterprise Rhaptos 1.6 Released</a></li>
+<li><a href='http://devblog.cnx.org/2010/11/haproxy-load-balancing-leads-to-better.html'>HA_Proxy load balancing leads to better Connexions...</a></li>
+<li><a href='http://devblog.cnx.org/2010/11/new-collection-editor.html'>New Collection Editor</a></li>
+<li><a href='http://devblog.cnx.org/2010/11/webcraft-textbook-be-part-of-building.html'>WebCraft Textbook -- be a part of building it this...</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://devblog.cnx.org/2010_10_01_archive.html'>October</a>
+<span class='post-count' dir='ltr'>(5)</span>
+<ul class='posts'>
+<li><a href='http://devblog.cnx.org/2010/10/connexions-app-for-android-released.html'>Connexions App for Android Released</a></li>
+<li><a href='http://devblog.cnx.org/2010/10/sprint-with-us.html'>Sprint with Us</a></li>
+<li><a href='http://devblog.cnx.org/2010/10/rhaptos-answers-revealed.html'>Rhaptos Answers Revealed</a></li>
+<li><a href='http://devblog.cnx.org/2010/10/enterprise-rhaptos-15-released.html'>Enterprise Rhaptos 1.5 Released</a></li>
+<li><a href='http://devblog.cnx.org/2010/10/introducing-connexions-sword-api.html'>Introducing Connexions SWORD API</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://devblog.cnx.org/2010_09_01_archive.html'>September</a>
+<span class='post-count' dir='ltr'>(3)</span>
+<ul class='posts'>
+<li><a href='http://devblog.cnx.org/2010/09/introducing-nathan-yergler.html'>Introducing Nathan Yergler</a></li>
+<li><a href='http://devblog.cnx.org/2010/09/introducing-mark-horner.html'>Introducing Mark Horner</a></li>
+<li><a href='http://devblog.cnx.org/2010/09/vote-for-connexions-plone-talk.html'>Vote for Connexions Plone talk!</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://devblog.cnx.org/2010_08_01_archive.html'>August</a>
+<span class='post-count' dir='ltr'>(4)</span>
+<ul class='posts'>
+<li><a href='http://devblog.cnx.org/2010/08/epub-development-details.html'>EPUB Development - The Details</a></li>
+<li><a href='http://devblog.cnx.org/2010/08/introducing-minh-do.html'>Introducing Minh Do</a></li>
+<li><a href='http://devblog.cnx.org/2010/08/introducing-roche-compaan.html'>Introducing Roché Compaan</a></li>
+<li><a href='http://devblog.cnx.org/2010/08/introducing-connexions-consortium.html'>Introducing the Connexions Consortium Technology C...</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://devblog.cnx.org/2010_07_01_archive.html'>July</a>
+<span class='post-count' dir='ltr'>(1)</span>
+<ul class='posts'>
+<li><a href='http://devblog.cnx.org/2010/07/epub-mobile-development-underway.html'>EPUB mobile development underway</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://devblog.cnx.org/2010_06_01_archive.html'>June</a>
+<span class='post-count' dir='ltr'>(1)</span>
+<ul class='posts'>
+<li><a href='http://devblog.cnx.org/2010/06/connexionsrhaptos-sprint-topics-at.html'>Connexions/Rhaptos Sprint Topics at Plone Conferen...</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://devblog.cnx.org/2010_04_01_archive.html'>April</a>
+<span class='post-count' dir='ltr'>(3)</span>
+<ul class='posts'>
+<li><a href='http://devblog.cnx.org/2010/04/ready-for-pre-alpha-virtualization.html'>Ready for pre-alpha virtualization testers</a></li>
+<li><a href='http://devblog.cnx.org/2010/04/consortium-member-shuttleworth-funds.html'>Consortium member, Shuttleworth, funds performance...</a></li>
+<li><a href='http://devblog.cnx.org/2010/04/supporting-life-cycle-of-scholarly-work.html'>Supporting the Life Cycle of Scholarly Work</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://devblog.cnx.org/2010_03_01_archive.html'>March</a>
+<span class='post-count' dir='ltr'>(1)</span>
+<ul class='posts'>
+<li><a href='http://devblog.cnx.org/2010/03/virtualization-update.html'>Virtualization Update</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://devblog.cnx.org/2010_02_01_archive.html'>February</a>
+<span class='post-count' dir='ltr'>(1)</span>
+<ul class='posts'>
+<li><a href='http://devblog.cnx.org/2010/02/feedback-from-community-members-on.html'>Feedback from community members on the Connexions ...</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://devblog.cnx.org/2010_01_01_archive.html'>January</a>
+<span class='post-count' dir='ltr'>(2)</span>
+<ul class='posts'>
+<li><a href='http://devblog.cnx.org/2010/01/extreme-makeover-documentation-edition.html'>Extreme Makeover - Documentation Edition</a></li>
+<li><a href='http://devblog.cnx.org/2010/01/welcome-to-connexions-and-rhaptos.html'>Welcome to Connexions and Rhaptos Software Develop...</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='http://www.blogger.com/rearrange?blogID=7775252059028186398&widgetType=BlogArchive&widgetId=BlogArchive1&action=editWidget&sectionId=sidebar' onclick='return _WidgetManager._PopupConfig(document.getElementById("BlogArchive1"));' target='configBlogArchive1' title='Edit'>
+<img alt='' height='18' src='http://img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div>
+</div></div>
+</div>
+<!-- spacer for skins that want sidebar and main to be the same height-->
+<div class='clear'>&#160;</div>
+</div>
+<!-- end content-wrapper -->
+<div id='footer-wrapper'>
+<div class='footer section' id='footer'></div>
+</div>
+</div></div>
+<!-- end outer-wrapper -->
+<script type="text/javascript">
+if (window.jstiming) window.jstiming.load.tick('widgetJsBefore');
+</script><script type="text/javascript" src="http://www.blogger.com/static/v1/widgets/3241322299-widgets.js"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type='text/javascript'>
+if (typeof(BLOG_attachCsiOnload) != 'undefined' && BLOG_attachCsiOnload != null) { window['blogger_templates_experiment_id'] = "templatesV1";window['blogger_blog_id'] = '7775252059028186398';BLOG_attachCsiOnload(''); }_WidgetManager._Init('http://www.blogger.com/rearrange?blogID=7775252059028186398','http://devblog.cnx.org/','7775252059028186398');
+_WidgetManager._SetPageActionUrl('http://www.blogger.com/display?blogID=7775252059028186398','APq4FmDJvkfpQ4KOfWd4J1srQaBWBxSbQca-Q04ye4hHe13ZDRRJ7mLAjOGCDOO9vwbRb8_VPt9lvuNiMDp5bVJkNCbkd8yFVaOnFhAVvk6nVaPbklftTt8=','AOuZoY7R2kR6_GcBLe7W-lIM-jANgfVYAw:1312502864974');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'title': 'Connexions Rhaptos Developer Blog', 'pageType': 'index', 'url': 'http://devblog.cnx.org/', 'canonicalUrl': 'http://devblog.cnx.org/', 'homepageUrl': 'http://devblog.cnx.org/', 'blogspotFaviconUrl': 'http://devblog.cnx.org/favicon.ico', 'enabledCommentProfileImages': true, 'searchLabel': '', 'searchQuery': '', 'pageName': '', 'pageTitle': 'Connexions Rhaptos Developer Blog', 'encoding': 'UTF-8', 'locale': 'en', 'isPrivate': false, 'isMobile': false, 'mobileClass': '', 'languageDirection': 'ltr', 'feedLinks': '\74link rel\75\42alternate\42 type\75\42application/atom+xml\42 title\75\42Connexions Rhaptos Developer Blog - Atom\42 href\75\42http://devblog.cnx.org/feeds/posts/default\42 /\76\n\74link rel\75\42alternate\42 type\75\42application/rss+xml\42 title\75\42Connexions Rhaptos Developer Blog - RSS\42 href\75\42http://devblog.cnx.org/feeds/posts/default?alt\75rss\42 /\76\n\74link rel\75\42service.post\42 type\75\42application/atom+xml\42 title\75\42Connexions Rhaptos Developer Blog - Atom\42 href\75\42http://www.blogger.com/feeds/7775252059028186398/posts/default\42 /\76\n\74link rel\75\42EditURI\42 type\75\42application/rsd+xml\42 title\75\42RSD\42 href\75\42http://www.blogger.com/rsd.g?blogID\0757775252059028186398\42 /\076', 'meTag': '\74link rel\75\42me\42 href\75\42http://www.blogger.com/profile/09968025681200810430\42 /\76\n', 'openIdOpTag': '\74link rel\75\42openid.server\42 href\75\42http://www.blogger.com/openid-server.g\42 /\76\n', 'imageSrcTag': '', 'latencyHeadScript': '\74script type\75\42text/javascript\42\76(function() { var a\75window;function c(b){this.t\75{};this.tick\75function(b,i,d){d\75d!\75void 0?d:(new Date).getTime();this.t[b]\75[d,i]};this.tick(\42start\42,null,b)}var e\75new c;a.jstiming\75{Timer:c,load:e};try{var g\75null;a.chrome\46\46a.chrome.csi\46\46(g\75Math.floor(a.chrome.csi().pageT));g\75\75null\46\46a.gtbExternal\46\46(g\75a.gtbExternal.pageT());g\75\75null\46\46a.external\46\46(g\75a.external.pageT);g\46\46(a.jstiming.pt\75g)}catch(h){};a.tickAboveFold\75function(b){var f\0750;if(b.offsetParent){do f+\75b.offsetTop;while(b\75b.offsetParent)}b\75f;b\74\075750\46\46a.jstiming.load.tick(\42aft\42)};var j\75!1;function k(){j||(j\75!0,a.jstiming.load.tick(\42firstScrollTime\42))}a.addEventListener?a.addEventListener(\42scroll\42,k,!1):a.attachEvent(\42onscroll\42,k);\n })();\74/script\076', 'mobileHeadScript': ''}}]);
+_WidgetManager._RegisterWidget('_FeedView', new _WidgetInfo('Feed1', 'crosscol', null, document.getElementById('Feed1'), {'title': 'What the developers are working on', 'showItemDate': false, 'showItemAuthor': false, 'feedUrl': 'http://rhaptos.org/timeline?ticket\75on\46changeset\75on\46milestone\75on\46wiki\75on\46max\07550\46daysback\7590\46format\75rss', 'numItemsShow': 3, 'loadingMsg': 'Loading...', 'openLinksInNewWindow': true}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_CustomSearchView', new _WidgetInfo('CustomSearch1', 'sidebar', null, document.getElementById('CustomSearch1'), {'title': 'Search This Blog', 'includeBlog': true, 'includePostLinks': true, 'includeWeb': true, 'linkLists': [], 'blogUrl': 'http://devblog.cnx.org/', 'loadingMsg': 'Loading...', 'thisBlogMsg': 'This Blog', 'linkedFromHereMsg': 'Linked From Here', 'theWebMsg': 'The Web', 'backgroundColor': '#ffffff', 'textColor': '#000000', 'dateColor': '#333333', 'linkColor': '#336699', 'urlColor': '#cc6600', 'visitedLinkColor': '#666699', 'borderColor': '#cccccc', 'activeBorderColor': '#cc6600'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_TextView', new _WidgetInfo('Text1', 'sidebar', null, document.getElementById('Text1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_TextView', new _WidgetInfo('Text2', 'sidebar', null, document.getElementById('Text2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LabelView', new _WidgetInfo('Label1', 'sidebar', null, document.getElementById('Label1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar', null, document.getElementById('BlogArchive1'), {'languageDirection': 'ltr'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header'));
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', null, document.getElementById('Blog1'), {'cmtInteractionsEnabled': false}, 'displayModeFull'));
+</script>
+</body>
+</html>

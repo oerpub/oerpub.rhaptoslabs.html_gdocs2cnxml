@@ -1,0 +1,3 @@
+C:\Dev\eclipse_workspace\GSoC X2CNXML\testbed_html_output\word_2003_2.xml:2:236: error: element "document" missing required attribute "id"
+C:\Dev\eclipse_workspace\GSoC X2CNXML\testbed_html_output\word_2003_2.xml:5:14: error: element "section" missing required attribute "id"
+C:\Dev\eclipse_workspace\GSoC X2CNXML\testbed_html_output\word_2003_2.xml:7:13: error: element "para" missing required attribute "id"

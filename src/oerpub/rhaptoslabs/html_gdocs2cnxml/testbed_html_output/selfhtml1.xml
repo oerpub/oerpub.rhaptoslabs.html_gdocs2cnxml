@@ -1,0 +1,1264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" cnxml-version="0.7" module-id="new">
+  <title>SELFHTML: Perl / Perl-Sprachelemente / Reguläre Ausdrücke</title>
+  <content>
+    <section>
+      <title>Allgemeines zu regulären Ausdrücken</title>
+      <para>Reguläre Ausdrücke sind genau definierte Suchmuster. Mit Hilfe dieser Suchmuster können Sie beispielsweise Variableninhalte durchsuchen und bestimmte Inhalte daraus herausziehen oder ersetzen. So können Sie mit Hilfe von regulären Ausdrücken etwa beim Einlesen von Dateien (z.B. einer Datei mit Einträgen eines Gästebuchs) anhand der Konventionen, nach denen die Datei aufgebaut ist, die einzelnen Einträge geordnet einlesen und als HTML-Code an den aufrufenden Browser übertragen lassen. Reguläre Ausdrücke sind auch ein mächtiges Mittel, um große Datenbestände nach komplexen Suchausdrücken zu durchforsten.</para>
+      <para>Reguläre Ausdrücke sind allerdings für Neulinge, die nicht aus der Unix-Welt kommen, sehr ungewohnt und der Hauptgrund dafür, warum in manchen Perl-Scripts ziemlich merkwürdige, kryptisch anmutende Zeichenfolgen vorkommen. Wer allerdings mit dem Unix-Befehl  vertraut ist, kommt auch mit den regulären Ausdrücken in Perl zurecht.</para>
+      <para>
+        <link target-id="">[Image]</link>
+        <link target-id="">[Image]</link>
+      </para>
+      <section>
+        <title>Reguläre Ausdrücke anwenden</title>
+        <para>Zwei kleine einführende Beispiele sollen zeigen, in welchen Situationen reguläre Ausdrücke typischerweise zum Einsatz kommen.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr1.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Beispiel deklariert einen [Image]<link url="listen.htm" window="new">Array</link> namens  mit sechs Städtenamen. Dann geht es die Einträge des Arrays mit einer [Image]<link url="schleifen.htm#foreach" window="new">foreach</link>-Schleife der Reihe nach durch. Im Schleifenblock wird überprüft, ob der Städtename im aktuellen Schleifendurchlauf mit M anfängt. Dazu wird die [Image]<link url="vordefiniert.htm" window="new">vordefinierte Variablen</link>, in der ja in einer -Schleife der aktuelle Wert enthalten ist, mit dem Operator  an einen regulären Ausdruck gebunden. Der Operator  ist speziell für reguläre Ausdrücke gedacht. Der reguläre Ausdruck selbst steht per Voreinstellung in Schrägstrichen. Innerhalb der Schrägstriche wird ein Suchmuster definiert. Das Suchmuster  im Beispiel bedeutet so viel wie "fängt mit M an".<newline/>
+Die ganze Anweisung  ist also so zu lesen: wenn die Bedingung erfüllt ist, dass der Wert des aktuellen Schleifeninhalts mit einem M anfängt ...<newline/>
+Genaugenommen können Sie die Zeichenfolge  auch weglassen, da der reguläre Ausdruck dann automatisch an die vordefinierte Variable  gebunden wird. Um eine bessere Verständlichkeit zu erhalten, wurde hier die ausführliche Notation gewählt.</para>
+          <para>Das Beispiel gibt in diesem Fall den Schleifeninhalt aus. Am Ende werden also aus dem Array  die drei Städte ausgegeben, die mit M beginnen.</para>
+          <para>Das folgende Beispiel ist etwas anspruchsvoller:</para>
+        </section>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr2.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Script gibt es einen Skalar namens , der als Wert eine Zeichenkette speichert, die offensichtlich eine bestimmte Struktur hat. Sie steht in geschweiften Klammern. Zuerst ist  notiert, dann folgt ein URI, und dann folgt, nochmals in geschweifte Klammern gesetzt, ein Text. Diese Struktur mit den geschweiften Klammern ist jetzt frei erfunden. Doch fast die gesamte EDV besteht daraus, Daten nach irgendwelchen für Computer wiedererkennbaren Strukturen oder Konventionen zu speichern. Reguläre Ausdrücke sind dafür geeignet, aus solchen Strukturen etwas Bestimmtes herauszufiltern. Im Beispiel filtert das Script mit Hilfe eines regulären Ausdrucks aus der Zeichenkette den URI und den Text in der zweiten, inneren geschweiften Klammer heraus und bastelt aus diesen beiden Teilwerten einen HTML-Verweis, den es am Ende mit  ausgibt.</para>
+          <para>Mit der Anweisung  wird der reguläre Ausdruck, der zwischen den beiden Schrägstrichen steht, auf den Wert des Skalars  angewendet. Um die fürchterliche Ansammlung von Zeichen erst einmal etwas zu entwirren, seien zunächst die Backslashes  darin erwähnt. Diese dienen zur Maskierung des jeweils nachfolgenden Zeichens und bedeuten einfach nur: das nächste Zeichen soll als das Zeichen behandelt werden, das da steht. Also  heißt beispielsweise einfach nur: das folgende Zeichen  bitte nicht anders interpretieren als es da steht.<newline/>
+Das, worauf der reguläre Ausdruck passen soll, soll also demnach mit der Zeichenfolge  anfangen. Danach kann erst mal kommen was will. Ausgedrückt wird dies durch  Irgendwann soll dann noch einmal eine öffnende geschweifte Klammer  in dem durchsuchten Wert vorkommen. Dahinter kann wieder kommen was will, also , und am Ende sollen nochmals zwei schließende geschweifte Klammern vorkommen. So wird also ein "Muster" mit Hilfe des regulären Ausdrucks definiert, das auf den untersuchten Wert passt, aber einige Dinge variabel lässt.<newline/>
+Auch hier wurde der Verständlichkeit halber eine Vereinfachung gewählt. Der Teilausdruck  funktioniert zwar bei diesem Beispiel, kann jedoch in ungünstigen Fällen aufgrund seiner [Image]<link target-id="">Gierigkeit</link> zuviel erkennen.</para>
+          <para>Die beiden variablen Bereiche, also jene, die durch  markiert sind, werden im Beispiel jeweils in runde Klammern eingeschlossen. Die runden Klammern zeigen den Wunsch an, dass Perl sich das, was zwischen diesen Klammern steht, merken soll. Im Beispiel merkt es sich auf diese Weise zwei variable Bereiche:<newline/><newline/>
+Die fett dargestellten Bereiche sind nun in den beiden Klammern gespeichert.</para>
+          <para>Um an die gespeicherten Werte heranzukommen, stellt Perl vordefinierte Variablen namens , ,  usw. zur Verfügung. In  ist der Inhalt der ersten runden Klammer im regulären Ausdruck gespeichert, in  der Inhalt der zweiten runden Klammer. Das Beispiel-Script deklariert zwei Skalare namens  und , denen es die beiden in den runden Klammern gespeicherten Werte zuweist.</para>
+          <para>Der Rest ist dann nicht mehr schwer: in einer -Anweisung, die den Code für einen HTML-Verweis ausgibt, werden die beiden Skalare  und  an den Stellen eingefügt, wo ihre Werte hingehören.</para>
+        </section>
+        <section>
+          <title>Beachten Sie:</title>
+          <para>Ein wichtiger Anwendungsbereich für reguläre Ausdrücke ist auch das [Image]<link target-id="">Suchen und Ersetzen mit regulären Ausdrücken</link>. Reguläre Ausdrücke können ferner in einigen Perl-Funktionen als zu übergebende Parameter vorkommen, beispielsweise in der Funktion [Image]<link url="../funktionen/zeichenketten.htm#split" window="new">split</link>.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Reguläre Ausdrücke für einzelne Zeichen</title>
+        <para>Sie können in einer Zeichenkette</para>
+        <para>Solche Ausdrücke eignen sich weniger zur Mustererkennung als dazu, herauszufinden, ob in einem Wert bestimmte Zeichen, z.B. unerlaubte Zeichen, vorkommen.</para>
+        <para>Wenn Sie mit einem regulären Ausdruck prüfen wollen, ob in einer Zeichenkette ein bestimmtes Zeichen vorkommt, genügt es, dieses Zeichen innerhalb der Begrenzer (hier: der Schrägstriche) zu notieren, so wie in den Beispielen () und (). Wenn das gesuchte Zeichen innerhalb von regulären Ausdrücken ein reserviertes Zeichen ist, wie beispielsweise ein , müssen Sie es mit einem umgekehrten Schrägstrich maskieren (). Reservierte Zeichen sind auf jeden Fall .<newline/>
+Wenn Sie allerdings wirklich nur das Vorkommen eines festen Zeichens oder einer festen Zeichenkette überprüfen wollen, ist die Funktion [Image]<link url="../funktionen/zeichenketten.htm#index" window="new">index</link> die bessere Wahl.</para>
+        <para>Für reguläre Ausdrücke interessanter sind Fälle, in denen Sie prüfen wollen, ob ein Zeichen vorkommt, das auf verschiedene Möglichkeiten passen soll, oder explizit nicht passen soll, wie in den Beispielen () und (). Dafür gibt es innerhalb der regulären Ausdrücke die so genannten Zeichenklassen. Eine Zeichenklasse wird grundsätzlich innerhalb eckiger Klammern  notiert, wie in den Beispielen (), () und (). Eine Zeichenklasse passt immer genau auf ein Zeichen. Innerhalb dieser Zeichenklasse können Sie nun die verschiedenen Zeichen dieser Klasse aufzählen, indem Sie die Zeichen nacheinander notieren. Reservierte Zeichen müssen auch hierbei explizit mit einem umgekehrten Schrägstrich maskiert werden, wie in Beispiel (). Wenn Sie einen größeren Zeichenbereich haben, der passen soll, können Sie diesen angeben, indem Sie das erste Zeichen des Bereichs notieren, danach ein Minuszeichen als Bindestrich  und danach das letzte Zeichen des Bereichs, wie in den Beispielen (), (), () und (). Wenn Sie den Bindestrich als wirkliches Zeichen meinen, notieren Sie ihn am Anfang der Zeichenklasse, wie in Beispiel ().</para>
+        <para>Für bestimmte häufig vorkommende Zeichenklassen gibt es Abkürzungen. So entspricht  und  entspricht .  entspricht im allgemeinen der Abkürzung . Sie können diese Abkürzungen auch innerhalb von Zeichenklassen verwenden, wie in Beispiel ().</para>
+        <para>Sie können Zeichenklassen negieren, um festzulegen, dass sie auf ein bestimmtes Zeichen  passen sollen, wie in den Beispielen () und (). Dazu notieren Sie direkt nach der öffnenden eckigen Klammer  das Hütchensymbol . Beachten Sie, dass auch dann mindestens ein Zeichen in der durchsuchten Zeichenkette vorhanden sein muss, auf das der reguläre Ausdruck nicht passt, obwohl kein Buchstabe in der Zeichenkette vorkommt. Wenn Sie also Beispiel () auf eine leere Zeichenkette anwenden, bekommen Sie als Ergebnis, dass der reguläre Ausdruck  passt. Um abgekürzte Zeichenklassen wie etwa  oder  zu negieren, ändern Sie einfach den "Namen" der Abkürzung in einen Großbuchstaben, also  oder .</para>
+        <para>
+          <link target-id="">[Image]</link>
+          <link target-id="">[Image]</link>
+        </para>
+      </section>
+      <section>
+        <title>Reguläre Ausdrücke für Zeichenketten</title>
+        <para>Sie können</para>
+        <para>Diese Art von regulären Ausdrücken ist dazu gedacht, um etwa in einem Wert nach dem Vorkommen eines bestimmten Wortes, einer beliebigen Teilzeichenkette oder nach einem Muster zu suchen.</para>
+        <para>Wenn Sie in einem regulären Ausdruck nach einer bestimmten Zeichenkette suchen wollen, notieren Sie die Zeichenkette einfach zwischen den beiden Schrägstrichen des regulären Ausdrucks, so wie in Beispiel (). Allerdings gilt auch hier wie bei den [Image]<link target-id="">regulären Ausdrücken für einzelne Zeichen</link>: wenn Sie nach einer festen Zeichenfolge suchen, sind Sie mit der Funktion [Image]<link url="../funktionen/zeichenketten.htm#index" window="new">index</link> besser beraten.</para>
+        <para>Reguläre Ausdrücke sind sozusagen eine eigene Sprache, die durch Wörter, die anhand grammatischer Regeln verknüpft werden, dargestellt wird. Die Verknüpfung erfolgt durch Operatoren. Der Grund, warum reguläre Ausdrücke so kompliziert erscheinen, ist die hohe Komprimierung in der Notation.</para>
+        <para>Ein Wort in der Sprache der regulären Ausdrücke wird  genannt. Atome stellen immer genau  gesuchtes Zeichen dar, beispielsweise , ,  oder . Die Zeichenklasse  stellt ein Zeichen dar, das 'a', 'b' oder 'c' sein kann. Der Punkt  ist die Abkürzung für eine ganz spezielle Zeichenklasse, die alle Zeichen außer dem Zeilenumbruch beinhaltet. Er entspricht also in der DOS-Eingabeaufforderung beispielsweise dem . Das Konstrukt  stellt eine eckige Klammer dar, die aber durch den umgekehrten Schrägstrich [Image]<link target-id="">maskiert</link> werden muss, wenn sie nicht als Steuerzeichen verstanden werden soll.<newline/>
+Um aus Atomen ein zusammenhängendes Muster zu bilden, notieren Sie die Atome einfach ohne Leerzeichen aneinander.</para>
+        <para>Zeichenwiederholungen können Sie mit Wiederholungsoperatoren kennzeichnen.<newline/>
+Das Fragezeichen  bedeutet in einem regulären Ausdruck: das Zeichen vor dem Fragezeichen oder auch nicht. Siehe dazu Beispiel ().<newline/>
+Das Pluszeichen  bedeutet: eine oder mehrere Wiederholungen des Zeichens, das vor dem Pluszeichen steht. Siehe dazu Beispiel ().<newline/>
+Das Sternzeichen  bedeutet: keine, eine oder mehrere Wiederholungen des Zeichens, das vor dem Sternzeichen steht. Siehe dazu Beispiel ().<newline/>
+Wenn Sie vor den Zeichen  oder  einen Punkt notieren (der für ein beliebiges Zeichen steht), erzeugen Sie einen Platzhalter, der dem  in der DOS/Windows-Welt, etwa bei Dateinamen, entspricht. Siehe dazu Beispiele () bis ().<newline/>
+Geschweifte Klammern mit einer Zahl oder zwei Zahlen n darin  stehen für n Wiederholungen des Zeichens vor der geschweiften Klammer an der betreffenden Stelle - siehe dazu Beispiele () bis (). Dabei können Sie auch das Punktzeichen vor der geschweiften Klammer notieren. In diesem Fall bedeutet die Angabe innerhalb der geschweiften Klammer: so viele beliebige Zeichen wie angegeben - siehe dazu Beispiel ()</para>
+        <para>Sie können nach Zeichenketten suchen, die nur dann gefunden werden, wenn sie am Anfang oder am Ende eines Wortes vorkommen. Auch die Umkehrung davon ist möglich: Sie können nach Zeichenketten suchen, die nur dann gefunden werden, wenn sie nicht am Anfang oder am Ende eines Wortes vorkommen.<newline/>
+Mit  vor einer Zeichenkette wird die Zeichenkette nur gefunden, wenn ein Wort damit anfängt.<newline/>
+Mit  nach einer Zeichenkette wird die Zeichenkette nur gefunden, wenn ein Wort damit endet.<newline/>
+Mit  vor einer Zeichenkette wird die Zeichenkette nur gefunden, wenn ein Wort nicht damit anfängt.<newline/>
+Mit  nach einer Zeichenkette wird die Zeichenkette nur gefunden, wenn ein Wort nicht damit endet.<newline/>
+Zu diesen Möglichkeiten siehe Beispiele () bis ().<newline/>
+Genau gesagt definiert  die Grenze zwischen  und  (oder Zeichenkettenanfang oder -ende).</para>
+        <para>Sie können Zeichenketten suchen, die nur dann gefunden werden, wenn sie am Anfang oder am Ende einer Zeile im zu durchsuchenden Bereich vorkommen. Dies ist vor allem im Zusammenhang mit Zeilen in Textdateien interessant.<newline/>
+Mit dem Hütchensymbol  am Beginn des Suchausdrucks wird die Zeichenkette nur gefunden, wenn sie am Anfang des Bereichs steht.<newline/>
+Mit dem Dollarzeichen  am Ende des Suchausdrucks wird die Zeichenkette nur gefunden, wenn sie am Ende des Bereichs steht.<newline/>
+Zu diesen Möglichkeiten siehe Beispiele () bis ().</para>
+        <para>Innerhalb von regulären Ausdrücken können Sie auch Variablen verwenden. Auf diese Weise können Sie dynamische Daten als Suchmuster einsetzen. Im Zusammenhang mit CGI können Sie z.B. die Anwendereingabe aus einem Formularfeld in ein Suchmuster übernehmen. Siehe dazu Beispiel ().</para>
+        <para>
+          <link target-id="">[Image]</link>
+          <link target-id="">[Image]</link>
+        </para>
+      </section>
+      <section>
+        <title>Maskierung von Zeichen in regulären Ausdrücken</title>
+        <para>Da es bei regulären Ausdrücken einige Zeichen mit Sonderbedeutung gibt, müssen Sie solche Zeichen maskieren, wenn Sie nicht die Sonderbedeutung des Zeichens meinen, sondern seine literale, normale Bedeutung, also einen Senkrechtstrich als Senkrechtstrich oder einen Punkt als Punkt meinen. Das Maskierungszeichen ist in allen Fällen der Backslash.</para>
+        <para>
+          <newline/>
+        </para>
+        <para>
+          <link target-id="">[Image]</link>
+          <link target-id="">[Image]</link>
+        </para>
+      </section>
+      <section>
+        <title>Gierige und genügsame Suchmuster</title>
+        <para>Normalerweise sind alle regulären Ausdrücke, die Wildcard-Ausdrücke wie  enthalten, sehr "gierig". Sie holen sich so viele Zeichen wie möglich. Es gibt jedoch die Möglichkeit, solche Ausdrücke zu mehr Genügsamkeit zu zwingen.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr3.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Beispiel-Script demonstriert die Gier regulärer Ausdrücke und zeigt auch, wie sich diese Gier unterbinden lässt. Ein Skalar namens  wird deklariert und erhält als Anfangswert den Code einer kompletten kleinen HTML-Datei. Anschließend wird dieser Skalar mit einem regulären Ausdruck bewertet, der darin nach einem Muster  sucht. In runde Klammern eingeschlossen ist das gesamte Suchmuster, weil anschließend ausgegeben werden soll, was gefunden wurde. Das Suchergebnis wird im Skalar  gespeichert. Anschließend wird die Prozedur noch einmal wiederholt. Diesmal ist der reguläre Ausdruck nur minimal anders: er enthält hinter dem Pluszeichen noch ein Fragezeichen.</para>
+          <para>Beide Suchergebnisse werden anschließend noch für die HTML-Ausgabe vorbereitet, und zwar werden die spitzen Klammern HTML-gerecht ersetzt (siehe dazu auch [Image]<link target-id="">Suchen und Ersetzen mit regulären Ausdrücken</link>).</para>
+          <para>Die Ausgabe von  bewirkt:<newline/><newline/>
+Die Ausgabe von  dagegen:<newline/></para>
+          <para>Der Wildcard-Ausdruck , der "alles" bis zum Zeichen  holen soll, macht nämlich nicht beim nächsten  Stopp, sondern erst beim allerletzten. Durch das Anhängen des Fragezeichens, also durch Erweiterung auf , beschränkt sich das Muster auf das Auffinden des nächsten -Zeichens.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Reguläre Ausdrücke mit Alternativen</title>
+        <para>Sie können mehrere Suchausdrücke angeben. Dann passt der Ausdruck auf alle Zeichenketten, in denen wenigstens eine der Alternativen vorkommt.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr4.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Beispiel-Script deklariert einen Skalar  mit dem Anfangswert . Abhängig vom Erfolg des regulären Ausdrucks , der auf diesen Skalar angewendet wird, wird im aufrufenden Browser ausgegeben: . Der Senkrechtstrich  teilt den regulären Ausdruck in zwei Alternativen auf, bei denen es reicht, wenn eine davon zutrifft. Da dies der Fall ist, wird der Satz im Browser ausgegeben. Zur Kontrolle wird der Text anschließend zu  geändert. Der anschließend angewendete gleiche reguläre Ausdruck führt wieder zum Erfolg, und es wird  ausgegeben.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Teilausdrücke merken mit Klammerung</title>
+        <para>Mit Hilfe von Klammerung einzelner Teile eines regulären Ausdrucks können Sie Teilmuster speichern und an einer späteren Stelle wiederverwenden.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr5.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Beispiel ruft die Perl-Funktion [Image]<link url="../funktionen/datumzeit.htm#localtime" window="new">localtime</link> mit dem Rückgabewert der Funktion [Image]<link url="../funktionen/datumzeit.htm#time" window="new">time</link> auf und speichert den Rückgabewert von  im Skalar . Darin ist anschließend eine Zeichenkette gespeichert, die so aufgebaut ist:<newline/></para>
+          <para>In der darauffolgenden Anweisung wird  mit einem langen regulären Suchausdruck bewertet. Der reguläre Ausdruck versucht, das gesamte typische Muster des Datum-Uhrzeit-Strings zu erfassen. Die Nutzdaten darin, also Wochentag, Monatsname, Monatstag, Stunden, Minuten, Sekunden und Jahr werden innerhalb des regulären Ausdrucks geklammert. Jeden Inhalt dieser Klammern merkt sich Perl und stellt ihn in den [Image]<link url="vordefiniert.htm" window="new">vordefinierten Variablen</link>, ,  usw. zur Verfügung. Die anschließend deklarierten Skalare holen sich die Werte aus den Klammern, indem ihnen die entsprechenden vordefinierten Variablen zugewiesen werden.</para>
+          <para>Die beiden Hashes  und  werden zum Zweck eines deutschsprachigen Datum-Uhrzeit-Formats verwendet. Das Script gibt am Ende so etwas aus wie:<newline/>.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Rangfolge in regulären Ausdrücken</title>
+        <para>Die Sonderzeichen innerhalb von regulären Ausdrücken werden vom Perl-Interpreter nach einer bestimmten Rangfolge bewertet.</para>
+        <list list-type="bulleted">
+          <item>Rangstufe:  (Klammerung)</item>
+        </list>
+        <para>Dadurch ist jeder reguläre Ausdruck eindeutig bewertbar. Wenn Sie in einem Ausdruck jedoch anders bewerten möchten, als es nach der Rangfolge geschieht, können Sie innerhalb des Ausdrucks Klammern setzen, um eine andere Bewertung zu erzwingen.</para>
+        <section>
+          <title>Beispiele:</title>
+          <para>
+            <newline/>
+          </para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Laut der Rangfolge haben Zeichen bzw. Zeichenketten Vorrang vor dem Trennzeichen für Alternativen. Mit Hilfe von Klammern können Sie eine andere Bewertung erzwingen (siehe Beispiel).<newline/>
+Wenn Sie die Klammern zur Bewertungsänderung benutzen möchten, ohne sich die entsprechenden [Image]<link target-id="">Teilausdrücke merken</link> zu wollen, können Sie auch Klammern benutzen, die nur gruppieren. Dabei wird direkt hinter der öffnenden Klammer die Zeichenfolge  notiert, im Beispiel wäre das .</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Flags hinter regulären Ausdrücken</title>
+        <para>Hinter dem beendenden Begrenzerzeichen (normalerweise: Schrägstrich) eines regulären Ausdrucks können noch ein oder mehrere Buchstaben notiert werden - so genannte Flags. Damit können Sie das Verhalten der Suche zusätzlich beeinflussen. Mit einer Notation wie  suchen Sie beispielsweise global nach dem Vorkommen von , und mit  suchen Sie die Zeichenfolge  global, egal ob groß oder klein geschrieben, und die Zeichenkette kann auch aus mehreren Zeilen bestehen. Flags können Sie also beliebig kombinieren. Die folgende Tabelle listet die möglichen Flags auf.</para>
+        <para id="gd-000085">
+          <newline/>
+        </para>
+        <para>
+          <link target-id="">[Image]</link>
+          <link target-id="">[Image]</link>
+        </para>
+      </section>
+      <section>
+        <title>Suchen und Ersetzen mit regulären Ausdrücken</title>
+        <para>Reguläre Ausdrücke sind das Mittel, mit dem in Perl in Zeichenketten etwas gesucht und ersetzt wird.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr6.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Schema für alle Suche-Ersetze-Vorgänge in Perl lautet:<newline/></para>
+          <para> ist ein Skalar, in dem eine Zeichenkette gespeichert ist, so wie etwa  im obigen Beispiel 1. Dieser Skalar wird mit dem Operator  an die Ersetzung gebunden, d.h. der Suche-Ersetze-Vorgang gilt für den Inhalt des Skalars. Dahinter notieren Sie die Ersetzung. Sie wird durch ein kleines  eingeleitet. Nach dem  notieren Sie das erste Begrenzerzeichen (per Voreinstellung ein Schrägstrich), und danach das Suchmuster, das mit dem zweiten Begrenzerzeichen abgeschlossen wird. Danach folgen das Zeichen oder die Zeichenfolge, mit dem/mit der die Fundstellen ersetzt werden sollen, abgeschlossen wird dieses Ersetzungsmuster mit dem dritten Begrenzerzeichen. Falls benötigt, notieren Sie nach dem letzten Begrenzerzeichen noch Flags für den Such-Ersetze-Vorgang. Im Beispiel wurden folgende Flags verwendet:<newline/> sucht/ersetzt  Fundstellen (ansonsten wird nur die erste Fundstelle ersetzt)<newline/> sucht/ersetzt Buchstaben unabhängig davon, ob sie groß oder klein geschrieben sind (ansonsten wird Groß-/Kleinschreibung unterschieden).</para>
+          <para>Im obigen Beispiel werden aus dem Skalar  alle Buchstaben (groß und klein) und alle Leerzeichen entfernt. Es bleiben anschließend also nur noch die Ziffern am Ende stehen. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+        </section>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr7.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Beispiel werden in  alle deutschen Umlaute und scharfes S durch ihre HTML-gerechten Umschreibungen ersetzt. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+        </section>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr8.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Beispiel werden in  alle Wörter mit Hilfe des [Image]<link target-id="">-Flags</link> und der [Image]<link url="../funktionen/zeichenketten.htm#reverse" window="new">reverse</link>-Funktion umgedreht. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Transliteration</title>
+        <para>Für "kleinere" Aufgaben wie Suchen und Ersetzen oder das Zählen von einzelnen Zeichen gibt es in Perl die Möglichkeit, ohne reguläre Ausdrücke zu arbeiten. Dafür gibt es eine spezielle Syntax, den Transliterationsoperator .</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr9.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Eine Transliteration besteht darin, einzelne Zeichen durch andere Zeichen zu ersetzen. Das Schema für eine Transliteration in Perl lautet:<newline/><newline/>
+Dabei sind sowohl das Such- als auch das Ersetzungsmuster keine Zeichenketten, sondern nur einzelne Zeichen oder Zeichenbereiche. Die Muster sind sozusagen zwei Listen von Zeichen. Wenn in  ein Zeichen gefunden wird, das in der Suchliste vorkommt, wird es mit dem Zeichen ersetzt, das an derselben Position in der Ersetzungsliste steht.</para>
+          <para>Alle Beispiele des obigen Scripts sind gleich aufgebaut. Es wird ein Skalar mit einem "interessanten" Wert deklariert. Dann wird eine Transliteration auf diesen Wert angewendet, und anschließend wird das Ergebnis ausgegeben.</para>
+          <para>Im Fall von  wird das Prinzip der Transliteration deutlich: in dem Beispiel wird  durch  ersetzt und  durch . Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden die Buchstaben  und  durch  und  ersetzt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Großbuchstaben durch entsprechende Kleinbuchstaben ersetzt (entspricht etwa der Funktion [Image]<link url="../funktionen/zeichenketten.htm#lc" window="new">lc</link>). Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Zeichen, die kein Buchstabe von A bis Z oder a bis z oder eine Ziffer oder ein Unterstrich sind, durch den Unterstrich  ersetzt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle doppelten oder mehrfachen Leerzeichen entfernt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  wird sich der Rückgabewert einer Transliteration zu eigen gemacht. Dem Skalar  passiert dabei nichts weiter, aber der Rückgabewert ermittelt, wie oft die Buchstaben  oder  in dem Satz vorkommen. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Zeichen mit Zeichenwerten zwischen 128 und 255 in Zeichen mit entsprechenden Zeichenwerten zwischen 0 und 127 umgewandelt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Zeichen des ersten Alphabethälfte in solche der zweiten verwandelt und umgekehrt (sie werden sozusagen um 13 Zeichenwerte rotiert). Die Ausgabe lautet:<newline/><newline/>
+(das ROT13-Prinzip wird in den Newsgroups manchmal angewendet, um Dinge zu sagen, die nicht jeder verstehen können soll).</para>
+          <para>© 2007 [Image]<link url="../../editorial/impressum.htm" window="new">Impressum</link><link url="http://flattr.com/thing/41584/SELFHTML" window="new">[Image]</link></para>
+        </section>
+      </section>
+    </section>
+    <section>
+      <title>Reguläre Ausdrücke anwenden</title>
+      <para>Zwei kleine einführende Beispiele sollen zeigen, in welchen Situationen reguläre Ausdrücke typischerweise zum Einsatz kommen.</para>
+      <section>
+        <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+        <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr1.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Beispiel deklariert einen [Image]<link url="listen.htm" window="new">Array</link> namens  mit sechs Städtenamen. Dann geht es die Einträge des Arrays mit einer [Image]<link url="schleifen.htm#foreach" window="new">foreach</link>-Schleife der Reihe nach durch. Im Schleifenblock wird überprüft, ob der Städtename im aktuellen Schleifendurchlauf mit M anfängt. Dazu wird die [Image]<link url="vordefiniert.htm" window="new">vordefinierte Variablen</link>, in der ja in einer -Schleife der aktuelle Wert enthalten ist, mit dem Operator  an einen regulären Ausdruck gebunden. Der Operator  ist speziell für reguläre Ausdrücke gedacht. Der reguläre Ausdruck selbst steht per Voreinstellung in Schrägstrichen. Innerhalb der Schrägstriche wird ein Suchmuster definiert. Das Suchmuster  im Beispiel bedeutet so viel wie "fängt mit M an".<newline/>
+Die ganze Anweisung  ist also so zu lesen: wenn die Bedingung erfüllt ist, dass der Wert des aktuellen Schleifeninhalts mit einem M anfängt ...<newline/>
+Genaugenommen können Sie die Zeichenfolge  auch weglassen, da der reguläre Ausdruck dann automatisch an die vordefinierte Variable  gebunden wird. Um eine bessere Verständlichkeit zu erhalten, wurde hier die ausführliche Notation gewählt.</para>
+          <para>Das Beispiel gibt in diesem Fall den Schleifeninhalt aus. Am Ende werden also aus dem Array  die drei Städte ausgegeben, die mit M beginnen.</para>
+          <para>Das folgende Beispiel ist etwas anspruchsvoller:</para>
+        </section>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr2.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Script gibt es einen Skalar namens , der als Wert eine Zeichenkette speichert, die offensichtlich eine bestimmte Struktur hat. Sie steht in geschweiften Klammern. Zuerst ist  notiert, dann folgt ein URI, und dann folgt, nochmals in geschweifte Klammern gesetzt, ein Text. Diese Struktur mit den geschweiften Klammern ist jetzt frei erfunden. Doch fast die gesamte EDV besteht daraus, Daten nach irgendwelchen für Computer wiedererkennbaren Strukturen oder Konventionen zu speichern. Reguläre Ausdrücke sind dafür geeignet, aus solchen Strukturen etwas Bestimmtes herauszufiltern. Im Beispiel filtert das Script mit Hilfe eines regulären Ausdrucks aus der Zeichenkette den URI und den Text in der zweiten, inneren geschweiften Klammer heraus und bastelt aus diesen beiden Teilwerten einen HTML-Verweis, den es am Ende mit  ausgibt.</para>
+          <para>Mit der Anweisung  wird der reguläre Ausdruck, der zwischen den beiden Schrägstrichen steht, auf den Wert des Skalars  angewendet. Um die fürchterliche Ansammlung von Zeichen erst einmal etwas zu entwirren, seien zunächst die Backslashes  darin erwähnt. Diese dienen zur Maskierung des jeweils nachfolgenden Zeichens und bedeuten einfach nur: das nächste Zeichen soll als das Zeichen behandelt werden, das da steht. Also  heißt beispielsweise einfach nur: das folgende Zeichen  bitte nicht anders interpretieren als es da steht.<newline/>
+Das, worauf der reguläre Ausdruck passen soll, soll also demnach mit der Zeichenfolge  anfangen. Danach kann erst mal kommen was will. Ausgedrückt wird dies durch  Irgendwann soll dann noch einmal eine öffnende geschweifte Klammer  in dem durchsuchten Wert vorkommen. Dahinter kann wieder kommen was will, also , und am Ende sollen nochmals zwei schließende geschweifte Klammern vorkommen. So wird also ein "Muster" mit Hilfe des regulären Ausdrucks definiert, das auf den untersuchten Wert passt, aber einige Dinge variabel lässt.<newline/>
+Auch hier wurde der Verständlichkeit halber eine Vereinfachung gewählt. Der Teilausdruck  funktioniert zwar bei diesem Beispiel, kann jedoch in ungünstigen Fällen aufgrund seiner [Image]<link target-id="">Gierigkeit</link> zuviel erkennen.</para>
+          <para>Die beiden variablen Bereiche, also jene, die durch  markiert sind, werden im Beispiel jeweils in runde Klammern eingeschlossen. Die runden Klammern zeigen den Wunsch an, dass Perl sich das, was zwischen diesen Klammern steht, merken soll. Im Beispiel merkt es sich auf diese Weise zwei variable Bereiche:<newline/><newline/>
+Die fett dargestellten Bereiche sind nun in den beiden Klammern gespeichert.</para>
+          <para>Um an die gespeicherten Werte heranzukommen, stellt Perl vordefinierte Variablen namens , ,  usw. zur Verfügung. In  ist der Inhalt der ersten runden Klammer im regulären Ausdruck gespeichert, in  der Inhalt der zweiten runden Klammer. Das Beispiel-Script deklariert zwei Skalare namens  und , denen es die beiden in den runden Klammern gespeicherten Werte zuweist.</para>
+          <para>Der Rest ist dann nicht mehr schwer: in einer -Anweisung, die den Code für einen HTML-Verweis ausgibt, werden die beiden Skalare  und  an den Stellen eingefügt, wo ihre Werte hingehören.</para>
+        </section>
+        <section>
+          <title>Beachten Sie:</title>
+          <para>Ein wichtiger Anwendungsbereich für reguläre Ausdrücke ist auch das [Image]<link target-id="">Suchen und Ersetzen mit regulären Ausdrücken</link>. Reguläre Ausdrücke können ferner in einigen Perl-Funktionen als zu übergebende Parameter vorkommen, beispielsweise in der Funktion [Image]<link url="../funktionen/zeichenketten.htm#split" window="new">split</link>.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Erläuterung:</title>
+        <para>Das Beispiel deklariert einen [Image]<link url="listen.htm" window="new">Array</link> namens  mit sechs Städtenamen. Dann geht es die Einträge des Arrays mit einer [Image]<link url="schleifen.htm#foreach" window="new">foreach</link>-Schleife der Reihe nach durch. Im Schleifenblock wird überprüft, ob der Städtename im aktuellen Schleifendurchlauf mit M anfängt. Dazu wird die [Image]<link url="vordefiniert.htm" window="new">vordefinierte Variablen</link>, in der ja in einer -Schleife der aktuelle Wert enthalten ist, mit dem Operator  an einen regulären Ausdruck gebunden. Der Operator  ist speziell für reguläre Ausdrücke gedacht. Der reguläre Ausdruck selbst steht per Voreinstellung in Schrägstrichen. Innerhalb der Schrägstriche wird ein Suchmuster definiert. Das Suchmuster  im Beispiel bedeutet so viel wie "fängt mit M an".<newline/>
+Die ganze Anweisung  ist also so zu lesen: wenn die Bedingung erfüllt ist, dass der Wert des aktuellen Schleifeninhalts mit einem M anfängt ...<newline/>
+Genaugenommen können Sie die Zeichenfolge  auch weglassen, da der reguläre Ausdruck dann automatisch an die vordefinierte Variable  gebunden wird. Um eine bessere Verständlichkeit zu erhalten, wurde hier die ausführliche Notation gewählt.</para>
+        <para>Das Beispiel gibt in diesem Fall den Schleifeninhalt aus. Am Ende werden also aus dem Array  die drei Städte ausgegeben, die mit M beginnen.</para>
+        <para>Das folgende Beispiel ist etwas anspruchsvoller:</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr2.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Script gibt es einen Skalar namens , der als Wert eine Zeichenkette speichert, die offensichtlich eine bestimmte Struktur hat. Sie steht in geschweiften Klammern. Zuerst ist  notiert, dann folgt ein URI, und dann folgt, nochmals in geschweifte Klammern gesetzt, ein Text. Diese Struktur mit den geschweiften Klammern ist jetzt frei erfunden. Doch fast die gesamte EDV besteht daraus, Daten nach irgendwelchen für Computer wiedererkennbaren Strukturen oder Konventionen zu speichern. Reguläre Ausdrücke sind dafür geeignet, aus solchen Strukturen etwas Bestimmtes herauszufiltern. Im Beispiel filtert das Script mit Hilfe eines regulären Ausdrucks aus der Zeichenkette den URI und den Text in der zweiten, inneren geschweiften Klammer heraus und bastelt aus diesen beiden Teilwerten einen HTML-Verweis, den es am Ende mit  ausgibt.</para>
+          <para>Mit der Anweisung  wird der reguläre Ausdruck, der zwischen den beiden Schrägstrichen steht, auf den Wert des Skalars  angewendet. Um die fürchterliche Ansammlung von Zeichen erst einmal etwas zu entwirren, seien zunächst die Backslashes  darin erwähnt. Diese dienen zur Maskierung des jeweils nachfolgenden Zeichens und bedeuten einfach nur: das nächste Zeichen soll als das Zeichen behandelt werden, das da steht. Also  heißt beispielsweise einfach nur: das folgende Zeichen  bitte nicht anders interpretieren als es da steht.<newline/>
+Das, worauf der reguläre Ausdruck passen soll, soll also demnach mit der Zeichenfolge  anfangen. Danach kann erst mal kommen was will. Ausgedrückt wird dies durch  Irgendwann soll dann noch einmal eine öffnende geschweifte Klammer  in dem durchsuchten Wert vorkommen. Dahinter kann wieder kommen was will, also , und am Ende sollen nochmals zwei schließende geschweifte Klammern vorkommen. So wird also ein "Muster" mit Hilfe des regulären Ausdrucks definiert, das auf den untersuchten Wert passt, aber einige Dinge variabel lässt.<newline/>
+Auch hier wurde der Verständlichkeit halber eine Vereinfachung gewählt. Der Teilausdruck  funktioniert zwar bei diesem Beispiel, kann jedoch in ungünstigen Fällen aufgrund seiner [Image]<link target-id="">Gierigkeit</link> zuviel erkennen.</para>
+          <para>Die beiden variablen Bereiche, also jene, die durch  markiert sind, werden im Beispiel jeweils in runde Klammern eingeschlossen. Die runden Klammern zeigen den Wunsch an, dass Perl sich das, was zwischen diesen Klammern steht, merken soll. Im Beispiel merkt es sich auf diese Weise zwei variable Bereiche:<newline/><newline/>
+Die fett dargestellten Bereiche sind nun in den beiden Klammern gespeichert.</para>
+          <para>Um an die gespeicherten Werte heranzukommen, stellt Perl vordefinierte Variablen namens , ,  usw. zur Verfügung. In  ist der Inhalt der ersten runden Klammer im regulären Ausdruck gespeichert, in  der Inhalt der zweiten runden Klammer. Das Beispiel-Script deklariert zwei Skalare namens  und , denen es die beiden in den runden Klammern gespeicherten Werte zuweist.</para>
+          <para>Der Rest ist dann nicht mehr schwer: in einer -Anweisung, die den Code für einen HTML-Verweis ausgibt, werden die beiden Skalare  und  an den Stellen eingefügt, wo ihre Werte hingehören.</para>
+        </section>
+        <section>
+          <title>Beachten Sie:</title>
+          <para>Ein wichtiger Anwendungsbereich für reguläre Ausdrücke ist auch das [Image]<link target-id="">Suchen und Ersetzen mit regulären Ausdrücken</link>. Reguläre Ausdrücke können ferner in einigen Perl-Funktionen als zu übergebende Parameter vorkommen, beispielsweise in der Funktion [Image]<link url="../funktionen/zeichenketten.htm#split" window="new">split</link>.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+        <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr2.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Script gibt es einen Skalar namens , der als Wert eine Zeichenkette speichert, die offensichtlich eine bestimmte Struktur hat. Sie steht in geschweiften Klammern. Zuerst ist  notiert, dann folgt ein URI, und dann folgt, nochmals in geschweifte Klammern gesetzt, ein Text. Diese Struktur mit den geschweiften Klammern ist jetzt frei erfunden. Doch fast die gesamte EDV besteht daraus, Daten nach irgendwelchen für Computer wiedererkennbaren Strukturen oder Konventionen zu speichern. Reguläre Ausdrücke sind dafür geeignet, aus solchen Strukturen etwas Bestimmtes herauszufiltern. Im Beispiel filtert das Script mit Hilfe eines regulären Ausdrucks aus der Zeichenkette den URI und den Text in der zweiten, inneren geschweiften Klammer heraus und bastelt aus diesen beiden Teilwerten einen HTML-Verweis, den es am Ende mit  ausgibt.</para>
+          <para>Mit der Anweisung  wird der reguläre Ausdruck, der zwischen den beiden Schrägstrichen steht, auf den Wert des Skalars  angewendet. Um die fürchterliche Ansammlung von Zeichen erst einmal etwas zu entwirren, seien zunächst die Backslashes  darin erwähnt. Diese dienen zur Maskierung des jeweils nachfolgenden Zeichens und bedeuten einfach nur: das nächste Zeichen soll als das Zeichen behandelt werden, das da steht. Also  heißt beispielsweise einfach nur: das folgende Zeichen  bitte nicht anders interpretieren als es da steht.<newline/>
+Das, worauf der reguläre Ausdruck passen soll, soll also demnach mit der Zeichenfolge  anfangen. Danach kann erst mal kommen was will. Ausgedrückt wird dies durch  Irgendwann soll dann noch einmal eine öffnende geschweifte Klammer  in dem durchsuchten Wert vorkommen. Dahinter kann wieder kommen was will, also , und am Ende sollen nochmals zwei schließende geschweifte Klammern vorkommen. So wird also ein "Muster" mit Hilfe des regulären Ausdrucks definiert, das auf den untersuchten Wert passt, aber einige Dinge variabel lässt.<newline/>
+Auch hier wurde der Verständlichkeit halber eine Vereinfachung gewählt. Der Teilausdruck  funktioniert zwar bei diesem Beispiel, kann jedoch in ungünstigen Fällen aufgrund seiner [Image]<link target-id="">Gierigkeit</link> zuviel erkennen.</para>
+          <para>Die beiden variablen Bereiche, also jene, die durch  markiert sind, werden im Beispiel jeweils in runde Klammern eingeschlossen. Die runden Klammern zeigen den Wunsch an, dass Perl sich das, was zwischen diesen Klammern steht, merken soll. Im Beispiel merkt es sich auf diese Weise zwei variable Bereiche:<newline/><newline/>
+Die fett dargestellten Bereiche sind nun in den beiden Klammern gespeichert.</para>
+          <para>Um an die gespeicherten Werte heranzukommen, stellt Perl vordefinierte Variablen namens , ,  usw. zur Verfügung. In  ist der Inhalt der ersten runden Klammer im regulären Ausdruck gespeichert, in  der Inhalt der zweiten runden Klammer. Das Beispiel-Script deklariert zwei Skalare namens  und , denen es die beiden in den runden Klammern gespeicherten Werte zuweist.</para>
+          <para>Der Rest ist dann nicht mehr schwer: in einer -Anweisung, die den Code für einen HTML-Verweis ausgibt, werden die beiden Skalare  und  an den Stellen eingefügt, wo ihre Werte hingehören.</para>
+        </section>
+        <section>
+          <title>Beachten Sie:</title>
+          <para>Ein wichtiger Anwendungsbereich für reguläre Ausdrücke ist auch das [Image]<link target-id="">Suchen und Ersetzen mit regulären Ausdrücken</link>. Reguläre Ausdrücke können ferner in einigen Perl-Funktionen als zu übergebende Parameter vorkommen, beispielsweise in der Funktion [Image]<link url="../funktionen/zeichenketten.htm#split" window="new">split</link>.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Erläuterung:</title>
+        <para>In diesem Script gibt es einen Skalar namens , der als Wert eine Zeichenkette speichert, die offensichtlich eine bestimmte Struktur hat. Sie steht in geschweiften Klammern. Zuerst ist  notiert, dann folgt ein URI, und dann folgt, nochmals in geschweifte Klammern gesetzt, ein Text. Diese Struktur mit den geschweiften Klammern ist jetzt frei erfunden. Doch fast die gesamte EDV besteht daraus, Daten nach irgendwelchen für Computer wiedererkennbaren Strukturen oder Konventionen zu speichern. Reguläre Ausdrücke sind dafür geeignet, aus solchen Strukturen etwas Bestimmtes herauszufiltern. Im Beispiel filtert das Script mit Hilfe eines regulären Ausdrucks aus der Zeichenkette den URI und den Text in der zweiten, inneren geschweiften Klammer heraus und bastelt aus diesen beiden Teilwerten einen HTML-Verweis, den es am Ende mit  ausgibt.</para>
+        <para>Mit der Anweisung  wird der reguläre Ausdruck, der zwischen den beiden Schrägstrichen steht, auf den Wert des Skalars  angewendet. Um die fürchterliche Ansammlung von Zeichen erst einmal etwas zu entwirren, seien zunächst die Backslashes  darin erwähnt. Diese dienen zur Maskierung des jeweils nachfolgenden Zeichens und bedeuten einfach nur: das nächste Zeichen soll als das Zeichen behandelt werden, das da steht. Also  heißt beispielsweise einfach nur: das folgende Zeichen  bitte nicht anders interpretieren als es da steht.<newline/>
+Das, worauf der reguläre Ausdruck passen soll, soll also demnach mit der Zeichenfolge  anfangen. Danach kann erst mal kommen was will. Ausgedrückt wird dies durch  Irgendwann soll dann noch einmal eine öffnende geschweifte Klammer  in dem durchsuchten Wert vorkommen. Dahinter kann wieder kommen was will, also , und am Ende sollen nochmals zwei schließende geschweifte Klammern vorkommen. So wird also ein "Muster" mit Hilfe des regulären Ausdrucks definiert, das auf den untersuchten Wert passt, aber einige Dinge variabel lässt.<newline/>
+Auch hier wurde der Verständlichkeit halber eine Vereinfachung gewählt. Der Teilausdruck  funktioniert zwar bei diesem Beispiel, kann jedoch in ungünstigen Fällen aufgrund seiner [Image]<link target-id="">Gierigkeit</link> zuviel erkennen.</para>
+        <para>Die beiden variablen Bereiche, also jene, die durch  markiert sind, werden im Beispiel jeweils in runde Klammern eingeschlossen. Die runden Klammern zeigen den Wunsch an, dass Perl sich das, was zwischen diesen Klammern steht, merken soll. Im Beispiel merkt es sich auf diese Weise zwei variable Bereiche:<newline/><newline/>
+Die fett dargestellten Bereiche sind nun in den beiden Klammern gespeichert.</para>
+        <para>Um an die gespeicherten Werte heranzukommen, stellt Perl vordefinierte Variablen namens , ,  usw. zur Verfügung. In  ist der Inhalt der ersten runden Klammer im regulären Ausdruck gespeichert, in  der Inhalt der zweiten runden Klammer. Das Beispiel-Script deklariert zwei Skalare namens  und , denen es die beiden in den runden Klammern gespeicherten Werte zuweist.</para>
+        <para>Der Rest ist dann nicht mehr schwer: in einer -Anweisung, die den Code für einen HTML-Verweis ausgibt, werden die beiden Skalare  und  an den Stellen eingefügt, wo ihre Werte hingehören.</para>
+        <section>
+          <title>Beachten Sie:</title>
+          <para>Ein wichtiger Anwendungsbereich für reguläre Ausdrücke ist auch das [Image]<link target-id="">Suchen und Ersetzen mit regulären Ausdrücken</link>. Reguläre Ausdrücke können ferner in einigen Perl-Funktionen als zu übergebende Parameter vorkommen, beispielsweise in der Funktion [Image]<link url="../funktionen/zeichenketten.htm#split" window="new">split</link>.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Beachten Sie:</title>
+        <para>Ein wichtiger Anwendungsbereich für reguläre Ausdrücke ist auch das [Image]<link target-id="">Suchen und Ersetzen mit regulären Ausdrücken</link>. Reguläre Ausdrücke können ferner in einigen Perl-Funktionen als zu übergebende Parameter vorkommen, beispielsweise in der Funktion [Image]<link url="../funktionen/zeichenketten.htm#split" window="new">split</link>.</para>
+        <para>
+          <link target-id="">[Image]</link>
+          <link target-id="">[Image]</link>
+        </para>
+      </section>
+    </section>
+    <section>
+      <title>Reguläre Ausdrücke für einzelne Zeichen</title>
+      <para>Sie können in einer Zeichenkette</para>
+      <para>Solche Ausdrücke eignen sich weniger zur Mustererkennung als dazu, herauszufinden, ob in einem Wert bestimmte Zeichen, z.B. unerlaubte Zeichen, vorkommen.</para>
+      <para>Wenn Sie mit einem regulären Ausdruck prüfen wollen, ob in einer Zeichenkette ein bestimmtes Zeichen vorkommt, genügt es, dieses Zeichen innerhalb der Begrenzer (hier: der Schrägstriche) zu notieren, so wie in den Beispielen () und (). Wenn das gesuchte Zeichen innerhalb von regulären Ausdrücken ein reserviertes Zeichen ist, wie beispielsweise ein , müssen Sie es mit einem umgekehrten Schrägstrich maskieren (). Reservierte Zeichen sind auf jeden Fall .<newline/>
+Wenn Sie allerdings wirklich nur das Vorkommen eines festen Zeichens oder einer festen Zeichenkette überprüfen wollen, ist die Funktion [Image]<link url="../funktionen/zeichenketten.htm#index" window="new">index</link> die bessere Wahl.</para>
+      <para>Für reguläre Ausdrücke interessanter sind Fälle, in denen Sie prüfen wollen, ob ein Zeichen vorkommt, das auf verschiedene Möglichkeiten passen soll, oder explizit nicht passen soll, wie in den Beispielen () und (). Dafür gibt es innerhalb der regulären Ausdrücke die so genannten Zeichenklassen. Eine Zeichenklasse wird grundsätzlich innerhalb eckiger Klammern  notiert, wie in den Beispielen (), () und (). Eine Zeichenklasse passt immer genau auf ein Zeichen. Innerhalb dieser Zeichenklasse können Sie nun die verschiedenen Zeichen dieser Klasse aufzählen, indem Sie die Zeichen nacheinander notieren. Reservierte Zeichen müssen auch hierbei explizit mit einem umgekehrten Schrägstrich maskiert werden, wie in Beispiel (). Wenn Sie einen größeren Zeichenbereich haben, der passen soll, können Sie diesen angeben, indem Sie das erste Zeichen des Bereichs notieren, danach ein Minuszeichen als Bindestrich  und danach das letzte Zeichen des Bereichs, wie in den Beispielen (), (), () und (). Wenn Sie den Bindestrich als wirkliches Zeichen meinen, notieren Sie ihn am Anfang der Zeichenklasse, wie in Beispiel ().</para>
+      <para>Für bestimmte häufig vorkommende Zeichenklassen gibt es Abkürzungen. So entspricht  und  entspricht .  entspricht im allgemeinen der Abkürzung . Sie können diese Abkürzungen auch innerhalb von Zeichenklassen verwenden, wie in Beispiel ().</para>
+      <para>Sie können Zeichenklassen negieren, um festzulegen, dass sie auf ein bestimmtes Zeichen  passen sollen, wie in den Beispielen () und (). Dazu notieren Sie direkt nach der öffnenden eckigen Klammer  das Hütchensymbol . Beachten Sie, dass auch dann mindestens ein Zeichen in der durchsuchten Zeichenkette vorhanden sein muss, auf das der reguläre Ausdruck nicht passt, obwohl kein Buchstabe in der Zeichenkette vorkommt. Wenn Sie also Beispiel () auf eine leere Zeichenkette anwenden, bekommen Sie als Ergebnis, dass der reguläre Ausdruck  passt. Um abgekürzte Zeichenklassen wie etwa  oder  zu negieren, ändern Sie einfach den "Namen" der Abkürzung in einen Großbuchstaben, also  oder .</para>
+      <para>
+        <link target-id="">[Image]</link>
+        <link target-id="">[Image]</link>
+      </para>
+      <section>
+        <title>Reguläre Ausdrücke für Zeichenketten</title>
+        <para>Sie können</para>
+        <para>Diese Art von regulären Ausdrücken ist dazu gedacht, um etwa in einem Wert nach dem Vorkommen eines bestimmten Wortes, einer beliebigen Teilzeichenkette oder nach einem Muster zu suchen.</para>
+        <para>Wenn Sie in einem regulären Ausdruck nach einer bestimmten Zeichenkette suchen wollen, notieren Sie die Zeichenkette einfach zwischen den beiden Schrägstrichen des regulären Ausdrucks, so wie in Beispiel (). Allerdings gilt auch hier wie bei den [Image]<link target-id="">regulären Ausdrücken für einzelne Zeichen</link>: wenn Sie nach einer festen Zeichenfolge suchen, sind Sie mit der Funktion [Image]<link url="../funktionen/zeichenketten.htm#index" window="new">index</link> besser beraten.</para>
+        <para>Reguläre Ausdrücke sind sozusagen eine eigene Sprache, die durch Wörter, die anhand grammatischer Regeln verknüpft werden, dargestellt wird. Die Verknüpfung erfolgt durch Operatoren. Der Grund, warum reguläre Ausdrücke so kompliziert erscheinen, ist die hohe Komprimierung in der Notation.</para>
+        <para>Ein Wort in der Sprache der regulären Ausdrücke wird  genannt. Atome stellen immer genau  gesuchtes Zeichen dar, beispielsweise , ,  oder . Die Zeichenklasse  stellt ein Zeichen dar, das 'a', 'b' oder 'c' sein kann. Der Punkt  ist die Abkürzung für eine ganz spezielle Zeichenklasse, die alle Zeichen außer dem Zeilenumbruch beinhaltet. Er entspricht also in der DOS-Eingabeaufforderung beispielsweise dem . Das Konstrukt  stellt eine eckige Klammer dar, die aber durch den umgekehrten Schrägstrich [Image]<link target-id="">maskiert</link> werden muss, wenn sie nicht als Steuerzeichen verstanden werden soll.<newline/>
+Um aus Atomen ein zusammenhängendes Muster zu bilden, notieren Sie die Atome einfach ohne Leerzeichen aneinander.</para>
+        <para>Zeichenwiederholungen können Sie mit Wiederholungsoperatoren kennzeichnen.<newline/>
+Das Fragezeichen  bedeutet in einem regulären Ausdruck: das Zeichen vor dem Fragezeichen oder auch nicht. Siehe dazu Beispiel ().<newline/>
+Das Pluszeichen  bedeutet: eine oder mehrere Wiederholungen des Zeichens, das vor dem Pluszeichen steht. Siehe dazu Beispiel ().<newline/>
+Das Sternzeichen  bedeutet: keine, eine oder mehrere Wiederholungen des Zeichens, das vor dem Sternzeichen steht. Siehe dazu Beispiel ().<newline/>
+Wenn Sie vor den Zeichen  oder  einen Punkt notieren (der für ein beliebiges Zeichen steht), erzeugen Sie einen Platzhalter, der dem  in der DOS/Windows-Welt, etwa bei Dateinamen, entspricht. Siehe dazu Beispiele () bis ().<newline/>
+Geschweifte Klammern mit einer Zahl oder zwei Zahlen n darin  stehen für n Wiederholungen des Zeichens vor der geschweiften Klammer an der betreffenden Stelle - siehe dazu Beispiele () bis (). Dabei können Sie auch das Punktzeichen vor der geschweiften Klammer notieren. In diesem Fall bedeutet die Angabe innerhalb der geschweiften Klammer: so viele beliebige Zeichen wie angegeben - siehe dazu Beispiel ()</para>
+        <para>Sie können nach Zeichenketten suchen, die nur dann gefunden werden, wenn sie am Anfang oder am Ende eines Wortes vorkommen. Auch die Umkehrung davon ist möglich: Sie können nach Zeichenketten suchen, die nur dann gefunden werden, wenn sie nicht am Anfang oder am Ende eines Wortes vorkommen.<newline/>
+Mit  vor einer Zeichenkette wird die Zeichenkette nur gefunden, wenn ein Wort damit anfängt.<newline/>
+Mit  nach einer Zeichenkette wird die Zeichenkette nur gefunden, wenn ein Wort damit endet.<newline/>
+Mit  vor einer Zeichenkette wird die Zeichenkette nur gefunden, wenn ein Wort nicht damit anfängt.<newline/>
+Mit  nach einer Zeichenkette wird die Zeichenkette nur gefunden, wenn ein Wort nicht damit endet.<newline/>
+Zu diesen Möglichkeiten siehe Beispiele () bis ().<newline/>
+Genau gesagt definiert  die Grenze zwischen  und  (oder Zeichenkettenanfang oder -ende).</para>
+        <para>Sie können Zeichenketten suchen, die nur dann gefunden werden, wenn sie am Anfang oder am Ende einer Zeile im zu durchsuchenden Bereich vorkommen. Dies ist vor allem im Zusammenhang mit Zeilen in Textdateien interessant.<newline/>
+Mit dem Hütchensymbol  am Beginn des Suchausdrucks wird die Zeichenkette nur gefunden, wenn sie am Anfang des Bereichs steht.<newline/>
+Mit dem Dollarzeichen  am Ende des Suchausdrucks wird die Zeichenkette nur gefunden, wenn sie am Ende des Bereichs steht.<newline/>
+Zu diesen Möglichkeiten siehe Beispiele () bis ().</para>
+        <para>Innerhalb von regulären Ausdrücken können Sie auch Variablen verwenden. Auf diese Weise können Sie dynamische Daten als Suchmuster einsetzen. Im Zusammenhang mit CGI können Sie z.B. die Anwendereingabe aus einem Formularfeld in ein Suchmuster übernehmen. Siehe dazu Beispiel ().</para>
+        <para>
+          <link target-id="">[Image]</link>
+          <link target-id="">[Image]</link>
+        </para>
+      </section>
+      <section>
+        <title>Maskierung von Zeichen in regulären Ausdrücken</title>
+        <para>Da es bei regulären Ausdrücken einige Zeichen mit Sonderbedeutung gibt, müssen Sie solche Zeichen maskieren, wenn Sie nicht die Sonderbedeutung des Zeichens meinen, sondern seine literale, normale Bedeutung, also einen Senkrechtstrich als Senkrechtstrich oder einen Punkt als Punkt meinen. Das Maskierungszeichen ist in allen Fällen der Backslash.</para>
+        <para>
+          <newline/>
+        </para>
+        <para>
+          <link target-id="">[Image]</link>
+          <link target-id="">[Image]</link>
+        </para>
+      </section>
+      <section>
+        <title>Gierige und genügsame Suchmuster</title>
+        <para>Normalerweise sind alle regulären Ausdrücke, die Wildcard-Ausdrücke wie  enthalten, sehr "gierig". Sie holen sich so viele Zeichen wie möglich. Es gibt jedoch die Möglichkeit, solche Ausdrücke zu mehr Genügsamkeit zu zwingen.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr3.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Beispiel-Script demonstriert die Gier regulärer Ausdrücke und zeigt auch, wie sich diese Gier unterbinden lässt. Ein Skalar namens  wird deklariert und erhält als Anfangswert den Code einer kompletten kleinen HTML-Datei. Anschließend wird dieser Skalar mit einem regulären Ausdruck bewertet, der darin nach einem Muster  sucht. In runde Klammern eingeschlossen ist das gesamte Suchmuster, weil anschließend ausgegeben werden soll, was gefunden wurde. Das Suchergebnis wird im Skalar  gespeichert. Anschließend wird die Prozedur noch einmal wiederholt. Diesmal ist der reguläre Ausdruck nur minimal anders: er enthält hinter dem Pluszeichen noch ein Fragezeichen.</para>
+          <para>Beide Suchergebnisse werden anschließend noch für die HTML-Ausgabe vorbereitet, und zwar werden die spitzen Klammern HTML-gerecht ersetzt (siehe dazu auch [Image]<link target-id="">Suchen und Ersetzen mit regulären Ausdrücken</link>).</para>
+          <para>Die Ausgabe von  bewirkt:<newline/><newline/>
+Die Ausgabe von  dagegen:<newline/></para>
+          <para>Der Wildcard-Ausdruck , der "alles" bis zum Zeichen  holen soll, macht nämlich nicht beim nächsten  Stopp, sondern erst beim allerletzten. Durch das Anhängen des Fragezeichens, also durch Erweiterung auf , beschränkt sich das Muster auf das Auffinden des nächsten -Zeichens.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Reguläre Ausdrücke mit Alternativen</title>
+        <para>Sie können mehrere Suchausdrücke angeben. Dann passt der Ausdruck auf alle Zeichenketten, in denen wenigstens eine der Alternativen vorkommt.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr4.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Beispiel-Script deklariert einen Skalar  mit dem Anfangswert . Abhängig vom Erfolg des regulären Ausdrucks , der auf diesen Skalar angewendet wird, wird im aufrufenden Browser ausgegeben: . Der Senkrechtstrich  teilt den regulären Ausdruck in zwei Alternativen auf, bei denen es reicht, wenn eine davon zutrifft. Da dies der Fall ist, wird der Satz im Browser ausgegeben. Zur Kontrolle wird der Text anschließend zu  geändert. Der anschließend angewendete gleiche reguläre Ausdruck führt wieder zum Erfolg, und es wird  ausgegeben.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Teilausdrücke merken mit Klammerung</title>
+        <para>Mit Hilfe von Klammerung einzelner Teile eines regulären Ausdrucks können Sie Teilmuster speichern und an einer späteren Stelle wiederverwenden.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr5.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Beispiel ruft die Perl-Funktion [Image]<link url="../funktionen/datumzeit.htm#localtime" window="new">localtime</link> mit dem Rückgabewert der Funktion [Image]<link url="../funktionen/datumzeit.htm#time" window="new">time</link> auf und speichert den Rückgabewert von  im Skalar . Darin ist anschließend eine Zeichenkette gespeichert, die so aufgebaut ist:<newline/></para>
+          <para>In der darauffolgenden Anweisung wird  mit einem langen regulären Suchausdruck bewertet. Der reguläre Ausdruck versucht, das gesamte typische Muster des Datum-Uhrzeit-Strings zu erfassen. Die Nutzdaten darin, also Wochentag, Monatsname, Monatstag, Stunden, Minuten, Sekunden und Jahr werden innerhalb des regulären Ausdrucks geklammert. Jeden Inhalt dieser Klammern merkt sich Perl und stellt ihn in den [Image]<link url="vordefiniert.htm" window="new">vordefinierten Variablen</link>, ,  usw. zur Verfügung. Die anschließend deklarierten Skalare holen sich die Werte aus den Klammern, indem ihnen die entsprechenden vordefinierten Variablen zugewiesen werden.</para>
+          <para>Die beiden Hashes  und  werden zum Zweck eines deutschsprachigen Datum-Uhrzeit-Formats verwendet. Das Script gibt am Ende so etwas aus wie:<newline/>.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Rangfolge in regulären Ausdrücken</title>
+        <para>Die Sonderzeichen innerhalb von regulären Ausdrücken werden vom Perl-Interpreter nach einer bestimmten Rangfolge bewertet.</para>
+        <list list-type="bulleted">
+          <item>Rangstufe:  (Klammerung)</item>
+        </list>
+        <para>Dadurch ist jeder reguläre Ausdruck eindeutig bewertbar. Wenn Sie in einem Ausdruck jedoch anders bewerten möchten, als es nach der Rangfolge geschieht, können Sie innerhalb des Ausdrucks Klammern setzen, um eine andere Bewertung zu erzwingen.</para>
+        <section>
+          <title>Beispiele:</title>
+          <para>
+            <newline/>
+          </para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Laut der Rangfolge haben Zeichen bzw. Zeichenketten Vorrang vor dem Trennzeichen für Alternativen. Mit Hilfe von Klammern können Sie eine andere Bewertung erzwingen (siehe Beispiel).<newline/>
+Wenn Sie die Klammern zur Bewertungsänderung benutzen möchten, ohne sich die entsprechenden [Image]<link target-id="">Teilausdrücke merken</link> zu wollen, können Sie auch Klammern benutzen, die nur gruppieren. Dabei wird direkt hinter der öffnenden Klammer die Zeichenfolge  notiert, im Beispiel wäre das .</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Flags hinter regulären Ausdrücken</title>
+        <para>Hinter dem beendenden Begrenzerzeichen (normalerweise: Schrägstrich) eines regulären Ausdrucks können noch ein oder mehrere Buchstaben notiert werden - so genannte Flags. Damit können Sie das Verhalten der Suche zusätzlich beeinflussen. Mit einer Notation wie  suchen Sie beispielsweise global nach dem Vorkommen von , und mit  suchen Sie die Zeichenfolge  global, egal ob groß oder klein geschrieben, und die Zeichenkette kann auch aus mehreren Zeilen bestehen. Flags können Sie also beliebig kombinieren. Die folgende Tabelle listet die möglichen Flags auf.</para>
+        <para id="gd-000237">
+          <newline/>
+        </para>
+        <para>
+          <link target-id="">[Image]</link>
+          <link target-id="">[Image]</link>
+        </para>
+      </section>
+      <section>
+        <title>Suchen und Ersetzen mit regulären Ausdrücken</title>
+        <para>Reguläre Ausdrücke sind das Mittel, mit dem in Perl in Zeichenketten etwas gesucht und ersetzt wird.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr6.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Schema für alle Suche-Ersetze-Vorgänge in Perl lautet:<newline/></para>
+          <para> ist ein Skalar, in dem eine Zeichenkette gespeichert ist, so wie etwa  im obigen Beispiel 1. Dieser Skalar wird mit dem Operator  an die Ersetzung gebunden, d.h. der Suche-Ersetze-Vorgang gilt für den Inhalt des Skalars. Dahinter notieren Sie die Ersetzung. Sie wird durch ein kleines  eingeleitet. Nach dem  notieren Sie das erste Begrenzerzeichen (per Voreinstellung ein Schrägstrich), und danach das Suchmuster, das mit dem zweiten Begrenzerzeichen abgeschlossen wird. Danach folgen das Zeichen oder die Zeichenfolge, mit dem/mit der die Fundstellen ersetzt werden sollen, abgeschlossen wird dieses Ersetzungsmuster mit dem dritten Begrenzerzeichen. Falls benötigt, notieren Sie nach dem letzten Begrenzerzeichen noch Flags für den Such-Ersetze-Vorgang. Im Beispiel wurden folgende Flags verwendet:<newline/> sucht/ersetzt  Fundstellen (ansonsten wird nur die erste Fundstelle ersetzt)<newline/> sucht/ersetzt Buchstaben unabhängig davon, ob sie groß oder klein geschrieben sind (ansonsten wird Groß-/Kleinschreibung unterschieden).</para>
+          <para>Im obigen Beispiel werden aus dem Skalar  alle Buchstaben (groß und klein) und alle Leerzeichen entfernt. Es bleiben anschließend also nur noch die Ziffern am Ende stehen. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+        </section>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr7.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Beispiel werden in  alle deutschen Umlaute und scharfes S durch ihre HTML-gerechten Umschreibungen ersetzt. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+        </section>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr8.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Beispiel werden in  alle Wörter mit Hilfe des [Image]<link target-id="">-Flags</link> und der [Image]<link url="../funktionen/zeichenketten.htm#reverse" window="new">reverse</link>-Funktion umgedreht. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Transliteration</title>
+        <para>Für "kleinere" Aufgaben wie Suchen und Ersetzen oder das Zählen von einzelnen Zeichen gibt es in Perl die Möglichkeit, ohne reguläre Ausdrücke zu arbeiten. Dafür gibt es eine spezielle Syntax, den Transliterationsoperator .</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr9.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Eine Transliteration besteht darin, einzelne Zeichen durch andere Zeichen zu ersetzen. Das Schema für eine Transliteration in Perl lautet:<newline/><newline/>
+Dabei sind sowohl das Such- als auch das Ersetzungsmuster keine Zeichenketten, sondern nur einzelne Zeichen oder Zeichenbereiche. Die Muster sind sozusagen zwei Listen von Zeichen. Wenn in  ein Zeichen gefunden wird, das in der Suchliste vorkommt, wird es mit dem Zeichen ersetzt, das an derselben Position in der Ersetzungsliste steht.</para>
+          <para>Alle Beispiele des obigen Scripts sind gleich aufgebaut. Es wird ein Skalar mit einem "interessanten" Wert deklariert. Dann wird eine Transliteration auf diesen Wert angewendet, und anschließend wird das Ergebnis ausgegeben.</para>
+          <para>Im Fall von  wird das Prinzip der Transliteration deutlich: in dem Beispiel wird  durch  ersetzt und  durch . Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden die Buchstaben  und  durch  und  ersetzt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Großbuchstaben durch entsprechende Kleinbuchstaben ersetzt (entspricht etwa der Funktion [Image]<link url="../funktionen/zeichenketten.htm#lc" window="new">lc</link>). Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Zeichen, die kein Buchstabe von A bis Z oder a bis z oder eine Ziffer oder ein Unterstrich sind, durch den Unterstrich  ersetzt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle doppelten oder mehrfachen Leerzeichen entfernt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  wird sich der Rückgabewert einer Transliteration zu eigen gemacht. Dem Skalar  passiert dabei nichts weiter, aber der Rückgabewert ermittelt, wie oft die Buchstaben  oder  in dem Satz vorkommen. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Zeichen mit Zeichenwerten zwischen 128 und 255 in Zeichen mit entsprechenden Zeichenwerten zwischen 0 und 127 umgewandelt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Zeichen des ersten Alphabethälfte in solche der zweiten verwandelt und umgekehrt (sie werden sozusagen um 13 Zeichenwerte rotiert). Die Ausgabe lautet:<newline/><newline/>
+(das ROT13-Prinzip wird in den Newsgroups manchmal angewendet, um Dinge zu sagen, die nicht jeder verstehen können soll).</para>
+          <para>© 2007 [Image]<link url="../../editorial/impressum.htm" window="new">Impressum</link><link url="http://flattr.com/thing/41584/SELFHTML" window="new">[Image]</link></para>
+        </section>
+      </section>
+    </section>
+    <section>
+      <title>Reguläre Ausdrücke für Zeichenketten</title>
+      <para>Sie können</para>
+      <para>Diese Art von regulären Ausdrücken ist dazu gedacht, um etwa in einem Wert nach dem Vorkommen eines bestimmten Wortes, einer beliebigen Teilzeichenkette oder nach einem Muster zu suchen.</para>
+      <para>Wenn Sie in einem regulären Ausdruck nach einer bestimmten Zeichenkette suchen wollen, notieren Sie die Zeichenkette einfach zwischen den beiden Schrägstrichen des regulären Ausdrucks, so wie in Beispiel (). Allerdings gilt auch hier wie bei den [Image]<link target-id="">regulären Ausdrücken für einzelne Zeichen</link>: wenn Sie nach einer festen Zeichenfolge suchen, sind Sie mit der Funktion [Image]<link url="../funktionen/zeichenketten.htm#index" window="new">index</link> besser beraten.</para>
+      <para>Reguläre Ausdrücke sind sozusagen eine eigene Sprache, die durch Wörter, die anhand grammatischer Regeln verknüpft werden, dargestellt wird. Die Verknüpfung erfolgt durch Operatoren. Der Grund, warum reguläre Ausdrücke so kompliziert erscheinen, ist die hohe Komprimierung in der Notation.</para>
+      <para>Ein Wort in der Sprache der regulären Ausdrücke wird  genannt. Atome stellen immer genau  gesuchtes Zeichen dar, beispielsweise , ,  oder . Die Zeichenklasse  stellt ein Zeichen dar, das 'a', 'b' oder 'c' sein kann. Der Punkt  ist die Abkürzung für eine ganz spezielle Zeichenklasse, die alle Zeichen außer dem Zeilenumbruch beinhaltet. Er entspricht also in der DOS-Eingabeaufforderung beispielsweise dem . Das Konstrukt  stellt eine eckige Klammer dar, die aber durch den umgekehrten Schrägstrich [Image]<link target-id="">maskiert</link> werden muss, wenn sie nicht als Steuerzeichen verstanden werden soll.<newline/>
+Um aus Atomen ein zusammenhängendes Muster zu bilden, notieren Sie die Atome einfach ohne Leerzeichen aneinander.</para>
+      <para>Zeichenwiederholungen können Sie mit Wiederholungsoperatoren kennzeichnen.<newline/>
+Das Fragezeichen  bedeutet in einem regulären Ausdruck: das Zeichen vor dem Fragezeichen oder auch nicht. Siehe dazu Beispiel ().<newline/>
+Das Pluszeichen  bedeutet: eine oder mehrere Wiederholungen des Zeichens, das vor dem Pluszeichen steht. Siehe dazu Beispiel ().<newline/>
+Das Sternzeichen  bedeutet: keine, eine oder mehrere Wiederholungen des Zeichens, das vor dem Sternzeichen steht. Siehe dazu Beispiel ().<newline/>
+Wenn Sie vor den Zeichen  oder  einen Punkt notieren (der für ein beliebiges Zeichen steht), erzeugen Sie einen Platzhalter, der dem  in der DOS/Windows-Welt, etwa bei Dateinamen, entspricht. Siehe dazu Beispiele () bis ().<newline/>
+Geschweifte Klammern mit einer Zahl oder zwei Zahlen n darin  stehen für n Wiederholungen des Zeichens vor der geschweiften Klammer an der betreffenden Stelle - siehe dazu Beispiele () bis (). Dabei können Sie auch das Punktzeichen vor der geschweiften Klammer notieren. In diesem Fall bedeutet die Angabe innerhalb der geschweiften Klammer: so viele beliebige Zeichen wie angegeben - siehe dazu Beispiel ()</para>
+      <para>Sie können nach Zeichenketten suchen, die nur dann gefunden werden, wenn sie am Anfang oder am Ende eines Wortes vorkommen. Auch die Umkehrung davon ist möglich: Sie können nach Zeichenketten suchen, die nur dann gefunden werden, wenn sie nicht am Anfang oder am Ende eines Wortes vorkommen.<newline/>
+Mit  vor einer Zeichenkette wird die Zeichenkette nur gefunden, wenn ein Wort damit anfängt.<newline/>
+Mit  nach einer Zeichenkette wird die Zeichenkette nur gefunden, wenn ein Wort damit endet.<newline/>
+Mit  vor einer Zeichenkette wird die Zeichenkette nur gefunden, wenn ein Wort nicht damit anfängt.<newline/>
+Mit  nach einer Zeichenkette wird die Zeichenkette nur gefunden, wenn ein Wort nicht damit endet.<newline/>
+Zu diesen Möglichkeiten siehe Beispiele () bis ().<newline/>
+Genau gesagt definiert  die Grenze zwischen  und  (oder Zeichenkettenanfang oder -ende).</para>
+      <para>Sie können Zeichenketten suchen, die nur dann gefunden werden, wenn sie am Anfang oder am Ende einer Zeile im zu durchsuchenden Bereich vorkommen. Dies ist vor allem im Zusammenhang mit Zeilen in Textdateien interessant.<newline/>
+Mit dem Hütchensymbol  am Beginn des Suchausdrucks wird die Zeichenkette nur gefunden, wenn sie am Anfang des Bereichs steht.<newline/>
+Mit dem Dollarzeichen  am Ende des Suchausdrucks wird die Zeichenkette nur gefunden, wenn sie am Ende des Bereichs steht.<newline/>
+Zu diesen Möglichkeiten siehe Beispiele () bis ().</para>
+      <para>Innerhalb von regulären Ausdrücken können Sie auch Variablen verwenden. Auf diese Weise können Sie dynamische Daten als Suchmuster einsetzen. Im Zusammenhang mit CGI können Sie z.B. die Anwendereingabe aus einem Formularfeld in ein Suchmuster übernehmen. Siehe dazu Beispiel ().</para>
+      <para>
+        <link target-id="">[Image]</link>
+        <link target-id="">[Image]</link>
+      </para>
+      <section>
+        <title>Maskierung von Zeichen in regulären Ausdrücken</title>
+        <para>Da es bei regulären Ausdrücken einige Zeichen mit Sonderbedeutung gibt, müssen Sie solche Zeichen maskieren, wenn Sie nicht die Sonderbedeutung des Zeichens meinen, sondern seine literale, normale Bedeutung, also einen Senkrechtstrich als Senkrechtstrich oder einen Punkt als Punkt meinen. Das Maskierungszeichen ist in allen Fällen der Backslash.</para>
+        <para>
+          <newline/>
+        </para>
+        <para>
+          <link target-id="">[Image]</link>
+          <link target-id="">[Image]</link>
+        </para>
+      </section>
+      <section>
+        <title>Gierige und genügsame Suchmuster</title>
+        <para>Normalerweise sind alle regulären Ausdrücke, die Wildcard-Ausdrücke wie  enthalten, sehr "gierig". Sie holen sich so viele Zeichen wie möglich. Es gibt jedoch die Möglichkeit, solche Ausdrücke zu mehr Genügsamkeit zu zwingen.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr3.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Beispiel-Script demonstriert die Gier regulärer Ausdrücke und zeigt auch, wie sich diese Gier unterbinden lässt. Ein Skalar namens  wird deklariert und erhält als Anfangswert den Code einer kompletten kleinen HTML-Datei. Anschließend wird dieser Skalar mit einem regulären Ausdruck bewertet, der darin nach einem Muster  sucht. In runde Klammern eingeschlossen ist das gesamte Suchmuster, weil anschließend ausgegeben werden soll, was gefunden wurde. Das Suchergebnis wird im Skalar  gespeichert. Anschließend wird die Prozedur noch einmal wiederholt. Diesmal ist der reguläre Ausdruck nur minimal anders: er enthält hinter dem Pluszeichen noch ein Fragezeichen.</para>
+          <para>Beide Suchergebnisse werden anschließend noch für die HTML-Ausgabe vorbereitet, und zwar werden die spitzen Klammern HTML-gerecht ersetzt (siehe dazu auch [Image]<link target-id="">Suchen und Ersetzen mit regulären Ausdrücken</link>).</para>
+          <para>Die Ausgabe von  bewirkt:<newline/><newline/>
+Die Ausgabe von  dagegen:<newline/></para>
+          <para>Der Wildcard-Ausdruck , der "alles" bis zum Zeichen  holen soll, macht nämlich nicht beim nächsten  Stopp, sondern erst beim allerletzten. Durch das Anhängen des Fragezeichens, also durch Erweiterung auf , beschränkt sich das Muster auf das Auffinden des nächsten -Zeichens.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Reguläre Ausdrücke mit Alternativen</title>
+        <para>Sie können mehrere Suchausdrücke angeben. Dann passt der Ausdruck auf alle Zeichenketten, in denen wenigstens eine der Alternativen vorkommt.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr4.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Beispiel-Script deklariert einen Skalar  mit dem Anfangswert . Abhängig vom Erfolg des regulären Ausdrucks , der auf diesen Skalar angewendet wird, wird im aufrufenden Browser ausgegeben: . Der Senkrechtstrich  teilt den regulären Ausdruck in zwei Alternativen auf, bei denen es reicht, wenn eine davon zutrifft. Da dies der Fall ist, wird der Satz im Browser ausgegeben. Zur Kontrolle wird der Text anschließend zu  geändert. Der anschließend angewendete gleiche reguläre Ausdruck führt wieder zum Erfolg, und es wird  ausgegeben.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Teilausdrücke merken mit Klammerung</title>
+        <para>Mit Hilfe von Klammerung einzelner Teile eines regulären Ausdrucks können Sie Teilmuster speichern und an einer späteren Stelle wiederverwenden.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr5.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Beispiel ruft die Perl-Funktion [Image]<link url="../funktionen/datumzeit.htm#localtime" window="new">localtime</link> mit dem Rückgabewert der Funktion [Image]<link url="../funktionen/datumzeit.htm#time" window="new">time</link> auf und speichert den Rückgabewert von  im Skalar . Darin ist anschließend eine Zeichenkette gespeichert, die so aufgebaut ist:<newline/></para>
+          <para>In der darauffolgenden Anweisung wird  mit einem langen regulären Suchausdruck bewertet. Der reguläre Ausdruck versucht, das gesamte typische Muster des Datum-Uhrzeit-Strings zu erfassen. Die Nutzdaten darin, also Wochentag, Monatsname, Monatstag, Stunden, Minuten, Sekunden und Jahr werden innerhalb des regulären Ausdrucks geklammert. Jeden Inhalt dieser Klammern merkt sich Perl und stellt ihn in den [Image]<link url="vordefiniert.htm" window="new">vordefinierten Variablen</link>, ,  usw. zur Verfügung. Die anschließend deklarierten Skalare holen sich die Werte aus den Klammern, indem ihnen die entsprechenden vordefinierten Variablen zugewiesen werden.</para>
+          <para>Die beiden Hashes  und  werden zum Zweck eines deutschsprachigen Datum-Uhrzeit-Formats verwendet. Das Script gibt am Ende so etwas aus wie:<newline/>.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Rangfolge in regulären Ausdrücken</title>
+        <para>Die Sonderzeichen innerhalb von regulären Ausdrücken werden vom Perl-Interpreter nach einer bestimmten Rangfolge bewertet.</para>
+        <list list-type="bulleted">
+          <item>Rangstufe:  (Klammerung)</item>
+        </list>
+        <para>Dadurch ist jeder reguläre Ausdruck eindeutig bewertbar. Wenn Sie in einem Ausdruck jedoch anders bewerten möchten, als es nach der Rangfolge geschieht, können Sie innerhalb des Ausdrucks Klammern setzen, um eine andere Bewertung zu erzwingen.</para>
+        <section>
+          <title>Beispiele:</title>
+          <para>
+            <newline/>
+          </para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Laut der Rangfolge haben Zeichen bzw. Zeichenketten Vorrang vor dem Trennzeichen für Alternativen. Mit Hilfe von Klammern können Sie eine andere Bewertung erzwingen (siehe Beispiel).<newline/>
+Wenn Sie die Klammern zur Bewertungsänderung benutzen möchten, ohne sich die entsprechenden [Image]<link target-id="">Teilausdrücke merken</link> zu wollen, können Sie auch Klammern benutzen, die nur gruppieren. Dabei wird direkt hinter der öffnenden Klammer die Zeichenfolge  notiert, im Beispiel wäre das .</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Flags hinter regulären Ausdrücken</title>
+        <para>Hinter dem beendenden Begrenzerzeichen (normalerweise: Schrägstrich) eines regulären Ausdrucks können noch ein oder mehrere Buchstaben notiert werden - so genannte Flags. Damit können Sie das Verhalten der Suche zusätzlich beeinflussen. Mit einer Notation wie  suchen Sie beispielsweise global nach dem Vorkommen von , und mit  suchen Sie die Zeichenfolge  global, egal ob groß oder klein geschrieben, und die Zeichenkette kann auch aus mehreren Zeilen bestehen. Flags können Sie also beliebig kombinieren. Die folgende Tabelle listet die möglichen Flags auf.</para>
+        <para id="gd-000324">
+          <newline/>
+        </para>
+        <para>
+          <link target-id="">[Image]</link>
+          <link target-id="">[Image]</link>
+        </para>
+      </section>
+      <section>
+        <title>Suchen und Ersetzen mit regulären Ausdrücken</title>
+        <para>Reguläre Ausdrücke sind das Mittel, mit dem in Perl in Zeichenketten etwas gesucht und ersetzt wird.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr6.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Schema für alle Suche-Ersetze-Vorgänge in Perl lautet:<newline/></para>
+          <para> ist ein Skalar, in dem eine Zeichenkette gespeichert ist, so wie etwa  im obigen Beispiel 1. Dieser Skalar wird mit dem Operator  an die Ersetzung gebunden, d.h. der Suche-Ersetze-Vorgang gilt für den Inhalt des Skalars. Dahinter notieren Sie die Ersetzung. Sie wird durch ein kleines  eingeleitet. Nach dem  notieren Sie das erste Begrenzerzeichen (per Voreinstellung ein Schrägstrich), und danach das Suchmuster, das mit dem zweiten Begrenzerzeichen abgeschlossen wird. Danach folgen das Zeichen oder die Zeichenfolge, mit dem/mit der die Fundstellen ersetzt werden sollen, abgeschlossen wird dieses Ersetzungsmuster mit dem dritten Begrenzerzeichen. Falls benötigt, notieren Sie nach dem letzten Begrenzerzeichen noch Flags für den Such-Ersetze-Vorgang. Im Beispiel wurden folgende Flags verwendet:<newline/> sucht/ersetzt  Fundstellen (ansonsten wird nur die erste Fundstelle ersetzt)<newline/> sucht/ersetzt Buchstaben unabhängig davon, ob sie groß oder klein geschrieben sind (ansonsten wird Groß-/Kleinschreibung unterschieden).</para>
+          <para>Im obigen Beispiel werden aus dem Skalar  alle Buchstaben (groß und klein) und alle Leerzeichen entfernt. Es bleiben anschließend also nur noch die Ziffern am Ende stehen. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+        </section>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr7.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Beispiel werden in  alle deutschen Umlaute und scharfes S durch ihre HTML-gerechten Umschreibungen ersetzt. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+        </section>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr8.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Beispiel werden in  alle Wörter mit Hilfe des [Image]<link target-id="">-Flags</link> und der [Image]<link url="../funktionen/zeichenketten.htm#reverse" window="new">reverse</link>-Funktion umgedreht. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Transliteration</title>
+        <para>Für "kleinere" Aufgaben wie Suchen und Ersetzen oder das Zählen von einzelnen Zeichen gibt es in Perl die Möglichkeit, ohne reguläre Ausdrücke zu arbeiten. Dafür gibt es eine spezielle Syntax, den Transliterationsoperator .</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr9.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Eine Transliteration besteht darin, einzelne Zeichen durch andere Zeichen zu ersetzen. Das Schema für eine Transliteration in Perl lautet:<newline/><newline/>
+Dabei sind sowohl das Such- als auch das Ersetzungsmuster keine Zeichenketten, sondern nur einzelne Zeichen oder Zeichenbereiche. Die Muster sind sozusagen zwei Listen von Zeichen. Wenn in  ein Zeichen gefunden wird, das in der Suchliste vorkommt, wird es mit dem Zeichen ersetzt, das an derselben Position in der Ersetzungsliste steht.</para>
+          <para>Alle Beispiele des obigen Scripts sind gleich aufgebaut. Es wird ein Skalar mit einem "interessanten" Wert deklariert. Dann wird eine Transliteration auf diesen Wert angewendet, und anschließend wird das Ergebnis ausgegeben.</para>
+          <para>Im Fall von  wird das Prinzip der Transliteration deutlich: in dem Beispiel wird  durch  ersetzt und  durch . Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden die Buchstaben  und  durch  und  ersetzt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Großbuchstaben durch entsprechende Kleinbuchstaben ersetzt (entspricht etwa der Funktion [Image]<link url="../funktionen/zeichenketten.htm#lc" window="new">lc</link>). Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Zeichen, die kein Buchstabe von A bis Z oder a bis z oder eine Ziffer oder ein Unterstrich sind, durch den Unterstrich  ersetzt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle doppelten oder mehrfachen Leerzeichen entfernt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  wird sich der Rückgabewert einer Transliteration zu eigen gemacht. Dem Skalar  passiert dabei nichts weiter, aber der Rückgabewert ermittelt, wie oft die Buchstaben  oder  in dem Satz vorkommen. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Zeichen mit Zeichenwerten zwischen 128 und 255 in Zeichen mit entsprechenden Zeichenwerten zwischen 0 und 127 umgewandelt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Zeichen des ersten Alphabethälfte in solche der zweiten verwandelt und umgekehrt (sie werden sozusagen um 13 Zeichenwerte rotiert). Die Ausgabe lautet:<newline/><newline/>
+(das ROT13-Prinzip wird in den Newsgroups manchmal angewendet, um Dinge zu sagen, die nicht jeder verstehen können soll).</para>
+          <para>© 2007 [Image]<link url="../../editorial/impressum.htm" window="new">Impressum</link><link url="http://flattr.com/thing/41584/SELFHTML" window="new">[Image]</link></para>
+        </section>
+      </section>
+    </section>
+    <section>
+      <title>Maskierung von Zeichen in regulären Ausdrücken</title>
+      <para>Da es bei regulären Ausdrücken einige Zeichen mit Sonderbedeutung gibt, müssen Sie solche Zeichen maskieren, wenn Sie nicht die Sonderbedeutung des Zeichens meinen, sondern seine literale, normale Bedeutung, also einen Senkrechtstrich als Senkrechtstrich oder einen Punkt als Punkt meinen. Das Maskierungszeichen ist in allen Fällen der Backslash.</para>
+      <para>
+        <newline/>
+      </para>
+      <para>
+        <link target-id="">[Image]</link>
+        <link target-id="">[Image]</link>
+      </para>
+      <section>
+        <title>Gierige und genügsame Suchmuster</title>
+        <para>Normalerweise sind alle regulären Ausdrücke, die Wildcard-Ausdrücke wie  enthalten, sehr "gierig". Sie holen sich so viele Zeichen wie möglich. Es gibt jedoch die Möglichkeit, solche Ausdrücke zu mehr Genügsamkeit zu zwingen.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr3.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Beispiel-Script demonstriert die Gier regulärer Ausdrücke und zeigt auch, wie sich diese Gier unterbinden lässt. Ein Skalar namens  wird deklariert und erhält als Anfangswert den Code einer kompletten kleinen HTML-Datei. Anschließend wird dieser Skalar mit einem regulären Ausdruck bewertet, der darin nach einem Muster  sucht. In runde Klammern eingeschlossen ist das gesamte Suchmuster, weil anschließend ausgegeben werden soll, was gefunden wurde. Das Suchergebnis wird im Skalar  gespeichert. Anschließend wird die Prozedur noch einmal wiederholt. Diesmal ist der reguläre Ausdruck nur minimal anders: er enthält hinter dem Pluszeichen noch ein Fragezeichen.</para>
+          <para>Beide Suchergebnisse werden anschließend noch für die HTML-Ausgabe vorbereitet, und zwar werden die spitzen Klammern HTML-gerecht ersetzt (siehe dazu auch [Image]<link target-id="">Suchen und Ersetzen mit regulären Ausdrücken</link>).</para>
+          <para>Die Ausgabe von  bewirkt:<newline/><newline/>
+Die Ausgabe von  dagegen:<newline/></para>
+          <para>Der Wildcard-Ausdruck , der "alles" bis zum Zeichen  holen soll, macht nämlich nicht beim nächsten  Stopp, sondern erst beim allerletzten. Durch das Anhängen des Fragezeichens, also durch Erweiterung auf , beschränkt sich das Muster auf das Auffinden des nächsten -Zeichens.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Reguläre Ausdrücke mit Alternativen</title>
+        <para>Sie können mehrere Suchausdrücke angeben. Dann passt der Ausdruck auf alle Zeichenketten, in denen wenigstens eine der Alternativen vorkommt.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr4.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Beispiel-Script deklariert einen Skalar  mit dem Anfangswert . Abhängig vom Erfolg des regulären Ausdrucks , der auf diesen Skalar angewendet wird, wird im aufrufenden Browser ausgegeben: . Der Senkrechtstrich  teilt den regulären Ausdruck in zwei Alternativen auf, bei denen es reicht, wenn eine davon zutrifft. Da dies der Fall ist, wird der Satz im Browser ausgegeben. Zur Kontrolle wird der Text anschließend zu  geändert. Der anschließend angewendete gleiche reguläre Ausdruck führt wieder zum Erfolg, und es wird  ausgegeben.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Teilausdrücke merken mit Klammerung</title>
+        <para>Mit Hilfe von Klammerung einzelner Teile eines regulären Ausdrucks können Sie Teilmuster speichern und an einer späteren Stelle wiederverwenden.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr5.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Beispiel ruft die Perl-Funktion [Image]<link url="../funktionen/datumzeit.htm#localtime" window="new">localtime</link> mit dem Rückgabewert der Funktion [Image]<link url="../funktionen/datumzeit.htm#time" window="new">time</link> auf und speichert den Rückgabewert von  im Skalar . Darin ist anschließend eine Zeichenkette gespeichert, die so aufgebaut ist:<newline/></para>
+          <para>In der darauffolgenden Anweisung wird  mit einem langen regulären Suchausdruck bewertet. Der reguläre Ausdruck versucht, das gesamte typische Muster des Datum-Uhrzeit-Strings zu erfassen. Die Nutzdaten darin, also Wochentag, Monatsname, Monatstag, Stunden, Minuten, Sekunden und Jahr werden innerhalb des regulären Ausdrucks geklammert. Jeden Inhalt dieser Klammern merkt sich Perl und stellt ihn in den [Image]<link url="vordefiniert.htm" window="new">vordefinierten Variablen</link>, ,  usw. zur Verfügung. Die anschließend deklarierten Skalare holen sich die Werte aus den Klammern, indem ihnen die entsprechenden vordefinierten Variablen zugewiesen werden.</para>
+          <para>Die beiden Hashes  und  werden zum Zweck eines deutschsprachigen Datum-Uhrzeit-Formats verwendet. Das Script gibt am Ende so etwas aus wie:<newline/>.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Rangfolge in regulären Ausdrücken</title>
+        <para>Die Sonderzeichen innerhalb von regulären Ausdrücken werden vom Perl-Interpreter nach einer bestimmten Rangfolge bewertet.</para>
+        <list list-type="bulleted">
+          <item>Rangstufe:  (Klammerung)</item>
+        </list>
+        <para>Dadurch ist jeder reguläre Ausdruck eindeutig bewertbar. Wenn Sie in einem Ausdruck jedoch anders bewerten möchten, als es nach der Rangfolge geschieht, können Sie innerhalb des Ausdrucks Klammern setzen, um eine andere Bewertung zu erzwingen.</para>
+        <section>
+          <title>Beispiele:</title>
+          <para>
+            <newline/>
+          </para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Laut der Rangfolge haben Zeichen bzw. Zeichenketten Vorrang vor dem Trennzeichen für Alternativen. Mit Hilfe von Klammern können Sie eine andere Bewertung erzwingen (siehe Beispiel).<newline/>
+Wenn Sie die Klammern zur Bewertungsänderung benutzen möchten, ohne sich die entsprechenden [Image]<link target-id="">Teilausdrücke merken</link> zu wollen, können Sie auch Klammern benutzen, die nur gruppieren. Dabei wird direkt hinter der öffnenden Klammer die Zeichenfolge  notiert, im Beispiel wäre das .</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Flags hinter regulären Ausdrücken</title>
+        <para>Hinter dem beendenden Begrenzerzeichen (normalerweise: Schrägstrich) eines regulären Ausdrucks können noch ein oder mehrere Buchstaben notiert werden - so genannte Flags. Damit können Sie das Verhalten der Suche zusätzlich beeinflussen. Mit einer Notation wie  suchen Sie beispielsweise global nach dem Vorkommen von , und mit  suchen Sie die Zeichenfolge  global, egal ob groß oder klein geschrieben, und die Zeichenkette kann auch aus mehreren Zeilen bestehen. Flags können Sie also beliebig kombinieren. Die folgende Tabelle listet die möglichen Flags auf.</para>
+        <para id="gd-000400">
+          <newline/>
+        </para>
+        <para>
+          <link target-id="">[Image]</link>
+          <link target-id="">[Image]</link>
+        </para>
+      </section>
+      <section>
+        <title>Suchen und Ersetzen mit regulären Ausdrücken</title>
+        <para>Reguläre Ausdrücke sind das Mittel, mit dem in Perl in Zeichenketten etwas gesucht und ersetzt wird.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr6.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Schema für alle Suche-Ersetze-Vorgänge in Perl lautet:<newline/></para>
+          <para> ist ein Skalar, in dem eine Zeichenkette gespeichert ist, so wie etwa  im obigen Beispiel 1. Dieser Skalar wird mit dem Operator  an die Ersetzung gebunden, d.h. der Suche-Ersetze-Vorgang gilt für den Inhalt des Skalars. Dahinter notieren Sie die Ersetzung. Sie wird durch ein kleines  eingeleitet. Nach dem  notieren Sie das erste Begrenzerzeichen (per Voreinstellung ein Schrägstrich), und danach das Suchmuster, das mit dem zweiten Begrenzerzeichen abgeschlossen wird. Danach folgen das Zeichen oder die Zeichenfolge, mit dem/mit der die Fundstellen ersetzt werden sollen, abgeschlossen wird dieses Ersetzungsmuster mit dem dritten Begrenzerzeichen. Falls benötigt, notieren Sie nach dem letzten Begrenzerzeichen noch Flags für den Such-Ersetze-Vorgang. Im Beispiel wurden folgende Flags verwendet:<newline/> sucht/ersetzt  Fundstellen (ansonsten wird nur die erste Fundstelle ersetzt)<newline/> sucht/ersetzt Buchstaben unabhängig davon, ob sie groß oder klein geschrieben sind (ansonsten wird Groß-/Kleinschreibung unterschieden).</para>
+          <para>Im obigen Beispiel werden aus dem Skalar  alle Buchstaben (groß und klein) und alle Leerzeichen entfernt. Es bleiben anschließend also nur noch die Ziffern am Ende stehen. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+        </section>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr7.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Beispiel werden in  alle deutschen Umlaute und scharfes S durch ihre HTML-gerechten Umschreibungen ersetzt. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+        </section>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr8.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Beispiel werden in  alle Wörter mit Hilfe des [Image]<link target-id="">-Flags</link> und der [Image]<link url="../funktionen/zeichenketten.htm#reverse" window="new">reverse</link>-Funktion umgedreht. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Transliteration</title>
+        <para>Für "kleinere" Aufgaben wie Suchen und Ersetzen oder das Zählen von einzelnen Zeichen gibt es in Perl die Möglichkeit, ohne reguläre Ausdrücke zu arbeiten. Dafür gibt es eine spezielle Syntax, den Transliterationsoperator .</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr9.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Eine Transliteration besteht darin, einzelne Zeichen durch andere Zeichen zu ersetzen. Das Schema für eine Transliteration in Perl lautet:<newline/><newline/>
+Dabei sind sowohl das Such- als auch das Ersetzungsmuster keine Zeichenketten, sondern nur einzelne Zeichen oder Zeichenbereiche. Die Muster sind sozusagen zwei Listen von Zeichen. Wenn in  ein Zeichen gefunden wird, das in der Suchliste vorkommt, wird es mit dem Zeichen ersetzt, das an derselben Position in der Ersetzungsliste steht.</para>
+          <para>Alle Beispiele des obigen Scripts sind gleich aufgebaut. Es wird ein Skalar mit einem "interessanten" Wert deklariert. Dann wird eine Transliteration auf diesen Wert angewendet, und anschließend wird das Ergebnis ausgegeben.</para>
+          <para>Im Fall von  wird das Prinzip der Transliteration deutlich: in dem Beispiel wird  durch  ersetzt und  durch . Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden die Buchstaben  und  durch  und  ersetzt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Großbuchstaben durch entsprechende Kleinbuchstaben ersetzt (entspricht etwa der Funktion [Image]<link url="../funktionen/zeichenketten.htm#lc" window="new">lc</link>). Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Zeichen, die kein Buchstabe von A bis Z oder a bis z oder eine Ziffer oder ein Unterstrich sind, durch den Unterstrich  ersetzt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle doppelten oder mehrfachen Leerzeichen entfernt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  wird sich der Rückgabewert einer Transliteration zu eigen gemacht. Dem Skalar  passiert dabei nichts weiter, aber der Rückgabewert ermittelt, wie oft die Buchstaben  oder  in dem Satz vorkommen. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Zeichen mit Zeichenwerten zwischen 128 und 255 in Zeichen mit entsprechenden Zeichenwerten zwischen 0 und 127 umgewandelt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Zeichen des ersten Alphabethälfte in solche der zweiten verwandelt und umgekehrt (sie werden sozusagen um 13 Zeichenwerte rotiert). Die Ausgabe lautet:<newline/><newline/>
+(das ROT13-Prinzip wird in den Newsgroups manchmal angewendet, um Dinge zu sagen, die nicht jeder verstehen können soll).</para>
+          <para>© 2007 [Image]<link url="../../editorial/impressum.htm" window="new">Impressum</link><link url="http://flattr.com/thing/41584/SELFHTML" window="new">[Image]</link></para>
+        </section>
+      </section>
+    </section>
+    <section>
+      <title>Gierige und genügsame Suchmuster</title>
+      <para>Normalerweise sind alle regulären Ausdrücke, die Wildcard-Ausdrücke wie  enthalten, sehr "gierig". Sie holen sich so viele Zeichen wie möglich. Es gibt jedoch die Möglichkeit, solche Ausdrücke zu mehr Genügsamkeit zu zwingen.</para>
+      <section>
+        <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+        <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr3.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Beispiel-Script demonstriert die Gier regulärer Ausdrücke und zeigt auch, wie sich diese Gier unterbinden lässt. Ein Skalar namens  wird deklariert und erhält als Anfangswert den Code einer kompletten kleinen HTML-Datei. Anschließend wird dieser Skalar mit einem regulären Ausdruck bewertet, der darin nach einem Muster  sucht. In runde Klammern eingeschlossen ist das gesamte Suchmuster, weil anschließend ausgegeben werden soll, was gefunden wurde. Das Suchergebnis wird im Skalar  gespeichert. Anschließend wird die Prozedur noch einmal wiederholt. Diesmal ist der reguläre Ausdruck nur minimal anders: er enthält hinter dem Pluszeichen noch ein Fragezeichen.</para>
+          <para>Beide Suchergebnisse werden anschließend noch für die HTML-Ausgabe vorbereitet, und zwar werden die spitzen Klammern HTML-gerecht ersetzt (siehe dazu auch [Image]<link target-id="">Suchen und Ersetzen mit regulären Ausdrücken</link>).</para>
+          <para>Die Ausgabe von  bewirkt:<newline/><newline/>
+Die Ausgabe von  dagegen:<newline/></para>
+          <para>Der Wildcard-Ausdruck , der "alles" bis zum Zeichen  holen soll, macht nämlich nicht beim nächsten  Stopp, sondern erst beim allerletzten. Durch das Anhängen des Fragezeichens, also durch Erweiterung auf , beschränkt sich das Muster auf das Auffinden des nächsten -Zeichens.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Erläuterung:</title>
+        <para>Das Beispiel-Script demonstriert die Gier regulärer Ausdrücke und zeigt auch, wie sich diese Gier unterbinden lässt. Ein Skalar namens  wird deklariert und erhält als Anfangswert den Code einer kompletten kleinen HTML-Datei. Anschließend wird dieser Skalar mit einem regulären Ausdruck bewertet, der darin nach einem Muster  sucht. In runde Klammern eingeschlossen ist das gesamte Suchmuster, weil anschließend ausgegeben werden soll, was gefunden wurde. Das Suchergebnis wird im Skalar  gespeichert. Anschließend wird die Prozedur noch einmal wiederholt. Diesmal ist der reguläre Ausdruck nur minimal anders: er enthält hinter dem Pluszeichen noch ein Fragezeichen.</para>
+        <para>Beide Suchergebnisse werden anschließend noch für die HTML-Ausgabe vorbereitet, und zwar werden die spitzen Klammern HTML-gerecht ersetzt (siehe dazu auch [Image]<link target-id="">Suchen und Ersetzen mit regulären Ausdrücken</link>).</para>
+        <para>Die Ausgabe von  bewirkt:<newline/><newline/>
+Die Ausgabe von  dagegen:<newline/></para>
+        <para>Der Wildcard-Ausdruck , der "alles" bis zum Zeichen  holen soll, macht nämlich nicht beim nächsten  Stopp, sondern erst beim allerletzten. Durch das Anhängen des Fragezeichens, also durch Erweiterung auf , beschränkt sich das Muster auf das Auffinden des nächsten -Zeichens.</para>
+        <para>
+          <link target-id="">[Image]</link>
+          <link target-id="">[Image]</link>
+        </para>
+      </section>
+    </section>
+    <section>
+      <title>Reguläre Ausdrücke mit Alternativen</title>
+      <para>Sie können mehrere Suchausdrücke angeben. Dann passt der Ausdruck auf alle Zeichenketten, in denen wenigstens eine der Alternativen vorkommt.</para>
+      <section>
+        <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+        <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr4.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Beispiel-Script deklariert einen Skalar  mit dem Anfangswert . Abhängig vom Erfolg des regulären Ausdrucks , der auf diesen Skalar angewendet wird, wird im aufrufenden Browser ausgegeben: . Der Senkrechtstrich  teilt den regulären Ausdruck in zwei Alternativen auf, bei denen es reicht, wenn eine davon zutrifft. Da dies der Fall ist, wird der Satz im Browser ausgegeben. Zur Kontrolle wird der Text anschließend zu  geändert. Der anschließend angewendete gleiche reguläre Ausdruck führt wieder zum Erfolg, und es wird  ausgegeben.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Erläuterung:</title>
+        <para>Das Beispiel-Script deklariert einen Skalar  mit dem Anfangswert . Abhängig vom Erfolg des regulären Ausdrucks , der auf diesen Skalar angewendet wird, wird im aufrufenden Browser ausgegeben: . Der Senkrechtstrich  teilt den regulären Ausdruck in zwei Alternativen auf, bei denen es reicht, wenn eine davon zutrifft. Da dies der Fall ist, wird der Satz im Browser ausgegeben. Zur Kontrolle wird der Text anschließend zu  geändert. Der anschließend angewendete gleiche reguläre Ausdruck führt wieder zum Erfolg, und es wird  ausgegeben.</para>
+        <para>
+          <link target-id="">[Image]</link>
+          <link target-id="">[Image]</link>
+        </para>
+      </section>
+    </section>
+    <section>
+      <title>Teilausdrücke merken mit Klammerung</title>
+      <para>Mit Hilfe von Klammerung einzelner Teile eines regulären Ausdrucks können Sie Teilmuster speichern und an einer späteren Stelle wiederverwenden.</para>
+      <section>
+        <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+        <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr5.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Beispiel ruft die Perl-Funktion [Image]<link url="../funktionen/datumzeit.htm#localtime" window="new">localtime</link> mit dem Rückgabewert der Funktion [Image]<link url="../funktionen/datumzeit.htm#time" window="new">time</link> auf und speichert den Rückgabewert von  im Skalar . Darin ist anschließend eine Zeichenkette gespeichert, die so aufgebaut ist:<newline/></para>
+          <para>In der darauffolgenden Anweisung wird  mit einem langen regulären Suchausdruck bewertet. Der reguläre Ausdruck versucht, das gesamte typische Muster des Datum-Uhrzeit-Strings zu erfassen. Die Nutzdaten darin, also Wochentag, Monatsname, Monatstag, Stunden, Minuten, Sekunden und Jahr werden innerhalb des regulären Ausdrucks geklammert. Jeden Inhalt dieser Klammern merkt sich Perl und stellt ihn in den [Image]<link url="vordefiniert.htm" window="new">vordefinierten Variablen</link>, ,  usw. zur Verfügung. Die anschließend deklarierten Skalare holen sich die Werte aus den Klammern, indem ihnen die entsprechenden vordefinierten Variablen zugewiesen werden.</para>
+          <para>Die beiden Hashes  und  werden zum Zweck eines deutschsprachigen Datum-Uhrzeit-Formats verwendet. Das Script gibt am Ende so etwas aus wie:<newline/>.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Erläuterung:</title>
+        <para>Das Beispiel ruft die Perl-Funktion [Image]<link url="../funktionen/datumzeit.htm#localtime" window="new">localtime</link> mit dem Rückgabewert der Funktion [Image]<link url="../funktionen/datumzeit.htm#time" window="new">time</link> auf und speichert den Rückgabewert von  im Skalar . Darin ist anschließend eine Zeichenkette gespeichert, die so aufgebaut ist:<newline/></para>
+        <para>In der darauffolgenden Anweisung wird  mit einem langen regulären Suchausdruck bewertet. Der reguläre Ausdruck versucht, das gesamte typische Muster des Datum-Uhrzeit-Strings zu erfassen. Die Nutzdaten darin, also Wochentag, Monatsname, Monatstag, Stunden, Minuten, Sekunden und Jahr werden innerhalb des regulären Ausdrucks geklammert. Jeden Inhalt dieser Klammern merkt sich Perl und stellt ihn in den [Image]<link url="vordefiniert.htm" window="new">vordefinierten Variablen</link>, ,  usw. zur Verfügung. Die anschließend deklarierten Skalare holen sich die Werte aus den Klammern, indem ihnen die entsprechenden vordefinierten Variablen zugewiesen werden.</para>
+        <para>Die beiden Hashes  und  werden zum Zweck eines deutschsprachigen Datum-Uhrzeit-Formats verwendet. Das Script gibt am Ende so etwas aus wie:<newline/>.</para>
+        <para>
+          <link target-id="">[Image]</link>
+          <link target-id="">[Image]</link>
+        </para>
+      </section>
+    </section>
+    <section>
+      <title>Rangfolge in regulären Ausdrücken</title>
+      <para>Die Sonderzeichen innerhalb von regulären Ausdrücken werden vom Perl-Interpreter nach einer bestimmten Rangfolge bewertet.</para>
+      <list list-type="bulleted">
+        <item>Rangstufe:  (Klammerung)</item>
+      </list>
+      <para>Dadurch ist jeder reguläre Ausdruck eindeutig bewertbar. Wenn Sie in einem Ausdruck jedoch anders bewerten möchten, als es nach der Rangfolge geschieht, können Sie innerhalb des Ausdrucks Klammern setzen, um eine andere Bewertung zu erzwingen.</para>
+      <section>
+        <title>Beispiele:</title>
+        <para>
+          <newline/>
+        </para>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Laut der Rangfolge haben Zeichen bzw. Zeichenketten Vorrang vor dem Trennzeichen für Alternativen. Mit Hilfe von Klammern können Sie eine andere Bewertung erzwingen (siehe Beispiel).<newline/>
+Wenn Sie die Klammern zur Bewertungsänderung benutzen möchten, ohne sich die entsprechenden [Image]<link target-id="">Teilausdrücke merken</link> zu wollen, können Sie auch Klammern benutzen, die nur gruppieren. Dabei wird direkt hinter der öffnenden Klammer die Zeichenfolge  notiert, im Beispiel wäre das .</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Erläuterung:</title>
+        <para>Laut der Rangfolge haben Zeichen bzw. Zeichenketten Vorrang vor dem Trennzeichen für Alternativen. Mit Hilfe von Klammern können Sie eine andere Bewertung erzwingen (siehe Beispiel).<newline/>
+Wenn Sie die Klammern zur Bewertungsänderung benutzen möchten, ohne sich die entsprechenden [Image]<link target-id="">Teilausdrücke merken</link> zu wollen, können Sie auch Klammern benutzen, die nur gruppieren. Dabei wird direkt hinter der öffnenden Klammer die Zeichenfolge  notiert, im Beispiel wäre das .</para>
+        <para>
+          <link target-id="">[Image]</link>
+          <link target-id="">[Image]</link>
+        </para>
+      </section>
+    </section>
+    <section>
+      <title>Flags hinter regulären Ausdrücken</title>
+      <para>Hinter dem beendenden Begrenzerzeichen (normalerweise: Schrägstrich) eines regulären Ausdrucks können noch ein oder mehrere Buchstaben notiert werden - so genannte Flags. Damit können Sie das Verhalten der Suche zusätzlich beeinflussen. Mit einer Notation wie  suchen Sie beispielsweise global nach dem Vorkommen von , und mit  suchen Sie die Zeichenfolge  global, egal ob groß oder klein geschrieben, und die Zeichenkette kann auch aus mehreren Zeilen bestehen. Flags können Sie also beliebig kombinieren. Die folgende Tabelle listet die möglichen Flags auf.</para>
+      <para id="gd-000489">
+        <newline/>
+      </para>
+      <para>
+        <link target-id="">[Image]</link>
+        <link target-id="">[Image]</link>
+      </para>
+      <section>
+        <title>Suchen und Ersetzen mit regulären Ausdrücken</title>
+        <para>Reguläre Ausdrücke sind das Mittel, mit dem in Perl in Zeichenketten etwas gesucht und ersetzt wird.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr6.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Schema für alle Suche-Ersetze-Vorgänge in Perl lautet:<newline/></para>
+          <para> ist ein Skalar, in dem eine Zeichenkette gespeichert ist, so wie etwa  im obigen Beispiel 1. Dieser Skalar wird mit dem Operator  an die Ersetzung gebunden, d.h. der Suche-Ersetze-Vorgang gilt für den Inhalt des Skalars. Dahinter notieren Sie die Ersetzung. Sie wird durch ein kleines  eingeleitet. Nach dem  notieren Sie das erste Begrenzerzeichen (per Voreinstellung ein Schrägstrich), und danach das Suchmuster, das mit dem zweiten Begrenzerzeichen abgeschlossen wird. Danach folgen das Zeichen oder die Zeichenfolge, mit dem/mit der die Fundstellen ersetzt werden sollen, abgeschlossen wird dieses Ersetzungsmuster mit dem dritten Begrenzerzeichen. Falls benötigt, notieren Sie nach dem letzten Begrenzerzeichen noch Flags für den Such-Ersetze-Vorgang. Im Beispiel wurden folgende Flags verwendet:<newline/> sucht/ersetzt  Fundstellen (ansonsten wird nur die erste Fundstelle ersetzt)<newline/> sucht/ersetzt Buchstaben unabhängig davon, ob sie groß oder klein geschrieben sind (ansonsten wird Groß-/Kleinschreibung unterschieden).</para>
+          <para>Im obigen Beispiel werden aus dem Skalar  alle Buchstaben (groß und klein) und alle Leerzeichen entfernt. Es bleiben anschließend also nur noch die Ziffern am Ende stehen. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+        </section>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr7.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Beispiel werden in  alle deutschen Umlaute und scharfes S durch ihre HTML-gerechten Umschreibungen ersetzt. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+        </section>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr8.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Beispiel werden in  alle Wörter mit Hilfe des [Image]<link target-id="">-Flags</link> und der [Image]<link url="../funktionen/zeichenketten.htm#reverse" window="new">reverse</link>-Funktion umgedreht. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Transliteration</title>
+        <para>Für "kleinere" Aufgaben wie Suchen und Ersetzen oder das Zählen von einzelnen Zeichen gibt es in Perl die Möglichkeit, ohne reguläre Ausdrücke zu arbeiten. Dafür gibt es eine spezielle Syntax, den Transliterationsoperator .</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr9.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Eine Transliteration besteht darin, einzelne Zeichen durch andere Zeichen zu ersetzen. Das Schema für eine Transliteration in Perl lautet:<newline/><newline/>
+Dabei sind sowohl das Such- als auch das Ersetzungsmuster keine Zeichenketten, sondern nur einzelne Zeichen oder Zeichenbereiche. Die Muster sind sozusagen zwei Listen von Zeichen. Wenn in  ein Zeichen gefunden wird, das in der Suchliste vorkommt, wird es mit dem Zeichen ersetzt, das an derselben Position in der Ersetzungsliste steht.</para>
+          <para>Alle Beispiele des obigen Scripts sind gleich aufgebaut. Es wird ein Skalar mit einem "interessanten" Wert deklariert. Dann wird eine Transliteration auf diesen Wert angewendet, und anschließend wird das Ergebnis ausgegeben.</para>
+          <para>Im Fall von  wird das Prinzip der Transliteration deutlich: in dem Beispiel wird  durch  ersetzt und  durch . Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden die Buchstaben  und  durch  und  ersetzt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Großbuchstaben durch entsprechende Kleinbuchstaben ersetzt (entspricht etwa der Funktion [Image]<link url="../funktionen/zeichenketten.htm#lc" window="new">lc</link>). Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Zeichen, die kein Buchstabe von A bis Z oder a bis z oder eine Ziffer oder ein Unterstrich sind, durch den Unterstrich  ersetzt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle doppelten oder mehrfachen Leerzeichen entfernt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  wird sich der Rückgabewert einer Transliteration zu eigen gemacht. Dem Skalar  passiert dabei nichts weiter, aber der Rückgabewert ermittelt, wie oft die Buchstaben  oder  in dem Satz vorkommen. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Zeichen mit Zeichenwerten zwischen 128 und 255 in Zeichen mit entsprechenden Zeichenwerten zwischen 0 und 127 umgewandelt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Zeichen des ersten Alphabethälfte in solche der zweiten verwandelt und umgekehrt (sie werden sozusagen um 13 Zeichenwerte rotiert). Die Ausgabe lautet:<newline/><newline/>
+(das ROT13-Prinzip wird in den Newsgroups manchmal angewendet, um Dinge zu sagen, die nicht jeder verstehen können soll).</para>
+          <para>© 2007 [Image]<link url="../../editorial/impressum.htm" window="new">Impressum</link><link url="http://flattr.com/thing/41584/SELFHTML" window="new">[Image]</link></para>
+        </section>
+      </section>
+    </section>
+    <section>
+      <title>Suchen und Ersetzen mit regulären Ausdrücken</title>
+      <para>Reguläre Ausdrücke sind das Mittel, mit dem in Perl in Zeichenketten etwas gesucht und ersetzt wird.</para>
+      <section>
+        <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+        <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr6.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Das Schema für alle Suche-Ersetze-Vorgänge in Perl lautet:<newline/></para>
+          <para> ist ein Skalar, in dem eine Zeichenkette gespeichert ist, so wie etwa  im obigen Beispiel 1. Dieser Skalar wird mit dem Operator  an die Ersetzung gebunden, d.h. der Suche-Ersetze-Vorgang gilt für den Inhalt des Skalars. Dahinter notieren Sie die Ersetzung. Sie wird durch ein kleines  eingeleitet. Nach dem  notieren Sie das erste Begrenzerzeichen (per Voreinstellung ein Schrägstrich), und danach das Suchmuster, das mit dem zweiten Begrenzerzeichen abgeschlossen wird. Danach folgen das Zeichen oder die Zeichenfolge, mit dem/mit der die Fundstellen ersetzt werden sollen, abgeschlossen wird dieses Ersetzungsmuster mit dem dritten Begrenzerzeichen. Falls benötigt, notieren Sie nach dem letzten Begrenzerzeichen noch Flags für den Such-Ersetze-Vorgang. Im Beispiel wurden folgende Flags verwendet:<newline/> sucht/ersetzt  Fundstellen (ansonsten wird nur die erste Fundstelle ersetzt)<newline/> sucht/ersetzt Buchstaben unabhängig davon, ob sie groß oder klein geschrieben sind (ansonsten wird Groß-/Kleinschreibung unterschieden).</para>
+          <para>Im obigen Beispiel werden aus dem Skalar  alle Buchstaben (groß und klein) und alle Leerzeichen entfernt. Es bleiben anschließend also nur noch die Ziffern am Ende stehen. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+        </section>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr7.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Beispiel werden in  alle deutschen Umlaute und scharfes S durch ihre HTML-gerechten Umschreibungen ersetzt. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+        </section>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr8.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Beispiel werden in  alle Wörter mit Hilfe des [Image]<link target-id="">-Flags</link> und der [Image]<link url="../funktionen/zeichenketten.htm#reverse" window="new">reverse</link>-Funktion umgedreht. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Erläuterung:</title>
+        <para>Das Schema für alle Suche-Ersetze-Vorgänge in Perl lautet:<newline/></para>
+        <para> ist ein Skalar, in dem eine Zeichenkette gespeichert ist, so wie etwa  im obigen Beispiel 1. Dieser Skalar wird mit dem Operator  an die Ersetzung gebunden, d.h. der Suche-Ersetze-Vorgang gilt für den Inhalt des Skalars. Dahinter notieren Sie die Ersetzung. Sie wird durch ein kleines  eingeleitet. Nach dem  notieren Sie das erste Begrenzerzeichen (per Voreinstellung ein Schrägstrich), und danach das Suchmuster, das mit dem zweiten Begrenzerzeichen abgeschlossen wird. Danach folgen das Zeichen oder die Zeichenfolge, mit dem/mit der die Fundstellen ersetzt werden sollen, abgeschlossen wird dieses Ersetzungsmuster mit dem dritten Begrenzerzeichen. Falls benötigt, notieren Sie nach dem letzten Begrenzerzeichen noch Flags für den Such-Ersetze-Vorgang. Im Beispiel wurden folgende Flags verwendet:<newline/> sucht/ersetzt  Fundstellen (ansonsten wird nur die erste Fundstelle ersetzt)<newline/> sucht/ersetzt Buchstaben unabhängig davon, ob sie groß oder klein geschrieben sind (ansonsten wird Groß-/Kleinschreibung unterschieden).</para>
+        <para>Im obigen Beispiel werden aus dem Skalar  alle Buchstaben (groß und klein) und alle Leerzeichen entfernt. Es bleiben anschließend also nur noch die Ziffern am Ende stehen. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr7.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Beispiel werden in  alle deutschen Umlaute und scharfes S durch ihre HTML-gerechten Umschreibungen ersetzt. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+        </section>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr8.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Beispiel werden in  alle Wörter mit Hilfe des [Image]<link target-id="">-Flags</link> und der [Image]<link url="../funktionen/zeichenketten.htm#reverse" window="new">reverse</link>-Funktion umgedreht. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+        <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr7.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Beispiel werden in  alle deutschen Umlaute und scharfes S durch ihre HTML-gerechten Umschreibungen ersetzt. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+        </section>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr8.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Beispiel werden in  alle Wörter mit Hilfe des [Image]<link target-id="">-Flags</link> und der [Image]<link url="../funktionen/zeichenketten.htm#reverse" window="new">reverse</link>-Funktion umgedreht. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Erläuterung:</title>
+        <para>In diesem Beispiel werden in  alle deutschen Umlaute und scharfes S durch ihre HTML-gerechten Umschreibungen ersetzt. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+        <section>
+          <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+          <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr8.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        </section>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Beispiel werden in  alle Wörter mit Hilfe des [Image]<link target-id="">-Flags</link> und der [Image]<link url="../funktionen/zeichenketten.htm#reverse" window="new">reverse</link>-Funktion umgedreht. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+        <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr8.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        <section>
+          <title>Erläuterung:</title>
+          <para>In diesem Beispiel werden in  alle Wörter mit Hilfe des [Image]<link target-id="">-Flags</link> und der [Image]<link url="../funktionen/zeichenketten.htm#reverse" window="new">reverse</link>-Funktion umgedreht. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+          <para>
+            <link target-id="">[Image]</link>
+            <link target-id="">[Image]</link>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>Erläuterung:</title>
+        <para>In diesem Beispiel werden in  alle Wörter mit Hilfe des [Image]<link target-id="">-Flags</link> und der [Image]<link url="../funktionen/zeichenketten.htm#reverse" window="new">reverse</link>-Funktion umgedreht. Das Ergebnis wird zur Kontrolle ausgegeben.</para>
+        <para>
+          <link target-id="">[Image]</link>
+          <link target-id="">[Image]</link>
+        </para>
+      </section>
+    </section>
+    <section>
+      <title>Transliteration</title>
+      <para>Für "kleinere" Aufgaben wie Suchen und Ersetzen oder das Zählen von einzelnen Zeichen gibt es in Perl die Möglichkeit, ohne reguläre Ausdrücke zu arbeiten. Dafür gibt es eine spezielle Syntax, den Transliterationsoperator .</para>
+      <section>
+        <title>Beispiel eines vollständigen CGI-Scripts in Perl:</title>
+        <para>[Image]<link url="http://de.selfhtml.org/cgi-bin/812/regexpr9.pl" window="new">Anzeigebeispiel: So sieht's aus</link> (Zum Aufruf des Scripts ist eine Internet-Verbindung erforderlich)</para>
+        <section>
+          <title>Erläuterung:</title>
+          <para>Eine Transliteration besteht darin, einzelne Zeichen durch andere Zeichen zu ersetzen. Das Schema für eine Transliteration in Perl lautet:<newline/><newline/>
+Dabei sind sowohl das Such- als auch das Ersetzungsmuster keine Zeichenketten, sondern nur einzelne Zeichen oder Zeichenbereiche. Die Muster sind sozusagen zwei Listen von Zeichen. Wenn in  ein Zeichen gefunden wird, das in der Suchliste vorkommt, wird es mit dem Zeichen ersetzt, das an derselben Position in der Ersetzungsliste steht.</para>
+          <para>Alle Beispiele des obigen Scripts sind gleich aufgebaut. Es wird ein Skalar mit einem "interessanten" Wert deklariert. Dann wird eine Transliteration auf diesen Wert angewendet, und anschließend wird das Ergebnis ausgegeben.</para>
+          <para>Im Fall von  wird das Prinzip der Transliteration deutlich: in dem Beispiel wird  durch  ersetzt und  durch . Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden die Buchstaben  und  durch  und  ersetzt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Großbuchstaben durch entsprechende Kleinbuchstaben ersetzt (entspricht etwa der Funktion [Image]<link url="../funktionen/zeichenketten.htm#lc" window="new">lc</link>). Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Zeichen, die kein Buchstabe von A bis Z oder a bis z oder eine Ziffer oder ein Unterstrich sind, durch den Unterstrich  ersetzt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle doppelten oder mehrfachen Leerzeichen entfernt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  wird sich der Rückgabewert einer Transliteration zu eigen gemacht. Dem Skalar  passiert dabei nichts weiter, aber der Rückgabewert ermittelt, wie oft die Buchstaben  oder  in dem Satz vorkommen. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Zeichen mit Zeichenwerten zwischen 128 und 255 in Zeichen mit entsprechenden Zeichenwerten zwischen 0 und 127 umgewandelt. Die Ausgabe lautet daher:<newline/></para>
+          <para>Im Fall von  werden alle Zeichen des ersten Alphabethälfte in solche der zweiten verwandelt und umgekehrt (sie werden sozusagen um 13 Zeichenwerte rotiert). Die Ausgabe lautet:<newline/><newline/>
+(das ROT13-Prinzip wird in den Newsgroups manchmal angewendet, um Dinge zu sagen, die nicht jeder verstehen können soll).</para>
+          <para>© 2007 [Image]<link url="../../editorial/impressum.htm" window="new">Impressum</link><link url="http://flattr.com/thing/41584/SELFHTML" window="new">[Image]</link></para>
+        </section>
+      </section>
+      <section>
+        <title>Erläuterung:</title>
+        <para>Eine Transliteration besteht darin, einzelne Zeichen durch andere Zeichen zu ersetzen. Das Schema für eine Transliteration in Perl lautet:<newline/><newline/>
+Dabei sind sowohl das Such- als auch das Ersetzungsmuster keine Zeichenketten, sondern nur einzelne Zeichen oder Zeichenbereiche. Die Muster sind sozusagen zwei Listen von Zeichen. Wenn in  ein Zeichen gefunden wird, das in der Suchliste vorkommt, wird es mit dem Zeichen ersetzt, das an derselben Position in der Ersetzungsliste steht.</para>
+        <para>Alle Beispiele des obigen Scripts sind gleich aufgebaut. Es wird ein Skalar mit einem "interessanten" Wert deklariert. Dann wird eine Transliteration auf diesen Wert angewendet, und anschließend wird das Ergebnis ausgegeben.</para>
+        <para>Im Fall von  wird das Prinzip der Transliteration deutlich: in dem Beispiel wird  durch  ersetzt und  durch . Die Ausgabe lautet daher:<newline/></para>
+        <para>Im Fall von  werden die Buchstaben  und  durch  und  ersetzt. Die Ausgabe lautet daher:<newline/></para>
+        <para>Im Fall von  werden alle Großbuchstaben durch entsprechende Kleinbuchstaben ersetzt (entspricht etwa der Funktion [Image]<link url="../funktionen/zeichenketten.htm#lc" window="new">lc</link>). Die Ausgabe lautet daher:<newline/></para>
+        <para>Im Fall von  werden alle Zeichen, die kein Buchstabe von A bis Z oder a bis z oder eine Ziffer oder ein Unterstrich sind, durch den Unterstrich  ersetzt. Die Ausgabe lautet daher:<newline/></para>
+        <para>Im Fall von  werden alle doppelten oder mehrfachen Leerzeichen entfernt. Die Ausgabe lautet daher:<newline/></para>
+        <para>Im Fall von  wird sich der Rückgabewert einer Transliteration zu eigen gemacht. Dem Skalar  passiert dabei nichts weiter, aber der Rückgabewert ermittelt, wie oft die Buchstaben  oder  in dem Satz vorkommen. Die Ausgabe lautet daher:<newline/></para>
+        <para>Im Fall von  werden alle Zeichen mit Zeichenwerten zwischen 128 und 255 in Zeichen mit entsprechenden Zeichenwerten zwischen 0 und 127 umgewandelt. Die Ausgabe lautet daher:<newline/></para>
+        <para>Im Fall von  werden alle Zeichen des ersten Alphabethälfte in solche der zweiten verwandelt und umgekehrt (sie werden sozusagen um 13 Zeichenwerte rotiert). Die Ausgabe lautet:<newline/><newline/>
+(das ROT13-Prinzip wird in den Newsgroups manchmal angewendet, um Dinge zu sagen, die nicht jeder verstehen können soll).</para>
+        <para>© 2007 [Image]<link url="../../editorial/impressum.htm" window="new">Impressum</link><link url="http://flattr.com/thing/41584/SELFHTML" window="new">[Image]</link></para>
+      </section>
+    </section>
+  </content>
+</document>

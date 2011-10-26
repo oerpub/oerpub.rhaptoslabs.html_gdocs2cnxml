@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" cnxml-version="0.7" module-id="new">
+  <title>Blueprint HTML Elements Tests</title>
+  <content>
+    <section>
+      <title>Tests for common HTML elements</title>
+      <para>
+        <newline/>
+      </para>
+      <section>
+        <title>PARAGRAPHS &amp; BOXES</title>
+        <para>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</para>
+        <para>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor  ut labore et  magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</para>
+        <para>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</para>
+        <para>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</para>
+        <para>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</para>
+        <para>Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</para>
+        <section>
+          <title>LISTS</title>
+          <para>
+            <newline/>
+          </para>
+          <list list-type="bulleted">
+            <item>Ordered list test</item>
+          </list>
+          <list list-type="bulleted">
+            <item>Ordered list</item>
+          </list>
+          <section>
+            <title>HEADINGS</title>
+            <para>
+              <newline/>
+            </para>
+          </section>
+        </section>
+        <section>
+          <title>HEADINGS</title>
+          <para>
+            <newline/>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>LISTS</title>
+        <para>
+          <newline/>
+        </para>
+        <list list-type="bulleted">
+          <item>Ordered list test</item>
+        </list>
+        <list list-type="bulleted">
+          <item>Ordered list</item>
+        </list>
+        <section>
+          <title>HEADINGS</title>
+          <para>
+            <newline/>
+          </para>
+        </section>
+      </section>
+      <section>
+        <title>HEADINGS</title>
+        <para>
+          <newline/>
+        </para>
+      </section>
+    </section>
+  </content>
+</document>

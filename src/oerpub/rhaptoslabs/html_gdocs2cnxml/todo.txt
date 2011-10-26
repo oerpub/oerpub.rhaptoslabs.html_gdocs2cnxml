@@ -1,0 +1,15 @@
+Standalone HTML Import:
+[x] Getting the latest version of HTML(-soup) to CNXML transformation from Rhaptos' Branches
+[x] Transform HTML String to CNXML String
+[x] Automated processing of every HTML->CNXML file in testbed
+[x] Jing Relax NG validation of every CNXML result file in testbed
+[ ] Support HTML->CNXML from URLs (download HTML from webpage and transform)
+[ ] Resolve Jing Relax NG validation errors (bug fixing)
+[ ] Make Premailer more stable for every HTML in testbed
+[ ] Extend Testbed
+[ ] Add python CLI for converting a single HTML file
+
+Standalone GDocs Import:
+[ ] Improve ID generation. IDs sometimes missing.
+[ ] Ignore Blahtex on Windows. Blahtex is only available on Mac and Linux.
+[ ] Add python CLI for converting a single GDocs file
