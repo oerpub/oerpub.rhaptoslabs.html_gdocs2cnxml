@@ -33,6 +33,9 @@ setup(name='oerpub.rhaptoslabs.html_gdocs2cnxml',
       namespace_packages=['oerpub', 'oerpub.rhaptoslabs'],
       include_package_data=True,
       zip_safe=False,
+      dependency_links = [
+          'http://code.google.com/p/gdata-python-client/downloads/list'
+      ],
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
