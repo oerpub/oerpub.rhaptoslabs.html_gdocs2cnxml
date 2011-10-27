@@ -12,9 +12,10 @@ from xhtmlpremailer import xhtmlPremailer
 from lxml import etree
 import magic
 
-XHTML_ENTITIES = os.path.join('www', 'catalog_xhtml', 'catalog.xml')
-GDOCS2CNXML_XSL1 = os.path.join('www', 'gdocs_meta1.xsl')
-GDOCS2CNXML_XSL2 = os.path.join('www', 'gdocs_meta2.xsl')
+current_dir = os.path.dirname(__file__)
+XHTML_ENTITIES = os.path.join(current_dir, 'www', 'catalog_xhtml', 'catalog.xml')
+GDOCS2CNXML_XSL1 = os.path.join(current_dir, 'www', 'gdocs_meta1.xsl')
+GDOCS2CNXML_XSL2 = os.path.join(current_dir, 'www', 'gdocs_meta2.xsl')
 
 # Tidy up the Google Docs HTML Soup
 def tidy_and_premail(content):
