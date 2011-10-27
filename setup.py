@@ -37,10 +37,10 @@ setup(name='oerpub.rhaptoslabs.html_gdocs2cnxml',
           'setuptools',
           # -*- Extra requirements: -*-
           'ctypes',
-          'pytidylib=0.2.1',
+          'pytidylib==0.2.1',
           'elementtree',
-          'lxml=2.3',
-          'gdata=2.0.14',
+          'lxml==2.3',
+          'gdata==2.0.14',
       ],
       entry_points="""
       # -*- Entry points: -*-
