@@ -49,7 +49,8 @@ def tex2mathml(xml):
     formularList = xpathFormulars(xml)
     for formular in formularList:
         strTex = urllib2.unquote(formular.get('tex'))
-        strCmdBlahtex = ['blahtex','--mathml']
+        #TODO: Ubuntu has 'blahtexml', when compiled by yourself we need 'blahtex'. This needs to be more dynamically!
+        strCmdBlahtex = ['blahtexml','--mathml']
         # run the program with subprocess and pipe the input and output to variables
         p = subprocess.Popen(strCmdBlahtex, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
         strMathMl, strErr = p.communicate(strTex) # set STDIN and STDOUT and wait till the program finishes
