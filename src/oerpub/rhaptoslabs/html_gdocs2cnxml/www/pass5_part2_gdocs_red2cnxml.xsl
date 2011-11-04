@@ -41,10 +41,14 @@ not important node (less restrictive):
 <!-- Look in span-children of this node if there is some red text -->
  <xsl:template match="xh:p[child::* and not(ancestor::xh:div or ancestor::xh:table or ancestor::xh:li)]" mode="red2cnxml">
 	<xsl:apply-templates select="*[1]" mode="red2cnxml_walker"/>
+    <!-- add linebreaks if red text used. Necessary for code blocks http://cnx.org/eip-help/code -->
+    <xsl:if test="xh:span[@style='color:#ff0000']">
+        <cnhtml:cnxml><xsl:text>&#xA;</xsl:text></cnhtml:cnxml>
+    </xsl:if>
 </xsl:template>
 
 <xsl:template match="xh:span[@style='color:#ff0000']" mode="red2cnxml_walker">
-	<cnhtml:cnxml><xsl:value-of select="normalize-space(.)"/></cnhtml:cnxml>
+	<cnhtml:cnxml><xsl:value-of select="."/></cnhtml:cnxml>
 	<xsl:apply-templates select="following-sibling::*[1]" mode="red2cnxml_walker"/>
 </xsl:template>
 
