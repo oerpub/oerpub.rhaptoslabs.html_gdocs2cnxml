@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" cnxml-version="0.7" module-id="new">
+  <title>GDocs2CNXML_Testdoc1</title>
+  <content>
+    <para>Table of Contents:</para>
+    <para id="gd-000003">
+      <newline/>
+    </para>
+    <para>
+      <link target-id="gd-000003">Heading1</link>
+    </para>
+    <para>
+      <link target-id="gd-000055">1d</link>
+    </para>
+    <para>
+      <link target-id="gd-000079">Heading2</link>
+    </para>
+    <para>
+      <link target-id="gd-000079">Heading2-2</link>
+    </para>
+    <para>
+      <link target-id="gd-000079">Heading3</link>
+    </para>
+    <para>
+      <link target-id="gd-000079">Heading4</link>
+    </para>
+    <para>
+      <link target-id="gd-000079">Heading5</link>
+    </para>
+    <para>
+      <link target-id="gd-000079">Heading6</link>
+    </para>
+    <para>
+      <link target-id="gd-000079">AgainHeading1</link>
+    </para>
+    <para>
+      <link target-id="gd-000079">Heading6</link>
+    </para>
+    <section><title>Heading1</title><para>TextH1:Lorem ipsum dolor sit</para>amet<para>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.<footnote>Fo<emphasis effect="underline">o</emphasis><emphasis effect="bold">tnote</emphasis> 1<link url="http://www.google.de" window="new">www.google.de</link></footnote></para><para>At vero<footnote>Footnote 1.2</footnote> eos et accusam et äüöü</para><para id="gd-000020"><newline/></para><para>Special characters:</para><para>⇨ℕ©®</para><para id="gd-000023"><newline/></para><para>Drawing Test:</para><para id="gd-000025"><newline/></para><para><media alt="https://docs.google.com/drawings/image?id=stYmjSSfuTBHsFkaUZa_gKg&amp;rev=14&amp;h=85&amp;w=213&amp;ac=1"><image mime-type="image/png" src="gd-0001.png" height="85" width="213"/></media></para><para>Picture Test:</para><para><media alt="https://lh6.googleusercontent.com/o7z23jdxMd6OimZVmMTIDENBeJ9nMM6sa3AxztV4YtP8FI7HBREOnfRpOFp9-DtuuBYppmvT7uifcQ_QFzV7ERAVyZRQX_9EFNoBV7S3yI4tYbmlSdQ"><image mime-type="image/jpeg" src="gd-0002.jpg" height="107" width="143"/></media></para><para id="gd-000029"><newline/></para><para>Formular Test:</para><para/><para id="gd-000032"><newline/></para><para><link url="http://www.google.com" window="new">Link1</link></para><para><link url="http://www.cnn.com" window="new">Hallo123</link></para><para><link url="mailto:therealmarvapi@googlemail.com">Email1</link></para><para><link target-id="gd-000103">BookmarkTest</link></para><para>a<emphasis effect="bold">Bold</emphasis> text</para><para>an<emphasis effect="italics">Italics</emphasis> text</para><para>a<emphasis effect="italics">Bold &amp; Italcs</emphasis> text</para><para>a<emphasis effect="underline">underlined</emphasis> text</para><para>a<emphasis effect="italics">bold, italics &amp; underlined</emphasis> text</para><para>superscript<sup>2</sup></para><para>subscript<sub>2</sub></para><list list-type="bulleted"><item>Listing 1<list list-type="bulleted" bullet-style="open-circle"><item>Listing 1.2</item></list></item><item>Listing 2<list list-type="bulleted" bullet-style="open-circle"><item><emphasis effect="bold">Listing 2.1</emphasis></item><item>Listing<emphasis effect="underline">2.2</emphasis><list list-type="bulleted"><item>Listing<emphasis effect="italics"> 2.2.1</emphasis></item></list></item><item>Listing 2.3</item></list></item><item>Listing 3</item></list><list list-type="enumerated"><item>Listing 4</item><item>Listing 5</item></list><list list-type="bulleted"><item>Listing 6</item></list><para>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</para><list list-type="enumerated"><item>Listing 7</item></list><list list-type="enumerated" number-style="upper-alpha"><item>Listing 8<list list-type="enumerated" number-style="lower-alpha"><item>Listing 8.1<list list-type="enumerated" number-style="lower-roman"><item>Listing 8.1.1</item><item>Listing 8.1.2</item></list></item></list></item></list><para id="gd-000055"><newline/></para><table summary=""><tgroup cols="5"><tbody><row><entry><para><emphasis effect="bold">1a</emphasis></para><para><emphasis effect="bold">1a2</emphasis></para></entry><entry><para><emphasis effect="italics">1b</emphasis></para></entry><entry><para><emphasis effect="underline">1c</emphasis></para></entry><entry>1d</entry><entry><para>1e</para></entry></row><row><entry><para><emphasis effect="bold">2a</emphasis></para></entry><entry><para>2b</para></entry><entry><para>2c</para><para id="gd-000065"><newline/></para>ERROR! Nested tables are not supported!</entry><entry><para>2d</para></entry><entry><para><media alt="https://lh3.googleusercontent.com/3U_-cTbxMz03wh0uaHXmJOr_qZcMNvarEUzC_r-G5t1XFnkgt3HYWUKuPk3xnpaqtoVI3QGqehOI9Tp0SxKjPwVSfZOpLw6umLsLDU17xNNV_6H61II"><image mime-type="image/jpeg" src="gd-0003.jpg" height="65" width="107"/></media></para></entry></row><row><entry><para><emphasis effect="bold">3a</emphasis></para></entry><entry><list list-type="bulleted"><item>3b1</item><item>3b2<list list-type="bulleted" bullet-style="open-circle"><item>3b2.1</item><item>3b2.2</item></list></item><item>3b3</item></list></entry><entry><para>3c</para></entry><entry><para>3d</para></entry><entry><para>3e</para></entry></row><row><entry><para><emphasis effect="bold">4a</emphasis></para></entry><entry><para>4b</para></entry><entry><para>4c</para></entry><entry><para>4d</para></entry><entry><para>4e</para></entry></row></tbody></tgroup></table><para id="gd-000079"><newline/></para><section><title>Heading2</title><list list-type="bulleted"><item>Listing 9<list list-type="enumerated" number-style="upper-alpha"><item>Listing 9.1<list list-type="enumerated" number-style="lower-roman"><item>Listing 9.1.1<list list-type="enumerated" number-style="upper-roman"><item>Listing 9.1.1.1<list list-type="bulleted"><item>Listing 9.1.1.1.1</item></list></item></list></item></list></item></list></item></list><para>TextH2: Lorem<footnote>Footnote 2</footnote> ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</para><para/></section><section><title>Heading2-2</title><para>TextH2-2: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</para><section><title>Heading3</title><para>TextH3: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</para><section><title>Heading4</title><para>TextH4: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</para><section><title>Heading5</title><para>TextH5: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</para><section><title>Heading6</title><para>TextH6: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</para></section></section></section></section></section></section>
+    <section>
+      <title>AgainHeading1</title>
+      <para>TextAgainH1: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</para>
+      <section>
+        <title>Heading6</title>
+        <para>TextAgainH6: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</para>
+        <para id="gd-000103">
+          <newline/>
+        </para>
+      </section>
+    </section>
+  </content>
+</document>
