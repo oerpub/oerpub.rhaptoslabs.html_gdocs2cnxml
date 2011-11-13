@@ -145,7 +145,7 @@ def main():
                     cnxml_file.close()
 
                 # validate CNXML output with Jing Relax NG
-                if sys.argv[1] == '-noval':
+                if len(sys.argv) > 1 and sys.argv[1] == '-noval':
                     print_status('Validation skipped')
                 else:
                     print_status('Validating %s' % doc_key)
