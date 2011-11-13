@@ -45,17 +45,21 @@ def tidy_and_premail(content):
 
 # Use Blahtex transformation from TeX to XML. http://gva.noekeon.org/blahtexml/
 def tex2mathml(xml):
-    xpathFormulars = etree.XPath('//cnxtra:tex[@tex]', namespaces={'cnxtra':'http://cnxtra'})
-    formularList = xpathFormulars(xml)
-    for formular in formularList:
-        strTex = urllib2.unquote(formular.get('tex'))
-        #TODO: Ubuntu has 'blahtexml', when compiled by yourself we need 'blahtex'. This needs to be more dynamically!
-        strCmdBlahtex = ['blahtexml','--mathml']
-        # run the program with subprocess and pipe the input and output to variables
-        p = subprocess.Popen(strCmdBlahtex, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-        strMathMl, strErr = p.communicate(strTex) # set STDIN and STDOUT and wait till the program finishes
-        mathMl = etree.fromstring(strMathMl)
-        formular.append(mathMl)
+    # Do not run blahtex if we are not on Linux!
+    if os.name == 'posix':
+        xpathFormulars = etree.XPath('//cnxtra:tex[@tex]', namespaces={'cnxtra':'http://cnxtra'})
+        formularList = xpathFormulars(xml)
+        for formular in formularList:
+            strTex = urllib2.unquote(formular.get('tex'))
+            #TODO: Ubuntu has 'blahtexml', when compiled by yourself we need 'blahtex'. This needs to be more dynamically!
+            strCmdBlahtex = ['blahtexml','--mathml']
+            # run the program with subprocess and pipe the input and output to variables
+            p = subprocess.Popen(strCmdBlahtex, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+            strMathMl, strErr = p.communicate(strTex) # set STDIN and STDOUT and wait till the program finishes
+            mathMl = etree.fromstring(strMathMl)
+            formular.append(mathMl)
+    else:
+        print 'Error: Math will not be converted! Blahtex is only available on Linux!'
     return xml
 
 # Get the filename without extension form a URL
