@@ -89,7 +89,10 @@ def main():
             cnxml_file.close()
 
         # validate CNXML output with Jing Relax NG
-        if sys.argv[1] != '-noval':
+        if sys.argv[1] == '-noval':
+            print_status('Validation skipped')
+        else:
+            print_status('Validating...')
             jing_validate_file(cnxml_filename, jing_log_filename)       
 
     print_status('Finished!')
