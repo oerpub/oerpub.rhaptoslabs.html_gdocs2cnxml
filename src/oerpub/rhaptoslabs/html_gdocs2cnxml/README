@@ -1,5 +1,19 @@
 oerpub.rhaptoslabs.html_gdocs2cnxml
------------------------------------
+===================================
+
+How to run
+----------
+python testbed_gdocs.py
+  -or-
+python testbed_gdocs.py -noval
+
+python testbed_html.py
+  -or-
+python testbed_html.py -noval
+
+
+Contents of folders
+-------------------
 
 Folders for all transformations
     jing                  Jing Relax NG validator and validation files.
@@ -8,7 +22,6 @@ Folders for all transformations
 
 Files for all transformations
     todo.txt              TODO list.
-
 
 Folders for HTML transformation
     testbed_html          HTML testbed. Contains a set of HTML which should be converted.

@@ -19,6 +19,7 @@ Created on 14.09.2011
 @author: Marvin Reimer
 '''
 
+import sys
 import os
 import subprocess
 import re
@@ -146,8 +147,9 @@ def main():
                 print_status('Validating %s' % doc_key)
 
                 # validate CNXML output with Jing Relax NG
-                jing_log_filename = os.path.join(doc_output_dir, doc_id + '.log')
-                jing_validate_file(cnxml_filename, jing_log_filename)
+                if sys.argv[1] != '-noval':
+                    jing_log_filename = os.path.join(doc_output_dir, doc_id + '.log')
+                    jing_validate_file(cnxml_filename, jing_log_filename)
 
     print_status('Finished!')
 
