@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id803989" cnxml-version="0.7" module-id="new">
+  <title>Code formating red-text</title>
+  <content>
+    <para id="gd-id803931">This should be displayed as code like in this example<link url="http://cnx.org/eip-help/code" window="new">http://cnx.org/eip-help/code</link> :</para>
+    <code id="gd-id803967" display="block">
+def do_something():
+    print "Hello World"
+</code>
+    <para id="gd-id803557">
+      <newline/>
+    </para>
+    <para id="gd-id803560">And this should be again normal text.</para>
+    <para id="gd-id803535">
+      <newline/>
+    </para>
+    <para id="gd-id803524">TODO1 (works now!):</para>
+    <code id="gd-id803506" display="block">
+def do_something():
+    print "Hello World"
+</code>
+    <para id="gd-id803508">
+      <newline/>
+    </para>
+    <para id="gd-id794527">TODO2 (works now!):</para>
+    <code id="gd-id794535" display="block">
+def do_something():
+    print "Hello World"
+</code>
+    <para id="gd-id794548">
+      <newline/>
+    </para>
+    <para id="gd-id804591">
+      <newline/>
+    </para>
+    <para id="gd-id804568">TODO3 (works now!):</para>
+    <code id="gd-id804556" display="block">
+def do_something():
+    print "Hello World"
+</code>
+  </content>
+</document>

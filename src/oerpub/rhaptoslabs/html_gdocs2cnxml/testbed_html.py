@@ -15,6 +15,7 @@ Created on 13.09.2011
 @author: Marvin Reimer
 '''
 
+import sys
 import glob
 import os
 import subprocess
@@ -89,7 +90,11 @@ def main():
             cnxml_file.close()
 
         # validate CNXML output with Jing Relax NG
-        jing_validate_file(cnxml_filename, jing_log_filename)
+        if len(sys.argv) > 1 and sys.argv[1] == '-noval':
+            print_status('Validation skipped')
+        else:
+            print_status('Validating...')
+            jing_validate_file(cnxml_filename, jing_log_filename)       
 
     print_status('Finished!')
 

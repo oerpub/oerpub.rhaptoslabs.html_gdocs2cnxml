@@ -1,140 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" cnxml-version="0.7" module-id="new">
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id800952" cnxml-version="0.7" module-id="new">
   <title>Sample1</title>
   <content>
-    <section>
+    <section id="gd-id800931">
       <title>Rhaptos now also works with</title>
-      <para>
-        <media alt="https://lh3.googleusercontent.com/L6AvGhePeeD_inHAJjTuDC819GMcH-8ID_wyPCaDDMOA3wHUQGPp-YQR0YFeZvXwsuXAWo1AtGJVdrTawYHBUGeYguG_LV-EdeaeGDIIZW5YyifzbIM">
+      <para id="gd-id800928">
+        <media id="gd-id800924" alt="https://lh3.googleusercontent.com/L6AvGhePeeD_inHAJjTuDC819GMcH-8ID_wyPCaDDMOA3wHUQGPp-YQR0YFeZvXwsuXAWo1AtGJVdrTawYHBUGeYguG_LV-EdeaeGDIIZW5YyifzbIM">
           <image mime-type="image/png" src="gd-0001.png" height="103" width="471"/>
         </media>
       </para>
-      <para>And now some formulars</para>
-      <para/>
-      <para id="gd-000006">
+      <para id="gd-id800898">And now some formulars</para>
+      <para id="gd-id800918"/>
+      <para id="gd-id800910">
         <newline/>
       </para>
-      <para/>
-      <para id="gd-000008">
+      <para id="gd-id800896"/>
+      <para id="gd-id800958">
         <newline/>
       </para>
-      <para>
+      <para id="gd-id800894">
         <link url="http://www.google.com" window="new">www.google.com</link>
       </para>
-      <section>
+      <section id="gd-id799473">
         <title>Some normal text with a footnote[1]</title>
-        <para>
+        <para id="gd-id799482">
           <emphasis effect="italics">Lorem ipsum dolor sit amet,</emphasis>
         </para>
-        <para><emphasis effect="underline">consetetur sadipscing elitr,</emphasis>sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</para>
-        <para id="gd-000013">
+        <para id="gd-id799487"><emphasis effect="underline">consetetur sadipscing elitr,</emphasis>sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</para>
+        <para id="gd-id799493">
           <newline/>
         </para>
-        <para>
-          <link target-id="gd-000023"> Look at this table!</link>
+        <para id="gd-id799495">
+          <link target-id="gd-id805608"> Look at this table!</link>
         </para>
-        <para>
-          <media alt="https://lh4.googleusercontent.com/1YQVLEhKXTHGAtNZlakZVdNRq7X4yQ0Ntz25M-QnmxWhANBV1TjKPjZVOZr5jC7J11XRTL8V4Cp4TpGGgQMVUB7jBYK_X0M9wU0wJ89a6tXZjMc9DD8">
+        <para id="gd-id799500">
+          <media id="gd-id799501" alt="https://lh4.googleusercontent.com/1YQVLEhKXTHGAtNZlakZVdNRq7X4yQ0Ntz25M-QnmxWhANBV1TjKPjZVOZr5jC7J11XRTL8V4Cp4TpGGgQMVUB7jBYK_X0M9wU0wJ89a6tXZjMc9DD8">
             <image mime-type="image/jpeg" src="gd-0002.jpg" height="306" width="310"/>
           </media>
         </para>
-        <para id="gd-000016">
+        <para id="gd-id799510">
           <newline/>
         </para>
-        <list list-type="enumerated">
+        <list id="gd-id799512" list-type="enumerated">
           <item>This is one</item>
-          <item>This is two<list list-type="bulleted" bullet-style="open-circle"><item>three</item><item>four</item></list></item>
+          <item>This is two<list id="gd-id799519" list-type="bulleted" bullet-style="open-circle"><item>three</item><item>four</item></list></item>
           <item>five</item>
           <item>six</item>
         </list>
-        <para id="gd-000019">
+        <para id="gd-id799533">
           <newline/>
         </para>
-        <para id="gd-000020">
+        <para id="gd-id799535">
           <newline/>
         </para>
-        <para/>
-        <para>My table</para>
-        <para id="gd-000023">
+        <para id="gd-id805626"/>
+        <para id="gd-id805608">My table</para>
+        <para id="gd-id805630">
           <newline/>
         </para>
-        <table summary="">
+        <table id="gd-id805616" summary="">
           <tgroup cols="4">
             <tbody>
               <row>
                 <entry>
-                  <para>
+                  <para id="gd-id805584">
                     <emphasis effect="bold">1</emphasis>
                   </para>
                 </entry>
                 <entry>
-                  <para>
+                  <para id="gd-id805567">
                     <emphasis effect="bold">2</emphasis>
                   </para>
                 </entry>
                 <entry>
-                  <para>
+                  <para id="gd-id805574">
                     <emphasis effect="bold">3</emphasis>
                   </para>
                 </entry>
                 <entry>
-                  <para>
+                  <para id="gd-id834325">
                     <emphasis effect="bold">4</emphasis>
                   </para>
                 </entry>
               </row>
               <row>
                 <entry>
-                  <para>We also support tables in</para>
+                  <para id="gd-id834303">We also support tables in</para>
                 </entry>
                 <entry>
-                  <para>CNXML!</para>
+                  <para id="gd-id834287">CNXML!</para>
                 </entry>
                 <entry>
-                  <para>5</para>
+                  <para id="gd-id834310">5</para>
                 </entry>
                 <entry>
-                  <para>6</para>
-                </entry>
-              </row>
-              <row>
-                <entry>
-                  <para>7</para>
-                </entry>
-                <entry>
-                  <para>8</para>
-                </entry>
-                <entry>
-                  <para>9</para>
-                </entry>
-                <entry>
-                  <para>10</para>
+                  <para id="gd-id834293">6</para>
                 </entry>
               </row>
               <row>
                 <entry>
-                  <para>11</para>
+                  <para id="gd-id802159">7</para>
                 </entry>
                 <entry>
-                  <para>12</para>
+                  <para id="gd-id802165">8</para>
                 </entry>
                 <entry>
-                  <para>13</para>
+                  <para id="gd-id802129">9</para>
                 </entry>
                 <entry>
-                  <para>14</para>
+                  <para id="gd-id802142">10</para>
+                </entry>
+              </row>
+              <row>
+                <entry>
+                  <para id="gd-id837977">11</para>
+                </entry>
+                <entry>
+                  <para id="gd-id837989">12</para>
+                </entry>
+                <entry>
+                  <para id="gd-id828065">13</para>
+                </entry>
+                <entry>
+                  <para id="gd-id828058">14</para>
                 </entry>
               </row>
             </tbody>
           </tgroup>
         </table>
-        <para id="gd-000041">
+        <para id="gd-id821912">
           <newline/>
         </para>
-        <para id="gd-000042">
+        <para id="gd-id802942">
           <newline/>
         </para>
-        <para id="gd-000043">
+        <para id="gd-id802940">
           <newline/>
         </para>
       </section>

@@ -40,12 +40,6 @@ Deprecated:
 <!-- convert empty paragraphs to paragraphs with newline -->
 <xsl:template match="cnx:para[not(child::*|text())]" mode="pass7">
   <para>
-	<!-- add id if none available -->
-	<xsl:if test="not(@id)">
-		<xsl:attribute name="id">
-		  <xsl:call-template name="IDAttribute" mode="pass7"/>
-		</xsl:attribute>
-	</xsl:if>
     <xsl:apply-templates select="@*" mode="pass7"/>
     <newline/>
   </para>
@@ -128,9 +122,11 @@ Deprecated:
   </xsl:copy>
 </xsl:template>
 
+<!-- OLD, should be removed in near future: -->
 <!-- ID number generation -->
-<xsl:template name="IDAttribute" mode="pass7no">
-  <xsl:text>gd-</xsl:text>  <!-- ID text prefix -->
+<!--
+<xsl:template name="IDAttributeNO" mode="pass7NO">
+  <xsl:text>gd-</xsl:text>
   <xsl:number count="
     cnx:document[not(@id)]
 	|cnx:section[not(@id)]
@@ -139,11 +135,13 @@ Deprecated:
 	|cnx:table[not(@id)]
 	|cnx:footnote[not(@id)]" level="any" format="000001"/>
 </xsl:template>
+-->
 
+<!-- OLD, should be removed in near future: -->
 <!-- Add id attribute to following elements -->
-<xsl:template match="cnx:document|cnx:section|cnx:para|cnx:list|cnx:table|cnx:footnote" mode="pass7no">
+<!--
+<xsl:template match="cnx:document|cnx:section|cnx:para|cnx:list|cnx:table|cnx:footnote" mode="pass7NO">
   <xsl:copy>
-    <!-- add id if none available -->
 	<xsl:if test="not(@id)">
 		<xsl:attribute name="id">
 		  <xsl:call-template name="IDAttribute" mode="pass7"/>
@@ -152,5 +150,6 @@ Deprecated:
     <xsl:apply-templates select="@*|node()" mode="pass7"/>
   </xsl:copy>
 </xsl:template>
+-->
 
 </xsl:stylesheet>
