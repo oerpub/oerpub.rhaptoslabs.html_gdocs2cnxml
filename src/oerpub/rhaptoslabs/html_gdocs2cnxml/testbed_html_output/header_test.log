@@ -1,4 +1,0 @@
-C:\Dev\eclipse_workspace\GSoC X2CNXML\testbed_html_output\header_test.xml:2:236: error: element "document" missing required attribute "id"
-C:\Dev\eclipse_workspace\GSoC X2CNXML\testbed_html_output\header_test.xml:5:11: error: element "para" missing required attribute "id"
-C:\Dev\eclipse_workspace\GSoC X2CNXML\testbed_html_output\header_test.xml:7:14: error: element "section" missing required attribute "id"
-C:\Dev\eclipse_workspace\GSoC X2CNXML\testbed_html_output\header_test.xml:9:13: error: element "para" missing required attribute "id"

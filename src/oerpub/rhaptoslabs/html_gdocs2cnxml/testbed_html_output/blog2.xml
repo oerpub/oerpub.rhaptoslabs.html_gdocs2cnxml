@@ -1,95 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" cnxml-version="0.7" module-id="new">
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id765446" cnxml-version="0.7" module-id="new">
   <title>dy/dan</title>
   <content>
-    <section>
+    <section id="gd-id765453">
       <title>dy/dan</title>
-      <para>
+      <para id="gd-id765456">
         <newline/>
       </para>
-      <section>
+      <section id="gd-id765459">
         <title>less helpful</title>
-        <para>
+        <para id="gd-id765462">
           <newline/>
         </para>
       </section>
-      <section>
+      <section id="gd-id765465">
         <title>Full Disclosure</title>
-        <para>August 7th, 2011 by <link url="http://blog.mrmeyer.com/?author=1" window="new">Dan Meyer</link></para>
-        <para>I'm a subcontractor of a subcontractor of Pearson on <link url="http://www.nytimes.com/2011/04/28/education/28gates.html?_r=1&amp;pagewanted=all" window="new">this project</link>.</para>
-        <para>I'd been waiting to mention it until after we finished negotiating our long-term contract but I've been on a short-term contract long enough to feel icky writing about the publishing industry without disclosing that it keeps the lights on at Meyer Manor.</para>
-        <para>I don't check the imprint before I criticize a textbook. Pearson basically owns all of them anyway and since they're all printed on paper, they all share some of the same fundamental flaws. In any case, no one I work with has ever sent me a note asking me to back off. They hired me because of my opinions on curriculum design, not in spite of them.</para>
-        <para id="gd-000011">
+        <para id="gd-id765468">August 7th, 2011 by <link url="http://blog.mrmeyer.com/?author=1" window="new">Dan Meyer</link></para>
+        <para id="gd-id765476">I'm a subcontractor of a subcontractor of Pearson on <link url="http://www.nytimes.com/2011/04/28/education/28gates.html?_r=1&amp;pagewanted=all" window="new">this project</link>.</para>
+        <para id="gd-id765484">I'd been waiting to mention it until after we finished negotiating our long-term contract but I've been on a short-term contract long enough to feel icky writing about the publishing industry without disclosing that it keeps the lights on at Meyer Manor.</para>
+        <para id="gd-id765486">I don't check the imprint before I criticize a textbook. Pearson basically owns all of them anyway and since they're all printed on paper, they all share some of the same fundamental flaws. In any case, no one I work with has ever sent me a note asking me to back off. They hired me because of my opinions on curriculum design, not in spite of them.</para>
+        <para id="gd-id765489">
           <newline/>
         </para>
-        <para>Those are the basics, the essential disclosure. If you feel invested in my story, though, here are some more personal details including a) how the offer came up, b) why I picked this project, and c) what it all means for the curricula I post here:</para>
-        <para id="gd-000013">
+        <para id="gd-id765491">Those are the basics, the essential disclosure. If you feel invested in my story, though, here are some more personal details including a) how the offer came up, b) why I picked this project, and c) what it all means for the curricula I post here:</para>
+        <para id="gd-id765494">
           <newline/>
         </para>
-        <para>I don't like to think or talk about how drastically <link url="http://www.youtube.com/watch?v=BlvKWEvKSi8" window="new">a single 11-minute talk</link> altered my professional landscape. I remember talking to <link url="http://thejosevilson.com/" window="new">The Jose Vilson</link> afterwards. He was really kind about the talk and I was like, "Yeah, but this isn't anything I haven't written about a million times, right?" I'm still befuddled by the reception, so I've been treating every workshop I've been asked to facilitate, every talk I've been asked to give, and every person who's asked to meet up with me, as if it's the last one ever. TEDxNYED put a gust of wind in my professional sails and for that I probably owe David Bill a Christmas ham for the rest of his life, but I am trying hard not to squander that momentum and stagnate.</para>
-        <para>Having called out the publishing industry in front of what is now, in the YouTube era, a very large stadium, I was equally befuddled by the reception from editors. I took calls and meetings with the three majors and several smaller imprints. They all expressed awareness of a problem. In many cases, the problem they were aware of was "the industry is bleeding and digital is coming after us like a shark." Meanwhile, the problem that interests me is "print media makes math applications <link url="http://dangoldner.wordpress.com/2011/05/25/sigh/" window="new">boring and hard</link> for students." Still, it seemed like we could help each other out.</para>
-        <para>A reader asked in an e-mail about the irony of going to work for an industry I criticize. I replied that I didn't see the irony. "They're hiring me to fix things I don't like about their product," I said.</para>
-        <para id="gd-000017">
+        <para id="gd-id765496">I don't like to think or talk about how drastically <link url="http://www.youtube.com/watch?v=BlvKWEvKSi8" window="new">a single 11-minute talk</link> altered my professional landscape. I remember talking to <link url="http://thejosevilson.com/" window="new">The Jose Vilson</link> afterwards. He was really kind about the talk and I was like, "Yeah, but this isn't anything I haven't written about a million times, right?" I'm still befuddled by the reception, so I've been treating every workshop I've been asked to facilitate, every talk I've been asked to give, and every person who's asked to meet up with me, as if it's the last one ever. TEDxNYED put a gust of wind in my professional sails and for that I probably owe David Bill a Christmas ham for the rest of his life, but I am trying hard not to squander that momentum and stagnate.</para>
+        <para id="gd-id765512">Having called out the publishing industry in front of what is now, in the YouTube era, a very large stadium, I was equally befuddled by the reception from editors. I took calls and meetings with the three majors and several smaller imprints. They all expressed awareness of a problem. In many cases, the problem they were aware of was "the industry is bleeding and digital is coming after us like a shark." Meanwhile, the problem that interests me is "print media makes math applications <link url="http://dangoldner.wordpress.com/2011/05/25/sigh/" window="new">boring and hard</link> for students." Still, it seemed like we could help each other out.</para>
+        <para id="gd-id765520">A reader asked in an e-mail about the irony of going to work for an industry I criticize. I replied that I didn't see the irony. "They're hiring me to fix things I don't like about their product," I said.</para>
+        <para id="gd-id765522">
           <newline/>
         </para>
-        <para>There were several interesting offers but time is short and I'm still enrolled in a very challenging doctoral program so I took on the Pearson project for several reasons:</para>
-        <list list-type="bulleted">
+        <para id="gd-id765525">There were several interesting offers but time is short and I'm still enrolled in a very challenging doctoral program so I took on the Pearson project for several reasons:</para>
+        <list id="gd-id765527" list-type="bulleted">
           <item>. Phil Daro chaired the math side of the Common Core State Standards and he's the project lead. The international design group includes a bunch of people whose baseball cards I've been collecting since I was a new teacher. Basically, this project puts me in a position to learn a whole lot from a whole lot of very interesting people. That, plus the advice I receive from Jo Boaler and Pam Grossman at Stanford, has me sitting on an embarrassment of intellectual riches.</item>
         </list>
-        <para>Those are the biggest reasons.</para>
-        <para id="gd-000021">
+        <para id="gd-id765532">Those are the biggest reasons.</para>
+        <para id="gd-id765534">
           <newline/>
         </para>
-        <para>Currently I license all my writing and curricula <link url="http://creativecommons.org/licenses/by/3.0/us/" window="new">CC-BY</link> which means anyone can do anything with it (including sell it) so long as my name is attached. The terms of the licensing of my work to Pearson are still under negotiation but I don't want to do work I can't write about or share freely here. So I'm offering Pearson an exclusive  license for my tasks. I'll still make those tasks freely available to you but they'll be licensed <link url="http://creativecommons.org/licenses/by-nc/2.0/" window="new">CC-BY-NC</link>, which means no one but Pearson can use them commercially. I hired an attorney to protect those particular interests.</para>
-        <para>The biggest difference, I suspect, will be more math problems and better math problems. I've had to upgrade the Flip camera and the point-and-shoot and I have to make a lot more tasks now. Fingers crossed. Hopefully we're all walking away winners here.</para>
-        <para>Posted in <link url="http://blog.mrmeyer.com/?cat=74" window="new">uncategorized</link> | <link url="http://blog.mrmeyer.com/?p=11123#comments" window="new">8 Comments »</link></para>
+        <para id="gd-id765537">Currently I license all my writing and curricula <link url="http://creativecommons.org/licenses/by/3.0/us/" window="new">CC-BY</link> which means anyone can do anything with it (including sell it) so long as my name is attached. The terms of the licensing of my work to Pearson are still under negotiation but I don't want to do work I can't write about or share freely here. So I'm offering Pearson an exclusive  license for my tasks. I'll still make those tasks freely available to you but they'll be licensed <link url="http://creativecommons.org/licenses/by-nc/2.0/" window="new">CC-BY-NC</link>, which means no one but Pearson can use them commercially. I hired an attorney to protect those particular interests.</para>
+        <para id="gd-id765551">The biggest difference, I suspect, will be more math problems and better math problems. I've had to upgrade the Flip camera and the point-and-shoot and I have to make a lot more tasks now. Fingers crossed. Hopefully we're all walking away winners here.</para>
+        <para id="gd-id765554">Posted in <link url="http://blog.mrmeyer.com/?cat=74" window="new">uncategorized</link> | <link url="http://blog.mrmeyer.com/?p=11123#comments" window="new">8 Comments »</link></para>
       </section>
-      <section>
+      <section id="gd-id765567">
         <title>Notes From The Road</title>
-        <para>August 1st, 2011 by <link url="http://blog.mrmeyer.com/?author=1" window="new">Dan Meyer</link></para>
-        <list list-type="bulleted">
+        <para id="gd-id765570">August 1st, 2011 by <link url="http://blog.mrmeyer.com/?author=1" window="new">Dan Meyer</link></para>
+        <list id="gd-id765578" list-type="bulleted">
           <item> If you'd like to get on the waiting list for cancellations, I'll take those on a first-come-first-served basis either in the comments here or <link url="mailto:dan@mrmeyer.com">by e-mail</link>.</item>
         </list>
-        <para>Posted in <link url="http://blog.mrmeyer.com/?cat=74" window="new">uncategorized</link> | <link url="http://blog.mrmeyer.com/?p=11183#comments" window="new">4 Comments »</link></para>
+        <para id="gd-id765587">Posted in <link url="http://blog.mrmeyer.com/?cat=74" window="new">uncategorized</link> | <link url="http://blog.mrmeyer.com/?p=11183#comments" window="new">4 Comments »</link></para>
       </section>
-      <section>
+      <section id="gd-id765600">
         <title>It Isn't (All) The Publishers' Fault</title>
-        <para>July 29th, 2011 by <link url="http://blog.mrmeyer.com/?author=1" window="new">Dan Meyer</link></para>
-        <para>I gave the opening talk at <link url="http://www.nctm.org/profdev/content.aspx?id=27112" window="new">NCTM's High School Institute</link> yesterday in Orlando, FL. At the end, a man introduced himself as a teacher and former textbook editor and set me straight on a couple of things:</para>
-        <list list-type="bulleted">
+        <para id="gd-id765604">July 29th, 2011 by <link url="http://blog.mrmeyer.com/?author=1" window="new">Dan Meyer</link></para>
+        <para id="gd-id765611">I gave the opening talk at <link url="http://www.nctm.org/profdev/content.aspx?id=27112" window="new">NCTM's High School Institute</link> yesterday in Orlando, FL. At the end, a man introduced himself as a teacher and former textbook editor and set me straight on a couple of things:</para>
+        <list id="gd-id765620" list-type="bulleted">
           <item>. Teachers review those books and point to problems and say, "That's too hard. That one too. My students can't do that one. Break that down for me."</item>
         </list>
-        <para>Publishers respond to market pressure from teachers who are responding to a similar kind of market pressure from students. I have arrived at very different responses to the same pressure. (ie. Does anyone  think students are engaged by the cartoony nonsense they find in the margins of their books?) Making myself the best advocate I can be for those responses is, of course, the challenge.</para>
-        <para>: Lisa Henry posted <link url="http://oldmathdognewtricks.blogspot.com/2011/07/nctm-institute-on-reasoning-and-sense.html" window="new">a detailed review</link> of my keynote. I want to highlight her remark about <link url="http://blog.mrmeyer.com/?p=10120" window="new">the #anyqs project</link>:</para>
-        <para>I heard this in <link url="http://blog.mrmeyer.com/?p=10770" window="new">Grand Forks</link>, also. The #anyqs exercise seems to be genuinely transformative for at least  teachers. Whether that transformation results in any kind of significant change in student achievement or in the disposition of their classes is an open question.</para>
-        <para>Posted in <link url="http://blog.mrmeyer.com/?cat=74" window="new">uncategorized</link> | <link url="http://blog.mrmeyer.com/?p=11103#comments" window="new">29 Comments »</link></para>
+        <para id="gd-id765624">Publishers respond to market pressure from teachers who are responding to a similar kind of market pressure from students. I have arrived at very different responses to the same pressure. (ie. Does anyone  think students are engaged by the cartoony nonsense they find in the margins of their books?) Making myself the best advocate I can be for those responses is, of course, the challenge.</para>
+        <para id="gd-id765627">: Lisa Henry posted <link url="http://oldmathdognewtricks.blogspot.com/2011/07/nctm-institute-on-reasoning-and-sense.html" window="new">a detailed review</link> of my keynote. I want to highlight her remark about <link url="http://blog.mrmeyer.com/?p=10120" window="new">the #anyqs project</link>:</para>
+        <para id="gd-id765641">I heard this in <link url="http://blog.mrmeyer.com/?p=10770" window="new">Grand Forks</link>, also. The #anyqs exercise seems to be genuinely transformative for at least  teachers. Whether that transformation results in any kind of significant change in student achievement or in the disposition of their classes is an open question.</para>
+        <para id="gd-id765650">Posted in <link url="http://blog.mrmeyer.com/?cat=74" window="new">uncategorized</link> | <link url="http://blog.mrmeyer.com/?p=11103#comments" window="new">29 Comments »</link></para>
       </section>
-      <section>
+      <section id="gd-id765663">
         <title>I'm Doing A Live Webcast For Apple Tomorrow, July 26</title>
-        <para>July 25th, 2011 by <link url="http://blog.mrmeyer.com/?author=1" window="new">Dan Meyer</link></para>
-        <para>10:00AM PDT. <link url="http://edseminars.apple.com/event/4561" window="new">It should be fun</link>. If you can't make it, Apple is archiving it and I'll post the link later.</para>
-        <para>Posted in <link url="http://blog.mrmeyer.com/?cat=79" window="new">presentation</link> | <link url="http://blog.mrmeyer.com/?p=11096#comments" window="new">8 Comments »</link></para>
+        <para id="gd-id765666">July 25th, 2011 by <link url="http://blog.mrmeyer.com/?author=1" window="new">Dan Meyer</link></para>
+        <para id="gd-id765674">10:00AM PDT. <link url="http://edseminars.apple.com/event/4561" window="new">It should be fun</link>. If you can't make it, Apple is archiving it and I'll post the link later.</para>
+        <para id="gd-id765682">Posted in <link url="http://blog.mrmeyer.com/?cat=79" window="new">presentation</link> | <link url="http://blog.mrmeyer.com/?p=11096#comments" window="new">8 Comments »</link></para>
       </section>
-      <section>
+      <section id="gd-id765695">
         <title>Certified Distinguished Stars</title>
-        <para>July 20th, 2011 by <link url="http://blog.mrmeyer.com/?author=1" window="new">Dan Meyer</link></para>
-        <para><link url="http://bionicteaching.com/?p=1957" window="new">Tom Woodward</link>:</para>
-        <para>Posted from Phoenix in a hotel ballroom with other Apple Distinguished Educators while listening to Apple Retail Market Leader Christina Sanchez (Arizona / New Mexico) sell us on selling our students on a career selling Apple products.</para>
-        <para>Posted in <link url="http://blog.mrmeyer.com/?cat=74" window="new">uncategorized</link> | <link url="http://blog.mrmeyer.com/?p=11089#comments" window="new">14 Comments »</link></para>
-        <para>
+        <para id="gd-id765699">July 20th, 2011 by <link url="http://blog.mrmeyer.com/?author=1" window="new">Dan Meyer</link></para>
+        <para id="gd-id765706"><link url="http://bionicteaching.com/?p=1957" window="new">Tom Woodward</link>:</para>
+        <para id="gd-id765713">Posted from Phoenix in a hotel ballroom with other Apple Distinguished Educators while listening to Apple Retail Market Leader Christina Sanchez (Arizona / New Mexico) sell us on selling our students on a career selling Apple products.</para>
+        <para id="gd-id765716">Posted in <link url="http://blog.mrmeyer.com/?cat=74" window="new">uncategorized</link> | <link url="http://blog.mrmeyer.com/?p=11089#comments" window="new">14 Comments »</link></para>
+        <para id="gd-id765729">
           <link url="http://blog.mrmeyer.com/?paged=2" window="new">Next »</link>
         </para>
-        <para>
+        <para id="gd-id765735">
           <link url="http://perplexity.eventbrite.com/" window="new">[Image]</link>
         </para>
-        <para>
+        <para id="gd-id765741">
           <link url="http://perplexity.mrmeyer.com/" window="new">[Image]</link>
         </para>
-        <para>
+        <para id="gd-id765747">
           <link url="http://creativecommons.org/licenses/by/3.0/us/" window="new">[Image]</link>
         </para>
-        <para><link url="http://wpthemes.info/misty-look/" window="new">MistyLook</link> made free by <link url="http://www.webhostingbluebook.com" window="new">Web hosting Bluebook</link> Powered by <link url="http://wordpress.org/" window="new">WordPress</link><newline/>I don't speak for Stanford University.</para>
-        <para>
+        <para id="gd-id765753"><link url="http://wpthemes.info/misty-look/" window="new">MistyLook</link> made free by <link url="http://www.webhostingbluebook.com" window="new">Web hosting Bluebook</link> Powered by <link url="http://wordpress.org/" window="new">WordPress</link><newline/>I don't speak for Stanford University.</para>
+        <para id="gd-id765773">
           <link url="http://blog.mrmeyer.com/?wpmp_switcher=mobile" window="new">Switch to our mobile site</link>
         </para>
       </section>
