@@ -12,8 +12,9 @@ from xhtmlpremailer import xhtmlPremailer
 #from lxml import etree
 #import magic
 
-XHTML_ENTITIES = os.path.join('www', 'catalog_xhtml', 'catalog.xml')
-XHTML2CNXML_XSL = os.path.join('www', 'xhtml2cnxml_meta.xsl')
+current_dir = os.path.dirname(__file__)
+XHTML_ENTITIES = os.path.join(current_dir, 'www', 'catalog_xhtml', 'catalog.xml')
+XHTML2CNXML_XSL = os.path.join(current_dir, 'www', 'xhtml2cnxml_meta.xsl')
 
 # HTML Tidy, HTML Soup to XHTML
 # Premail XHTML
