@@ -14,10 +14,11 @@
 <xsl:output
   method="xml"
   encoding="UTF-8"
-  indent="yes"
+  indent="no"
   cdata-section-elements="cnhtml:cnxml"/>
 
 <xsl:strip-space elements="*"/>
+<xsl:preserve-space elements="xh:span text()"/>
 
 <!--
 This XSLT encloses red text into <cnhtml:cnxml>some red text</cnhtml:cnxml>

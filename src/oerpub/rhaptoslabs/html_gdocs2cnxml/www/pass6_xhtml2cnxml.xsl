@@ -161,6 +161,27 @@ Pass1,2...4 transformation is a precondition for this pass.
   <xsl:value-of select="."/>
 </xsl:template>
 
+<!-- TODO -->
+<xsl:template match="xh:em/text|xh:strong/text" mode="pass6">
+  <xsl:value-of select="."/>
+</xsl:template>
+
+<!-- wrong -->
+<!--
+<xsl:template match="text()" mode="pass6">
+  <xsl:choose>
+    <xsl:when test="ancestor::xh:p|parent::xh:a">
+      <xsl:value-of select="."/>
+    </xsl:when>
+    <xsl:otherwise>
+      <para>
+        <xsl:value-of select="."/>
+      </para>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+-->
+
 <!-- headers -->
 <xsl:template match="cnhtml:h" mode="pass6">
   <xsl:choose>
@@ -427,8 +448,9 @@ Pass1,2...4 transformation is a precondition for this pass.
 	|xh:tt
 	|xh:u
 	|xh:ul
-	|xh:var
-  " mode="pass6"/>
+	|xh:var" mode="pass6">
+  <!-- <xsl:apply-templates mode="pass6"/> -->
+</xsl:template>
 
 
 

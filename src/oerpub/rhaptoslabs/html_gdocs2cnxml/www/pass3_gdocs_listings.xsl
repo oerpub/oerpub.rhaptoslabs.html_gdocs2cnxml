@@ -10,9 +10,10 @@
 <xsl:output
   method="xml"
   encoding="UTF-8"
-  indent="yes"/>
+  indent="no"/>
 
 <xsl:strip-space elements="*"/>
+<xsl:preserve-space elements="xh:span text()"/>
 
 <!--
 This XSLT removes all <ol> tags because Google Docs uses margins

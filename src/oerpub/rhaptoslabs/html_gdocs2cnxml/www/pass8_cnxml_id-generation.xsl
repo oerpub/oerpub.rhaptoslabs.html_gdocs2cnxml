@@ -11,12 +11,10 @@
   version="1.0"
   exclude-result-prefixes="cnx cnxtra">
 
-<xsl:output method="xml" encoding="UTF-8" indent="yes"/>
+<xsl:output method="xml" encoding="UTF-8" indent="no"/>
 
 <xsl:strip-space elements="*"/>
-<!--
-<xsl:preserve-space elements="cnx:code"/>
--->
+<xsl:preserve-space elements="cnx:para cnx:code cnx:link"/>
 
 <xsl:param name="id.prefix">gd-</xsl:param>
 

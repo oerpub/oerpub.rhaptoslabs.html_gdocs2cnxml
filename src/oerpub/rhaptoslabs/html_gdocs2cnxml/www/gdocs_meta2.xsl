@@ -3,6 +3,7 @@
   version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:exsl="http://exslt.org/common"
+  xmlns:cnx="http://cnx.rice.edu/cnxml"
   extension-element-prefixes="exsl"
   exclude-result-prefixes="exsl">
 
@@ -16,6 +17,7 @@
   indent="yes"/>
 
 <xsl:strip-space elements="*"/>
+<xsl:preserve-space elements="cnx:para cnx:code cnx:link"/>  
 
 <xsl:template match="/">
   <!-- CNXML Postprocessing -->

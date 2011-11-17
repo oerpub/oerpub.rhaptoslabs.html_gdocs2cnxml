@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id571149" cnxml-version="0.7" module-id="new">
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id541837" cnxml-version="0.7" module-id="new">
   <title>Theme Preview » Blog Archive » Elements</title>
   <content>
-    <section id="gd-id571156">
+    <section id="gd-id541845">
       <title>Theme Preview</title>
-      <para id="gd-id571160">Previewing Another WordPress Blog</para>
-      <para id="gd-id571162">« <link url="http://wp-themes.com/?p=14" window="new">More Tags</link><link url="http://wp-themes.com/?p=19" window="new">Worth A Thousand Words</link> »</para>
-      <section id="gd-id571175">
+      <para id="gd-id541848">Previewing Another WordPress Blog</para>
+      <para id="gd-id541851">« <link url="http://wp-themes.com/?p=14" window="new">More Tags</link><link url="http://wp-themes.com/?p=19" window="new">Worth A Thousand Words</link> »</para>
+      <section id="gd-id541864">
         <title>Elements</title>
-        <para id="gd-id571179">
+        <para id="gd-id541867">
           <newline/>
         </para>
-        <para id="gd-id571181">The purpose of this HTML is to help determine what default settings are with CSS and to make sure that all possible HTML Elements are included in this HTML so as to not miss any possible Elements when designing a site.</para>
+        <para id="gd-id541870">The purpose of this HTML is to help determine what default settings are with CSS and to make sure that all possible HTML Elements are included in this HTML so as to not miss any possible Elements when designing a site.</para>
       </section>
     </section>
-    <section id="gd-id571184">
+    <section id="gd-id541872">
       <title>Heading 1</title>
-      <para id="gd-id571187">
+      <para id="gd-id541876">
         <newline/>
       </para>
-      <section id="gd-id571190">
+      <section id="gd-id541878">
         <title>Heading 2</title>
-        <para id="gd-id571193">
+        <para id="gd-id541882">
           <newline/>
         </para>
-        <section id="gd-id571196">
+        <section id="gd-id541884">
           <title>Heading 3</title>
-          <para id="gd-id571199">
+          <para id="gd-id541888">
             <newline/>
           </para>
-          <section id="gd-id571202">
+          <section id="gd-id541890">
             <title>Heading 4</title>
-            <para id="gd-id571205">
+            <para id="gd-id541894">
               <newline/>
             </para>
-            <section id="gd-id571208">
+            <section id="gd-id541896">
               <title>Heading 5</title>
-              <para id="gd-id571211">
+              <para id="gd-id541900">
                 <newline/>
               </para>
-              <section id="gd-id571214">
+              <section id="gd-id541902">
                 <title>Heading 6</title>
-                <para id="gd-id571217">
+                <para id="gd-id541906">
                   <newline/>
                 </para>
               </section>
@@ -49,64 +49,64 @@
           </section>
         </section>
       </section>
-      <section id="gd-id571220">
+      <section id="gd-id541908">
         <title>Paragraph</title>
-        <para id="gd-id571223">Lorem ipsum dolor sit amet, test link adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</para>
-        <para id="gd-id571231">Lorem ipsum dolor sit amet,  consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</para>
-        <para id="gd-id571233">
+        <para id="gd-id541912">Lorem ipsum dolor sit amet, test link adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</para>
+        <para id="gd-id541919">Lorem ipsum dolor sit amet,  consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</para>
+        <para id="gd-id541921">
           <newline/>
         </para>
       </section>
-      <section id="gd-id571235">
+      <section id="gd-id541924">
         <title>List Types</title>
-        <para id="gd-id571239">
+        <para id="gd-id541927">
           <newline/>
         </para>
-        <section id="gd-id571241">
+        <section id="gd-id541930">
           <title>Definition List</title>
-          <para id="gd-id571245">
+          <para id="gd-id541933">
             <newline/>
           </para>
         </section>
-        <section id="gd-id571247">
+        <section id="gd-id541936">
           <title>Ordered List</title>
-          <para id="gd-id571251">
+          <para id="gd-id541939">
             <newline/>
           </para>
-          <list id="gd-id571253" list-type="bulleted">
+          <list id="gd-id541942" list-type="bulleted">
             <item>List Item 1</item>
           </list>
         </section>
-        <section id="gd-id571258">
+        <section id="gd-id541947">
           <title>Unordered List</title>
-          <para id="gd-id571262">
+          <para id="gd-id541950">
             <newline/>
           </para>
         </section>
       </section>
-      <section id="gd-id571264">
+      <section id="gd-id541953">
         <title>Forms</title>
-        <para id="gd-id571268">
+        <para id="gd-id541956">
           <newline/>
         </para>
       </section>
-      <section id="gd-id571270">
+      <section id="gd-id541959">
         <title>Tables</title>
-        <para id="gd-id571274">
+        <para id="gd-id541962">
           <newline/>
         </para>
       </section>
-      <section id="gd-id571276">
+      <section id="gd-id541965">
         <title>Misc Stuff - abbr, acronym, pre, code, sub, sup, etc.</title>
-        <para id="gd-id571280">Lorem  dolor  amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. . Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy.  Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus. </para>
-        <para id="gd-id571282">
+        <para id="gd-id541968">Lorem  dolor  amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. . Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy.  Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus. </para>
+        <para id="gd-id541971">
           <newline/>
         </para>
-        <para id="gd-id571285">
+        <para id="gd-id541973">
           <newline/>
         </para>
-        <para id="gd-id571287">Comments are closed.</para>
-        <para id="gd-id571289">Theme Preview is proudly powered by <link url="http://wordpress.org/" window="new">WordPress</link><newline/><link url="http://wp-themes.com/?feed=rss2" window="new">Entries (RSS)</link> and <link url="http://wp-themes.com/?feed=comments-rss2" window="new">Comments (RSS)</link>. </para>
+        <para id="gd-id541975">Comments are closed.</para>
+        <para id="gd-id541978">Theme Preview is proudly powered by <link url="http://wordpress.org/" window="new">WordPress</link><newline/><link url="http://wp-themes.com/?feed=rss2" window="new">Entries (RSS)</link> and <link url="http://wp-themes.com/?feed=comments-rss2" window="new">Comments (RSS)</link>. </para>
       </section>
     </section>
   </content>

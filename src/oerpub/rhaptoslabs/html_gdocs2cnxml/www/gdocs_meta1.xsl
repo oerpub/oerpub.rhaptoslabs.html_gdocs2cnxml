@@ -3,8 +3,9 @@
   version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:exsl="http://exslt.org/common"
+  xmlns:xh="http://www.w3.org/1999/xhtml"
   extension-element-prefixes="exsl"
-  exclude-result-prefixes="exsl">
+  exclude-result-prefixes="exsl xh">
 
 <xsl:import href="pass1_gdocs_headers.xsl"/>
 <xsl:import href="pass2_xhtml_gdocs_headers.xsl"/>
@@ -26,9 +27,10 @@
 <xsl:output
   method="xml"
   encoding="UTF-8"
-  indent="yes"/>
-
+  indent="no"/>
+  
 <xsl:strip-space elements="*"/>
+<xsl:preserve-space elements="xh:span xh:p"/>
 
 <xsl:template match="/">
   <!-- general HTML/GDocs XSLTs -->

@@ -54,6 +54,39 @@ def tidy_and_premail(content):
         return strTidiedPremailedHtml
     except:
         return strTidiedXhtml
+        
+# Downloads images
+def downloadImages(xml):
+    objects = {}    # image contents will be saved here
+    xpathImages = etree.XPath('//cnxtra:image', namespaces={'cnxtra':'http://cnxtra'})
+    imageList = xpathImages(xml)
+    for position, image in enumerate(imageList):
+        strImageUrl = image.get('src')
+        strImageContent = urllib2.urlopen(strImageUrl).read()
+        # get Mime type from image
+        strImageMime = magic.whatis(strImageContent)
+        # only allow this three image formats
+        if strImageMime in ('image/png', 'image/jpeg', 'image/gif'):
+            image.set('mime-type', strImageMime)
+            strImageName = "gd-%04d" % (position + 1)  # gd0001.jpg
+            if strImageMime == 'image/jpeg':
+                strImageName += '.jpg'
+            elif strImageMime == 'image/png':
+                strImageName += '.png'
+            elif strImageMime == 'image/gif':
+                strImageName += '.gif'
+            strAlt = image.get('alt')
+            if not strAlt:
+                image.set('alt', strImageUrl) # getNameFromUrl(strImageUrl))
+            image.text = strImageName
+            # add contents of image to object
+            objects[strImageName] = strImageContent
+
+            # just for debugging
+            #myfile = open(strImageName, "wb")
+            #myfile.write(strImageContent)
+            #myfile.close
+    return xml, objects        
     
 # Main method. Doing all steps for the HTMLSOUP to CNXML transformation
 def xsl_transform(content):

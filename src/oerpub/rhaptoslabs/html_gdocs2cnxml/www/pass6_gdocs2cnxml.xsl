@@ -2,6 +2,7 @@
 <xsl:stylesheet
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns="http://cnx.rice.edu/cnxml"
+  xmlns:cnx="http://cnx.rice.edu/cnxml"
   xmlns:md="http://cnx.rice.edu/mdml"
   xmlns:bib="http://bibtexml.sf.net/"
   xmlns:m="http://www.w3.org/1998/Math/MathML"
@@ -14,9 +15,10 @@
   extension-element-prefixes="exsl"
   exclude-result-prefixes="exsl xh cnhtml cnxtra">
 
-<xsl:output method="xml" encoding="UTF-8" indent="yes"/>
+<xsl:output method="xml" encoding="UTF-8" indent="no"/>
 
 <xsl:strip-space elements="*"/>
+<xsl:preserve-space elements="xh:span cnx:para text()"/>
 
 <!--
 This XSLT transforms Google Docs HTML tags to CNXML.
@@ -127,6 +129,9 @@ Pass1,2...4 transformation is a precondition for this pass.
 <!-- copy text from specific text-nodes -->
 <xsl:template match="xh:span/text()|xh:li/text()|xh:td/text()|xh:a/text()" mode="pass6">
   <xsl:value-of select="."/>
+  <xsl:if test="following-sibling::xh:a">
+    <xsl:text> </xsl:text>
+  </xsl:if>
 </xsl:template>
 
 <!-- headers -->

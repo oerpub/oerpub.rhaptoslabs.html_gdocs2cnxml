@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id550956" cnxml-version="0.7" module-id="new">
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id571631" cnxml-version="0.7" module-id="new">
   <title>css Zen Garden: The Beauty in CSS Design</title>
   <content>
-    <section id="gd-id550963">
+    <section id="gd-id571638">
       <title>css Zen Garden</title>
-      <para id="gd-id550967">
+      <para id="gd-id571641">
         <newline/>
       </para>
-      <section id="gd-id550969">
+      <section id="gd-id571644">
         <title>The Beauty of CSS Design</title>
-        <para id="gd-id550973">A demonstration of what can be accomplished visually through -based design. Select any style sheet from the list to load it into this page.</para>
-        <para id="gd-id550975">Download the sample <link url="zengarden-sample.html" window="new">html file</link> and <link url="zengarden-sample.css" window="new">css file</link></para>
-        <section id="gd-id550988">
+        <para id="gd-id571647">A demonstration of what can be accomplished visually through -based design. Select any style sheet from the list to load it into this page.</para>
+        <para id="gd-id571650">Download the sample <link url="zengarden-sample.html" window="new">html file</link> and <link url="zengarden-sample.css" window="new">css file</link></para>
+        <section id="gd-id571663">
           <title>The Road to Enlightenment</title>
-          <para id="gd-id550992">Littering a dark and dreary road lay the past relics of browser-specific tags, incompatible s, and broken  support.</para>
-          <para id="gd-id550994">Today, we must clear the mind of past practices. Web enlightenment has been achieved thanks to the tireless efforts of folk like the ,  and the major browser creators.</para>
-          <para id="gd-id550997">The css Zen Garden invites you to relax and meditate on the important lessons of the masters. Begin to see with clarity. Learn to use the (yet to be) time-honored techniques in new and invigorating fashion. Become one with the web.</para>
+          <para id="gd-id571667">Littering a dark and dreary road lay the past relics of browser-specific tags, incompatible s, and broken  support.</para>
+          <para id="gd-id571669">Today, we must clear the mind of past practices. Web enlightenment has been achieved thanks to the tireless efforts of folk like the ,  and the major browser creators.</para>
+          <para id="gd-id571671">The css Zen Garden invites you to relax and meditate on the important lessons of the masters. Begin to see with clarity. Learn to use the (yet to be) time-honored techniques in new and invigorating fashion. Become one with the web.</para>
         </section>
-        <section id="gd-id550999">
+        <section id="gd-id571674">
           <title>So What is This About?</title>
-          <para id="gd-id551003">There is clearly a need for  to be taken seriously by graphic artists. The Zen Garden aims to excite, inspire, and encourage participation. To begin, view some of the existing designs in the list. Clicking on any one will load the style sheet into this very page. The code remains the same, the only thing that has changed is the external .css file. Yes, really.</para>
-          <para id="gd-id551005"> allows complete and total control over the style of a hypertext document. The only way this can be illustrated in a way that gets people excited is by demonstrating what it can truly be, once the reins are placed in the hands of those able to create beauty from structure. To date, most examples of neat tricks and hacks have been demonstrated by structurists and coders. Designers have yet to make their mark. This needs to change.</para>
+          <para id="gd-id571677">There is clearly a need for  to be taken seriously by graphic artists. The Zen Garden aims to excite, inspire, and encourage participation. To begin, view some of the existing designs in the list. Clicking on any one will load the style sheet into this very page. The code remains the same, the only thing that has changed is the external .css file. Yes, really.</para>
+          <para id="gd-id571680"> allows complete and total control over the style of a hypertext document. The only way this can be illustrated in a way that gets people excited is by demonstrating what it can truly be, once the reins are placed in the hands of those able to create beauty from structure. To date, most examples of neat tricks and hacks have been demonstrated by structurists and coders. Designers have yet to make their mark. This needs to change.</para>
         </section>
-        <section id="gd-id551008">
+        <section id="gd-id571682">
           <title>Participation</title>
-          <para id="gd-id551011">Graphic artists only please. You are modifying this page, so strong  skills are necessary, but the example files are commented well enough that even  novices can use them as starting points. Please see the <link url="http://www.mezzoblue.com/zengarden/resources/" window="new"> Resource Guide</link> for advanced tutorials and tips on working with .</para>
-          <para id="gd-id551020">You may modify the style sheet in any way you wish, but not the . This may seem daunting at first if you've never worked this way before, but follow the listed links to learn more, and use the sample files as a guide.</para>
-          <para id="gd-id551022">Download the sample <link url="zengarden-sample.html" window="new">html file</link> and <link url="zengarden-sample.css" window="new">css file</link> to work on a copy locally. Once you have completed your masterpiece (and please, don't submit half-finished work) upload your .css file to a web server under your control. <link url="http://www.mezzoblue.com/zengarden/submit/" window="new">Send us a link</link> to the file and if we choose to use it, we will spider the associated images. Final submissions will be placed on our server.</para>
+          <para id="gd-id571686">Graphic artists only please. You are modifying this page, so strong  skills are necessary, but the example files are commented well enough that even  novices can use them as starting points. Please see the <link url="http://www.mezzoblue.com/zengarden/resources/" window="new"> Resource Guide</link> for advanced tutorials and tips on working with .</para>
+          <para id="gd-id571694">You may modify the style sheet in any way you wish, but not the . This may seem daunting at first if you've never worked this way before, but follow the listed links to learn more, and use the sample files as a guide.</para>
+          <para id="gd-id571697">Download the sample <link url="zengarden-sample.html" window="new">html file</link> and <link url="zengarden-sample.css" window="new">css file</link> to work on a copy locally. Once you have completed your masterpiece (and please, don't submit half-finished work) upload your .css file to a web server under your control. <link url="http://www.mezzoblue.com/zengarden/submit/" window="new">Send us a link</link> to the file and if we choose to use it, we will spider the associated images. Final submissions will be placed on our server.</para>
         </section>
-        <section id="gd-id551042">
+        <section id="gd-id571717">
           <title>Benefits</title>
-          <para id="gd-id551046">Why participate? For recognition, inspiration, and a resource we can all refer to when making the case for -based design. This is sorely needed, even today. More and more major sites are taking the leap, but not enough have. One day this gallery will be a historical curiosity; that day is not today.</para>
+          <para id="gd-id571721">Why participate? For recognition, inspiration, and a resource we can all refer to when making the case for -based design. This is sorely needed, even today. More and more major sites are taking the leap, but not enough have. One day this gallery will be a historical curiosity; that day is not today.</para>
         </section>
-        <section id="gd-id551048">
+        <section id="gd-id571723">
           <title>Requirements</title>
-          <para id="gd-id551052">We would like to see as much  as possible.  should be limited to widely-supported elements only. The css Zen Garden is about functional, practical  and not the latest bleeding-edge tricks viewable by 2% of the browsing public. The only real requirement we have is that your  validates.</para>
-          <para id="gd-id551054">Unfortunately, designing this way highlights the flaws in the various implementations of . Different browsers display differently, even completely valid  at times, and this becomes maddening when a fix for one leads to breakage in another. View the <link url="http://www.mezzoblue.com/zengarden/resources/" window="new">Resources</link> page for information on some of the fixes available. Full browser compliance is still sometimes a pipe dream, and we do not expect you to come up with pixel-perfect code across every platform. But do test in as many as you can. If your design doesn't work in at least IE5+/Win and Mozilla (run by over 90% of the population), chances are we won't accept it.</para>
-          <para id="gd-id551063">We ask that you submit original artwork. Please respect copyright laws. Please keep objectionable material to a minimum; tasteful nudity is acceptable, outright pornography will be rejected.</para>
-          <para id="gd-id551065">This is a learning exercise as well as a demonstration. You retain full copyright on your graphics (with limited exceptions, see <link url="http://www.mezzoblue.com/zengarden/submit/guidelines/" window="new">submission guidelines</link>), but we ask you release your  under a Creative Commons license identical to the <link url="http://creativecommons.org/licenses/sa/1.0/" window="new">one on this site</link> so that others may learn from your work.</para>
-          <para id="gd-id551080">Bandwidth graciously donated by <link url="http://www.dreamfirestudios.com/" window="new">DreamFire Studios</link></para>
-          <para id="gd-id551087">
+          <para id="gd-id571727">We would like to see as much  as possible.  should be limited to widely-supported elements only. The css Zen Garden is about functional, practical  and not the latest bleeding-edge tricks viewable by 2% of the browsing public. The only real requirement we have is that your  validates.</para>
+          <para id="gd-id571729">Unfortunately, designing this way highlights the flaws in the various implementations of . Different browsers display differently, even completely valid  at times, and this becomes maddening when a fix for one leads to breakage in another. View the <link url="http://www.mezzoblue.com/zengarden/resources/" window="new">Resources</link> page for information on some of the fixes available. Full browser compliance is still sometimes a pipe dream, and we do not expect you to come up with pixel-perfect code across every platform. But do test in as many as you can. If your design doesn't work in at least IE5+/Win and Mozilla (run by over 90% of the population), chances are we won't accept it.</para>
+          <para id="gd-id571737">We ask that you submit original artwork. Please respect copyright laws. Please keep objectionable material to a minimum; tasteful nudity is acceptable, outright pornography will be rejected.</para>
+          <para id="gd-id571740">This is a learning exercise as well as a demonstration. You retain full copyright on your graphics (with limited exceptions, see <link url="http://www.mezzoblue.com/zengarden/submit/guidelines/" window="new">submission guidelines</link>), but we ask you release your  under a Creative Commons license identical to the <link url="http://creativecommons.org/licenses/sa/1.0/" window="new">one on this site</link> so that others may learn from your work.</para>
+          <para id="gd-id571754">Bandwidth graciously donated by <link url="http://www.dreamfirestudios.com/" window="new">DreamFire Studios</link></para>
+          <para id="gd-id571761">
             <link url="http://validator.w3.org/check/referer" window="new">xhtml</link>
             <link url="http://jigsaw.w3.org/css-validator/check/referer" window="new">css</link>
             <link url="http://creativecommons.org/licenses/by-nc-sa/1.0/" window="new">cc</link>
@@ -47,21 +47,21 @@
             <link url="http://www.mezzoblue.com/zengarden/faq/#aaa" window="new">aaa</link>
           </para>
         </section>
-        <section id="gd-id551112">
+        <section id="gd-id571787">
           <title>Select a Design:</title>
-          <para id="gd-id551116">
+          <para id="gd-id571790">
             <newline/>
           </para>
         </section>
-        <section id="gd-id551118">
+        <section id="gd-id571793">
           <title>Archives:</title>
-          <para id="gd-id551122">
+          <para id="gd-id571796">
             <newline/>
           </para>
         </section>
-        <section id="gd-id551124">
+        <section id="gd-id571799">
           <title>Resources:</title>
-          <para id="gd-id551128">
+          <para id="gd-id571802">
             <newline/>
           </para>
         </section>
