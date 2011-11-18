@@ -79,7 +79,17 @@ def main():
         print_status('Transforming %s ...' % just_filename)
 
         # transform
-        cnxml = htmlsoup_to_cnxml(html)
+        cnxml,objects = htmlsoup_to_cnxml(html, bDownloadImages=True)
+        
+        # write testbed images
+        for image_filename, image in objects.iteritems():
+            image_filename = os.path.join(TESTBED_OUTPUT_DIR, image_filename)
+            image_file = open(image_filename, 'wb') # write binary, important!
+            try:
+                image_file.write(image)
+                image_file.flush()
+            finally:
+                image_file.close()        
 
         # write testbed CNXML output
         cnxml_file = open(cnxml_filename, 'w')

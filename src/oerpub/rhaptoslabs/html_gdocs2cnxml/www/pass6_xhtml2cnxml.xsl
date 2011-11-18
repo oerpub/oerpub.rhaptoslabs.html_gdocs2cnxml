@@ -345,8 +345,9 @@ Pass1,2...4 transformation is a precondition for this pass.
 
 <!-- images -->
 <xsl:template match="xh:img" mode="pass6">
-  <!-- TODO: Images are not supoorted now -->
-  <xsl:text>[Image]</xsl:text>
+  <cnxtra:image>
+    <xsl:copy-of select="@src|@height|@width|@alt"/>
+  </cnxtra:image>
 </xsl:template>
 
 <!-- remove unsupported now -->

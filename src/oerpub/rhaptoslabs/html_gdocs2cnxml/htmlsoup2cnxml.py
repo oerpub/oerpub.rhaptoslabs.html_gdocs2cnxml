@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 import sys
 import os
-#import urllib2
+import urllib2
 #from urlparse import urlparse
 #import subprocess
 #from Globals import package_home
@@ -9,12 +9,13 @@ import libxml2
 import libxslt
 from tidylib import tidy_document
 from xhtmlpremailer import xhtmlPremailer
-#from lxml import etree
-#import magic
+from lxml import etree
+import magic
 
 current_dir = os.path.dirname(__file__)
 XHTML_ENTITIES = os.path.join(current_dir, 'www', 'catalog_xhtml', 'catalog.xml')
-XHTML2CNXML_XSL = os.path.join(current_dir, 'www', 'xhtml2cnxml_meta.xsl')
+XHTML2CNXML_XSL1 = os.path.join(current_dir, 'www', 'xhtml2cnxml_meta1.xsl')
+XHTML2CNXML_XSL2 = os.path.join(current_dir, 'www', 'xhtml2cnxml_meta2.xsl')
 
 # HTML Tidy, HTML Soup to XHTML
 # Premail XHTML
@@ -54,9 +55,42 @@ def tidy_and_premail(content):
         return strTidiedPremailedHtml
     except:
         return strTidiedXhtml
-    
+
+# Downloads images and sets metadata for further processing
+def downloadImages(xml):
+    objects = {}    # image contents will be saved here
+    xpathImages = etree.XPath('//cnxtra:image', namespaces={'cnxtra':'http://cnxtra'})
+    imageList = xpathImages(xml)
+    for position, image in enumerate(imageList):
+        strImageUrl = image.get('src')
+        strImageContent = urllib2.urlopen(strImageUrl).read()
+        # get Mime type from image
+        strImageMime = magic.whatis(strImageContent)
+        # only allow this three image formats
+        if strImageMime in ('image/png', 'image/jpeg', 'image/gif'):
+            image.set('mime-type', strImageMime)
+            strImageName = "gd-%04d" % (position + 1)  # gd0001.jpg
+            if strImageMime == 'image/jpeg':
+                strImageName += '.jpg'
+            elif strImageMime == 'image/png':
+                strImageName += '.png'
+            elif strImageMime == 'image/gif':
+                strImageName += '.gif'
+            strAlt = image.get('alt')
+            if not strAlt:
+                image.set('alt', strImageUrl) # getNameFromUrl(strImageUrl))
+            image.text = strImageName
+            # add contents of image to object
+            objects[strImageName] = strImageContent
+
+            # just for debugging
+            #myfile = open(strImageName, "wb")
+            #myfile.write(strImageContent)
+            #myfile.close
+    return xml, objects
+        
 # Main method. Doing all steps for the HTMLSOUP to CNXML transformation
-def xsl_transform(content):
+def xsl_transform(content, bDownloadImages):
     # 1
     strTidiedHtml = tidy_and_premail(content)
 
@@ -66,7 +100,7 @@ def xsl_transform(content):
     libxml2.substituteEntitiesDefault(1)
 
     # 3 XSLT transformation
-    styleDoc1 = libxml2.parseFile(XHTML2CNXML_XSL)
+    styleDoc1 = libxml2.parseFile(XHTML2CNXML_XSL1)
     style1 = libxslt.parseStylesheetDoc(styleDoc1)
     # doc1 = libxml2.parseFile(afile))
     doc1 = libxml2.parseDoc(strTidiedHtml)
@@ -77,11 +111,37 @@ def xsl_transform(content):
     doc1.freeDoc()
     result1.freeDoc()
 
-    return strResult1
+    # Parse XML with etree from lxml for TeX2MathML and image download
+    etreeXml = etree.fromstring(strResult1)
 
-def htmlsoup_to_cnxml(content):
-    content = xsl_transform(content)
-    return content
+    # 4 Convert TeX to MathML with Blahtex (not in XHTML)
+    # etreeXml = tex2mathml(etreeXml)
+
+    # 5 Optional: Download Google Docs Images
+    imageObjects = {}
+    if bDownloadImages:
+        etreeXml, imageObjects = downloadImages(etreeXml)
+
+    # Convert etree back to string
+    strXml = etree.tostring(etreeXml) # pretty_print=True)
+
+    # 6 Second transformation
+    styleDoc2 = libxml2.parseFile(XHTML2CNXML_XSL2)
+    style2 = libxslt.parseStylesheetDoc(styleDoc2)
+    doc2 = libxml2.parseDoc(strXml)
+    result2 = style2.applyStylesheet(doc2, None)
+    #style2.saveResultToFilename('tempresult.xml', result2, 0) # just for debugging
+    strResult2 = style2.saveResultToString(result2)
+    style2.freeStylesheet()
+    doc2.freeDoc()
+    result2.freeDoc()
+
+    return strResult2, imageObjects
+
+def htmlsoup_to_cnxml(content, bDownloadImages=False):
+    objects = {}
+    content, objects = xsl_transform(content, bDownloadImages)
+    return content, objects
 
 if __name__ == "__main__":
     f = open(sys.argv[1])

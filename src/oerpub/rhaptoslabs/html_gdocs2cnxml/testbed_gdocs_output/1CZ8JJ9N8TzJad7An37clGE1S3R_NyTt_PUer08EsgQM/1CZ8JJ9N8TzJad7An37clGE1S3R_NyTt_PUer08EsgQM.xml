@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id803989" cnxml-version="0.7" module-id="new">
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id796815" cnxml-version="0.7" module-id="new">
   <title>Code formating red-text</title>
   <content>
-    <para id="gd-id803931">This should be displayed as code like in this example<link url="http://cnx.org/eip-help/code" window="new">http://cnx.org/eip-help/code</link> :</para>
-    <code id="gd-id803967" display="block">
+    <para id="gd-id796784">This should be displayed as code like in this example<link url="http://cnx.org/eip-help/code" window="new">http://cnx.org/eip-help/code</link> :</para>
+    <code id="gd-id796834" display="block">
 def do_something():
     print "Hello World"
 </code>
-    <para id="gd-id803557">
+    <para id="gd-id831548">
       <newline/>
     </para>
-    <para id="gd-id803560">And this should be again normal text.</para>
-    <para id="gd-id803535">
+    <para id="gd-id831544">And this should be again normal text.</para>
+    <para id="gd-id831542">
       <newline/>
     </para>
-    <para id="gd-id803524">TODO1 (works now!):</para>
-    <code id="gd-id803506" display="block">
+    <para id="gd-id831536">TODO1 (works now!):</para>
+    <code id="gd-id831533" display="block">
 def do_something():
     print "Hello World"
 </code>
-    <para id="gd-id803508">
+    <para id="gd-id831527">
       <newline/>
     </para>
-    <para id="gd-id794527">TODO2 (works now!):</para>
-    <code id="gd-id794535" display="block">
+    <para id="gd-id831521">TODO2 (works now!):</para>
+    <code id="gd-id804484" display="block">
 def do_something():
     print "Hello World"
 </code>
-    <para id="gd-id794548">
+    <para id="gd-id804478">
       <newline/>
     </para>
-    <para id="gd-id804591">
+    <para id="gd-id804474">
       <newline/>
     </para>
-    <para id="gd-id804568">TODO3 (works now!):</para>
-    <code id="gd-id804556" display="block">
+    <para id="gd-id804467">TODO3 (works now!):</para>
+    <code id="gd-id804463" display="block">
 def do_something():
     print "Hello World"
 </code>

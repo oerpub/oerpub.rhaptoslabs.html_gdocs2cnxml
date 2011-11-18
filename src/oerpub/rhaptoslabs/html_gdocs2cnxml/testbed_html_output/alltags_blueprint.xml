@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id571757" cnxml-version="0.7" module-id="new">
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id592681" cnxml-version="0.7" module-id="new">
   <title>Blueprint HTML Elements Tests</title>
   <content>
-    <section id="gd-id571765">
+    <section id="gd-id592670">
       <title>Tests for common HTML elements</title>
-      <para id="gd-id571768">
+      <para id="gd-id592671">
         <newline/>
       </para>
-      <section id="gd-id571771">
+      <section id="gd-id592673">
         <title>PARAGRAPHS &amp; BOXES</title>
-        <para id="gd-id571774">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</para>
-        <para id="gd-id571777">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor  ut labore et  magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</para>
-        <para id="gd-id571779">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</para>
-        <para id="gd-id571781">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</para>
-        <para id="gd-id571784">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</para>
-        <para id="gd-id571786">Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</para>
-        <section id="gd-id571789">
+        <para id="gd-id592689">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</para>
+        <para id="gd-id592692">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor  ut labore et  magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</para>
+        <para id="gd-id592694">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</para>
+        <para id="gd-id592697">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</para>
+        <para id="gd-id592699">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</para>
+        <para id="gd-id592701">Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</para>
+        <section id="gd-id592704">
           <title>LISTS</title>
-          <para id="gd-id571792">
+          <para id="gd-id592707">
             <newline/>
           </para>
-          <list id="gd-id571795" list-type="bulleted">
+          <list id="gd-id592710" list-type="bulleted">
             <item>Ordered list test</item>
           </list>
-          <list id="gd-id571799" list-type="bulleted">
+          <list id="gd-id592715" list-type="bulleted">
             <item>Ordered list</item>
           </list>
-          <section id="gd-id571804">
+          <section id="gd-id592719">
             <title>HEADINGS</title>
-            <para id="gd-id571808">
+            <para id="gd-id592723">
               <newline/>
             </para>
           </section>
         </section>
-        <section id="gd-id571810">
+        <section id="gd-id592725">
           <title>HEADINGS</title>
-          <para id="gd-id571814">
+          <para id="gd-id559756">
             <newline/>
           </para>
         </section>
       </section>
-      <section id="gd-id571816">
+      <section id="gd-id559749">
         <title>LISTS</title>
-        <para id="gd-id571820">
+        <para id="gd-id559707">
           <newline/>
         </para>
-        <list id="gd-id571822" list-type="bulleted">
+        <list id="gd-id559717" list-type="bulleted">
           <item>Ordered list test</item>
         </list>
-        <list id="gd-id571827" list-type="bulleted">
+        <list id="gd-id559729" list-type="bulleted">
           <item>Ordered list</item>
         </list>
-        <section id="gd-id571832">
+        <section id="gd-id583683">
           <title>HEADINGS</title>
-          <para id="gd-id571835">
+          <para id="gd-id583707">
             <newline/>
           </para>
         </section>
       </section>
-      <section id="gd-id571838">
+      <section id="gd-id583721">
         <title>HEADINGS</title>
-        <para id="gd-id571841">
+        <para id="gd-id583698">
           <newline/>
         </para>
       </section>
