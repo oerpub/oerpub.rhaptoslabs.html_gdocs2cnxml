@@ -11,6 +11,7 @@ from tidylib import tidy_document
 from xhtmlpremailer import xhtmlPremailer
 from lxml import etree
 import magic
+from readability.readability import Document
 
 current_dir = os.path.dirname(__file__)
 XHTML_ENTITIES = os.path.join(current_dir, 'www', 'catalog_xhtml', 'catalog.xml')
@@ -63,43 +64,50 @@ def downloadImages(xml):
     imageList = xpathImages(xml)
     for position, image in enumerate(imageList):
         strImageUrl = image.get('src')
-        strImageContent = urllib2.urlopen(strImageUrl).read()
-        # get Mime type from image
-        strImageMime = magic.whatis(strImageContent)
-        # only allow this three image formats
-        if strImageMime in ('image/png', 'image/jpeg', 'image/gif'):
-            image.set('mime-type', strImageMime)
-            strImageName = "gd-%04d" % (position + 1)  # gd0001.jpg
-            if strImageMime == 'image/jpeg':
-                strImageName += '.jpg'
-            elif strImageMime == 'image/png':
-                strImageName += '.png'
-            elif strImageMime == 'image/gif':
-                strImageName += '.gif'
-            strAlt = image.get('alt')
-            if not strAlt:
-                image.set('alt', strImageUrl) # getNameFromUrl(strImageUrl))
-            image.text = strImageName
-            # add contents of image to object
-            objects[strImageName] = strImageContent
+        try:
+            strImageContent = urllib2.urlopen(strImageUrl).read()
+            # get Mime type from image
+            strImageMime = magic.whatis(strImageContent)
+            # only allow this three image formats
+            if strImageMime in ('image/png', 'image/jpeg', 'image/gif'):
+                image.set('mime-type', strImageMime)
+                strImageName = "gd-%04d" % (position + 1)  # gd0001.jpg
+                if strImageMime == 'image/jpeg':
+                    strImageName += '.jpg'
+                elif strImageMime == 'image/png':
+                    strImageName += '.png'
+                elif strImageMime == 'image/gif':
+                    strImageName += '.gif'
+                strAlt = image.get('alt')
+                if not strAlt:
+                    image.set('alt', strImageUrl) # getNameFromUrl(strImageUrl))
+                image.text = strImageName
+                # add contents of image to object
+                objects[strImageName] = strImageContent
 
-            # just for debugging
-            #myfile = open(strImageName, "wb")
-            #myfile.write(strImageContent)
-            #myfile.close
+                # just for debugging
+                #myfile = open(strImageName, "wb")
+                #myfile.write(strImageContent)
+                #myfile.close
+        except urllib2.HTTPError, e:
+            print 'Warning: ' + strImageUrl + 'could not be downloaded.' # do nothing if url could not be downloaded
     return xml, objects
         
 # Main method. Doing all steps for the HTMLSOUP to CNXML transformation
 def xsl_transform(content, bDownloadImages):
-    # 1
-    strTidiedHtml = tidy_and_premail(content)
 
-    # 2 Load XHTML catalog files: Makes XHTML entities readable.
+    # 1 use readability
+    readable_article = Document(content).summary()
+
+    # 2 tidy and premail
+    strTidiedHtml = tidy_and_premail(readable_article)
+
+    # 3 Load XHTML catalog files: Makes XHTML entities readable.
     libxml2.loadCatalog(XHTML_ENTITIES)
     libxml2.lineNumbersDefault(1)
     libxml2.substituteEntitiesDefault(1)
 
-    # 3 XSLT transformation
+    # 4 XSLT transformation
     styleDoc1 = libxml2.parseFile(XHTML2CNXML_XSL1)
     style1 = libxslt.parseStylesheetDoc(styleDoc1)
     # doc1 = libxml2.parseFile(afile))
@@ -114,10 +122,10 @@ def xsl_transform(content, bDownloadImages):
     # Parse XML with etree from lxml for TeX2MathML and image download
     etreeXml = etree.fromstring(strResult1)
 
-    # 4 Convert TeX to MathML with Blahtex (not in XHTML)
+    # 5 Convert TeX to MathML with Blahtex (not in XHTML)
     # etreeXml = tex2mathml(etreeXml)
 
-    # 5 Optional: Download Google Docs Images
+    # 6 Optional: Download Google Docs Images
     imageObjects = {}
     if bDownloadImages:
         etreeXml, imageObjects = downloadImages(etreeXml)
@@ -125,7 +133,7 @@ def xsl_transform(content, bDownloadImages):
     # Convert etree back to string
     strXml = etree.tostring(etreeXml) # pretty_print=True)
 
-    # 6 Second transformation
+    # 7 Second transformation
     styleDoc2 = libxml2.parseFile(XHTML2CNXML_XSL2)
     style2 = libxslt.parseStylesheetDoc(styleDoc2)
     doc2 = libxml2.parseDoc(strXml)

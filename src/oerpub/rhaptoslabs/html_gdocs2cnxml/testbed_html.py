@@ -79,7 +79,7 @@ def main():
         print_status('Transforming %s ...' % just_filename)
 
         # transform
-        cnxml,objects = htmlsoup_to_cnxml(html, bDownloadImages=True)
+        cnxml,objects = htmlsoup_to_cnxml(html, bDownloadImages=False)
         
         # write testbed images
         for image_filename, image in objects.iteritems():
