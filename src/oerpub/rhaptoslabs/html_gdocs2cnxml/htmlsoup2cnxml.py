@@ -3,6 +3,7 @@ import sys
 import os
 import urllib2
 #from urlparse import urlparse
+from urlparse import urljoin
 #import subprocess
 #from Globals import package_home
 import libxml2
@@ -58,12 +59,14 @@ def tidy_and_premail(content):
         return strTidiedXhtml
 
 # Downloads images and sets metadata for further processing
-def downloadImages(xml):
+def downloadImages(xml, base_or_source_url='.'):
     objects = {}    # image contents will be saved here
     xpathImages = etree.XPath('//cnxtra:image', namespaces={'cnxtra':'http://cnxtra'})
     imageList = xpathImages(xml)
     for position, image in enumerate(imageList):
         strImageUrl = image.get('src')
+        if base_or_source_url != '.':     # if we have a base url join this url strings
+            strImageUrl = urljoin(base_or_source_url + strImageUrl)
         try:
             strImageContent = urllib2.urlopen(strImageUrl).read()
             # get Mime type from image
@@ -89,12 +92,12 @@ def downloadImages(xml):
                 #myfile = open(strImageName, "wb")
                 #myfile.write(strImageContent)
                 #myfile.close
-        except urllib2.HTTPError, e:
+        except:
             print 'Warning: ' + strImageUrl + 'could not be downloaded.' # do nothing if url could not be downloaded
     return xml, objects
         
 # Main method. Doing all steps for the HTMLSOUP to CNXML transformation
-def xsl_transform(content, bDownloadImages):
+def xsl_transform(content, bDownloadImages, base_or_source_url='.'):
 
     # 1 use readability
     readable_article = Document(content).summary()
@@ -128,7 +131,7 @@ def xsl_transform(content, bDownloadImages):
     # 6 Optional: Download Google Docs Images
     imageObjects = {}
     if bDownloadImages:
-        etreeXml, imageObjects = downloadImages(etreeXml)
+        etreeXml, imageObjects = downloadImages(etreeXml, base_or_source_url)
 
     # Convert etree back to string
     strXml = etree.tostring(etreeXml) # pretty_print=True)
@@ -146,9 +149,9 @@ def xsl_transform(content, bDownloadImages):
 
     return strResult2, imageObjects
 
-def htmlsoup_to_cnxml(content, bDownloadImages=False):
+def htmlsoup_to_cnxml(content, bDownloadImages=False, base_or_source_url='.'):
     objects = {}
-    content, objects = xsl_transform(content, bDownloadImages)
+    content, objects = xsl_transform(content, bDownloadImages, base_or_source_url)
     return content, objects
 
 if __name__ == "__main__":
