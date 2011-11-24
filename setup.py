@@ -44,6 +44,7 @@ setup(name='oerpub.rhaptoslabs.html_gdocs2cnxml',
           'elementtree',
           'lxml==2.3',
           'gdata==2.0.14',
+          'readability-lxml',
       ],
       entry_points="""
       # -*- Entry points: -*-

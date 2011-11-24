@@ -3,6 +3,7 @@ import sys
 import os
 import urllib2
 #from urlparse import urlparse
+from urlparse import urljoin
 #import subprocess
 #from Globals import package_home
 import libxml2
@@ -11,6 +12,7 @@ from tidylib import tidy_document
 from xhtmlpremailer import xhtmlPremailer
 from lxml import etree
 import magic
+from readability.readability import Document
 
 current_dir = os.path.dirname(__file__)
 XHTML_ENTITIES = os.path.join(current_dir, 'www', 'catalog_xhtml', 'catalog.xml')
@@ -57,49 +59,65 @@ def tidy_and_premail(content):
         return strTidiedXhtml
 
 # Downloads images and sets metadata for further processing
-def downloadImages(xml):
+def downloadImages(xml, base_or_source_url='.'):
     objects = {}    # image contents will be saved here
     xpathImages = etree.XPath('//cnxtra:image', namespaces={'cnxtra':'http://cnxtra'})
     imageList = xpathImages(xml)
+    image_opener = urllib2.build_opener()
+    image_opener.addheaders = [('User-agent', 'Mozilla/5.0')]
     for position, image in enumerate(imageList):
         strImageUrl = image.get('src')
-        strImageContent = urllib2.urlopen(strImageUrl).read()
-        # get Mime type from image
-        strImageMime = magic.whatis(strImageContent)
-        # only allow this three image formats
-        if strImageMime in ('image/png', 'image/jpeg', 'image/gif'):
-            image.set('mime-type', strImageMime)
-            strImageName = "gd-%04d" % (position + 1)  # gd0001.jpg
-            if strImageMime == 'image/jpeg':
-                strImageName += '.jpg'
-            elif strImageMime == 'image/png':
-                strImageName += '.png'
-            elif strImageMime == 'image/gif':
-                strImageName += '.gif'
-            strAlt = image.get('alt')
-            if not strAlt:
-                image.set('alt', strImageUrl) # getNameFromUrl(strImageUrl))
-            image.text = strImageName
-            # add contents of image to object
-            objects[strImageName] = strImageContent
+        if len(strImageUrl) > 0 and len(base_or_source_url) > 0:
+            if base_or_source_url != '.':     # if we have a base url join this url strings
+                strImageUrl = urljoin(base_or_source_url, strImageUrl)
+            try:
+                # strImageContent = urllib2.urlopen(strImageUrl).read() # this does not work for websites like e.g. Wikipedia
+                image_request = image_opener.open(strImageUrl)
+                strImageContent = image_request.read()
+                # get Mime type from image
+                strImageMime = magic.whatis(strImageContent)
+                # only allow this three image formats
+                if strImageMime in ('image/png', 'image/jpeg', 'image/gif'):
+                    image.set('mime-type', strImageMime)
+                    strImageName = "gd-%04d" % (position + 1)  # gd0001.jpg
+                    if strImageMime == 'image/jpeg':
+                        strImageName += '.jpg'
+                    elif strImageMime == 'image/png':
+                        strImageName += '.png'
+                    elif strImageMime == 'image/gif':
+                        strImageName += '.gif'
+                    strAlt = image.get('alt')
+                    if not strAlt:
+                        image.set('alt', strImageUrl) # getNameFromUrl(strImageUrl))
+                    image.text = strImageName
+                    # add contents of image to object
+                    objects[strImageName] = strImageContent
 
-            # just for debugging
-            #myfile = open(strImageName, "wb")
-            #myfile.write(strImageContent)
-            #myfile.close
+                    # just for debugging
+                    #myfile = open(strImageName, "wb")
+                    #myfile.write(strImageContent)
+                    #myfile.close
+            except:
+                print 'Warning: ' + strImageUrl + ' could not be downloaded.' # do nothing if url could not be downloaded
+        else:
+            print 'Warning: image url or base url not valid! One image will be skipped!'
     return xml, objects
         
 # Main method. Doing all steps for the HTMLSOUP to CNXML transformation
-def xsl_transform(content, bDownloadImages):
-    # 1
-    strTidiedHtml = tidy_and_premail(content)
+def xsl_transform(content, bDownloadImages, base_or_source_url='.'):
 
-    # 2 Load XHTML catalog files: Makes XHTML entities readable.
+    # 1 use readability
+    readable_article = Document(content).summary()
+
+    # 2 tidy and premail
+    strTidiedHtml = tidy_and_premail(readable_article)
+
+    # 3 Load XHTML catalog files: Makes XHTML entities readable.
     libxml2.loadCatalog(XHTML_ENTITIES)
     libxml2.lineNumbersDefault(1)
     libxml2.substituteEntitiesDefault(1)
 
-    # 3 XSLT transformation
+    # 4 XSLT transformation
     styleDoc1 = libxml2.parseFile(XHTML2CNXML_XSL1)
     style1 = libxslt.parseStylesheetDoc(styleDoc1)
     # doc1 = libxml2.parseFile(afile))
@@ -114,18 +132,18 @@ def xsl_transform(content, bDownloadImages):
     # Parse XML with etree from lxml for TeX2MathML and image download
     etreeXml = etree.fromstring(strResult1)
 
-    # 4 Convert TeX to MathML with Blahtex (not in XHTML)
+    # 5 Convert TeX to MathML with Blahtex (not in XHTML)
     # etreeXml = tex2mathml(etreeXml)
 
-    # 5 Optional: Download Google Docs Images
+    # 6 Optional: Download Google Docs Images
     imageObjects = {}
     if bDownloadImages:
-        etreeXml, imageObjects = downloadImages(etreeXml)
+        etreeXml, imageObjects = downloadImages(etreeXml, base_or_source_url)
 
     # Convert etree back to string
     strXml = etree.tostring(etreeXml) # pretty_print=True)
 
-    # 6 Second transformation
+    # 7 Second transformation
     styleDoc2 = libxml2.parseFile(XHTML2CNXML_XSL2)
     style2 = libxslt.parseStylesheetDoc(styleDoc2)
     doc2 = libxml2.parseDoc(strXml)
@@ -138,9 +156,9 @@ def xsl_transform(content, bDownloadImages):
 
     return strResult2, imageObjects
 
-def htmlsoup_to_cnxml(content, bDownloadImages=False):
+def htmlsoup_to_cnxml(content, bDownloadImages=False, base_or_source_url='.'):
     objects = {}
-    content, objects = xsl_transform(content, bDownloadImages)
+    content, objects = xsl_transform(content, bDownloadImages, base_or_source_url)
     return content, objects
 
 if __name__ == "__main__":
