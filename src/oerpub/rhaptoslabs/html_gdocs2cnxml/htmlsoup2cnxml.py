@@ -63,37 +63,44 @@ def downloadImages(xml, base_or_source_url='.'):
     objects = {}    # image contents will be saved here
     xpathImages = etree.XPath('//cnxtra:image', namespaces={'cnxtra':'http://cnxtra'})
     imageList = xpathImages(xml)
+    image_opener = urllib2.build_opener()
+    image_opener.addheaders = [('User-agent', 'Mozilla/5.0')]
     for position, image in enumerate(imageList):
         strImageUrl = image.get('src')
-        if base_or_source_url != '.':     # if we have a base url join this url strings
-            strImageUrl = urljoin(base_or_source_url + strImageUrl)
-        try:
-            strImageContent = urllib2.urlopen(strImageUrl).read()
-            # get Mime type from image
-            strImageMime = magic.whatis(strImageContent)
-            # only allow this three image formats
-            if strImageMime in ('image/png', 'image/jpeg', 'image/gif'):
-                image.set('mime-type', strImageMime)
-                strImageName = "gd-%04d" % (position + 1)  # gd0001.jpg
-                if strImageMime == 'image/jpeg':
-                    strImageName += '.jpg'
-                elif strImageMime == 'image/png':
-                    strImageName += '.png'
-                elif strImageMime == 'image/gif':
-                    strImageName += '.gif'
-                strAlt = image.get('alt')
-                if not strAlt:
-                    image.set('alt', strImageUrl) # getNameFromUrl(strImageUrl))
-                image.text = strImageName
-                # add contents of image to object
-                objects[strImageName] = strImageContent
+        if len(strImageUrl) > 0 and len(base_or_source_url) > 0:
+            if base_or_source_url != '.':     # if we have a base url join this url strings
+                strImageUrl = urljoin(base_or_source_url, strImageUrl)
+            try:
+                # strImageContent = urllib2.urlopen(strImageUrl).read() # this does not work for websites like e.g. Wikipedia
+                image_request = image_opener.open(strImageUrl)
+                strImageContent = image_request.read()
+                # get Mime type from image
+                strImageMime = magic.whatis(strImageContent)
+                # only allow this three image formats
+                if strImageMime in ('image/png', 'image/jpeg', 'image/gif'):
+                    image.set('mime-type', strImageMime)
+                    strImageName = "gd-%04d" % (position + 1)  # gd0001.jpg
+                    if strImageMime == 'image/jpeg':
+                        strImageName += '.jpg'
+                    elif strImageMime == 'image/png':
+                        strImageName += '.png'
+                    elif strImageMime == 'image/gif':
+                        strImageName += '.gif'
+                    strAlt = image.get('alt')
+                    if not strAlt:
+                        image.set('alt', strImageUrl) # getNameFromUrl(strImageUrl))
+                    image.text = strImageName
+                    # add contents of image to object
+                    objects[strImageName] = strImageContent
 
-                # just for debugging
-                #myfile = open(strImageName, "wb")
-                #myfile.write(strImageContent)
-                #myfile.close
-        except:
-            print 'Warning: ' + strImageUrl + 'could not be downloaded.' # do nothing if url could not be downloaded
+                    # just for debugging
+                    #myfile = open(strImageName, "wb")
+                    #myfile.write(strImageContent)
+                    #myfile.close
+            except:
+                print 'Warning: ' + strImageUrl + ' could not be downloaded.' # do nothing if url could not be downloaded
+        else:
+            print 'Warning: image url or base url not valid! One image will be skipped!'
     return xml, objects
         
 # Main method. Doing all steps for the HTMLSOUP to CNXML transformation
