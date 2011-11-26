@@ -5,7 +5,9 @@ Introduction
 Oerpub component which transforms various source formats to CNXML.
 
 Transforms HTML to CNXML.
+
 Transforms Google Docs documents to CNXML.
+
 
 More info
 =========
