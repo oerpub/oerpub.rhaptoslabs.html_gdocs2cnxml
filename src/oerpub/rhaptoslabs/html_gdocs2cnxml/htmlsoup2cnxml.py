@@ -102,22 +102,34 @@ def downloadImages(xml, base_or_source_url='.'):
         else:
             print 'Warning: image url or base url not valid! One image will be skipped!'
     return xml, objects
+    
+def add_cnxml_title(etree_xml, new_title):
+    title = etree_xml.xpath('/cnxml:document/cnxml:title', namespaces={'cnxml':'http://cnx.rice.edu/cnxml'})
+    title[0].text = new_title
+    return etree_xml
         
 # Main method. Doing all steps for the HTMLSOUP to CNXML transformation
 def xsl_transform(content, bDownloadImages, base_or_source_url='.'):
 
-    # 1 use readability
+    # 1 get title with readability
+    html_title = "Untitled"
+    try:
+        html_title = Document(content).title()
+    except:
+        pass        
+    
+    # 2 use readabilty to get content
     readable_article = Document(content).summary()
 
-    # 2 tidy and premail
+    # 3 tidy and premail
     strTidiedHtml = tidy_and_premail(readable_article)
 
-    # 3 Load XHTML catalog files: Makes XHTML entities readable.
+    # 4 Load XHTML catalog files: Makes XHTML entities readable.
     libxml2.loadCatalog(XHTML_ENTITIES)
     libxml2.lineNumbersDefault(1)
     libxml2.substituteEntitiesDefault(1)
 
-    # 4 XSLT transformation
+    # 5 XSLT transformation
     styleDoc1 = libxml2.parseFile(XHTML2CNXML_XSL1)
     style1 = libxslt.parseStylesheetDoc(styleDoc1)
     # doc1 = libxml2.parseFile(afile))
@@ -132,18 +144,21 @@ def xsl_transform(content, bDownloadImages, base_or_source_url='.'):
     # Parse XML with etree from lxml for TeX2MathML and image download
     etreeXml = etree.fromstring(strResult1)
 
-    # 5 Convert TeX to MathML with Blahtex (not in XHTML)
+    # 6 Convert TeX to MathML with Blahtex (not in XHTML)
     # etreeXml = tex2mathml(etreeXml)
 
-    # 6 Optional: Download Google Docs Images
+    # 7 Optional: Download Google Docs Images
     imageObjects = {}
     if bDownloadImages:
         etreeXml, imageObjects = downloadImages(etreeXml, base_or_source_url)
+        
+    # 8 add title from html
+    etreeXml = add_cnxml_title(etreeXml, html_title)
 
     # Convert etree back to string
     strXml = etree.tostring(etreeXml) # pretty_print=True)
 
-    # 7 Second transformation
+    # 9 Second transformation
     styleDoc2 = libxml2.parseFile(XHTML2CNXML_XSL2)
     style2 = libxslt.parseStylesheetDoc(styleDoc2)
     doc2 = libxml2.parseDoc(strXml)
@@ -153,7 +168,7 @@ def xsl_transform(content, bDownloadImages, base_or_source_url='.'):
     style2.freeStylesheet()
     doc2.freeDoc()
     result2.freeDoc()
-
+    
     return strResult2, imageObjects
 
 def htmlsoup_to_cnxml(content, bDownloadImages=False, base_or_source_url='.'):
