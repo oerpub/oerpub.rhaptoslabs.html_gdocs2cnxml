@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id799086" cnxml-version="0.7" module-id="new">
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id591079" cnxml-version="0.7" module-id="new">
   <title>Untitled</title>
   <content>
-    <para id="gd-id799102">Marvin1</para>
-    <section id="gd-id799114">
+    <para id="gd-id591071">Marvin1</para>
+    <section id="gd-id591065">
       <title>Header1</title>
-      <para id="gd-id799067">Text123</para>
+      <para id="gd-id591057">Text123</para>
     </section>
   </content>
 </document>

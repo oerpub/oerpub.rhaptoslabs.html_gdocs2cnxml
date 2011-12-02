@@ -1,145 +1,152 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id595531" cnxml-version="0.7" module-id="new">
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id591512" cnxml-version="0.7" module-id="new">
   <title>XHTML 1.1 as application/xhtml+xml</title>
   <content>
-    <section id="gd-id595507">
+    <section id="gd-id591488">
       <title>XHTML 1.1 as application/xhtml+xml</title>
-      <para id="gd-id595500">This document is believed to be a strictly conforming XHTML 1.1 document.</para>
-      <section id="gd-id595501">
+      <para id="gd-id591476">This document is believed to be a strictly conforming XHTML 1.1 document.</para>
+      <section id="gd-id591468">
         <title>Testing Area</title>
-        <para id="gd-id595539">This should look like a paragraph. The string "Testing Area" above this paragraph should look like a second-level heading. If this is not the case, the user agent doesn't associate a default UA style sheet with this document. Next, there should be a third-level heading.</para>
-        <section id="gd-id595542">
+        <para id="gd-id591516">This should look like a paragraph. The string "Testing Area" above this paragraph should look like a second-level heading. If this is not the case, the user agent doesn't associate a default UA style sheet with this document. Next, there should be a third-level heading.</para>
+        <section id="gd-id591518">
           <title>XHTML Basic</title>
-          <para id="gd-id595545">This section tests elements included in XHTML Basic (a subset of XHTML 1.1 and XHTML 1.0 Strict)</para>
-          <section id="gd-id595548">
+          <para id="gd-id591521">This section tests elements included in XHTML Basic (a subset of XHTML 1.1 and XHTML 1.0 Strict)</para>
+          <section id="gd-id591524">
             <title>Structure Module</title>
-            <para id="gd-id595551">The title of this document is the first heading. The user agent is expected to display the title somehow-eg. in the title bar of the browser window if a windowing system is used.</para>
+            <para id="gd-id591527">The title of this document is the first heading. The user agent is expected to display the title somehow-eg. in the title bar of the browser window if a windowing system is used.</para>
           </section>
-          <section id="gd-id595554">
+          <section id="gd-id591530">
             <title>Text Module</title>
-            <para id="gd-id595557">
+            <para id="gd-id778382">
               <newline/>
             </para>
-            <section id="gd-id595560">
+            <section id="gd-id778373">
               <title>Block-Level Elements</title>
-              <para id="gd-id595563">This should look like a paragraph. The string "Block-Level Elements" above should look like a fifth-level heading. The string "Text Module" above it should look like a fourth-level heading. The string "XHTML Basic" above it should look like a third-level heading. Even earlier in the document the string "Testing Area" should look like a second-level heading. There shoudl be a first-level heading at the top of the page.</para>
-              <para id="gd-id768280">This is a paragraph inside a division.</para>
-              <para id="gd-id768278">This is another paragraph inside the same division.</para>
-              <section id="gd-id768271">
+              <para id="gd-id778362">This should look like a paragraph. The string "Block-Level Elements" above should look like a fifth-level heading. The string "Text Module" above it should look like a fourth-level heading. The string "XHTML Basic" above it should look like a third-level heading. Even earlier in the document the string "Testing Area" should look like a second-level heading. There shoudl be a first-level heading at the top of the page.</para>
+              <para id="gd-id778355">This is a paragraph inside a division.</para>
+              <para id="gd-id778348">This is another paragraph inside the same division.</para>
+              <section id="gd-id778341">
                 <title>This is a sixth-level heading</title>
-                <para id="gd-id768260">
+                <para id="gd-id778335">
                   <newline/>
                 </para>
               </section>
             </section>
-            <section id="gd-id768254">
+            <section id="gd-id778328">
               <title>Inline Elements</title>
-              <para id="gd-id768243">The following is an abbreviation whose expanded form may be made available somehow (eg. via tooltip or the status bar): . The following is an acronym whose expanded form may be made available somehow (eg. via tooltip or the status bar): . The following is a quotation whose citation source is http://www.hut.fi/u/hsivonen/test/xhtml-suite/dtdless-generic.xml: . There should be a line break here:<newline/>, , , , , , , , generic span</para>
+              <para id="gd-id778322">The following is an abbreviation whose expanded form may be made available somehow (eg. via tooltip or the status bar): . The following is an acronym whose expanded form may be made available somehow (eg. via tooltip or the status bar): . The following is a quotation whose citation source is http://www.hut.fi/u/hsivonen/test/xhtml-suite/dtdless-generic.xml: . There should be a line break here:<newline/>, , , , , , , , generic span</para>
             </section>
           </section>
-          <section id="gd-id768261">
+          <section id="gd-id778346">
             <title>Hypertext Module</title>
-            <para id="gd-id768234"><link url="http://www.hut.fi/u/hsivonen/test/xhtml-suite/" window="new">This is a link to the  test suite table of contents.</link> The link contain inline markup (), has a title and an accesskey 't'.</para>
+            <para id="gd-id779751"><link url="http://www.hut.fi/u/hsivonen/test/xhtml-suite/" window="new">This is a link to the  test suite table of contents.</link> The link contain inline markup (), has a title and an accesskey 't'.</para>
           </section>
-          <section id="gd-id586647">
+          <section id="gd-id779730">
             <title>List Module</title>
-            <para id="gd-id586638">
+            <para id="gd-id779719">
               <newline/>
             </para>
-            <list id="gd-id586629" list-type="bulleted">
+            <list id="gd-id779741" list-type="enumerated">
               <item>This is an ordered list.</item>
+              <item>This is the second item.</item>
+              <item>This is the third item.</item>
+            </list>
+            <list id="gd-id779689">
+              <item>This is an unordered list.</item>
+              <item>This is the second item.</item>
+              <item>This is the third item.</item>
             </list>
           </section>
-          <section id="gd-id586615">
+          <section id="gd-id596826">
             <title>Basic Forms Module</title>
-            <para id="gd-id586604">
+            <para id="gd-id596810">
               <newline/>
             </para>
           </section>
-          <section id="gd-id586596">
+          <section id="gd-id596803">
             <title>Basic Table Module</title>
-            <para id="gd-id586591">The following table has five columns, three rows, a summary and a caption.</para>
+            <para id="gd-id596791">The following table has five columns, three rows, a summary and a caption.</para>
           </section>
-          <section id="gd-id586630">
+          <section id="gd-id596792">
             <title>Image Module</title>
-            <para id="gd-id586598">There is a JPEG image here: </para>
+            <para id="gd-id596778">There is a JPEG image here: </para>
           </section>
-          <section id="gd-id593156">
+          <section id="gd-id596770">
             <title>Object Module</title>
-            <para id="gd-id593146">There is a JPEG object here: </para>
+            <para id="gd-id596820">There is a JPEG object here: </para>
           </section>
-          <section id="gd-id593138">
+          <section id="gd-id596793">
             <title>Link Module</title>
-            <para id="gd-id593128">This document has a  to a copyright notice. The user interface for following the link is user-agent-specific.</para>
+            <para id="gd-id774835">This document has a  to a copyright notice. The user interface for following the link is user-agent-specific.</para>
           </section>
-          <section id="gd-id593116">
+          <section id="gd-id774828">
             <title>Base Module</title>
-            <para id="gd-id593105"><link url="http://www.hut.fi/u/hsivonen/test/base-test/base-target" window="new">This is a relative link.</link> If the link points to http://www.hut.fi/u/hsivonen/test/base-test/base-target, the user agent supports . if it points to http://www.hut.fi/u/hsivonen/test/xhtml-suite/base-target, the user agent has failed the test.</para>
+            <para id="gd-id774822"><link url="http://www.hut.fi/u/hsivonen/test/base-test/base-target" window="new">This is a relative link.</link> If the link points to http://www.hut.fi/u/hsivonen/test/base-test/base-target, the user agent supports . if it points to http://www.hut.fi/u/hsivonen/test/xhtml-suite/base-target, the user agent has failed the test.</para>
           </section>
         </section>
-        <section id="gd-id593150">
+        <section id="gd-id774775">
           <title>XHTML 1.0 Strict</title>
-          <para id="gd-id593113">This section tests elements that are included in XHTML 1.0 Strict and in XHTML 1.1 but are not included in XHTML Basic.</para>
-          <section id="gd-id759418">
+          <para id="gd-id774788">This section tests elements that are included in XHTML 1.0 Strict and in XHTML 1.1 but are not included in XHTML Basic.</para>
+          <section id="gd-id774798">
             <title>Presentation module</title>
-            <para id="gd-id759407">, , , , , , </para>
-            <para id="gd-id759405">There should be a horizontal rule below here:</para>
+            <para id="gd-id806170">, , , , , , </para>
+            <para id="gd-id806167">There should be a horizontal rule below here:</para>
           </section>
-          <section id="gd-id759398">
+          <section id="gd-id806184">
             <title>Edit Module</title>
-            <para id="gd-id759359">
+            <para id="gd-id806196">
               <newline/>
             </para>
           </section>
-          <section id="gd-id759369">
+          <section id="gd-id806206">
             <title>Bi-directional Text Module</title>
-            <para id="gd-id759381">No bidi tests at this time. Sorry.</para>
+            <para id="gd-id806222">No bidi tests at this time. Sorry.</para>
           </section>
-          <section id="gd-id759393">
+          <section id="gd-id806218">
             <title>Forms Module</title>
-            <para id="gd-id586235">
+            <para id="gd-id771656">
               <newline/>
             </para>
           </section>
-          <section id="gd-id586248">
+          <section id="gd-id782711">
             <title>Tables Module</title>
-            <para id="gd-id586266">
+            <para id="gd-id782717">
               <newline/>
             </para>
           </section>
-          <section id="gd-id586280">
+          <section id="gd-id776394">
             <title>Image Map Modules</title>
-            <para id="gd-id586288">No image map tests at this time. Sorry.</para>
+            <para id="gd-id772002">No image map tests at this time. Sorry.</para>
           </section>
-          <section id="gd-id595087">
+          <section id="gd-id779680">
             <title>Intrinsic Events and Scripting Modules</title>
-            <para id="gd-id595071">No scripting tests at this time. Sorry.</para>
+            <para id="gd-id591030">No scripting tests at this time. Sorry.</para>
           </section>
-          <section id="gd-id586102">
+          <section id="gd-id794349">
             <title>Metainformation Module</title>
-            <para id="gd-id765417">This document contains the name of the author as metainformation.</para>
+            <para id="gd-id794352">This document contains the name of the author as metainformation.</para>
           </section>
         </section>
-        <section id="gd-id765402">
+        <section id="gd-id794355">
           <title>Ruby Annotation</title>
-          <para id="gd-id772050">This section tests XHTML 1.1 Ruby Annotation support.</para>
-          <section id="gd-id766670">
+          <para id="gd-id794358">This section tests XHTML 1.1 Ruby Annotation support.</para>
+          <section id="gd-id794361">
             <title>Ruby Module</title>
-            <para id="gd-id586423">Simple case with parenthesis fallback: XHTML(Extensible HyperText Markup Language)</para>
-            <para id="gd-id755751">The following acronym whould have each letter annotated and the entire acronym annotated: TLAThreeLetterAcronymGeneric three-letter technology</para>
+            <para id="gd-id794364">Simple case with parenthesis fallback: XHTML(Extensible HyperText Markup Language)</para>
+            <para id="gd-id794367">The following acronym whould have each letter annotated and the entire acronym annotated: TLAThreeLetterAcronymGeneric three-letter technology</para>
           </section>
         </section>
-        <section id="gd-id755753">
+        <section id="gd-id794369">
           <title>Style</title>
-          <para id="gd-id755757">If this paragraph is green, the user agent supports CSS via .</para>
-          <para id="gd-id755761">If this paragraph is green, the user agent supports CSS via .</para>
-          <para id="gd-id755764">If this paragraph is green, the user agent supports CSS via .</para>
-          <para id="gd-id755768">If this paragraph is green, the user agent supports CSS via the  attribute.</para>
-          <para id="gd-id755770">If this paragraph is green, the user agent supports CSS via CDATA in an arbitrary element designated as a  equivalent using a processing instruction.</para>
-          <para id="gd-id755773">
+          <para id="gd-id794373">If this paragraph is green, the user agent supports CSS via .</para>
+          <para id="gd-id794376">If this paragraph is green, the user agent supports CSS via .</para>
+          <para id="gd-id794380">If this paragraph is green, the user agent supports CSS via .</para>
+          <para id="gd-id794384">If this paragraph is green, the user agent supports CSS via the  attribute.</para>
+          <para id="gd-id794386">If this paragraph is green, the user agent supports CSS via CDATA in an arbitrary element designated as a  equivalent using a processing instruction.</para>
+          <para id="gd-id794388">
             <newline/>
           </para>
-          <para id="gd-id755775">Copyright 2001 Henri Sivonen</para>
+          <para id="gd-id794391">Copyright 2001 Henri Sivonen</para>
         </section>
       </section>
     </section>
