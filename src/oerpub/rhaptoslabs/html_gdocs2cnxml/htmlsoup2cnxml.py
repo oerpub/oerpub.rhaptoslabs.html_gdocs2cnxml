@@ -169,12 +169,12 @@ def xsl_transform(content, bDownloadImages, base_or_source_url='.'):
     doc2.freeDoc()
     result2.freeDoc()
     
-    return strResult2, imageObjects
+    return strResult2, imageObjects, html_title    
 
 def htmlsoup_to_cnxml(content, bDownloadImages=False, base_or_source_url='.'):
     objects = {}
-    content, objects = xsl_transform(content, bDownloadImages, base_or_source_url)
-    return content, objects
+    content, objects, title = xsl_transform(content, bDownloadImages, base_or_source_url)
+    return content, objects, title
 
 if __name__ == "__main__":
     f = open(sys.argv[1])
