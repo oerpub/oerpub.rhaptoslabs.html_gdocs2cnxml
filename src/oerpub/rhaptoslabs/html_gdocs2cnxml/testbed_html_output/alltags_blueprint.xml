@@ -1,94 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id772393" cnxml-version="0.7" module-id="new">
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id596483" cnxml-version="0.7" module-id="new">
   <title>Blueprint HTML Elements Tests</title>
   <content>
-    <section id="gd-id772364">
+    <section id="gd-id596455">
       <title>Tests for common HTML elements</title>
-      <para id="gd-id772340">
+      <para id="gd-id596476">
         <newline/>
       </para>
-      <section id="gd-id772376">
+      <section id="gd-id596487">
         <title>PARAGRAPHS &amp; BOXES</title>
-        <para id="gd-id772398">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</para>
-        <para id="gd-id772400">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor  ut labore et  magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</para>
-        <para id="gd-id772402">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</para>
-        <para id="gd-id772405">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</para>
-        <para id="gd-id591118">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</para>
-        <para id="gd-id591110">Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</para>
-        <section id="gd-id591102">
+        <para id="gd-id596489">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</para>
+        <para id="gd-id596492">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor  ut labore et  magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</para>
+        <para id="gd-id596494">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</para>
+        <para id="gd-id596497">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</para>
+        <para id="gd-id596499">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</para>
+        <para id="gd-id595876">Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</para>
+        <section id="gd-id595868">
           <title>LISTS</title>
-          <para id="gd-id591091">
+          <para id="gd-id595856">
             <newline/>
           </para>
-          <list id="gd-id591084">
+          <list id="gd-id595848">
             <item>Unordered list test</item>
             <item>Another list element. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</item>
             <item>Yet another element in the list</item>
             <item>Some long text. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</item>
           </list>
-          <list id="gd-id591065" list-type="enumerated">
+          <list id="gd-id595829" list-type="enumerated">
             <item>Ordered list test</item>
             <item>Another list element</item>
             <item>Yet another element in the list</item>
           </list>
-          <list id="gd-id591525" list-type="enumerated">
+          <list id="gd-id595827" list-type="enumerated">
             <item>Ordered list</item>
             <item>Here's a nested unordered list
-<list id="gd-id591480"><item>Nested Unordered list</item><item>Nested ordered list
-<list id="gd-id591497" list-type="enumerated"><item>The first</item><item>And the second</item></list></item></list></item>
+<list id="gd-id595125"><item>Nested Unordered list</item><item>Nested ordered list
+<list id="gd-id595088" list-type="enumerated"><item>The first</item><item>And the second</item></list></item></list></item>
             <item>Ordered List item</item>
             <item>Nested Ordered list
-<list id="gd-id597584" list-type="enumerated"><item>Some point</item><item>Nested Unordered list</item></list></item>
+<list id="gd-id595532" list-type="enumerated"><item>Some point</item><item>Nested Unordered list</item></list></item>
           </list>
-          <section id="gd-id597603">
+          <section id="gd-id595521">
             <title>HEADINGS</title>
-            <para id="gd-id774283">
+            <para id="gd-id595569">
               <newline/>
             </para>
           </section>
         </section>
-        <section id="gd-id769861">
+        <section id="gd-id802699">
           <title>HEADINGS</title>
-          <para id="gd-id769901">
+          <para id="gd-id821338">
             <newline/>
           </para>
         </section>
       </section>
-      <section id="gd-id771876">
+      <section id="gd-id803041">
         <title>LISTS</title>
-        <para id="gd-id772085">
+        <para id="gd-id803203">
           <newline/>
         </para>
-        <list id="gd-id772088">
+        <list id="gd-id801585">
           <item>Unordered list test</item>
           <item>Another list element. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</item>
           <item>Yet another element in the list</item>
           <item>Some long text. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</item>
         </list>
-        <list id="gd-id772098" list-type="enumerated">
+        <list id="gd-id801596" list-type="enumerated">
           <item>Ordered list test</item>
           <item>Another list element</item>
           <item>Yet another element in the list</item>
         </list>
-        <list id="gd-id772108" list-type="enumerated">
+        <list id="gd-id801605" list-type="enumerated">
           <item>Ordered list</item>
           <item>Here's a nested unordered list
-<list id="gd-id772115"><item>Nested Unordered list</item><item>Nested ordered list
-<list id="gd-id772121" list-type="enumerated"><item>The first</item><item>And the second</item></list></item></list></item>
+<list id="gd-id801612"><item>Nested Unordered list</item><item>Nested ordered list
+<list id="gd-id801618" list-type="enumerated"><item>The first</item><item>And the second</item></list></item></list></item>
           <item>Ordered List item</item>
           <item>Nested Ordered list
-<list id="gd-id772133" list-type="enumerated"><item>Some point</item><item>Nested Unordered list</item></list></item>
+<list id="gd-id801630" list-type="enumerated"><item>Some point</item><item>Nested Unordered list</item></list></item>
         </list>
-        <section id="gd-id772140">
+        <section id="gd-id801638">
           <title>HEADINGS</title>
-          <para id="gd-id772144">
+          <para id="gd-id801641">
             <newline/>
           </para>
         </section>
       </section>
-      <section id="gd-id772146">
+      <section id="gd-id801644">
         <title>HEADINGS</title>
-        <para id="gd-id772150">
+        <para id="gd-id801647">
           <newline/>
         </para>
       </section>
