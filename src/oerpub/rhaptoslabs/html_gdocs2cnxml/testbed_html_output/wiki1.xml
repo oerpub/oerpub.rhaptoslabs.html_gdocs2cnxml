@@ -1,155 +1,202 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id592929" cnxml-version="0.7" module-id="new">
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id900026" cnxml-version="0.7" module-id="new">
   <title>Connexions - Wikipedia, the free encyclopedia</title>
   <content>
-    <para id="gd-id592908">From Wikipedia, the free encyclopedia</para>
-    <para id="gd-id592912">
+    <para id="gd-id900006">From Wikipedia, the free encyclopedia</para>
+    <para id="gd-id900009">
       <newline/>
     </para>
-    <para id="gd-id592902"> is a global repository of educational content provided by <link url="/wiki/Rice_University" window="new">Rice University</link>. The entire collection is available free of charge, and students and learners alike can explore all the content they desire.</para>
-    <para id="gd-id592935">Connexions was one of the first initiatives, pioneering, along with other projects such as <link url="/wiki/MIT_OpenCourseWare" window="new">MIT OpenCourseWare</link> and the <link url="/wiki/Public_Library_of_Science" window="new">Public Library of Science</link>, the idea of <link url="/wiki/Open_educational_resources" window="new">open educational resources</link> - that scholarly and educational content can and should be shared, re-used and recombined, interconnected and continually enriched.</para>
-    <section id="gd-id592955">
+    <para id="gd-id900000"> is a global repository of educational content provided by <link url="/wiki/Rice_University" window="new">Rice University</link>. The entire collection is available free of charge, and students and learners alike can explore all the content they desire.</para>
+    <para id="gd-id899976">Connexions was one of the first initiatives, pioneering, along with other projects such as <link url="/wiki/MIT_OpenCourseWare" window="new">MIT OpenCourseWare</link> and the <link url="/wiki/Public_Library_of_Science" window="new">Public Library of Science</link>, the idea of <link url="/wiki/Open_educational_resources" window="new">open educational resources</link> - that scholarly and educational content can and should be shared, re-used and recombined, interconnected and continually enriched.</para>
+    <section id="gd-id899928">
       <title>[edit]Subject matter</title>
-      <para id="gd-id592959">Connexions contains educational materials at all levels - from children to college students to professionals - organized in small modules that can be connected into larger courses. Material is authored by people from all walks of life. Much content is created by university professors, but the collection also contains very popular music content created by a part-time music teacher.</para>
-      <para id="gd-id592961">Connexions popular material is translated into many languages, aided by the open-content licensing.</para>
-      <section id="gd-id592964">
+      <para id="gd-id899997">Connexions contains educational materials at all levels - from children to college students to professionals - organized in small modules that can be connected into larger courses. Material is authored by people from all walks of life. Much content is created by university professors, but the collection also contains very popular music content created by a part-time music teacher.</para>
+      <para id="gd-id900031">Connexions popular material is translated into many languages, aided by the open-content licensing.</para>
+      <section id="gd-id900033">
         <title>[edit]Copyright</title>
-        <para id="gd-id592967">To ensure the legal reusability of content, Connexions requires authors to license materials they publish under the <link url="/wiki/Creative_Commons" window="new">Creative Commons</link> Attribution License (presently, version 3.0). Under this license, the author retains the right to be credited (attributed) wherever the content is reused. The author grants others the right to copy, distribute, and display the work, and to derive works based on it, as long as the author is credited.</para>
+        <para id="gd-id900037">To ensure the legal reusability of content, Connexions requires authors to license materials they publish under the <link url="/wiki/Creative_Commons" window="new">Creative Commons</link> Attribution License (presently, version 3.0). Under this license, the author retains the right to be credited (attributed) wherever the content is reused. The author grants others the right to copy, distribute, and display the work, and to derive works based on it, as long as the author is credited.</para>
       </section>
-      <section id="gd-id592976">
+      <section id="gd-id900045">
         <title>[edit]Comparison to other open education projects</title>
-        <para id="gd-id592979">
+        <para id="gd-id900049">
           <newline/>
         </para>
+        <list id="gd-id900051">
+          <item>First, in scale: Connexions has content from all over the world in a growing variety of languages, not just materials from one specific school or university. It also collects materials to support education in K-12, community college, university, continuing education, and industrial training settings.</item>
+        </list>
+        <list id="gd-id1124003">
+          <item>Second, by the way communities are supported: Connexions is globally accessible to anyone to not only read and use the materials, but also take them, customize them, and contribute them back to the repository or not.</item>
+        </list>
+        <list id="gd-id1123992">
+          <item>Third, in the way it is organized: Connexions is grassroots organized from the bottom up rather than from the top down like many other open education projects. Everyone is free to join and take on a leadership role.</item>
+        </list>
       </section>
-      <section id="gd-id592982">
+      <section id="gd-id1123982">
         <title>[edit]Technical details</title>
-        <para id="gd-id592985">Three key factors enable the collaborative environment in Connexions:</para>
+        <para id="gd-id1123986">Three key factors enable the collaborative environment in Connexions:</para>
+        <list id="gd-id1123976">
+          <item>Copyright licenses that preserve attribution but permit sharing: <link url="/wiki/Creative_Commons" window="new">Creative Commons</link> "attribution" licenses</item>
+          <item>Semantic markup of documents using <link url="/wiki/XML" window="new">XML</link> (extensible markup language) so they can be searched for and combined. The markup language used is called "CNXML".</item>
+          <item>Workspaces that facilitate collaboration by providing shared space, the ability to version materials and derive content from existing modules.</item>
+        </list>
       </section>
-      <section id="gd-id592988">
+      <section id="gd-id1123899">
         <title>[edit]Funding</title>
-        <para id="gd-id592991">The Connexions project was started in 1999 and initially supported by individuals and <link url="/wiki/Rice_University" window="new">Rice University</link>. That support has been substantially supplemented by grants from the <link url="/wiki/William_and_Flora_Hewlett_Foundation" window="new">William and Flora Hewlett Foundation</link>.</para>
+        <para id="gd-id1123887">The Connexions project was started in 1999 and initially supported by individuals and <link url="/wiki/Rice_University" window="new">Rice University</link>. That support has been substantially supplemented by grants from the <link url="/wiki/William_and_Flora_Hewlett_Foundation" window="new">William and Flora Hewlett Foundation</link>.</para>
       </section>
-      <section id="gd-id593006">
+      <section id="gd-id1123890">
         <title>[edit]See also</title>
-        <para id="gd-id593009">
+        <para id="gd-id856420">
           <newline/>
         </para>
       </section>
-      <section id="gd-id593012">
+      <section id="gd-id856413">
         <title>[edit]External links</title>
-        <para id="gd-id593015">
+        <para id="gd-id856418">
           <newline/>
         </para>
       </section>
     </section>
-    <section id="gd-id593018">
+    <section id="gd-id856388">
       <title>[edit]Copyright</title>
-      <para id="gd-id593021">To ensure the legal reusability of content, Connexions requires authors to license materials they publish under the <link url="/wiki/Creative_Commons" window="new">Creative Commons</link> Attribution License (presently, version 3.0). Under this license, the author retains the right to be credited (attributed) wherever the content is reused. The author grants others the right to copy, distribute, and display the work, and to derive works based on it, as long as the author is credited.</para>
-      <section id="gd-id593030">
+      <para id="gd-id856377">To ensure the legal reusability of content, Connexions requires authors to license materials they publish under the <link url="/wiki/Creative_Commons" window="new">Creative Commons</link> Attribution License (presently, version 3.0). Under this license, the author retains the right to be credited (attributed) wherever the content is reused. The author grants others the right to copy, distribute, and display the work, and to derive works based on it, as long as the author is credited.</para>
+      <section id="gd-id856357">
         <title>[edit]Comparison to other open education projects</title>
-        <para id="gd-id1015657">
+        <para id="gd-id856333">
           <newline/>
         </para>
+        <list id="gd-id856320">
+          <item>First, in scale: Connexions has content from all over the world in a growing variety of languages, not just materials from one specific school or university. It also collects materials to support education in K-12, community college, university, continuing education, and industrial training settings.</item>
+        </list>
+        <list id="gd-id856308">
+          <item>Second, by the way communities are supported: Connexions is globally accessible to anyone to not only read and use the materials, but also take them, customize them, and contribute them back to the repository or not.</item>
+        </list>
+        <list id="gd-id856297">
+          <item>Third, in the way it is organized: Connexions is grassroots organized from the bottom up rather than from the top down like many other open education projects. Everyone is free to join and take on a leadership role.</item>
+        </list>
       </section>
-      <section id="gd-id1015650">
+      <section id="gd-id856358">
         <title>[edit]Technical details</title>
-        <para id="gd-id1015646">Three key factors enable the collaborative environment in Connexions:</para>
+        <para id="gd-id856382">Three key factors enable the collaborative environment in Connexions:</para>
+        <list id="gd-id591030">
+          <item>Copyright licenses that preserve attribution but permit sharing: <link url="/wiki/Creative_Commons" window="new">Creative Commons</link> "attribution" licenses</item>
+          <item>Semantic markup of documents using <link url="/wiki/XML" window="new">XML</link> (extensible markup language) so they can be searched for and combined. The markup language used is called "CNXML".</item>
+          <item>Workspaces that facilitate collaboration by providing shared space, the ability to version materials and derive content from existing modules.</item>
+        </list>
       </section>
-      <section id="gd-id1015637">
+      <section id="gd-id591003">
         <title>[edit]Funding</title>
-        <para id="gd-id1015634">The Connexions project was started in 1999 and initially supported by individuals and <link url="/wiki/Rice_University" window="new">Rice University</link>. That support has been substantially supplemented by grants from the <link url="/wiki/William_and_Flora_Hewlett_Foundation" window="new">William and Flora Hewlett Foundation</link>.</para>
+        <para id="gd-id591004">The Connexions project was started in 1999 and initially supported by individuals and <link url="/wiki/Rice_University" window="new">Rice University</link>. That support has been substantially supplemented by grants from the <link url="/wiki/William_and_Flora_Hewlett_Foundation" window="new">William and Flora Hewlett Foundation</link>.</para>
       </section>
-      <section id="gd-id754958">
+      <section id="gd-id1096427">
         <title>[edit]See also</title>
-        <para id="gd-id754947">
+        <para id="gd-id771653">
           <newline/>
         </para>
       </section>
-      <section id="gd-id754940">
+      <section id="gd-id771629">
         <title>[edit]External links</title>
-        <para id="gd-id754941">
+        <para id="gd-id771604">
           <newline/>
         </para>
       </section>
     </section>
-    <section id="gd-id754931">
+    <section id="gd-id771613">
       <title>[edit]Comparison to other open education projects</title>
-      <para id="gd-id754920">
+      <para id="gd-id597594">
         <newline/>
       </para>
-      <section id="gd-id754913">
+      <list id="gd-id597561">
+        <item>First, in scale: Connexions has content from all over the world in a growing variety of languages, not just materials from one specific school or university. It also collects materials to support education in K-12, community college, university, continuing education, and industrial training settings.</item>
+      </list>
+      <list id="gd-id597546">
+        <item>Second, by the way communities are supported: Connexions is globally accessible to anyone to not only read and use the materials, but also take them, customize them, and contribute them back to the repository or not.</item>
+      </list>
+      <list id="gd-id768626">
+        <item>Third, in the way it is organized: Connexions is grassroots organized from the bottom up rather than from the top down like many other open education projects. Everyone is free to join and take on a leadership role.</item>
+      </list>
+      <section id="gd-id1096214">
         <title>[edit]Technical details</title>
-        <para id="gd-id754907">Three key factors enable the collaborative environment in Connexions:</para>
+        <para id="gd-id1096189">Three key factors enable the collaborative environment in Connexions:</para>
+        <list id="gd-id787766">
+          <item>Copyright licenses that preserve attribution but permit sharing: <link url="/wiki/Creative_Commons" window="new">Creative Commons</link> "attribution" licenses</item>
+          <item>Semantic markup of documents using <link url="/wiki/XML" window="new">XML</link> (extensible markup language) so they can be searched for and combined. The markup language used is called "CNXML".</item>
+          <item>Workspaces that facilitate collaboration by providing shared space, the ability to version materials and derive content from existing modules.</item>
+        </list>
       </section>
-      <section id="gd-id754928">
+      <section id="gd-id859616">
         <title>[edit]Funding</title>
-        <para id="gd-id754929">The Connexions project was started in 1999 and initially supported by individuals and <link url="/wiki/Rice_University" window="new">Rice University</link>. That support has been substantially supplemented by grants from the <link url="/wiki/William_and_Flora_Hewlett_Foundation" window="new">William and Flora Hewlett Foundation</link>.</para>
+        <para id="gd-id859619">The Connexions project was started in 1999 and initially supported by individuals and <link url="/wiki/Rice_University" window="new">Rice University</link>. That support has been substantially supplemented by grants from the <link url="/wiki/William_and_Flora_Hewlett_Foundation" window="new">William and Flora Hewlett Foundation</link>.</para>
       </section>
-      <section id="gd-id1014874">
+      <section id="gd-id859634">
         <title>[edit]See also</title>
-        <para id="gd-id1014863">
+        <para id="gd-id859637">
           <newline/>
         </para>
       </section>
-      <section id="gd-id1014861">
+      <section id="gd-id859640">
         <title>[edit]External links</title>
-        <para id="gd-id1014878">
+        <para id="gd-id859643">
           <newline/>
         </para>
       </section>
     </section>
-    <section id="gd-id1014855">
+    <section id="gd-id859646">
       <title>[edit]Technical details</title>
-      <para id="gd-id759404">Three key factors enable the collaborative environment in Connexions:</para>
-      <section id="gd-id759398">
+      <para id="gd-id859649">Three key factors enable the collaborative environment in Connexions:</para>
+      <list id="gd-id859652">
+        <item>Copyright licenses that preserve attribution but permit sharing: <link url="/wiki/Creative_Commons" window="new">Creative Commons</link> "attribution" licenses</item>
+        <item>Semantic markup of documents using <link url="/wiki/XML" window="new">XML</link> (extensible markup language) so they can be searched for and combined. The markup language used is called "CNXML".</item>
+        <item>Workspaces that facilitate collaboration by providing shared space, the ability to version materials and derive content from existing modules.</item>
+      </list>
+      <section id="gd-id859672">
         <title>[edit]Funding</title>
-        <para id="gd-id759387">The Connexions project was started in 1999 and initially supported by individuals and <link url="/wiki/Rice_University" window="new">Rice University</link>. That support has been substantially supplemented by grants from the <link url="/wiki/William_and_Flora_Hewlett_Foundation" window="new">William and Flora Hewlett Foundation</link>.</para>
+        <para id="gd-id859676">The Connexions project was started in 1999 and initially supported by individuals and <link url="/wiki/Rice_University" window="new">Rice University</link>. That support has been substantially supplemented by grants from the <link url="/wiki/William_and_Flora_Hewlett_Foundation" window="new">William and Flora Hewlett Foundation</link>.</para>
       </section>
-      <section id="gd-id784729">
+      <section id="gd-id859690">
         <title>[edit]See also</title>
-        <para id="gd-id784766">
+        <para id="gd-id859694">
           <newline/>
         </para>
       </section>
-      <section id="gd-id784768">
+      <section id="gd-id859696">
         <title>[edit]External links</title>
-        <para id="gd-id784787">
+        <para id="gd-id859700">
           <newline/>
         </para>
       </section>
     </section>
-    <section id="gd-id793306">
+    <section id="gd-id859702">
       <title>[edit]Funding</title>
-      <para id="gd-id793330">The Connexions project was started in 1999 and initially supported by individuals and <link url="/wiki/Rice_University" window="new">Rice University</link>. That support has been substantially supplemented by grants from the <link url="/wiki/William_and_Flora_Hewlett_Foundation" window="new">William and Flora Hewlett Foundation</link>.</para>
-      <section id="gd-id773048">
+      <para id="gd-id859706">The Connexions project was started in 1999 and initially supported by individuals and <link url="/wiki/Rice_University" window="new">Rice University</link>. That support has been substantially supplemented by grants from the <link url="/wiki/William_and_Flora_Hewlett_Foundation" window="new">William and Flora Hewlett Foundation</link>.</para>
+      <section id="gd-id859720">
         <title>[edit]See also</title>
-        <para id="gd-id868304">
+        <para id="gd-id859724">
           <newline/>
         </para>
       </section>
-      <section id="gd-id768415">
+      <section id="gd-id859726">
         <title>[edit]External links</title>
-        <para id="gd-id1011441">
+        <para id="gd-id859730">
           <newline/>
         </para>
       </section>
     </section>
-    <section id="gd-id1011444">
+    <section id="gd-id859732">
       <title>[edit]See also</title>
-      <para id="gd-id1011447">
+      <para id="gd-id811550">
         <newline/>
       </para>
-      <section id="gd-id1011450">
+      <section id="gd-id811552">
         <title>[edit]External links</title>
-        <para id="gd-id1011453">
+        <para id="gd-id811556">
           <newline/>
         </para>
       </section>
     </section>
-    <section id="gd-id1011456">
+    <section id="gd-id811558">
       <title>[edit]External links</title>
-      <para id="gd-id1011459">
+      <para id="gd-id811562">
         <newline/>
       </para>
     </section>

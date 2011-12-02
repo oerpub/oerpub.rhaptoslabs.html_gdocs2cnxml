@@ -189,85 +189,38 @@ Pass1,2...4 transformation is a precondition for this pass.
   </xsl:choose>
 </xsl:template>
 
-<!-- listings -->
-<xsl:template match="xh:ol" mode="pass6">
-  <xsl:if test="xh:li">
-    <xsl:apply-templates select="xh:li[1]" mode="walker_pass6">
-      <xsl:with-param name="preceding_style" select="'unknown'"/>
-    </xsl:apply-templates>
-  </xsl:if>
-</xsl:template>
-
-<!-- ignore li, instead walk through li's (look at template ol above) -->
-<xsl:template match="xh:li" mode="pass6"/>
-
-<!-- walk through listings -->
-<xsl:template match="xh:li" mode="walker_pass6">
-  <xsl:param name="preceding_style" select="'unknown'"/>
-  <xsl:variable name="my_style" select="@list-style-type"/>
-  <xsl:variable name="next_same_style" select="following-sibling::*[1][self::xh:li][@list-style-type = $my_style]"/>
-
-  <!-- TODO: Is this wrong? Check if next_diff_style only looks for the next different style in current <ol> block -->
-  <xsl:variable name="next_diff_style" select="following-sibling::xh:li[@list-style-type != $my_style][1]"/>
-
-  <xsl:choose>
-    <xsl:when test="$preceding_style = @list-style-type">
-      <item>
+<!-- unordered listings -->
+<xsl:template match="xh:ul" mode="pass6">
+    <list>
         <xsl:apply-templates mode="pass6"/>
-      </item>
-      <xsl:apply-templates select="$next_same_style" mode="walker_pass6">
-        <xsl:with-param name="preceding_style" select="$my_style"/>
-      </xsl:apply-templates>
-    </xsl:when>
-    <xsl:when test="$preceding_style = 'unknown'">
-      <list>
-        <xsl:choose>
-          <xsl:when test="$my_style = 'disc'">
-            <xsl:attribute name="list-type">bulleted</xsl:attribute>
-          </xsl:when>
-          <xsl:when test="$my_style = 'circle'">
-            <xsl:attribute name="list-type">bulleted</xsl:attribute>
-            <xsl:attribute name="bullet-style">open-circle</xsl:attribute>
-          </xsl:when>
-          <xsl:when test="$my_style = 'decimal'">
-            <xsl:attribute name="list-type">enumerated</xsl:attribute>
-          </xsl:when>
-          <xsl:when test="$my_style = 'upper-latin'">
-            <xsl:attribute name="list-type">enumerated</xsl:attribute>
-            <xsl:attribute name="number-style">upper-alpha</xsl:attribute>
-          </xsl:when>
-          <xsl:when test="$my_style = 'lower-latin'">
-            <xsl:attribute name="list-type">enumerated</xsl:attribute>
-            <xsl:attribute name="number-style">lower-alpha</xsl:attribute>
-          </xsl:when>
-          <xsl:when test="$my_style = 'lower-roman'">
-            <xsl:attribute name="list-type">enumerated</xsl:attribute>
-            <xsl:attribute name="number-style">lower-roman</xsl:attribute>
-          </xsl:when>
-          <xsl:when test="$my_style = 'upper-roman'">
-            <xsl:attribute name="list-type">enumerated</xsl:attribute>
-            <xsl:attribute name="number-style">upper-roman</xsl:attribute>
-          </xsl:when>
-          <xsl:otherwise> <!-- Fail safe mode -->
-            <xsl:attribute name="list-type">bulleted</xsl:attribute>
-          </xsl:otherwise>
-        </xsl:choose>
-        <item>
-          <xsl:apply-templates mode="pass6"/>
-        </item>
-        <xsl:apply-templates select="$next_same_style" mode="walker_pass6">
-          <xsl:with-param name="preceding_style" select="$my_style"/>
-        </xsl:apply-templates>
-      </list>
-      <xsl:apply-templates select="$next_diff_style" mode="walker_pass6">
-        <xsl:with-param name="preceding_style" select="'unknown'"/>
-      </xsl:apply-templates>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:message>This should not happen!</xsl:message>
-    </xsl:otherwise>
-  </xsl:choose>
+    </list>
 </xsl:template>
+
+<!-- ordered listings -->
+<xsl:template match="xh:ol" mode="pass6">
+    <list list-type="enumerated">
+        <xsl:apply-templates mode="pass6"/>
+    </list>    
+</xsl:template>
+
+<!-- listings content -->
+<xsl:template match="xh:li" mode="pass6">
+    <item>
+        <xsl:apply-templates mode="pass6"/>
+    </item>
+</xsl:template>
+
+<!-- definition list -->
+<!--
+<xsl:template match="xh:dl" mode="pass6">
+    <xsl:apply-templates select="*[1]" mode="walker_definition_pass6"/>
+</xsl:template>
+
+<xsl:template match="xh:dt" mode="walker_definition_pass6">
+    <definition>
+    </definition>
+</xsl:template>
+-->
 
 <!-- table -->
 <xsl:template match="xh:table" mode="pass6">
@@ -427,7 +380,6 @@ Pass1,2...4 transformation is a precondition for this pass.
 	|xh:title
 	|xh:tt
 	|xh:u
-	|xh:ul
 	|xh:var
   " mode="pass6"/>
 
