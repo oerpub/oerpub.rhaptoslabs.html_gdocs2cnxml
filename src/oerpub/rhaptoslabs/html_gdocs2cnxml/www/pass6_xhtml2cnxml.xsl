@@ -100,6 +100,34 @@ Pass1,2...4 transformation is a precondition for this pass.
   </para>
 </xsl:template>
 
+<!-- em (italics) -->
+<xsl:template match="xh:em" mode="pass6">
+  <xsl:choose>
+    <xsl:when test="not(ancestor::xh:strong|ancestor::xh:em)">
+      <emphasis effect="italics">
+        <xsl:apply-templates mode="pass6"/>
+      </emphasis>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates mode="pass6"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!-- strong (bold) -->
+<xsl:template match="xh:strong" mode="pass6">
+  <xsl:choose>
+    <xsl:when test="not(ancestor::xh:strong|ancestor::xh:em)">
+      <emphasis effect="bold">
+        <xsl:apply-templates mode="pass6"/>
+      </emphasis>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates mode="pass6"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <!-- br -->
 <xsl:template match="xh:p/xh:br" mode="pass6">
   <newline/>
@@ -308,7 +336,7 @@ Pass1,2...4 transformation is a precondition for this pass.
 <!-- TODO! -->
 <xsl:template match="xh:p[cnxtra:tex]" mode="pass6"/>
 
-<!-- TODO! -->
+<!-- TODO! ignore tags -->
 <xsl:template match="
 	xh:table
 	|xh:abbr
@@ -316,11 +344,9 @@ Pass1,2...4 transformation is a precondition for this pass.
 	|xh:address
 	|xh:applet
 	|xh:area
-	|xh:b
 	|xh:base
 	|xh:basefont
 	|xh:bdo
-	|xh:big
 	|xh:blockquote
 	|xh:button
 	|xh:caption
@@ -333,12 +359,7 @@ Pass1,2...4 transformation is a precondition for this pass.
 	|xh:del
 	|xh:dfn
 	|xh:dir
-	|xh:div
-	|xh:dl
-	|xh:dt
-	|xh:em
 	|xh:fieldset
-	|xh:font
 	|xh:form
 	|xh:frame
 	|xh:frameset
@@ -349,9 +370,7 @@ Pass1,2...4 transformation is a precondition for this pass.
 	|xh:ins
 	|xh:isindex
 	|xh:kbd
-	|xh:label
 	|xh:legend
-	|xh:link
 	|xh:map
 	|xh:menu
 	|xh:meta
@@ -367,23 +386,34 @@ Pass1,2...4 transformation is a precondition for this pass.
 	|xh:samp
 	|xh:script
 	|xh:select
-	|xh:small
-	|xh:strike
-	|xh:strong
 	|xh:style
-	|xh:sub
-	|xh:sup
 	|xh:textarea
 	|xh:th
 	|xh:thead
 	|xh:tfoot
-	|xh:title
 	|xh:tt
-	|xh:u
 	|xh:var
   " mode="pass6"/>
-
-
+  
+<!-- TODO: ignore tags, but keep content -->
+<xsl:template match="
+	xh:dl
+	|xh:dt
+	|xh:small
+	|xh:strike
+	|xh:title
+	|xh:u
+  |xh:b
+	|xh:sub
+	|xh:sup
+	|xh:label
+	|xh:link
+	|xh:font
+	|xh:big
+  " mode="pass6">
+<!--  <xsl:apply-templates mode="pass6"/> -->
+</xsl:template>
+  
 
 <!-- underline -->
 <!--

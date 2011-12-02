@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id774799" cnxml-version="0.7" module-id="new">
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id812612" cnxml-version="0.7" module-id="new">
   <title>Kathi Fletcher's Blog: Not convinced yet that SWORD is sharp?</title>
   <content>
-    <para id="gd-id774782">My</para>
-    <para id="gd-id774803">
+    <para id="gd-id812596">My</para>
+    <para id="gd-id812611">
       <link url="http://kefletcher.blogspot.com/2011/06/choosing-sword-for-publishing-oer-pen.html" window="new">prior blog post</link>
     </para>
-    <para id="gd-id773952">discussed the benefits of choosing SWORD for depositing open education resources (OER) in repositories that make it easy to share and remix. It was very general, however, and here I will attempt to make a few more details concrete.</para>
-    <para id="gd-id773959">The key to SWORD's appropriateness is that it is specifically geared toward exchanging</para>
-    <para id="gd-id773976">
-      <newline/>
+    <para id="gd-id802208">discussed the benefits of choosing SWORD for depositing open education resources (OER) in repositories that make it easy to share and remix. It was very general, however, and here I will attempt to make a few more details concrete.</para>
+    <para id="gd-id802218">The key to SWORD's appropriateness is that it is specifically geared toward exchanging</para>
+    <para id="gd-id802241">
+      <emphasis effect="italics">packaged</emphasis>
     </para>
-    <para id="gd-id773947">content along with some information (</para>
-    <para id="gd-id773944">
-      <newline/>
+    <para id="gd-id806336">content along with some information (</para>
+    <para id="gd-id806291">
+      <emphasis effect="italics">metadata</emphasis>
     </para>
-    <para id="gd-id773936">) about that package, and SWORD includes metadata in a format common to OER (Dublin Core).</para>
-    <para id="gd-id773933">
-      <newline/>
+    <para id="gd-id806276">) about that package, and SWORD includes metadata in a format common to OER (Dublin Core).</para>
+    <para id="gd-id812540">
+      <emphasis effect="bold">Packaging and the "atomic" nature of SWORD:</emphasis>
     </para>
-    <para id="gd-id773928">The key to SWORD over AtomPub (which it is built on top of) is that it has a notion of a "package". Connexions, for example, is a repository of modules and collections. These are educational packages and can properly be thought of as containers of stuff. A module contains document XML, resources (images, slides, attachments) etc, and some metadata (title, authors, subject etc). It is good to have an API that can deal with that whole thing at once as a logical unit. And SWORD also gives you a way to ask for the whole logical item back (perhaps transformed). For Connexions someone can then rightly ask for their module back as a zip of all its parts, as a web view, as an EPUB, etc.</para>
-    <para id="gd-id773922">SWORD would be too heavyweight to publish images to flickr or status updates to Facebook. SWORD also isn't appropriate in an environment where you could deposit a bunch of things at once, but they really aren't a logical unit. If you just wanted to upload 20 pictures in bulk to save time, SWORD wouldn't be the right protocol, because it would require the repository to be able to give you back precisely those 20. But it is just the right size for publishing modules or collections to the Connexions repository. There is really no extra overhead that isn't completely necessary to the process of submitting content to Connexions.</para>
-    <para id="gd-id773916">A protocol like WebDAV is much more complex, because its goal it to make collaborative, distributed authoring of web resources possible, or perhaps be a networked file system. It has all sorts of locking and detailed synchronization, along with ways to query individual properties on individual resources. This is just much more fine-grained than is needed for an educational repository like Connexions. Similarly for CMIS, which is a complete system for making general purpose content management systems interoperable, and like WebDAV it is oriented toward general purpose files and folders.</para>
-    <para id="gd-id773912">
-      <newline/>
+    <para id="gd-id812517">The key to SWORD over AtomPub (which it is built on top of) is that it has a notion of a "package". Connexions, for example, is a repository of modules and collections. These are educational packages and can properly be thought of as containers of stuff. A module contains document XML, resources (images, slides, attachments) etc, and some metadata (title, authors, subject etc). It is good to have an API that can deal with that whole thing at once as a logical unit. And SWORD also gives you a way to ask for the whole logical item back (perhaps transformed). For Connexions someone can then rightly ask for their module back as a zip of all its parts, as a web view, as an EPUB, etc.</para>
+    <para id="gd-id801646">SWORD would be too heavyweight to publish images to flickr or status updates to Facebook. SWORD also isn't appropriate in an environment where you could deposit a bunch of things at once, but they really aren't a logical unit. If you just wanted to upload 20 pictures in bulk to save time, SWORD wouldn't be the right protocol, because it would require the repository to be able to give you back precisely those 20. But it is just the right size for publishing modules or collections to the Connexions repository. There is really no extra overhead that isn't completely necessary to the process of submitting content to Connexions.</para>
+    <para id="gd-id801640">A protocol like WebDAV is much more complex, because its goal it to make collaborative, distributed authoring of web resources possible, or perhaps be a networked file system. It has all sorts of locking and detailed synchronization, along with ways to query individual properties on individual resources. This is just much more fine-grained than is needed for an educational repository like Connexions. Similarly for CMIS, which is a complete system for making general purpose content management systems interoperable, and like WebDAV it is oriented toward general purpose files and folders.</para>
+    <para id="gd-id801627">
+      <emphasis effect="bold">Commonly used metadata:</emphasis>
     </para>
-    <para id="gd-id596509">One more factor makes SWORD appropriate for educational repositories with modular, remixable content. SWORD uses Dublin Core metadata and Dublin Core support has become standard in the world of scholarly and educational content.</para>
+    <para id="gd-id594472">One more factor makes SWORD appropriate for educational repositories with modular, remixable content. SWORD uses Dublin Core metadata and Dublin Core support has become standard in the world of scholarly and educational content.</para>
   </content>
 </document>
