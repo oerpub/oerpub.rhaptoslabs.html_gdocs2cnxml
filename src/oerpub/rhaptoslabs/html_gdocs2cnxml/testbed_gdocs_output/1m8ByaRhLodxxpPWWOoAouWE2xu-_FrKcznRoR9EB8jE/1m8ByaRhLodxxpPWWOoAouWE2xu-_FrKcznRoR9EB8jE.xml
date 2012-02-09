@@ -1,140 +1,195 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id605999" cnxml-version="0.7" module-id="new">
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-idp2197504" cnxml-version="0.7" module-id="new">
   <title>Sample1</title>
   <content>
-    <section id="gd-id606014">
+    <section id="gd-idp648400">
       <title>Rhaptos now also works with</title>
-      <para id="gd-id606020">
-        <media id="gd-id606021" alt="https://lh3.googleusercontent.com/L6AvGhePeeD_inHAJjTuDC819GMcH-8ID_wyPCaDDMOA3wHUQGPp-YQR0YFeZvXwsuXAWo1AtGJVdrTawYHBUGeYguG_LV-EdeaeGDIIZW5YyifzbIM">
+      <para id="gd-idp640560">
+        <media id="gd-idp2195992" alt="https://lh3.googleusercontent.com/L6AvGhePeeD_inHAJjTuDC819GMcH-8ID_wyPCaDDMOA3wHUQGPp-YQR0YFeZvXwsuXAWo1AtGJVdrTawYHBUGeYguG_LV-EdeaeGDIIZW5YyifzbIM">
           <image mime-type="image/png" src="gd-0001.png" height="103" width="471"/>
         </media>
       </para>
-      <para id="gd-id606029">And now some formulars</para>
-      <para id="gd-id606032"/>
-      <para id="gd-id606033">
+      <para id="gd-idp2190424">And now some formulars</para>
+      <para id="gd-idp641352">
+        <m:math>
+          <m:semantics>
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mo lspace="0.278em" rspace="0.278em">=</m:mo>
+              <m:mi>m</m:mi>
+              <m:mspace width="0"/>
+              <m:msup>
+                <m:mi>c</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+            </m:mrow>
+            <m:annotation encoding="Google Chart Tools">https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=E%3Dm%7Bc%7D%5E%7B2%7D</m:annotation>
+          </m:semantics>
+        </m:math>
+      </para>
+      <para id="gd-idp2204216">
         <newline/>
       </para>
-      <para id="gd-id606035"/>
-      <para id="gd-id606036">
+      <para id="gd-idp2204704">
+        <m:math>
+          <m:semantics>
+            <m:mroot>
+              <m:mrow>
+                <m:msup>
+                  <m:mi>x</m:mi>
+                  <m:mfrac>
+                    <m:mn>1</m:mn>
+                    <m:mn>2</m:mn>
+                  </m:mfrac>
+                </m:msup>
+                <m:mo lspace="0.222em" rspace="0.222em">-</m:mo>
+                <m:mn>5</m:mn>
+                <m:mo lspace="0.222em" rspace="0.222em">+</m:mo>
+                <m:mi>l</m:mi>
+                <m:mspace width="0"/>
+                <m:mi>i</m:mi>
+                <m:mspace width="0"/>
+                <m:mi>m</m:mi>
+                <m:munderover>
+                  <m:mo lspace="0.167em" rspace="0.167em" stretchy="false" movablelimits="false">∑</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mi mathvariant="normal">∞</m:mi>
+                </m:munderover>
+                <m:mfrac>
+                  <m:mrow>
+                    <m:mi>α</m:mi>
+                    <m:mspace width="0"/>
+                    <m:mi>β</m:mi>
+                  </m:mrow>
+                  <m:mi>c</m:mi>
+                </m:mfrac>
+              </m:mrow>
+              <m:mn>3</m:mn>
+            </m:mroot>
+            <m:annotation encoding="Google Chart Tools">https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=%5Csqrt%5B3%5D%7B%7Bx%7D%5E%7B%5Cfrac%7B1%7D%7B2%7D%7D-5%2Blim%5Csum%5Climits_%7B1%7D%5E%7B%5Cinfty%7B%7D%7D%5Cfrac%7B%5Calpha%7B%7D%5Cbeta%7B%7D%7D%7Bc%7D%7D</m:annotation>
+          </m:semantics>
+        </m:math>
+      </para>
+      <para id="gd-idp691648">
         <newline/>
       </para>
-      <para id="gd-id606039">
+      <para id="gd-idp691776">
         <link url="http://www.google.com" window="new">www.google.com</link>
       </para>
-      <section id="gd-id606045">
+      <section id="gd-idp692536">
         <title>Some normal text with a footnote[1]</title>
-        <para id="gd-id606051">
+        <para id="gd-idp693024">
           <emphasis effect="italics">Lorem ipsum dolor sit amet,</emphasis>
         </para>
-        <para id="gd-id606056"><emphasis effect="underline">consetetur sadipscing elitr,</emphasis>sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</para>
-        <para id="gd-id606062">
+        <para id="gd-idp693352"><emphasis effect="underline">consetetur sadipscing elitr,</emphasis>sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</para>
+        <para id="gd-idp693992">
           <newline/>
         </para>
-        <para id="gd-id606064">
-          <link target-id="gd-id791529"> Look at this table!</link>
+        <para id="gd-idp694120">
+          <link target-id="gd-idp697696"> Look at this table!</link>
         </para>
-        <para id="gd-id791461">
-          <media id="gd-id791457" alt="https://lh4.googleusercontent.com/1YQVLEhKXTHGAtNZlakZVdNRq7X4yQ0Ntz25M-QnmxWhANBV1TjKPjZVOZr5jC7J11XRTL8V4Cp4TpGGgQMVUB7jBYK_X0M9wU0wJ89a6tXZjMc9DD8">
+        <para id="gd-idp694432">
+          <media id="gd-idp694496" alt="https://lh4.googleusercontent.com/1YQVLEhKXTHGAtNZlakZVdNRq7X4yQ0Ntz25M-QnmxWhANBV1TjKPjZVOZr5jC7J11XRTL8V4Cp4TpGGgQMVUB7jBYK_X0M9wU0wJ89a6tXZjMc9DD8">
             <image mime-type="image/jpeg" src="gd-0002.jpg" height="306" width="310"/>
           </media>
         </para>
-        <para id="gd-id791443">
+        <para id="gd-idp695392">
           <newline/>
         </para>
-        <list id="gd-id791436" list-type="enumerated">
+        <list id="gd-idp695576" list-type="enumerated">
           <item>This is one</item>
-          <item>This is two<list id="gd-id791444" list-type="bulleted" bullet-style="open-circle"><item>three</item><item>four</item></list></item>
+          <item>This is two<list id="gd-idp696048" list-type="bulleted" bullet-style="open-circle"><item>three</item><item>four</item></list></item>
           <item>five</item>
           <item>six</item>
         </list>
-        <para id="gd-id791556">
+        <para id="gd-idp696960">
           <newline/>
         </para>
-        <para id="gd-id791548">
+        <para id="gd-idp697088">
           <newline/>
         </para>
-        <para id="gd-id791541"/>
-        <para id="gd-id791529">My table</para>
-        <para id="gd-id791530">
+        <para id="gd-idp697216"/>
+        <para id="gd-idp697696">My table</para>
+        <para id="gd-idp697824">
           <newline/>
         </para>
-        <table id="gd-id791517" summary="">
+        <table id="gd-idp697952" summary="">
           <tgroup cols="4">
             <tbody>
               <row>
                 <entry>
-                  <para id="gd-id791498">
+                  <para id="gd-idp698624">
                     <emphasis effect="bold">1</emphasis>
                   </para>
                 </entry>
                 <entry>
-                  <para id="gd-id791508">
+                  <para id="gd-idp699128">
                     <emphasis effect="bold">2</emphasis>
                   </para>
                 </entry>
                 <entry>
-                  <para id="gd-id797239">
+                  <para id="gd-idp699536">
                     <emphasis effect="bold">3</emphasis>
                   </para>
                 </entry>
                 <entry>
-                  <para id="gd-id797214">
+                  <para id="gd-idp699944">
                     <emphasis effect="bold">4</emphasis>
                   </para>
                 </entry>
               </row>
               <row>
                 <entry>
-                  <para id="gd-id797227">We also support tables in</para>
+                  <para id="gd-idp700416">We also support tables in</para>
                 </entry>
                 <entry>
-                  <para id="gd-id797212">CNXML!</para>
+                  <para id="gd-idp700608">CNXML!</para>
                 </entry>
                 <entry>
-                  <para id="gd-id797179">5</para>
+                  <para id="gd-idp700816">5</para>
                 </entry>
                 <entry>
-                  <para id="gd-id805195">6</para>
-                </entry>
-              </row>
-              <row>
-                <entry>
-                  <para id="gd-id805204">7</para>
-                </entry>
-                <entry>
-                  <para id="gd-id805216">8</para>
-                </entry>
-                <entry>
-                  <para id="gd-id795661">9</para>
-                </entry>
-                <entry>
-                  <para id="gd-id795669">10</para>
+                  <para id="gd-idp701024">6</para>
                 </entry>
               </row>
               <row>
                 <entry>
-                  <para id="gd-id812457">11</para>
+                  <para id="gd-idp701296">7</para>
                 </entry>
                 <entry>
-                  <para id="gd-id812434">12</para>
+                  <para id="gd-idp701504">8</para>
                 </entry>
                 <entry>
-                  <para id="gd-id818132">13</para>
+                  <para id="gd-idp701712">9</para>
                 </entry>
                 <entry>
-                  <para id="gd-id830564">14</para>
+                  <para id="gd-idp701920">10</para>
+                </entry>
+              </row>
+              <row>
+                <entry>
+                  <para id="gd-idp702192">11</para>
+                </entry>
+                <entry>
+                  <para id="gd-idp702400">12</para>
+                </entry>
+                <entry>
+                  <para id="gd-idp702608">13</para>
+                </entry>
+                <entry>
+                  <para id="gd-idp702816">14</para>
                 </entry>
               </row>
             </tbody>
           </tgroup>
         </table>
-        <para id="gd-id817962">
+        <para id="gd-idp702944">
           <newline/>
         </para>
-        <para id="gd-id811162">
+        <para id="gd-idp703072">
           <newline/>
         </para>
-        <para id="gd-id805507">
+        <para id="gd-idp703200">
           <newline/>
         </para>
       </section>

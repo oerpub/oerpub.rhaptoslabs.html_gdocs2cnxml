@@ -17,6 +17,7 @@
 <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
 
 <xsl:strip-space elements="*"/>
+<xsl:preserve-space elements="xh:p xh:span xh:li xh:td xh:a"/>
 
 <!--
 This XSLT transforms Google Docs HTML tags to CNXML.
@@ -125,7 +126,7 @@ Pass1,2...4 transformation is a precondition for this pass.
 </xsl:template>
 
 <!-- copy text from specific text-nodes -->
-<xsl:template match="xh:span/text()|xh:li/text()|xh:td/text()|xh:a/text()" mode="pass6">
+<xsl:template match="xh:p/text()|xh:span/text()|xh:li/text()|xh:td/text()|xh:a/text()" mode="pass6">
   <xsl:value-of select="."/>
 </xsl:template>
 
