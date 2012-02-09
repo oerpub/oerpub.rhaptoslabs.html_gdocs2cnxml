@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-id792312" cnxml-version="0.7" module-id="new">
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-idm61272" cnxml-version="0.7" module-id="new">
   <title>Google Docs to CNXML spaces bug</title>
   <content>
-    <para id="gd-id792294">This is normal text and the following link should be seperated by one space<link url="http://google.com" window="new">http://google.com</link></para>
-    <para id="gd-id792326">
+    <para id="gd-idm64008">This is normal text and the following link should be seperated by one space <link url="http://google.com" window="new">http://google.com</link></para>
+    <para id="gd-idm63008">
       <newline/>
     </para>
-    <para id="gd-id792328">This is normal text and the following link should be seperated by two spaces  <link url="http://google.com" window="new">http://google.com</link></para>
-    <para id="gd-id806445">
+    <para id="gd-idm62568">This is normal text and the following link should be seperated by two spaces  <link url="http://google.com" window="new">http://google.com</link></para>
+    <para id="gd-idm61568">
       <newline/>
     </para>
-    <para id="gd-id806441">This is normal text and the following link should be seperated by ten spaces          <link url="http://google.com" window="new">http://google.com</link></para>
+    <para id="gd-idm526688">This is normal text and the following link should be seperated by ten spaces          <link url="http://google.com" window="new">http://google.com</link></para>
   </content>
 </document>
