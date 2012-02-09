@@ -125,7 +125,7 @@ Pass1,2...4 transformation is a precondition for this pass.
 </xsl:template>
 
 <!-- copy text from specific text-nodes -->
-<xsl:template match="xh:span/text()|xh:li/text()|xh:td/text()|xh:a/text()" mode="pass6">
+<xsl:template match="xh:p/text()|xh:span/text()|xh:li/text()|xh:td/text()|xh:a/text()" mode="pass6">
   <xsl:value-of select="."/>
 </xsl:template>
 
