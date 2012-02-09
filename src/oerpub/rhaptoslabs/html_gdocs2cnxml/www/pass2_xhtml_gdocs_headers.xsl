@@ -13,6 +13,7 @@
   indent="yes"/>
 
 <xsl:strip-space elements="*"/>
+<xsl:preserve-space elements="xh:p xh:span xh:li xh:td xh:a"/>
 
 <!--
 Transforms headers to nested headers.

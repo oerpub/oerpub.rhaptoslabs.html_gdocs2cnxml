@@ -18,6 +18,7 @@
   cdata-section-elements="cnhtml:cnxml"/>
 
 <xsl:strip-space elements="*"/>
+<xsl:preserve-space elements="xh:p xh:span xh:li xh:td xh:a"/>
 
 <!--
 This XSLT encloses red text into <cnhtml:cnxml>some red text</cnhtml:cnxml>
