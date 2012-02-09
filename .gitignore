@@ -1,0 +1,4 @@
+*.pyc
+.~lock.*
+Paste*
+*egg-info*
