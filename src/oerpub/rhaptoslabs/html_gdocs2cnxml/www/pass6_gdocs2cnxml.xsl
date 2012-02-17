@@ -138,6 +138,9 @@ Pass1,2...4 transformation is a precondition for this pass.
       <xsl:value-of select="@title"/>
       <xsl:apply-templates mode="pass6"/>
     </xsl:when>
+    <xsl:when test="ancestor::xh:li">
+      <para><emphasis effect="bold"><xsl:apply-templates mode="pass6"/></emphasis></para>
+    </xsl:when>
     <xsl:otherwise>
 		  <!-- Check if header is empty, if yes, create no section -->
 		  <xsl:if test="@title">
