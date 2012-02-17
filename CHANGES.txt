@@ -1,8 +1,12 @@
 Changelog
 =========
 
-1.0dev (unreleased)
--------------------
+1.1
+---
+- Get new Google Docs styles working
+  [yingjin] 
 
-- Package created using zopeskel
-  []
+1.0 
+---
+
+- Initial Version

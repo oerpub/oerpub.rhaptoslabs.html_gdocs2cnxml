@@ -78,6 +78,8 @@ _regex = re.compile('((.*?){(.*?)})', re.DOTALL|re.M)
 _semicolon_regex = re.compile(';(\s+)')
 _colon_regex = re.compile(':(\s+)')
 
+# OK, add this regular expression to get rid of the external css import
+_importcss_regex = re.compile('\@import url(.*)')
 
 class xhtmlPremailer(object):
 
@@ -104,7 +106,13 @@ class xhtmlPremailer(object):
         for each in _regex.findall(css_body.strip()):
             __, selectors, bulk = each
 
+
+	    #remove @import part from handling external css file 
+	    #print bulk
             bulk = _semicolon_regex.sub(';', bulk.strip())
+	    #bulk = _importcss_regex.sub('', bulk.strip())
+            
+
             bulk = _colon_regex.sub(':', bulk.strip())
             if bulk.endswith(';'):
                 bulk = bulk[:-1]
@@ -154,10 +162,12 @@ class xhtmlPremailer(object):
         for style in CSSSelector("xhtml|style", namespaces={'xhtml': 'http://www.w3.org/1999/xhtml'})(page):
             css_body = etree.tostring(style)
             css_body = css_body.split('>')[1].split('</')[0]
+            css_body = re.sub(r'@import url\(.*\);',r'', css_body)            
             these_rules, these_leftover = self._parse_style_rules(css_body)
             rules.extend(these_rules)
-
             parent_of_style = style.getparent()
+            
+ 
             if these_leftover:
                 style.text = '\n'.join(['%s {%s}' % (k, v) for (k, v) in these_leftover])
             elif not self.keep_style_tags:
