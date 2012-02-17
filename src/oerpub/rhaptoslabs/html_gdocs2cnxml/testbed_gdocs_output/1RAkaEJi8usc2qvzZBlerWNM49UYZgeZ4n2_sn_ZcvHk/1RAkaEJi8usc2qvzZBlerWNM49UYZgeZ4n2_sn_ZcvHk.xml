@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" id="gd-idp2856" cnxml-version="0.7" module-id="new">
+  <title>Google Docs to CNXML spaces bug</title>
+  <content>
+    <para id="gd-idp1231616">This is normal text and the following link should be seperated by one space <link url="http://google.com" window="new">http://google.com</link></para>
+    <para id="gd-idp1232592">
+      <newline/>
+    </para>
+    <para id="gd-idp1233032">This is normal text and the following link should be seperated by two spaces  <link url="http://google.com" window="new">http://google.com</link></para>
+    <para id="gd-idp1234032">
+      <newline/>
+    </para>
+    <para id="gd-idp1234432">This is normal text and the following link should be seperated by ten spaces          <link url="http://google.com" window="new">http://google.com</link></para>
+  </content>
+</document>
