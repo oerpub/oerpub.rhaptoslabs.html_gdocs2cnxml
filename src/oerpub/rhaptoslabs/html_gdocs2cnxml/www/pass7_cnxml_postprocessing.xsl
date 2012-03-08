@@ -45,6 +45,14 @@ Deprecated:
   </para>
 </xsl:template>
 
+<!-- add an empty div to empty sections -->
+<xsl:template match="cnx:section[not(child::*[not(self::cnx:title)])]" mode="pass7">
+  <xsl:copy>
+    <xsl:apply-templates select="@*|node()" mode="pass7"/>
+    <div/>
+  <xsl:copy>
+</xsl:template>
+
 <!-- convert images to CNXML -->
 <xsl:template match="cnxtra:image" mode="pass7">
   <!-- just ignore images which cannot be uploaded -->
