@@ -331,6 +331,9 @@ Pass1,2...4 transformation is a precondition for this pass.
   </cnxtra:image>
 </xsl:template>
 
+<!-- remove empty images -->
+<xsl:template match="xh:img[not(@src)]" mode="pass6"/>
+
 <!-- remove unsupported now -->
 
 <!-- TODO! -->
