@@ -73,6 +73,8 @@ def downloadImages(xml):
     imageList = xpathImages(xml)
     for position, image in enumerate(imageList):
         strImageUrl = image.get('src')
+        #Debugging
+        print "Download GDoc Image: " + strImageUrl
         strImageContent = urllib2.urlopen(strImageUrl).read()
         # get Mime type from image
         strImageMime = magic.whatis(strImageContent)
@@ -86,6 +88,7 @@ def downloadImages(xml):
                 strImageName += '.png'
             elif strImageMime == 'image/gif':
                 strImageName += '.gif'
+            #Note: SVG is currently (2012-03-08) not supported by GDocs.
             strAlt = image.get('alt')
             if not strAlt:
                 image.set('alt', strImageUrl) # getNameFromUrl(strImageUrl))
