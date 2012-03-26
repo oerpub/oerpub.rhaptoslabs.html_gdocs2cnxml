@@ -46,11 +46,11 @@ Deprecated:
 </xsl:template>
 
 <!-- add an empty div to empty sections -->
-<xsl:template match="cnx:section[not(child::*[not(self::cnx:title)])]" mode="pass7">
+<xsl:template match="cnx:section[not(child::*[not(self::cnx:title|self::cnx:section)])]" mode="pass7">
   <xsl:copy>
     <xsl:apply-templates select="@*|node()" mode="pass7"/>
     <div/>
-  <xsl:copy>
+  </xsl:copy>
 </xsl:template>
 
 <!-- convert images to CNXML -->
