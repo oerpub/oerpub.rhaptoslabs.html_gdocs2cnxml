@@ -34,6 +34,7 @@
 <!-- Insert a @id for elements that require it (RED text import didn't add them) -->
 <xsl:template match="
     cnx:document|
+    cnx:div|
     cnx:para|
     cnx:list|
     cnx:term|
