@@ -51,15 +51,11 @@
     <xsl:apply-templates select="exsl:node-set($temp4)" mode="pass5"/>
   </xsl:variable>
   <!-- GDocs, convert red text to enclosed CNXML -->
-  
-  <!-- ignore for Siyavula Docs testing!
   <xsl:variable name="temp6">
     <xsl:apply-templates select="exsl:node-set($temp5)" mode="red2cnxml"/>  
   </xsl:variable>
-  -->
-  
   <!-- GDocs 2 CNXML -->
-  <xsl:apply-templates select="exsl:node-set($temp5)" mode="pass6"/>
+  <xsl:apply-templates select="exsl:node-set($temp6)" mode="pass6"/>
 </xsl:template>
 
 
