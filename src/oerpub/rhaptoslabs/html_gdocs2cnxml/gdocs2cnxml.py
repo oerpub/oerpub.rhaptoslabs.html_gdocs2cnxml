@@ -4,7 +4,6 @@ import os
 import urllib2
 #from urlparse import urlparse
 import subprocess
-#from Globals import package_home
 import libxml2
 import libxslt
 from tidylib import tidy_document
@@ -37,7 +36,7 @@ def tidy_and_premail(content):
         'logical-emphasis': 1  # transforms <i> and <b> text to <em> and <strong> text
         })
 
-	# Move CSS from stylesheet inside the tags with. BTW: Premailer do this usually for old email clients.
+	# Move CSS from stylesheet inside the tags with. BTW: Premailer does this usually for old email clients.
     # Use a special XHTML Premailer which does not destroy the XML structure.
     premailer = xhtmlPremailer(strTidiedHtml)
     strTidiedPremailedHtml = premailer.transform()
@@ -51,10 +50,11 @@ def tex2mathml(xml):
         formularList = xpathFormulars(xml)
         for formular in formularList:
             strTex = urllib2.unquote(formular.get('tex'))
-            #TODO: Ubuntu has 'blahtexml', when compiled by yourself we need 'blahtex'. This needs to be more dynamically!
+            #TODO: Ubuntu has 'blahtexml', when compiled by yourself the binary name will be 'blahtex'. This needs to be more dynamically!
             strCmdBlahtex = ['blahtexml','--mathml']
             # run the program with subprocess and pipe the input and output to variables
             p = subprocess.Popen(strCmdBlahtex, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+            #TODO: Catch blahtex processing errors!
             strMathMl, strErr = p.communicate(strTex) # set STDIN and STDOUT and wait till the program finishes
             mathMl = etree.fromstring(strMathMl)
             formular.append(mathMl)
@@ -63,8 +63,9 @@ def tex2mathml(xml):
     return xml
 
 # Get the filename without extension form a URL
-#def getNameFromUrl(s):
-#    return os.path.splitext(urllib2.unquote(os.path.basename(urlparse(s).path)))[0]
+# TODO: This does not worked reliable
+# def getNameFromUrl(s):
+#     return os.path.splitext(urllib2.unquote(os.path.basename(urlparse(s).path)))[0]
 
 # Downloads images from Google Docs and sets metadata for further processing
 def downloadImages(xml):
@@ -73,8 +74,7 @@ def downloadImages(xml):
     imageList = xpathImages(xml)
     for position, image in enumerate(imageList):
         strImageUrl = image.get('src')
-        #Debugging
-        print "Download GDoc Image: " + strImageUrl
+        print "Download GDoc Image: " + strImageUrl  # Debugging output
         strImageContent = urllib2.urlopen(strImageUrl).read()
         # get Mime type from image
         strImageMime = magic.whatis(strImageContent)
@@ -91,7 +91,7 @@ def downloadImages(xml):
             #Note: SVG is currently (2012-03-08) not supported by GDocs.
             strAlt = image.get('alt')
             if not strAlt:
-                image.set('alt', strImageUrl) # getNameFromUrl(strImageUrl))
+                image.set('alt', strImageUrl) # getNameFromUrl(strImageUrl)) # TODO: getNameFromUrl does not work reliable
             image.text = strImageName
             # add contents of image to object
             objects[strImageName] = strImageContent
