@@ -12,6 +12,10 @@ from lxml import etree
 import magic
 
 current_dir = os.path.dirname(__file__)
+
+# Should all steps in between written to output/disk
+DEBUG_MODE = True
+
 XHTML_ENTITIES = os.path.join(current_dir, 'www', 'catalog_xhtml', 'catalog.xml')
 GDOCS2CNXML_XSL1 = os.path.join(current_dir, 'www', 'gdocs_meta1.xsl')
 GDOCS2CNXML_XSL2 = os.path.join(current_dir, 'www', 'gdocs_meta2.xsl')
@@ -103,7 +107,7 @@ def downloadImages(xml):
     return xml, objects
 
 # Main method. Doing all steps for the Google Docs to CNXML transformation
-def xsl_transform(content, bDownloadImages):
+def gdocs_transform(content, bDownloadImages): # In Rhaptos: xsl_transform method!
     # 1
     strTidiedHtml = tidy_and_premail(content)
 
@@ -154,7 +158,7 @@ def xsl_transform(content, bDownloadImages):
 # the function which is called from outside to start transformation
 def gdocs_to_cnxml(content, bDownloadImages=False):
     objects = {}
-    content, objects = xsl_transform(content, bDownloadImages)
+    content, objects = gdocs_transform(content, bDownloadImages)
     return content, objects
 
 if __name__ == "__main__":

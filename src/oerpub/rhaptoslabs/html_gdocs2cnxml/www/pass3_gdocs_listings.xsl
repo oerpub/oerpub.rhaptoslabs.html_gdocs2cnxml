@@ -30,20 +30,20 @@ Output:
  -->
 
 <!-- Default: copy everything -->
-<xsl:template match="@*|node()" mode="pass3">
+<xsl:template match="@*|node()">
   <xsl:copy>
-    <xsl:apply-templates select="@*|node()" mode="pass3"/>
+    <xsl:apply-templates select="@*|node()"/>
   </xsl:copy>
 </xsl:template>
 
 <!-- Remove <ol> tags. Later all <li> will be rearranged by their margin -->
-<xsl:template match="xh:ol" mode="pass3">
+<xsl:template match="xh:ol">
   <xsl:message>INFO: Removing ol</xsl:message>
-  <xsl:apply-templates mode="pass3"/>                <!-- just copy all children -->
+  <xsl:apply-templates/>                <!-- just copy all children -->
 </xsl:template>
 
 <!-- Rename <li> to <lists>. Add margin attribute for leveling lists in pass 3 -->
-<xsl:template match="xh:li" mode="pass3">
+<xsl:template match="xh:li">
   <xsl:variable name="margin"
     select="normalize-space(substring-before(substring-after(@style,'margin-left:'),'pt'))"/>
   <xsl:variable name="list-style-type"
@@ -56,8 +56,8 @@ Output:
       <xsl:value-of select="$list-style-type"/>
     </xsl:attribute>
     <!-- remove rest of the list attributes like e.g. style, because they are not needed anymore -->
-    <!-- <xsl:apply-templates select="@*" mode="pass3"/> -->
-    <xsl:apply-templates mode="pass3"/>
+    <!-- <xsl:apply-templates select="@*"/> -->
+    <xsl:apply-templates/>
   </cnhtml:list>
 </xsl:template>
 

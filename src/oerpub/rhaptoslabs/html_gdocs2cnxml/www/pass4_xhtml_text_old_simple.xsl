@@ -17,15 +17,15 @@
 <!-- This XSLT encloses text inside paragraphs -->
 
 <!-- Default: copy everything -->
-<xsl:template match="@*|node()" mode="pass4">
+<xsl:template match="@*|node()">
   <xsl:copy>
-    <xsl:apply-templates select="@*|node()" mode="pass4"/>
+    <xsl:apply-templates select="@*|node()"/>
   </xsl:copy>
 </xsl:template>
 
-<xsl:template match="xh:body" mode="pass4">
+<xsl:template match="xh:body">
   <xsl:copy>
-    <xsl:apply-templates select="@*" mode="pass4"/>
+    <xsl:apply-templates select="@*"/>
     <xsl:apply-templates select="node()[1]" mode="walker_pass4"/>
   </xsl:copy>
 </xsl:template>
@@ -39,7 +39,7 @@
   or self::cnhtml:h]
 ]" mode="walker_pass4">
   <p>
-    <xsl:apply-templates select="." mode="pass4"/>
+    <xsl:apply-templates select="."/>
     <!-- is following node not p ? -->
     <xsl:if test="following-sibling::node()[1]
       [not(self::xh:p or self::cnhtml:h)]">
@@ -57,7 +57,7 @@
 <xsl:template match="node()" mode="walker_pass4">
   <xsl:param name="inside_paragraph" select="'no'"/>
 
-  <xsl:apply-templates select="." mode="pass4"/>
+  <xsl:apply-templates select="."/>
 
   <xsl:if test="not($inside_paragraph='yes' and following-sibling::node()[1]
     [self::xh:p

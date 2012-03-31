@@ -25,35 +25,35 @@ Output
 -->
 
 <!-- Default: copy everything -->
-<xsl:template match="@*|node()" mode="pass3">
+<xsl:template match="@*|node()">
   <xsl:copy>
-    <xsl:apply-templates select="@*|node()" mode="pass3"/>
+    <xsl:apply-templates select="@*|node()"/>
   </xsl:copy>
 </xsl:template>
 
 <!-- remove all divs (but preserve content of divs -->
-<xsl:template match="xh:div" mode="pass3">
-  <xsl:apply-templates mode="pass3"/>
+<xsl:template match="xh:div">
+  <xsl:apply-templates/>
 </xsl:template>
 
 
 <!-- remove all nesting divs -->
 <!--
-<xsl:template match="xh:div[ancestor::xh:div]" mode="pass3">
-  <xsl:apply-templates mode="pass3"/>
+<xsl:template match="xh:div[ancestor::xh:div]">
+  <xsl:apply-templates/>
 </xsl:template>
 -->
 
 <!-- remove everything from header except title and metadata -->
-<xsl:template match="xh:head/xh:*[not(self::xh:title or self::xh:meta)]" mode="pass3"/>
+<xsl:template match="xh:head/xh:*[not(self::xh:title or self::xh:meta)]"/>
 
 <!-- remove comments -->
-<xsl:template match="comment()" mode="pass3"/>
+<xsl:template match="comment()"/>
 
 <!-- remove scripts -->
-<xsl:template match="xh:script" mode="pass3"/>
+<xsl:template match="xh:script"/>
 
 <!-- remove iframes -->
-<xsl:template match="xh:iframe" mode="pass3"/>
+<xsl:template match="xh:iframe"/>
 
 </xsl:stylesheet>
