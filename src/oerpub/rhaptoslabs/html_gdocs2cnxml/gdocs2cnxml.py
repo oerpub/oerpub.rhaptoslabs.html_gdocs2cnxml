@@ -17,13 +17,28 @@ current_dir = os.path.dirname(__file__)
 DEBUG_MODE = True
 
 XHTML_ENTITIES = os.path.join(current_dir, 'www', 'catalog_xhtml', 'catalog.xml')
-GDOCS2CNXML_XSL1 = os.path.join(current_dir, 'www', 'gdocs_meta1.xsl')
-GDOCS2CNXML_XSL2 = os.path.join(current_dir, 'www', 'gdocs_meta2.xsl')
+
+# All steps in between are string steps
+TRANSFORM_PIPELINE = [
+    tidy_and_premail,
+    xhtml_xslt('pass1_gdocs_headers.xsl'),
+#    xhtml_xslt('pass2_xhtml_gdocs_headers.xsl'),
+#    xhtml_xslt('pass3_gdocs_listings.xsl'),
+#    xhtml_xslt('pass4_gdocs_listings.xsl'),
+#    xhtml_xslt('pass5_gdocs_listings.xsl'),
+#    xhtml_xslt('pass5_part2_gdocs_red2cnxml.xsl'),
+#    xhtml_xslt('pass6_gdocs2cnxml.xsl'),
+#    tex2mathml_transform,
+#    image_puller,
+#    xslt('pass7_cnxml_postprocessing.xsl'),
+#    xslt('pass8_cnxml_id-generation.xsl'),
+#    xslt('pass9_cnxml_postprocessing.xsl'),
+]
 
 # Tidy up the Google Docs HTML Soup
 def tidy_and_premail(content):
     # HTML Tidy
-    strTidiedHtml, strErrors = tidy_document(content, options={
+    tidied_html, errors = tidy_document(content, options={
         'output-xhtml': 1,     # XHTML instead of HTML4
         'indent': 0,           # Don't use indent, add's extra linespace or linefeeds which are big problems
         'tidy-mark': 0,        # No tidy meta tag in output
@@ -42,9 +57,9 @@ def tidy_and_premail(content):
 
 	# Move CSS from stylesheet inside the tags with. BTW: Premailer does this usually for old email clients.
     # Use a special XHTML Premailer which does not destroy the XML structure.
-    premailer = xhtmlPremailer(strTidiedHtml)
-    strTidiedPremailedHtml = premailer.transform()
-    return strTidiedPremailedHtml
+    premailer = xhtmlPremailer(tidied_html)
+    tidied_premailed_html = premailer.transform()
+    return tidied_premailed_html
 
 # Use Blahtex transformation from TeX to XML. http://gva.noekeon.org/blahtexml/
 def tex2mathml(xml):
