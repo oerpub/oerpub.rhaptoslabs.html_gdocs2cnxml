@@ -31,34 +31,42 @@ e.g. <h1></h1> to <cnhtml:h level="1"></cnhtml:h>
 
 <!-- Change header to <h level="x"> -->
 <xsl:template match="xh:h1|xh:h2|xh:h3|xh:h4|xh:h5|xh:h6" mode="pass1">
-  <cnhtml:h>
-    <xsl:message>INFO: Renaming HTML header to leveled header</xsl:message>
-    <xsl:attribute name="level" >                          <!-- insert level attribute -->
-      <xsl:choose>
-        <xsl:when test="self::xh:h1">1</xsl:when>
-        <xsl:when test="self::xh:h2">2</xsl:when>
-        <xsl:when test="self::xh:h3">3</xsl:when>
-        <xsl:when test="self::xh:h4">4</xsl:when>
-        <xsl:when test="self::xh:h5">5</xsl:when>
-        <xsl:when test="self::xh:h6">6</xsl:when>
-      </xsl:choose>
-    </xsl:attribute>
+  <xsl:choose>
+      <!-- convert empty headers to empty paragraphs -->
+      <xsl:when test="string-length(normalize-space(.) = 0)">
+          <p/>
+      </xsl:when>
+      <xsl:otherwise>
+        <cnhtml:h>
+            <xsl:message>INFO: Renaming HTML header to leveled header</xsl:message>
+            <xsl:attribute name="level" >                          <!-- insert level attribute -->
+              <xsl:choose>
+                <xsl:when test="self::xh:h1">1</xsl:when>
+                <xsl:when test="self::xh:h2">2</xsl:when>
+                <xsl:when test="self::xh:h3">3</xsl:when>
+                <xsl:when test="self::xh:h4">4</xsl:when>
+                <xsl:when test="self::xh:h5">5</xsl:when>
+                <xsl:when test="self::xh:h6">6</xsl:when>
+              </xsl:choose>
+            </xsl:attribute>
 
-    <!-- In @title the content of the header is saved -->
-    <xsl:variable name="titlecontent">
-      <xsl:value-of select="normalize-space(.)"/>
-    </xsl:variable>
-    <xsl:if test="string-length($titlecontent) &gt; 0">
-	    <xsl:attribute name="title">
-	      <xsl:value-of select="$titlecontent"/>
-	    </xsl:attribute>
-    </xsl:if>
+            <!-- In @title the content of the header is saved -->
+            <xsl:variable name="titlecontent">
+              <xsl:value-of select="normalize-space(.)"/>
+            </xsl:variable>
+            <!-- <xsl:if test="string-length($titlecontent) &gt; 0"> -->
+                <xsl:attribute name="title">
+                  <xsl:value-of select="$titlecontent"/>
+                </xsl:attribute>
+            <!-- </xsl:if> -->
 
-    <xsl:apply-templates select="@*" mode="pass1"/>        <!-- copy all remaining attributes -->
+            <xsl:apply-templates select="@*" mode="pass1"/>        <!-- copy all remaining attributes -->
 
-    <!-- copy all children which do not have any content -->
-    <xsl:apply-templates mode="pass1"/>
-  </cnhtml:h>
+            <!-- copy all children which do not have any content -->
+            <xsl:apply-templates mode="pass1"/>
+        </cnhtml:h>
+      </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- remove all children of headers which are text() or have text() inside -->
