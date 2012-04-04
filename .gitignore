@@ -2,3 +2,4 @@
 .~lock.*
 Paste*
 *egg-info*
+src/oerpub/rhaptoslabs/html_gdocs2cnxml/testbed_gdocs_output/*
