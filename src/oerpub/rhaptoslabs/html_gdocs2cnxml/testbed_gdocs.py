@@ -152,7 +152,7 @@ def main():
                     jing_log_filename = os.path.join(doc_output_dir, doc_id + '.log')
                     jing_validate_file(cnxml_filename, jing_log_filename)
 
-    print_status('Finished!')
+    print_status('Finished!!!')
 
 if __name__ == "__main__":
     main()
