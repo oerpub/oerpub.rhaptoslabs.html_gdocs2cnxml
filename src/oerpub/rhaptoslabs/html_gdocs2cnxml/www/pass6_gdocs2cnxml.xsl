@@ -78,6 +78,49 @@ Pass1,2...4 transformation is a precondition for this pass.
   </para>
 </xsl:template>
 
+<!-- emphasis -->
+<xsl:template name="apply-emphasis">
+    <xsl:param name="style"/>
+    <xsl:when test="contains($style, 'vertical-align:super')">
+      <sup>
+        <xsl:call-template name="apply-emphasis">
+            <xsl:with-param name="style" select="replace($style, 'vertical-align:super', '')"/>
+        </xsl:call-template>
+      </sup>
+    </xsl:when>
+    <xsl:when test="contains($style, 'vertical-align:sub')">
+      <sub>
+        <xsl:call-template name="apply-emphasis">
+            <xsl:with-param name="style" select="replace($style, 'vertical-align:sub', '')"/>
+        </xsl:call-template>
+      </sub>
+    </xsl:when>
+    <xsl:when test="contains($style, 'font-style:italic')">
+      <emphasis effect='italics'>
+        <xsl:call-template name="apply-emphasis">
+            <xsl:with-param name="style" select="replace($style, 'font-style:italic', '')"/>
+        </xsl:call-template>
+      </emphasis>
+    </xsl:when>
+    <xsl:when test="contains($style, 'font-weight:bold')">
+      <emphasis effect='bold'>
+        <xsl:call-template name="apply-emphasis">
+            <xsl:with-param name="style" select="replace($style, 'font-weight:bold', '')"/>
+        </xsl:call-template>
+      </emphasis>
+    </xsl:when>
+    <xsl:when test="contains($style, 'text-decoration:underline')">
+      <emphasis effect='underline'>
+        <xsl:call-template name="apply-emphasis">
+            <xsl:with-param name="style" select="replace($style, 'text-decoration:underline', '')"/>
+        </xsl:call-template>
+      </emphasis>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates mode="pass6"/>
+    </xsl:otherwise>    
+</xsl:template>
+
 <!-- span -->
 <xsl:template match="xh:span" mode="pass6">
   <xsl:choose>
@@ -85,42 +128,12 @@ Pass1,2...4 transformation is a precondition for this pass.
      <xsl:when test="parent::cnhtml:h">
       <xsl:apply-templates mode="pass6"/>
     </xsl:when>
-    <!-- First super- and supformat text -->
-    <xsl:when test="contains(@style, 'vertical-align:super')">
-      <sup>
-        <xsl:apply-templates mode="pass6"/>
-      </sup>
-    </xsl:when>
-    <xsl:when test="contains(@style, 'vertical-align:sub')">
-      <sub>
-        <xsl:apply-templates mode="pass6"/>
-      </sub>
-    </xsl:when>
-    <xsl:when test="contains(@style, 'font-style:italic')">
-      <emphasis effect='italics'>
-        <xsl:apply-templates mode="pass6"/>
-      </emphasis>
-    </xsl:when>
-    <xsl:when test="contains(@style, 'font-weight:bold')">
-      <emphasis effect='bold'>
-        <xsl:apply-templates mode="pass6"/>
-      </emphasis>
-    </xsl:when>
-    <xsl:when test="contains(@style, 'text-decoration:underline')">
-      <!-- when we have no text, e.g. just links, do not generate emphasis -->
-      <xsl:choose>
-        <xsl:when test="text()">
-          <emphasis effect='underline'>
-            <xsl:apply-templates mode="pass6"/>
-          </emphasis>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-templates mode="pass6"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates mode="pass6"/>
+        <!--
+        <xsl:call-template name="apply-emphasis">
+            <xsl:with-param name="style" select="@style"/>
+        </xsl:call-template>
+        -->
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>

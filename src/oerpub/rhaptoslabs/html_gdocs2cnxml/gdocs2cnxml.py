@@ -11,6 +11,7 @@ from tidylib import tidy_document
 from xhtmlpremailer import xhtmlPremailer
 from lxml import etree
 import magic
+import re
 
 current_dir = os.path.dirname(__file__)
 XHTML_ENTITIES = os.path.join(current_dir, 'www', 'catalog_xhtml', 'catalog.xml')
@@ -73,6 +74,8 @@ def downloadImages(xml):
     imageList = xpathImages(xml)
     for position, image in enumerate(imageList):
         strImageUrl = image.get('src')
+        # if we got a GDocs drawing SVN we try to access this with the access token
+        # TODO
         #Debugging
         print "Download GDoc Image: " + strImageUrl
         strImageContent = urllib2.urlopen(strImageUrl).read()
