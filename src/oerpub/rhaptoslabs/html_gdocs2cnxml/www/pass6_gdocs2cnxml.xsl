@@ -81,44 +81,53 @@ Pass1,2...4 transformation is a precondition for this pass.
 <!-- emphasis -->
 <xsl:template name="apply-emphasis">
     <xsl:param name="style"/>
-    <xsl:when test="contains($style, 'vertical-align:super')">
-      <sup>
-        <xsl:call-template name="apply-emphasis">
-            <xsl:with-param name="style" select="replace($style, 'vertical-align:super', '')"/>
-        </xsl:call-template>
-      </sup>
-    </xsl:when>
-    <xsl:when test="contains($style, 'vertical-align:sub')">
-      <sub>
-        <xsl:call-template name="apply-emphasis">
-            <xsl:with-param name="style" select="replace($style, 'vertical-align:sub', '')"/>
-        </xsl:call-template>
-      </sub>
-    </xsl:when>
-    <xsl:when test="contains($style, 'font-style:italic')">
-      <emphasis effect='italics'>
-        <xsl:call-template name="apply-emphasis">
-            <xsl:with-param name="style" select="replace($style, 'font-style:italic', '')"/>
-        </xsl:call-template>
-      </emphasis>
-    </xsl:when>
-    <xsl:when test="contains($style, 'font-weight:bold')">
-      <emphasis effect='bold'>
-        <xsl:call-template name="apply-emphasis">
-            <xsl:with-param name="style" select="replace($style, 'font-weight:bold', '')"/>
-        </xsl:call-template>
-      </emphasis>
-    </xsl:when>
-    <xsl:when test="contains($style, 'text-decoration:underline')">
-      <emphasis effect='underline'>
-        <xsl:call-template name="apply-emphasis">
-            <xsl:with-param name="style" select="replace($style, 'text-decoration:underline', '')"/>
-        </xsl:call-template>
-      </emphasis>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:apply-templates mode="pass6"/>
-    </xsl:otherwise>    
+    <xsl:param name="child_nodes"/>
+    <xsl:choose>
+        <xsl:when test="contains($style, 'vertical-align:super')">
+          <sup>
+            <xsl:call-template name="apply-emphasis">
+                <xsl:with-param name="style" select="replace($style, 'vertical-align:super', '')"/>
+                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+            </xsl:call-template>
+          </sup>
+        </xsl:when>
+        <xsl:when test="contains($style, 'vertical-align:sub')">
+          <sub>
+            <xsl:call-template name="apply-emphasis">
+                <xsl:with-param name="style" select="replace($style, 'vertical-align:sub', '')"/>
+                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+            </xsl:call-template>
+          </sub>
+        </xsl:when>
+        <xsl:when test="contains($style, 'font-style:italic')">
+          <emphasis effect='italics'>
+            <xsl:call-template name="apply-emphasis">
+                <xsl:with-param name="style" select="replace($style, 'font-style:italic', '')"/>
+                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+            </xsl:call-template>
+          </emphasis>
+        </xsl:when>
+        <xsl:when test="contains($style, 'font-weight:bold')">
+          <emphasis effect='bold'>
+            <xsl:call-template name="apply-emphasis">
+                <xsl:with-param name="style" select="replace($style, 'font-weight:bold', '')"/>
+                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+            </xsl:call-template>
+          </emphasis>
+        </xsl:when>
+        <xsl:when test="contains($style, 'text-decoration:underline')">
+          <emphasis effect='underline'>
+            <xsl:call-template name="apply-emphasis">
+                <xsl:with-param name="style" select="replace($style, 'text-decoration:underline', '')"/>
+                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+            </xsl:call-template>
+          </emphasis>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:message>!!!!!!!!!!!!!!! JA !!!!!!!!!!!!!!!!!!!!!!!!!!</xsl:message>
+            <xsl:apply-templates select="$child_nodes" mode="pass6"/>
+        </xsl:otherwise>
+    </xsl:choose>
 </xsl:template>
 
 <!-- span -->
@@ -129,10 +138,12 @@ Pass1,2...4 transformation is a precondition for this pass.
       <xsl:apply-templates mode="pass6"/>
     </xsl:when>
     <xsl:otherwise>
-        <!--
         <xsl:call-template name="apply-emphasis">
             <xsl:with-param name="style" select="@style"/>
+            <xsl:with-param name="child_nodes" select="child::*"/>
         </xsl:call-template>
+        <!--
+        <xsl:apply-templates mode="pass6"/>
         -->
     </xsl:otherwise>
   </xsl:choose>
