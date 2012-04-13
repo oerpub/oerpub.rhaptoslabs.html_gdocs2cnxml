@@ -31,9 +31,13 @@ e.g. <h1></h1> to <cnhtml:h level="1"></cnhtml:h>
 
 <!-- Change header to <h level="x"> -->
 <xsl:template match="xh:h1|xh:h2|xh:h3|xh:h4|xh:h5|xh:h6" mode="pass1">
+  <xsl:variable name="titlecontent">
+    <xsl:value-of select="normalize-space(.)"/>
+  </xsl:variable>
+  
   <xsl:choose>
       <!-- convert empty headers to empty paragraphs -->
-      <xsl:when test="string-length(normalize-space(.) = 0)">
+      <xsl:when test="string-length($titlecontent) &lt;= 0">
           <p/>
       </xsl:when>
       <xsl:otherwise>
@@ -50,10 +54,6 @@ e.g. <h1></h1> to <cnhtml:h level="1"></cnhtml:h>
               </xsl:choose>
             </xsl:attribute>
 
-            <!-- In @title the content of the header is saved -->
-            <xsl:variable name="titlecontent">
-              <xsl:value-of select="normalize-space(.)"/>
-            </xsl:variable>
             <!-- <xsl:if test="string-length($titlecontent) &gt; 0"> -->
                 <xsl:attribute name="title">
                   <xsl:value-of select="$titlecontent"/>
