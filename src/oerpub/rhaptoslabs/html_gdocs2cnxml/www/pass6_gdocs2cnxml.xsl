@@ -78,6 +78,36 @@ Pass1,2...4 transformation is a precondition for this pass.
   </para>
 </xsl:template>
 
+<!-- XSLT 2.0 replace function for XSLT 1.0 -->
+<!-- http://stackoverflow.com/questions/1069092/xslt-replace-function-not-found -->
+<xsl:template name="string-replace-all">
+  <xsl:param name="text"/>
+  <xsl:param name="replace"/>
+  <xsl:param name="by"/>
+  <xsl:choose>
+    <xsl:when test="contains($text,$replace)">
+      <xsl:value-of select="substring-before($text,$replace)"/>
+      <xsl:value-of select="$by"/>
+      <xsl:call-template name="string-replace-all">
+        <xsl:with-param name="text" select="substring-after($text,$replace)"/>
+        <xsl:with-param name="replace" select="$replace"/>
+        <xsl:with-param name="by" select="$by"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$text"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!-- Call example for string-replace-all
+    <xsl:call-template name="string-replace-all">
+      <xsl:with-param name="text" select="$FeatureInfo"/>
+      <xsl:with-param name="replace" select="Feature="/>
+      <xsl:with-param name="by" select="TESTING"/>
+    </xsl:call-template>
+-->
+
 <!-- emphasis -->
 <xsl:template name="apply-emphasis">
     <xsl:param name="style"/>
@@ -85,40 +115,71 @@ Pass1,2...4 transformation is a precondition for this pass.
     <xsl:choose>
         <xsl:when test="contains($style, 'vertical-align:super')">
           <sup>
+            <xsl:variable name="nosuper">
+                <xsl:call-template name="string-replace-all">
+                  <xsl:with-param name="text" select="$style"/>
+                  <xsl:with-param name="replace" select="vertical-align:super"/>
+                  <!-- ignore param "by" because we want to remove the "replace" string -->
+                </xsl:call-template>                
+            </xsl:variable>
             <xsl:call-template name="apply-emphasis">
-                <xsl:with-param name="style" select="replace($style, 'vertical-align:super', '')"/>
+                <xsl:with-param name="style" select="$nosuper"/>
                 <xsl:with-param name="child_nodes" select="$child_nodes"/>
             </xsl:call-template>
           </sup>
         </xsl:when>
         <xsl:when test="contains($style, 'vertical-align:sub')">
           <sub>
+            <xsl:variable name="nosub">
+                <xsl:call-template name="string-replace-all">
+                  <xsl:with-param name="text" select="$style"/>
+                  <xsl:with-param name="replace" select="'vertical-align:sub'"/>
+                </xsl:call-template>                
+            </xsl:variable>
             <xsl:call-template name="apply-emphasis">
-                <xsl:with-param name="style" select="replace($style, 'vertical-align:sub', '')"/>
+                <xsl:with-param name="style" select="$nosub"/>
                 <xsl:with-param name="child_nodes" select="$child_nodes"/>
             </xsl:call-template>
           </sub>
         </xsl:when>
         <xsl:when test="contains($style, 'font-style:italic')">
           <emphasis effect='italics'>
+            <xsl:variable name="noitalic">
+                <xsl:call-template name="string-replace-all">
+                  <xsl:with-param name="text" select="$style"/>
+                  <xsl:with-param name="replace" select="'font-style:italic'"/>
+                </xsl:call-template>                
+            </xsl:variable>
             <xsl:call-template name="apply-emphasis">
-                <xsl:with-param name="style" select="replace($style, 'font-style:italic', '')"/>
+                <xsl:with-param name="style" select="$noitalic"/>
                 <xsl:with-param name="child_nodes" select="$child_nodes"/>
             </xsl:call-template>
           </emphasis>
         </xsl:when>
         <xsl:when test="contains($style, 'font-weight:bold')">
           <emphasis effect='bold'>
+            <xsl:variable name="nobold">
+                <xsl:call-template name="string-replace-all">
+                  <xsl:with-param name="text" select="$style"/>
+                  <xsl:with-param name="replace" select="'font-weight:bold'"/>
+                </xsl:call-template>                
+            </xsl:variable>
             <xsl:call-template name="apply-emphasis">
-                <xsl:with-param name="style" select="replace($style, 'font-weight:bold', '')"/>
+                <xsl:with-param name="style" select="$nobold"/>
                 <xsl:with-param name="child_nodes" select="$child_nodes"/>
             </xsl:call-template>
           </emphasis>
         </xsl:when>
         <xsl:when test="contains($style, 'text-decoration:underline')">
           <emphasis effect='underline'>
+            <xsl:variable name="nounderline">
+                <xsl:call-template name="string-replace-all">
+                  <xsl:with-param name="text" select="$style"/>
+                  <xsl:with-param name="replace" select="'text-decoration:underline'"/>
+                </xsl:call-template>
+            </xsl:variable>
             <xsl:call-template name="apply-emphasis">
-                <xsl:with-param name="style" select="replace($style, 'text-decoration:underline', '')"/>
+                <xsl:with-param name="style" select="$nounderline"/>
                 <xsl:with-param name="child_nodes" select="$child_nodes"/>
             </xsl:call-template>
           </emphasis>
@@ -139,11 +200,8 @@ Pass1,2...4 transformation is a precondition for this pass.
     <xsl:otherwise>
         <xsl:call-template name="apply-emphasis">
             <xsl:with-param name="style" select="@style"/>
-            <xsl:with-param name="child_nodes" select="child::*"/>
+            <xsl:with-param name="child_nodes" select="child::node()"/>
         </xsl:call-template>
-        <!--
-        <xsl:apply-templates mode="pass6"/>
-        -->
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
