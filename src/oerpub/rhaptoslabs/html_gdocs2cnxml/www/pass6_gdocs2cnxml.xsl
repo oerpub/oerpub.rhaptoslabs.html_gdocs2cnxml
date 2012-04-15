@@ -124,7 +124,6 @@ Pass1,2...4 transformation is a precondition for this pass.
           </emphasis>
         </xsl:when>
         <xsl:otherwise>
-            <xsl:message>!!!!!!!!!!!!!!! JA !!!!!!!!!!!!!!!!!!!!!!!!!!</xsl:message>
             <xsl:apply-templates select="$child_nodes" mode="pass6"/>
         </xsl:otherwise>
     </xsl:choose>
