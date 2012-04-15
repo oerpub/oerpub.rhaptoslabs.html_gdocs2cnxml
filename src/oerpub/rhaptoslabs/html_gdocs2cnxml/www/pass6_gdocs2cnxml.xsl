@@ -224,7 +224,9 @@ Pass1,2...4 transformation is a precondition for this pass.
     </xsl:when>
     <xsl:otherwise>
 		  <!-- Check if header is empty, if yes, create no section -->
-		  <xsl:if test="@title">
+		  
+          <!-- TODO: cnhtml:h without title should not happen -->
+          <xsl:if test="@title">
 			  <section>
 			    <title>
 			      <xsl:value-of select="@title"/>
