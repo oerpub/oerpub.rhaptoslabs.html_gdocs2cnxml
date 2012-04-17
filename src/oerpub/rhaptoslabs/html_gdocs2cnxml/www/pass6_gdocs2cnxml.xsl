@@ -78,6 +78,21 @@ Pass1,2...4 transformation is a precondition for this pass.
   </para>
 </xsl:template>
 
+<!-- linebreaks -->
+<xsl:template match="xh:br" mode="pass6">
+  <xsl:choose>
+    <xsl:when test="ancestor::xh:p">
+      <newline/>
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- This should not happen! -->
+      <para>
+        <newline/>
+      </para>    
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <!-- XSLT 2.0 replace function for XSLT 1.0 -->
 <!-- http://stackoverflow.com/questions/1069092/xslt-replace-function-not-found -->
 <xsl:template name="string-replace-all">
