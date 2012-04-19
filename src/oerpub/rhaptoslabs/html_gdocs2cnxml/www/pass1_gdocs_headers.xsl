@@ -13,7 +13,7 @@
   indent="yes"/>
 
 <xsl:strip-space elements="*"/>
-<xsl:preserve-space elements="xh:p xh:span xh:li xh:td xh:a"/>
+<xsl:preserve-space elements="xh:p xh:span xh:li cnhtml:list xh:td xh:a"/>
 
 <!--
 This XSLT transforms headers and lists of (Google Docs) XHTML.

@@ -13,7 +13,7 @@
   indent="yes"/>
 
 <xsl:strip-space elements="*"/>
-<xsl:preserve-space elements="xh:p xh:span xh:li xh:td xh:a"/>
+<xsl:preserve-space elements="xh:p xh:span xh:li cnhtml:list xh:td xh:a"/>
 
 <!--
 This XSLT transforms lists of Google Docs HTML to nested lists.
@@ -67,7 +67,7 @@ Output:
 <xsl:template match="cnhtml:list" mode="listgroup_pass5">
   <li>
     <xsl:apply-templates select="@*" mode="pass5"/>
-    <xsl:copy-of select="*"/> <!-- use copy-of because apply-templates gives wron result -->
+    <xsl:copy-of select="node()"/> <!-- use copy-of because apply-templates gives wron result -->
     <!-- <xsl:value-of select="." /> -->
 
     <xsl:variable name="vNext"
