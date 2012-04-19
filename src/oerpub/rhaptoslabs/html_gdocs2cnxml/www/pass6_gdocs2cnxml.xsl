@@ -81,7 +81,7 @@ Pass1,2...4 transformation is a precondition for this pass.
 <!-- linebreaks -->
 <xsl:template match="xh:br" mode="pass6">
   <xsl:choose>
-    <xsl:when test="ancestor::xh:p">
+    <xsl:when test="(ancestor::xh:p) or (ancestor::xh:li)">
       <newline/>
     </xsl:when>
     <xsl:otherwise>
