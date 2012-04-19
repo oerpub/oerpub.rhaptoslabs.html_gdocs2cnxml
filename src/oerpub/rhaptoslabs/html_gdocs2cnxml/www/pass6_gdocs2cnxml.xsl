@@ -17,7 +17,7 @@
 <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
 
 <xsl:strip-space elements="*"/>
-<xsl:preserve-space elements="xh:p xh:span xh:li xh:td xh:a"/>
+<xsl:preserve-space elements="xh:p xh:span xh:li cnhtml:list xh:td xh:a"/>
 
 <!--
 This XSLT transforms Google Docs HTML tags to CNXML.
@@ -81,7 +81,7 @@ Pass1,2...4 transformation is a precondition for this pass.
 <!-- linebreaks -->
 <xsl:template match="xh:br" mode="pass6">
   <xsl:choose>
-    <xsl:when test="ancestor::xh:p">
+    <xsl:when test="(ancestor::xh:p) or (ancestor::xh:li)">
       <newline/>
     </xsl:when>
     <xsl:otherwise>

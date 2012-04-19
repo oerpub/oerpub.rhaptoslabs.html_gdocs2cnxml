@@ -4,8 +4,9 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:exsl="http://exslt.org/common"
   xmlns:xh="http://www.w3.org/1999/xhtml"  
+  xmlns:cnhtml="http://cnxhtml"
   extension-element-prefixes="exsl"
-  exclude-result-prefixes="exsl xh">
+  exclude-result-prefixes="exsl xh cnhtml">
 
 <xsl:import href="pass1_gdocs_headers.xsl"/>
 <xsl:import href="pass2_xhtml_gdocs_headers.xsl"/>
@@ -30,7 +31,7 @@
   indent="yes"/>
 
 <xsl:strip-space elements="*"/>
-<xsl:preserve-space elements="xh:p xh:span xh:li xh:td xh:a"/>
+<xsl:preserve-space elements="xh:p xh:span xh:li cnhtml:list xh:td xh:a"/>
 
 <xsl:template match="/">
   <!-- general HTML/GDocs XSLTs -->
