@@ -40,6 +40,15 @@ e.g. <h1></h1> to <cnhtml:h level="1"></cnhtml:h>
       <xsl:when test="string-length($titlecontent) &lt;= 0">
           <p/>
       </xsl:when>
+      <!-- convert headings inside lists to paragraphs -->
+      <xsl:when test="ancestor::xh:li">
+          <p>
+              <xsl:attribute name="style">
+                  <xsl:value-of select="'font-weight:bold'"/>
+              </xsl:attribute>
+              <xsl:apply-templates mode="pass1"/>
+          </p>
+      </xsl:when>
       <xsl:otherwise>
         <cnhtml:h>
             <xsl:message>INFO: Renaming HTML header to leveled header</xsl:message>
