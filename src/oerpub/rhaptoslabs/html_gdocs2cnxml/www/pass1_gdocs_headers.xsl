@@ -40,6 +40,12 @@ e.g. <h1></h1> to <cnhtml:h level="1"></cnhtml:h>
       <xsl:when test="string-length($titlecontent) &lt;= 0">
           <p/>
       </xsl:when>
+      <!-- convert headings inside lists to paragraphs -->
+      <xsl:when test="ancestor::xh:li">
+          <p>
+              <xsl:apply-templates mode="pass1"/>
+          </p>
+      </xsl:when>
       <xsl:otherwise>
         <cnhtml:h>
             <xsl:message>INFO: Renaming HTML header to leveled header</xsl:message>
@@ -70,7 +76,8 @@ e.g. <h1></h1> to <cnhtml:h level="1"></cnhtml:h>
 </xsl:template>
 
 <!-- remove all children of headers which are text() or have text() inside -->
-<xsl:template match="node()[ancestor::xh:h1|ancestor::xh:h2|ancestor::xh:h3|ancestor::xh:h4|ancestor::xh:h5|ancestor::xh:h6]" mode="pass1">
+<!-- TODO: Rework this title thing, it's not the optimum -->
+<xsl:template match="node()[ancestor::xh:h1|ancestor::xh:h2|ancestor::xh:h3|ancestor::xh:h4|ancestor::xh:h5|ancestor::xh:h6][not(ancestor::xh:li)]" mode="pass1">
   <xsl:if test="not(./text() or self::text())">
 	  <xsl:copy>
 	    <xsl:apply-templates select="@*|node()" mode="pass1"/>
