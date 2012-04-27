@@ -43,9 +43,6 @@ e.g. <h1></h1> to <cnhtml:h level="1"></cnhtml:h>
       <!-- convert headings inside lists to paragraphs -->
       <xsl:when test="ancestor::xh:li">
           <p>
-              <xsl:attribute name="style">
-                  <xsl:value-of select="'font-weight:bold'"/>
-              </xsl:attribute>
               <xsl:apply-templates mode="pass1"/>
           </p>
       </xsl:when>
