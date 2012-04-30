@@ -17,7 +17,7 @@
 <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
 
 <xsl:strip-space elements="*"/>
-<xsl:preserve-space elements="xh:p xh:span xh:li xh:td xh:a"/>
+<xsl:preserve-space elements="xh:p xh:span xh:li cnhtml:list xh:td xh:a"/>
 
 <!--
 This XSLT transforms Google Docs HTML tags to CNXML.
@@ -78,6 +78,133 @@ Pass1,2...4 transformation is a precondition for this pass.
   </para>
 </xsl:template>
 
+<!-- linebreaks -->
+<xsl:template match="xh:br" mode="pass6">
+  <xsl:choose>
+    <xsl:when test="(ancestor::xh:p) or (ancestor::xh:li)">
+      <newline/>
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- This should not happen! -->
+      <para>
+        <newline/>
+      </para>    
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!-- XSLT 2.0 replace function for XSLT 1.0 -->
+<!-- http://stackoverflow.com/questions/1069092/xslt-replace-function-not-found -->
+<xsl:template name="string-replace-all">
+  <xsl:param name="text"/>
+  <xsl:param name="replace"/>
+  <xsl:param name="by"/>
+  <xsl:choose>
+    <xsl:when test="contains($text,$replace)">
+      <xsl:value-of select="substring-before($text,$replace)"/>
+      <xsl:value-of select="$by"/>
+      <xsl:call-template name="string-replace-all">
+        <xsl:with-param name="text" select="substring-after($text,$replace)"/>
+        <xsl:with-param name="replace" select="$replace"/>
+        <xsl:with-param name="by" select="$by"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$text"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!-- Call example for string-replace-all
+    <xsl:call-template name="string-replace-all">
+      <xsl:with-param name="text" select="$FeatureInfo"/>
+      <xsl:with-param name="replace" select="Feature="/>
+      <xsl:with-param name="by" select="TESTING"/>
+    </xsl:call-template>
+-->
+
+<!-- emphasis -->
+<xsl:template name="apply-emphasis">
+    <xsl:param name="style"/>
+    <xsl:param name="child_nodes"/>
+    <xsl:choose>
+        <xsl:when test="contains($style, 'vertical-align:super')">
+          <sup>
+            <xsl:variable name="nosuper">
+                <xsl:call-template name="string-replace-all">
+                  <xsl:with-param name="text" select="$style"/>
+                  <xsl:with-param name="replace" select="vertical-align:super"/>
+                  <!-- ignore param "by" because we want to remove the "replace" string -->
+                </xsl:call-template>                
+            </xsl:variable>
+            <xsl:call-template name="apply-emphasis">
+                <xsl:with-param name="style" select="$nosuper"/>
+                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+            </xsl:call-template>
+          </sup>
+        </xsl:when>
+        <xsl:when test="contains($style, 'vertical-align:sub')">
+          <sub>
+            <xsl:variable name="nosub">
+                <xsl:call-template name="string-replace-all">
+                  <xsl:with-param name="text" select="$style"/>
+                  <xsl:with-param name="replace" select="'vertical-align:sub'"/>
+                </xsl:call-template>                
+            </xsl:variable>
+            <xsl:call-template name="apply-emphasis">
+                <xsl:with-param name="style" select="$nosub"/>
+                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+            </xsl:call-template>
+          </sub>
+        </xsl:when>
+        <xsl:when test="contains($style, 'font-style:italic')">
+          <emphasis effect='italics'>
+            <xsl:variable name="noitalic">
+                <xsl:call-template name="string-replace-all">
+                  <xsl:with-param name="text" select="$style"/>
+                  <xsl:with-param name="replace" select="'font-style:italic'"/>
+                </xsl:call-template>                
+            </xsl:variable>
+            <xsl:call-template name="apply-emphasis">
+                <xsl:with-param name="style" select="$noitalic"/>
+                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+            </xsl:call-template>
+          </emphasis>
+        </xsl:when>
+        <xsl:when test="contains($style, 'font-weight:bold')">
+          <emphasis effect='bold'>
+            <xsl:variable name="nobold">
+                <xsl:call-template name="string-replace-all">
+                  <xsl:with-param name="text" select="$style"/>
+                  <xsl:with-param name="replace" select="'font-weight:bold'"/>
+                </xsl:call-template>                
+            </xsl:variable>
+            <xsl:call-template name="apply-emphasis">
+                <xsl:with-param name="style" select="$nobold"/>
+                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+            </xsl:call-template>
+          </emphasis>
+        </xsl:when>
+        <xsl:when test="contains($style, 'text-decoration:underline')">
+          <emphasis effect='underline'>
+            <xsl:variable name="nounderline">
+                <xsl:call-template name="string-replace-all">
+                  <xsl:with-param name="text" select="$style"/>
+                  <xsl:with-param name="replace" select="'text-decoration:underline'"/>
+                </xsl:call-template>
+            </xsl:variable>
+            <xsl:call-template name="apply-emphasis">
+                <xsl:with-param name="style" select="$nounderline"/>
+                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+            </xsl:call-template>
+          </emphasis>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:apply-templates select="$child_nodes" mode="pass6"/>
+        </xsl:otherwise>
+    </xsl:choose>
+</xsl:template>
+
 <!-- span -->
 <xsl:template match="xh:span" mode="pass6">
   <xsl:choose>
@@ -85,42 +212,11 @@ Pass1,2...4 transformation is a precondition for this pass.
      <xsl:when test="parent::cnhtml:h">
       <xsl:apply-templates mode="pass6"/>
     </xsl:when>
-    <!-- First super- and supformat text -->
-    <xsl:when test="contains(@style, 'vertical-align:super')">
-      <sup>
-        <xsl:apply-templates mode="pass6"/>
-      </sup>
-    </xsl:when>
-    <xsl:when test="contains(@style, 'vertical-align:sub')">
-      <sub>
-        <xsl:apply-templates mode="pass6"/>
-      </sub>
-    </xsl:when>
-    <xsl:when test="contains(@style, 'font-style:italic')">
-      <emphasis effect='italics'>
-        <xsl:apply-templates mode="pass6"/>
-      </emphasis>
-    </xsl:when>
-    <xsl:when test="contains(@style, 'font-weight:bold')">
-      <emphasis effect='bold'>
-        <xsl:apply-templates mode="pass6"/>
-      </emphasis>
-    </xsl:when>
-    <xsl:when test="contains(@style, 'text-decoration:underline')">
-      <!-- when we have no text, e.g. just links, do not generate emphasis -->
-      <xsl:choose>
-        <xsl:when test="text()">
-          <emphasis effect='underline'>
-            <xsl:apply-templates mode="pass6"/>
-          </emphasis>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-templates mode="pass6"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates mode="pass6"/>
+        <xsl:call-template name="apply-emphasis">
+            <xsl:with-param name="style" select="@style"/>
+            <xsl:with-param name="child_nodes" select="child::node()"/>
+        </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -143,7 +239,9 @@ Pass1,2...4 transformation is a precondition for this pass.
     </xsl:when>
     <xsl:otherwise>
 		  <!-- Check if header is empty, if yes, create no section -->
-		  <xsl:if test="@title">
+		  
+          <!-- TODO: cnhtml:h without title should not happen -->
+          <xsl:if test="@title">
 			  <section>
 			    <title>
 			      <xsl:value-of select="@title"/>

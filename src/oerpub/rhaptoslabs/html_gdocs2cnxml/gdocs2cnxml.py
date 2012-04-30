@@ -11,6 +11,7 @@ from tidylib import tidy_document
 from xhtmlpremailer import xhtmlPremailer
 from lxml import etree
 import magic
+import re
 
 current_dir = os.path.dirname(__file__)
 XHTML_ENTITIES = os.path.join(current_dir, 'www', 'catalog_xhtml', 'catalog.xml')
@@ -73,33 +74,38 @@ def downloadImages(xml):
     imageList = xpathImages(xml)
     for position, image in enumerate(imageList):
         strImageUrl = image.get('src')
+        # if we got a GDocs drawing SVN we try to access this with the access token
+        # TODO
         #Debugging
         print "Download GDoc Image: " + strImageUrl
-        strImageContent = urllib2.urlopen(strImageUrl).read()
-        # get Mime type from image
-        strImageMime = magic.whatis(strImageContent)
-        # only allow this three image formats
-        if strImageMime in ('image/png', 'image/jpeg', 'image/gif'):
-            image.set('mime-type', strImageMime)
-            strImageName = "gd-%04d" % (position + 1)  # gd0001.jpg
-            if strImageMime == 'image/jpeg':
-                strImageName += '.jpg'
-            elif strImageMime == 'image/png':
-                strImageName += '.png'
-            elif strImageMime == 'image/gif':
-                strImageName += '.gif'
-            #Note: SVG is currently (2012-03-08) not supported by GDocs.
-            strAlt = image.get('alt')
-            if not strAlt:
-                image.set('alt', strImageUrl) # getNameFromUrl(strImageUrl))
-            image.text = strImageName
-            # add contents of image to object
-            objects[strImageName] = strImageContent
+        try:
+            strImageContent = urllib2.urlopen(strImageUrl).read()
+            # get Mime type from image
+            strImageMime = magic.whatis(strImageContent)
+            # only allow this three image formats
+            if strImageMime in ('image/png', 'image/jpeg', 'image/gif'):
+                image.set('mime-type', strImageMime)
+                strImageName = "gd-%04d" % (position + 1)  # gd0001.jpg
+                if strImageMime == 'image/jpeg':
+                    strImageName += '.jpg'
+                elif strImageMime == 'image/png':
+                    strImageName += '.png'
+                elif strImageMime == 'image/gif':
+                    strImageName += '.gif'
+                #Note: SVG is currently (2012-03-08) not supported by GDocs.
+                strAlt = image.get('alt')
+                if not strAlt:
+                    image.set('alt', strImageUrl) # getNameFromUrl(strImageUrl))
+                image.text = strImageName
+                # add contents of image to object
+                objects[strImageName] = strImageContent
 
-            # just for debugging
-            #myfile = open(strImageName, "wb")
-            #myfile.write(strImageContent)
-            #myfile.close
+                # just for debugging
+                #myfile = open(strImageName, "wb")
+                #myfile.write(strImageContent)
+                #myfile.close
+        finally:
+            pass
     return xml, objects
 
 # Main method. Doing all steps for the Google Docs to CNXML transformation
