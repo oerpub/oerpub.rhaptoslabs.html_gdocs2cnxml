@@ -353,13 +353,7 @@ Pass1,2...4 transformation is a precondition for this pass.
         <row>
           <xsl:for-each select="xh:td">
             <entry>
-              <!-- Ignore paragraphs and headings, only process span -->
-              <xsl:apply-templates select="*[not(self::xh:table)]" mode="pass6"/>
-              <!-- TODO: Support nested tables? -->
-              <xsl:if test="xh:table">
-                <xsl:text>ERROR! Nested tables are not supported!</xsl:text>
-                <xsl:message>Warning: Nested tables are not supported! The nested table will be ignored!</xsl:message>
-              </xsl:if>
+              <xsl:apply-templates select="*" mode="pass6"/>
             </entry>
           </xsl:for-each>
         </row>
