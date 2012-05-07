@@ -21,7 +21,7 @@ XHTML_ENTITIES = os.path.join(current_dir, 'www', 'catalog_xhtml', 'catalog.xml'
 # All steps in between are string steps
 TRANSFORM_PIPELINE = [
     tidy_and_premail,
-    xhtml_xslt('pass1_gdocs_headers.xsl'),
+#    xhtml_xslt('pass1_gdocs_headers.xsl'),
 #    xhtml_xslt('pass2_xhtml_gdocs_headers.xsl'),
 #    xhtml_xslt('pass3_gdocs_listings.xsl'),
 #    xhtml_xslt('pass4_gdocs_listings.xsl'),
@@ -122,7 +122,7 @@ def downloadImages(xml):
     return xml, objects
 
 # Main method. Doing all steps for the Google Docs to CNXML transformation
-def gdocs_transform(content, bDownloadImages): # In Rhaptos: xsl_transform method!
+def xsl_transform(content, bDownloadImages):
     # 1
     strTidiedHtml = tidy_and_premail(content)
 
@@ -169,11 +169,18 @@ def gdocs_transform(content, bDownloadImages): # In Rhaptos: xsl_transform metho
     result2.freeDoc()
 
     return strResult2, imageObjects
+    
+def gdocs_new_transform(content, bDownloadImages):
+    result = ""
+    images = {}
+    
+    return result, images
 
 # the function which is called from outside to start transformation
 def gdocs_to_cnxml(content, bDownloadImages=False):
     objects = {}
-    content, objects = gdocs_transform(content, bDownloadImages)
+    #content, objects = gdocs_transform(content, bDownloadImages)
+    content, objects = gdocs_new_transform(content, bDownloadImages)
     return content, objects
 
 if __name__ == "__main__":
