@@ -33,11 +33,12 @@ not important node (less restrictive):
 *[parent::xh:p][not(contains(@style, 'color:#ff0000'))]
 
 2012-05-07:
-Change to violett text for Siyavula Docs
+Change to violet text for Siyavula Docs
 -->
 
-<!-- Red text color constand -->
-<xsl:variable name="REDTEXTCOLOR">color:#9900ff</xsl:variable>
+<!-- Red text color constant -->
+<!-- TODO: (Marvin) For some reason the constant does not work??? -->
+<xsl:variable name="REDTEXTCOLOR" as="xs:string">color:#9900ff</xsl:variable>
 
 <xsl:template match="node()|@*" mode="red2cnxml">
   <xsl:copy>
@@ -49,29 +50,29 @@ Change to violett text for Siyavula Docs
  <xsl:template match="xh:p[child::node() and not(ancestor::xh:div or ancestor::xh:table or ancestor::xh:li)]" mode="red2cnxml">
 	<xsl:apply-templates select="node()[1]" mode="red2cnxml_walker"/>
     <!-- add linebreaks if red text used. Necessary for code blocks http://cnx.org/eip-help/code -->
-    <xsl:if test="xh:span[contains(@style, $REDTEXTCOLOR)]">
+    <xsl:if test="xh:span[contains(@style, 'color:#9900ff')]">
         <cnhtml:cnxml><xsl:text>&#xA;</xsl:text></cnhtml:cnxml>
     </xsl:if>
 </xsl:template>
 
-<xsl:template match="xh:span[contains(@style, $REDTEXTCOLOR)]" mode="red2cnxml_walker">
+<xsl:template match="xh:span[contains(@style, 'color:#9900ff')]" mode="red2cnxml_walker">
 	<cnhtml:cnxml><xsl:value-of select="."/></cnhtml:cnxml>
 	<xsl:apply-templates select="following-sibling::node()[1]" mode="red2cnxml_walker"/>
 </xsl:template>
 
 <xsl:template match="node()" mode="red2cnxml_walker">
 	<xsl:choose>
-		<xsl:when test="not(preceding-sibling::node()) or preceding-sibling::node()[1][self::xh:span[contains(@style, $REDTEXTCOLOR)]]">
+		<xsl:when test="not(preceding-sibling::node()) or preceding-sibling::node()[1][self::xh:span[contains(@style, 'color:#9900ff')]]">
 			<xsl:element name="{name(..)}">
 				<xsl:apply-templates select="../@*" mode="red2cnxml"/>
 				<xsl:apply-templates select="." mode="red2cnxml"/>
-				<xsl:apply-templates select="following-sibling::node()[1][not(self::xh:span[contains(@style, $REDTEXTCOLOR)])]" mode="red2cnxml_walker"/>
+				<xsl:apply-templates select="following-sibling::node()[1][not(self::xh:span[contains(@style, 'color:#9900ff')])]" mode="red2cnxml_walker"/>
 			</xsl:element>
-			<xsl:apply-templates select="following-sibling::xh:span[contains(@style, $REDTEXTCOLOR)][1]" mode="red2cnxml_walker"/>
+			<xsl:apply-templates select="following-sibling::xh:span[contains(@style, 'color:#9900ff')][1]" mode="red2cnxml_walker"/>
 		</xsl:when>
 		<xsl:otherwise>
 			<xsl:apply-templates select="." mode="red2cnxml"/>
-			<xsl:apply-templates select="following-sibling::node()[1][not(self::xh:span[contains(@style, $REDTEXTCOLOR)])]" mode="red2cnxml_walker"/>
+			<xsl:apply-templates select="following-sibling::node()[1][not(self::xh:span[contains(@style, 'color:#9900ff')])]" mode="red2cnxml_walker"/>
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:template>
