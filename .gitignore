@@ -2,3 +2,6 @@
 .~lock.*
 Paste*
 *egg-info*
+#eclipse specific
+.project
+.pydevproject
