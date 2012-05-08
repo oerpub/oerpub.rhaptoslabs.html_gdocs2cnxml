@@ -18,27 +18,10 @@ DEBUG_MODE = True
 
 XHTML_ENTITIES = os.path.join(current_dir, 'www', 'catalog_xhtml', 'catalog.xml')
 
-# All steps in between are string steps
-TRANSFORM_PIPELINE = [
-    tidy_and_premail,
-#    xhtml_xslt('pass1_gdocs_headers.xsl'),
-#    xhtml_xslt('pass2_xhtml_gdocs_headers.xsl'),
-#    xhtml_xslt('pass3_gdocs_listings.xsl'),
-#    xhtml_xslt('pass4_gdocs_listings.xsl'),
-#    xhtml_xslt('pass5_gdocs_listings.xsl'),
-#    xhtml_xslt('pass5_part2_gdocs_red2cnxml.xsl'),
-#    xhtml_xslt('pass6_gdocs2cnxml.xsl'),
-#    tex2mathml_transform,
-#    image_puller,
-#    xslt('pass7_cnxml_postprocessing.xsl'),
-#    xslt('pass8_cnxml_id-generation.xsl'),
-#    xslt('pass9_cnxml_postprocessing.xsl'),
-]
-
 # Tidy up the Google Docs HTML Soup
-def tidy_and_premail(content):
+def tidy2xhtml(html):
     # HTML Tidy
-    tidied_html, errors = tidy_document(content, options={
+    xhtml, errors = tidy_document(html, options={
         'output-xhtml': 1,     # XHTML instead of HTML4
         'indent': 0,           # Don't use indent, add's extra linespace or linefeeds which are big problems
         'tidy-mark': 0,        # No tidy meta tag in output
@@ -54,12 +37,15 @@ def tidy_and_premail(content):
         'enclose-text': 1,     # enclose text in body always with <p>...</p>
         'logical-emphasis': 1  # transforms <i> and <b> text to <em> and <strong> text
         })
+    # TODO: parse errors from tidy process 
+    return xhtml, {}
 
-	# Move CSS from stylesheet inside the tags with. BTW: Premailer does this usually for old email clients.
-    # Use a special XHTML Premailer which does not destroy the XML structure.
-    premailer = xhtmlPremailer(tidied_html)
-    tidied_premailed_html = premailer.transform()
-    return tidied_premailed_html
+# Move CSS from stylesheet inside the tags with. BTW: Premailer does this usually for old email clients.
+# Use a special XHTML Premailer which does not destroy the XML structure.
+def premail(xhtml):
+    premailer = xhtmlPremailer(xhtml)
+    premailed_xhtml = premailer.transform()
+    return premailed_xhtml, {}
 
 # Use Blahtex transformation from TeX to XML. http://gva.noekeon.org/blahtexml/
 def tex2mathml(xml):
@@ -79,7 +65,7 @@ def tex2mathml(xml):
             formular.append(mathMl)
     else:
         print 'Error: Math will not be converted! Blahtex is only available on Linux!'
-    return xml
+    return xml, {}
 
 # Get the filename without extension form a URL
 # TODO: This does not worked reliable
@@ -124,7 +110,7 @@ def downloadImages(xml):
 # Main method. Doing all steps for the Google Docs to CNXML transformation
 def xsl_transform(content, bDownloadImages):
     # 1
-    strTidiedHtml = tidy_and_premail(content)
+    strTidiedHtml = tidy2xhtml(content)
 
     # 2 Settings for libxml2 for transforming XHTML entities  to valid XML
     libxml2.loadCatalog(XHTML_ENTITIES)
@@ -170,11 +156,38 @@ def xsl_transform(content, bDownloadImages):
 
     return strResult2, imageObjects
     
-def gdocs_new_transform(content, bDownloadImages):
-    result = ""
-    images = {}
+# result from every step in pipeline is a string (xml) + object {...}
+TRANSFORM_PIPELINE = [
+    tidy2xhtml,
+    premail,
+#    xhtml_xslt('pass1_gdocs_headers.xsl'),
+#    xhtml_xslt('pass2_xhtml_gdocs_headers.xsl'),
+#    xhtml_xslt('pass3_gdocs_listings.xsl'),
+#    xhtml_xslt('pass4_gdocs_listings.xsl'),
+#    xhtml_xslt('pass5_gdocs_listings.xsl'),
+#    xhtml_xslt('pass5_part2_gdocs_red2cnxml.xsl'),
+#    xhtml_xslt('pass6_gdocs2cnxml.xsl'),
+#    tex2mathml_transform,
+#    image_puller,
+#    xslt('pass7_cnxml_postprocessing.xsl'),
+#    xslt('pass8_cnxml_id-generation.xsl'),
+#    xslt('pass9_cnxml_postprocessing.xsl'),
+]
+
+def gdocs_new_transform(gdocs_html, bDownloadImages):
+    objects = {}
     
-    return result, images
+    xml = gdocs_html
+    for i, transform in enumerate(TRANSFORM_PIPELINE):
+        newobjects = {}
+        xml, newobjects = transform(xml)
+        # TODO: There must be better ways to copy a array in to another array
+        for o in newobjects:
+            objects.append(o)
+        print "== Pass: %i ==" % (i+1)
+        print xml, newobjects
+    
+    return xml, objects
 
 # the function which is called from outside to start transformation
 def gdocs_to_cnxml(content, bDownloadImages=False):
@@ -186,4 +199,5 @@ def gdocs_to_cnxml(content, bDownloadImages=False):
 if __name__ == "__main__":
     f = open(sys.argv[1])
     content = f.read()
-    print gdocs_to_cnxml(content)
+    #print gdocs_to_cnxml(content)
+    gdocs_to_cnxml(content)
