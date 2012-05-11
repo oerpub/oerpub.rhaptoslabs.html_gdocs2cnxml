@@ -10,6 +10,7 @@ from tidylib import tidy_document
 from xhtmlpremailer import xhtmlPremailer
 from lxml import etree
 import magic
+from functools import partial
 
 current_dir = os.path.dirname(__file__)
 
@@ -73,7 +74,7 @@ def tex2mathml(xml):
 #     return os.path.splitext(urllib2.unquote(os.path.basename(urlparse(s).path)))[0]
 
 # Downloads images from Google Docs and sets metadata for further processing
-def downloadImages(xml):
+def download_images(xml):
     objects = {}    # image contents will be saved here
     xpathImages = etree.XPath('//cnxtra:image', namespaces={'cnxtra':'http://cnxtra'})
     imageList = xpathImages(xml)
@@ -138,7 +139,7 @@ def xsl_transform(content, bDownloadImages):
     # 5 Optional: Download Google Docs Images
     imageObjects = {}
     if bDownloadImages:
-        etreeXml, imageObjects = downloadImages(etreeXml)
+        etreeXml, imageObjects = download_images(etreeXml)
 
     # Convert etree back to string
     strXml = etree.tostring(etreeXml) # pretty_print=True)
@@ -155,23 +156,62 @@ def xsl_transform(content, bDownloadImages):
     result2.freeDoc()
 
     return strResult2, imageObjects
+
+# Initialize libxml2, e.g. transforming XHTML entities to valid XML
+def init_libxml2(xml):
+    libxml2.loadCatalog(XHTML_ENTITIES)
+    libxml2.lineNumbersDefault(1)
+    libxml2.substituteEntitiesDefault(1)
+    return xml
+
+def xslt(xsl, xml):
+    # XSLT transformation with libxml2
+    style_doc = libxml2.parseFile(xsl)
+    style = libxslt.parseStylesheetDoc(style_doc)
+    # doc = libxml2.parseFile(afile)) # another way, just for debugging
+    doc = libxml2.parseDoc(xml)
+    result = style.applyStylesheet(doc, None)
+    # style.saveResultToFilename(os.path.join('output', docFilename + '_xyz.xml'), result, 1) # another way, just for debugging
+    xml_result = style.saveResultToString(result)
+    style.freeStylesheet()
+    doc.freeDoc()
+    result.freeDoc()
+    
+    return xml_result, {}
+
+def tex2mathml_transform(xml):
+    # Parse XML with etree from lxml for TeX2MathML
+    etree_xml = etree.fromstring(xml)
+    # Convert TeX to MathML with Blahtex
+    etree_xml = tex2mathml(etree_xml)
+    return etree.tostring(etreeXml), {}
+
+# Download Google Docs Images
+def image_puller(xml):   
+    image_objects = {}
+    etree_xml = etree.fromstring(xml)
+    #if bDownloadImages:
+    etree_xml, image_objects = download_images(etree_xml)
+    return etree.tostring(etree_xml), image_objects
     
 # result from every step in pipeline is a string (xml) + object {...}
+# explanation of "partial" : http://stackoverflow.com/q/10547659/756056
 TRANSFORM_PIPELINE = [
     tidy2xhtml,
     premail,
-#    xhtml_xslt('pass1_gdocs_headers.xsl'),
-#    xhtml_xslt('pass2_xhtml_gdocs_headers.xsl'),
-#    xhtml_xslt('pass3_gdocs_listings.xsl'),
-#    xhtml_xslt('pass4_gdocs_listings.xsl'),
-#    xhtml_xslt('pass5_gdocs_listings.xsl'),
-#    xhtml_xslt('pass5_part2_gdocs_red2cnxml.xsl'),
-#    xhtml_xslt('pass6_gdocs2cnxml.xsl'),
-#    tex2mathml_transform,
-#    image_puller,
-#    xslt('pass7_cnxml_postprocessing.xsl'),
-#    xslt('pass8_cnxml_id-generation.xsl'),
-#    xslt('pass9_cnxml_postprocessing.xsl'),
+    init_libxml2,
+    partial(xslt, 'pass1_gdocs_headers.xsl'),
+    partial(xslt, 'pass2_xhtml_gdocs_headers.xsl'),
+    partial(xslt, 'pass3_gdocs_listings.xsl'),
+    partial(xslt, 'pass4_gdocs_listings.xsl'),
+    partial(xslt, 'pass5_gdocs_listings.xsl'),
+    partial(xslt, 'pass5_part2_gdocs_red2cnxml.xsl'),
+    partial(xslt, 'pass6_gdocs2cnxml.xsl'),
+    tex2mathml_transform,
+    image_puller,
+    partial(xslt, 'pass7_cnxml_postprocessing.xsl'),
+    partial(xslt, 'pass8_cnxml_id-generation.xsl'),
+    partial(xslt, 'pass9_cnxml_postprocessing.xsl'),
 ]
 
 def gdocs_new_transform(gdocs_html, bDownloadImages):
