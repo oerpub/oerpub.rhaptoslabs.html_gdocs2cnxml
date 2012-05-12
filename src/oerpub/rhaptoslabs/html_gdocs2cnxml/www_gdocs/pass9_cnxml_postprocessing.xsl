@@ -46,17 +46,17 @@ Output (CNXML with a correct id linking, bookmark removed):
 -->
 
 <!-- Default: copy everything -->
-<xsl:template match="@*|node()" mode="pass9">
+<xsl:template match="@*|node()">
   <xsl:copy>
-    <xsl:apply-templates select="@*|node()" mode="pass9"/>
+    <xsl:apply-templates select="@*|node()"/>
   </xsl:copy>
 </xsl:template>
 
 <!-- remove bookmark attribute -->
-<xsl:template match="cnx:link/@bookmark" mode="pass9"/>
+<xsl:template match="cnx:link/@bookmark"/>
 
 <!-- generate internal links -->
-<xsl:template match="cnx:link[@bookmark]" mode="pass9">
+<xsl:template match="cnx:link[@bookmark]">
 
   <!-- if we have a link with only '#' in @bookmark, then do not create any <link> -->
   <xsl:choose>
@@ -108,29 +108,29 @@ Output (CNXML with a correct id linking, bookmark removed):
 		            </xsl:otherwise>
 		          </xsl:choose>
 		        </xsl:attribute>
-		        <xsl:apply-templates select="@*" mode="pass9"/>
-		        <xsl:apply-templates mode="pass9"/>
+		        <xsl:apply-templates select="@*"/>
+		        <xsl:apply-templates/>
 			    </link>
 		    </xsl:when>
 		    <!-- if no IDs were found, remove the link -->
 		    <xsl:otherwise>
-		      <xsl:apply-templates mode="pass9"/>
+		      <xsl:apply-templates/>
 		    </xsl:otherwise>
 		  </xsl:choose>
 		</xsl:when>
 		<xsl:otherwise>
 		  <!-- just apply templates to child notes if bookmark is less than 1 character -->
-		  <xsl:apply-templates mode="pass9"/>
+		  <xsl:apply-templates/>
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:template>
 
 <!-- remove bookmark element placeholders -->
-<xsl:template match="cnxtra:bookmark" mode="pass9"/>
+<xsl:template match="cnxtra:bookmark"/>
 
 <!-- remove underline placeholder -->
 <!--
-<xsl:template match="cnx:underline" mode="pass9"/>
+<xsl:template match="cnx:underline"/>
 -->
 
 </xsl:stylesheet>

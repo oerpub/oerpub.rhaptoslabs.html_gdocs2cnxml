@@ -26,35 +26,35 @@ Deprecated:
 -->
 
 <!-- Default: copy everything -->
-<xsl:template match="@*|node()" mode="pass7">
+<xsl:template match="@*|node()">
   <xsl:copy>
-    <xsl:apply-templates select="@*|node()" mode="pass7"/>
+    <xsl:apply-templates select="@*|node()"/>
   </xsl:copy>
 </xsl:template>
 
 <!-- remove all nesting paras -->
-<xsl:template match="cnx:para[ancestor::cnx:para]" mode="pass7">
-  <xsl:apply-templates mode="pass7"/>
+<xsl:template match="cnx:para[ancestor::cnx:para]">
+  <xsl:apply-templates/>
 </xsl:template>
 
 <!-- convert empty paragraphs to paragraphs with newline -->
-<xsl:template match="cnx:para[not(child::*|text())]" mode="pass7">
+<xsl:template match="cnx:para[not(child::*|text())]">
   <para>
-    <xsl:apply-templates select="@*" mode="pass7"/>
+    <xsl:apply-templates select="@*"/>
     <newline/>
   </para>
 </xsl:template>
 
 <!-- add an empty div to empty sections -->
-<xsl:template match="cnx:section[not(child::cnx:*[not(self::cnx:title|self::cnx:section)])]" mode="pass7">
+<xsl:template match="cnx:section[not(child::cnx:*[not(self::cnx:title|self::cnx:section)])]">
   <xsl:copy>
-    <xsl:apply-templates select="@*|node()" mode="pass7"/>
+    <xsl:apply-templates select="@*|node()"/>
     <div/>
   </xsl:copy>
 </xsl:template>
 
 <!-- convert images to CNXML -->
-<xsl:template match="cnxtra:image" mode="pass7">
+<xsl:template match="cnxtra:image">
   <!-- just ignore images which cannot be uploaded -->
   <!--
   <xsl:choose>
@@ -93,10 +93,10 @@ Deprecated:
 </xsl:template>
 
 <!-- remove empty tex nodes (this should not happen) -->
-<xsl:template match="cnxtra:tex[not(node())]" mode="pass7"/>
+<xsl:template match="cnxtra:tex[not(node())]"/>
 
 <!-- convert blahtex MathMl output to CNXML standards-->
-<xsl:template match="cnxtra:tex[node()]" mode="pass7">
+<xsl:template match="cnxtra:tex[node()]">
   <xsl:choose>
     <xsl:when test="cnx:blahtex/cnx:mathml/cnx:markup">
       <m:math> <!-- namespace="http://www.w3.org/1998/Math/MathML"> --> <!-- Rhaptos does not want namespaces -->
@@ -152,10 +152,10 @@ Deprecated:
   <xsl:copy>
 	<xsl:if test="not(@id)">
 		<xsl:attribute name="id">
-		  <xsl:call-template name="IDAttribute" mode="pass7"/>
+		  <xsl:call-template name="IDAttribute"/>
 		</xsl:attribute>
 	</xsl:if>
-    <xsl:apply-templates select="@*|node()" mode="pass7"/>
+    <xsl:apply-templates select="@*|node()"/>
   </xsl:copy>
 </xsl:template>
 -->
