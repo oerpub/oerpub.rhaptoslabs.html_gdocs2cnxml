@@ -28,14 +28,14 @@ Output:
 -->
 
 <!-- Default: copy everything -->
-<xsl:template match="@*|node()">
+<xsl:template match="@*|node()" mode="pass1">
   <xsl:copy>
-    <xsl:apply-templates select="@*|node()"/>
+    <xsl:apply-templates select="@*|node()" mode="pass1"/>
   </xsl:copy>
 </xsl:template>
 
 <!-- Change header to <h level="x"> -->
-<xsl:template match="xh:h1|xh:h2|xh:h3|xh:h4|xh:h5|xh:h6">
+<xsl:template match="xh:h1|xh:h2|xh:h3|xh:h4|xh:h5|xh:h6" mode="pass1">
   <cnhtml:h>
     <xsl:message>INFO: Renaming HTML header to leveled header</xsl:message>
     <xsl:attribute name="level" >                          <!-- insert level attribute -->
@@ -59,19 +59,19 @@ Output:
 	    </xsl:attribute>
     </xsl:if>
 
-    <xsl:apply-templates select="@*"/>        <!-- copy all remaining attributes -->
+    <xsl:apply-templates select="@*" mode="pass1"/>        <!-- copy all remaining attributes -->
 
     <!-- Do NOT copy children in XHTML mode! -->
     <!-- TODO: Copy empty a names for internal bookmarks -->
-    <!-- <xsl:apply-templates/> -->
+    <!-- <xsl:apply-templates mode="pass1"/> -->
   </cnhtml:h>
 </xsl:template>
 
 <!-- remove all children of headers which are text() or have text() inside -->
-<xsl:template match="node()[ancestor::xh:h1|ancestor::xh:h2|ancestor::xh:h3|ancestor::xh:h4|ancestor::xh:h5|ancestor::xh:h6]">
+<xsl:template match="node()[ancestor::xh:h1|ancestor::xh:h2|ancestor::xh:h3|ancestor::xh:h4|ancestor::xh:h5|ancestor::xh:h6]" mode="pass1">
   <xsl:if test="not(./text() or self::text())">
 	  <xsl:copy>
-	    <xsl:apply-templates select="@*|node()"/>
+	    <xsl:apply-templates select="@*|node()" mode="pass1"/>
 	  </xsl:copy>
   </xsl:if>
 </xsl:template>

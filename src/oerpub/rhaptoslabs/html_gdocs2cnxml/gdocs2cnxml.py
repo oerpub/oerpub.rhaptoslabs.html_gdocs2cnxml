@@ -14,7 +14,7 @@ from functools import partial
 
 current_dir = os.path.dirname(__file__)
 
-XHTML_ENTITIES = os.path.join(current_dir, 'www', 'catalog_xhtml', 'catalog.xml')
+XHTML_ENTITIES = os.path.join(current_dir, 'www_seperate', 'catalog_xhtml', 'catalog.xml')
 
 # Tidy up the Google Docs HTML Soup
 def tidy2xhtml(html):

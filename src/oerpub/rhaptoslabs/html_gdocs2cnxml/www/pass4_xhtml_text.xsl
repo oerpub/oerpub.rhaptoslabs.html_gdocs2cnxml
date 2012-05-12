@@ -36,15 +36,15 @@ Output:
 -->
 
 <!-- Default: copy everything -->
-<xsl:template match="@*|node()">
+<xsl:template match="@*|node()" mode="pass4">
   <xsl:copy>
-    <xsl:apply-templates select="@*|node()"/>
+    <xsl:apply-templates select="@*|node()" mode="pass4"/>
   </xsl:copy>
 </xsl:template>
 
-<xsl:template match="xh:body">
+<xsl:template match="xh:body" mode="pass4">
   <xsl:copy>
-    <xsl:apply-templates select="@*"/>
+    <xsl:apply-templates select="@*" mode="pass4"/>
     <xsl:apply-templates select="node()[1]" mode="walker_pass4"/>
   </xsl:copy>
 </xsl:template>
@@ -136,7 +136,7 @@ Output:
     ]
   ]" mode="walker_pass4">
   <p>
-    <xsl:apply-templates select="."/>
+    <xsl:apply-templates select="." mode="pass4"/>
     <!-- is following node not p ? -->
     <xsl:if test="following-sibling::node()[1]
       [
@@ -234,7 +234,7 @@ Output:
 <xsl:template match="node()" mode="walker_pass4">
   <xsl:param name="inside_paragraph" select="'no'"/>
 
-  <xsl:apply-templates select="."/>
+  <xsl:apply-templates select="." mode="pass4"/>
 
   <xsl:if test="
     not($inside_paragraph='yes'
