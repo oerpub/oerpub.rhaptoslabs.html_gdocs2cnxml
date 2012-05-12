@@ -14,7 +14,7 @@ from functools import partial
 
 current_dir = os.path.dirname(__file__)
 
-XHTML_ENTITIES = os.path.join(current_dir, 'www_seperate', 'catalog_xhtml', 'catalog.xml')
+XHTML_ENTITIES = os.path.join(current_dir, 'www_gdocs', 'catalog_xhtml', 'catalog.xml')
 
 # Tidy up the Google Docs HTML Soup
 def tidy2xhtml(html):
@@ -114,7 +114,7 @@ def init_libxml2(xml):
 
 def xslt(xsl, xml):
     # XSLT transformation with libxml2
-    xsl = os.path.join(current_dir, 'www', xsl) # TODO: Needs a cleaner solution
+    xsl = os.path.join(current_dir, 'www_gdocs', xsl) # TODO: Needs a cleaner solution
     style_doc = libxml2.parseFile(xsl)
     style = libxslt.parseStylesheetDoc(style_doc)
     # doc = libxml2.parseFile(afile)) # another way, just for debugging

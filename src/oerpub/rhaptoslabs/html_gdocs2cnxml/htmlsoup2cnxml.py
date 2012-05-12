@@ -15,9 +15,9 @@ import magic
 from readability.readability import Document
 
 current_dir = os.path.dirname(__file__)
-XHTML_ENTITIES = os.path.join(current_dir, 'www', 'catalog_xhtml', 'catalog.xml')
-XHTML2CNXML_XSL1 = os.path.join(current_dir, 'www', 'xhtml2cnxml_meta1.xsl')
-XHTML2CNXML_XSL2 = os.path.join(current_dir, 'www', 'xhtml2cnxml_meta2.xsl')
+XHTML_ENTITIES = os.path.join(current_dir, 'www_html', 'catalog_xhtml', 'catalog.xml')
+XHTML2CNXML_XSL1 = os.path.join(current_dir, 'www_html', 'xhtml2cnxml_meta1.xsl')
+XHTML2CNXML_XSL2 = os.path.join(current_dir, 'www_html', 'xhtml2cnxml_meta2.xsl')
 
 # HTML Tidy, HTML Soup to XHTML
 # Premail XHTML
