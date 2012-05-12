@@ -14,9 +14,6 @@ from functools import partial
 
 current_dir = os.path.dirname(__file__)
 
-# Should all steps in between written to output/disk
-DEBUG_MODE = True
-
 XHTML_ENTITIES = os.path.join(current_dir, 'www', 'catalog_xhtml', 'catalog.xml')
 
 # Tidy up the Google Docs HTML Soup
@@ -66,7 +63,7 @@ def tex2mathml(xml):
             formular.append(mathMl)
     else:
         print 'Error: Math will not be converted! Blahtex is only available on Linux!'
-    return xml, {}
+    return xml
 
 # Get the filename without extension form a URL
 # TODO: This does not worked reliable
@@ -108,55 +105,6 @@ def download_images(xml):
             #myfile.close
     return xml, objects
 
-# Main method. Doing all steps for the Google Docs to CNXML transformation
-def xsl_transform(content, bDownloadImages):
-    # 1
-    strTidiedHtml = tidy2xhtml(content)
-
-    # 2 Settings for libxml2 for transforming XHTML entities  to valid XML
-    libxml2.loadCatalog(XHTML_ENTITIES)
-    libxml2.lineNumbersDefault(1)
-    libxml2.substituteEntitiesDefault(1)
-
-    # 3 First XSLT transformation
-    styleDoc1 = libxml2.parseFile(GDOCS2CNXML_XSL1)
-    style1 = libxslt.parseStylesheetDoc(styleDoc1)
-    # doc1 = libxml2.parseFile(afile))
-    doc1 = libxml2.parseDoc(strTidiedHtml)
-    result1 = style1.applyStylesheet(doc1, None)
-    #style1.saveResultToFilename(os.path.join('output', docFilename + '_meta.xml'), result1, 1)
-    strResult1 = style1.saveResultToString(result1)
-    style1.freeStylesheet()
-    doc1.freeDoc()
-    result1.freeDoc()
-
-    # Parse XML with etree from lxml for TeX2MathML and image download
-    etreeXml = etree.fromstring(strResult1)
-
-    # 4 Convert TeX to MathML with Blahtex
-    etreeXml = tex2mathml(etreeXml)
-
-    # 5 Optional: Download Google Docs Images
-    imageObjects = {}
-    if bDownloadImages:
-        etreeXml, imageObjects = download_images(etreeXml)
-
-    # Convert etree back to string
-    strXml = etree.tostring(etreeXml) # pretty_print=True)
-
-    # 6 Second transformation
-    styleDoc2 = libxml2.parseFile(GDOCS2CNXML_XSL2)
-    style2 = libxslt.parseStylesheetDoc(styleDoc2)
-    doc2 = libxml2.parseDoc(strXml)
-    result2 = style2.applyStylesheet(doc2, None)
-    #style2.saveResultToFilename('tempresult.xml', result2, 0) # just for debugging
-    strResult2 = style2.saveResultToString(result2)
-    style2.freeStylesheet()
-    doc2.freeDoc()
-    result2.freeDoc()
-
-    return strResult2, imageObjects
-
 # Initialize libxml2, e.g. transforming XHTML entities to valid XML
 def init_libxml2(xml):
     libxml2.loadCatalog(XHTML_ENTITIES)
@@ -185,8 +133,7 @@ def tex2mathml_transform(xml):
     etree_xml = etree.fromstring(xml)
     # Convert TeX to MathML with Blahtex
     etree_xml = tex2mathml(etree_xml)
-    xml_str = etree.tostring(etree_xml)
-    return xml_str, {}
+    return etree.tostring(etree_xml), {}
 
 # Download Google Docs Images
 def image_puller(xml):   
@@ -210,36 +157,27 @@ TRANSFORM_PIPELINE = [
     partial(xslt, 'pass5_part2_gdocs_red2cnxml.xsl'),
     partial(xslt, 'pass6_gdocs2cnxml.xsl'),
     tex2mathml_transform,
-    #image_puller,
-    #partial(xslt, 'pass7_cnxml_postprocessing.xsl'),
-    #partial(xslt, 'pass8_cnxml_id-generation.xsl'),
-    #partial(xslt, 'pass9_cnxml_postprocessing.xsl')
+    image_puller,
+    partial(xslt, 'pass7_cnxml_postprocessing.xsl'),
+    partial(xslt, 'pass8_cnxml_id-generation.xsl'),
+    partial(xslt, 'pass9_cnxml_postprocessing.xsl')
 ]
 
-def gdocs_new_transform(gdocs_html, bDownloadImages):
+# the function which is called from outside to start transformation
+def gdocs_to_cnxml(content, bDownloadImages=False, debug=False):
     objects = {}
-    
-    xml = gdocs_html
+    xml = content
     for i, transform in enumerate(TRANSFORM_PIPELINE):
         newobjects = {}
         xml, newobjects = transform(xml)
-        # TODO: There must be better ways to copy a array in to another array
-        for o in newobjects:
-            objects.append(o)
-        print "== Pass: %i ==" % (i+1)
-        print xml, newobjects
+        if len(newobjects) > 0:
+            objects.update(newobjects) # copy newobjects into objects dict
+        print "== Pass: %f2. | Function: %s | Objects: %s ==" % (i+1, transform, objects.keys())
     
     return xml, objects
-
-# the function which is called from outside to start transformation
-def gdocs_to_cnxml(content, bDownloadImages=False):
-    objects = {}
-    #content, objects = gdocs_transform(content, bDownloadImages)
-    content, objects = gdocs_new_transform(content, bDownloadImages)
-    return content, objects
 
 if __name__ == "__main__":
     f = open(sys.argv[1])
     content = f.read()
     #print gdocs_to_cnxml(content)
-    gdocs_to_cnxml(content)
+    gdocs_to_cnxml(content, bDownloadImages=True, debug=True)
