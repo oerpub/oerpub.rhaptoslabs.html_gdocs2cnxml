@@ -146,21 +146,21 @@ def image_puller(xml):
 # result from every step in pipeline is a string (xml) + object {...}
 # explanation of "partial" : http://stackoverflow.com/q/10547659/756056
 TRANSFORM_PIPELINE = [
-    tidy2xhtml,
-    premail,
-    init_libxml2,
-    partial(xslt, 'pass1_gdocs_headers.xsl'),
-    partial(xslt, 'pass2_xhtml_gdocs_headers.xsl'),
-    partial(xslt, 'pass3_gdocs_listings.xsl'),
-    partial(xslt, 'pass4_gdocs_listings.xsl'),
-    partial(xslt, 'pass5_gdocs_listings.xsl'),
-    partial(xslt, 'pass5_part2_gdocs_red2cnxml.xsl'),
-    partial(xslt, 'pass6_gdocs2cnxml.xsl'),
-    tex2mathml_transform,
-    image_puller,
-    partial(xslt, 'pass7_cnxml_postprocessing.xsl'),
-    partial(xslt, 'pass8_cnxml_id-generation.xsl'),
-    partial(xslt, 'pass9_cnxml_postprocessing.xsl')
+    tidy2xhtml,                                             # 1
+    premail,                                                # 2
+    init_libxml2,                                           # 3
+    partial(xslt, 'pass1_gdocs_headers.xsl'),               # 4
+    partial(xslt, 'pass2_xhtml_gdocs_headers.xsl'),         # 5
+    partial(xslt, 'pass3_gdocs_listings.xsl'),              # 6
+    partial(xslt, 'pass4_gdocs_listings.xsl'),              # 7
+    partial(xslt, 'pass5_gdocs_listings.xsl'),              # 8
+    partial(xslt, 'pass5_part2_gdocs_red2cnxml.xsl'),       # 9
+    partial(xslt, 'pass6_gdocs2cnxml.xsl'),                 # 10
+    tex2mathml_transform,                                   # 11
+    image_puller,                                           # 12
+    partial(xslt, 'pass7_cnxml_postprocessing.xsl'),        # 13
+    partial(xslt, 'pass8_cnxml_id-generation.xsl'),         # 14
+    partial(xslt, 'pass9_cnxml_postprocessing.xsl')         # 15
 ]
 
 # the function which is called from outside to start transformation
@@ -172,7 +172,7 @@ def gdocs_to_cnxml(content, bDownloadImages=False, debug=False):
         xml, newobjects = transform(xml)
         if len(newobjects) > 0:
             objects.update(newobjects) # copy newobjects into objects dict
-        print "== Pass: %f2. | Function: %s | Objects: %s ==" % (i+1, transform, objects.keys())
+        print "== Pass: %02d | Function: %s | Objects: %s ==" % (i+1, transform, objects.keys())
     
     return xml, objects
 
