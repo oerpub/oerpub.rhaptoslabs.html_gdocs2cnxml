@@ -162,10 +162,11 @@ def init_libxml2(xml):
     libxml2.loadCatalog(XHTML_ENTITIES)
     libxml2.lineNumbersDefault(1)
     libxml2.substituteEntitiesDefault(1)
-    return xml
+    return xml, {}
 
 def xslt(xsl, xml):
     # XSLT transformation with libxml2
+    xsl = os.path.join(current_dir, 'www', xsl) # TODO: Needs a cleaner solution
     style_doc = libxml2.parseFile(xsl)
     style = libxslt.parseStylesheetDoc(style_doc)
     # doc = libxml2.parseFile(afile)) # another way, just for debugging
@@ -184,7 +185,8 @@ def tex2mathml_transform(xml):
     etree_xml = etree.fromstring(xml)
     # Convert TeX to MathML with Blahtex
     etree_xml = tex2mathml(etree_xml)
-    return etree.tostring(etreeXml), {}
+    xml_str = etree.tostring(etree_xml)
+    return xml_str, {}
 
 # Download Google Docs Images
 def image_puller(xml):   
@@ -192,7 +194,7 @@ def image_puller(xml):
     etree_xml = etree.fromstring(xml)
     #if bDownloadImages:
     etree_xml, image_objects = download_images(etree_xml)
-    return etree.tostring(etree_xml), image_objects
+    return xml, image_objects
     
 # result from every step in pipeline is a string (xml) + object {...}
 # explanation of "partial" : http://stackoverflow.com/q/10547659/756056
@@ -208,10 +210,10 @@ TRANSFORM_PIPELINE = [
     partial(xslt, 'pass5_part2_gdocs_red2cnxml.xsl'),
     partial(xslt, 'pass6_gdocs2cnxml.xsl'),
     tex2mathml_transform,
-    image_puller,
-    partial(xslt, 'pass7_cnxml_postprocessing.xsl'),
-    partial(xslt, 'pass8_cnxml_id-generation.xsl'),
-    partial(xslt, 'pass9_cnxml_postprocessing.xsl'),
+    #image_puller,
+    #partial(xslt, 'pass7_cnxml_postprocessing.xsl'),
+    #partial(xslt, 'pass8_cnxml_id-generation.xsl'),
+    #partial(xslt, 'pass9_cnxml_postprocessing.xsl')
 ]
 
 def gdocs_new_transform(gdocs_html, bDownloadImages):
