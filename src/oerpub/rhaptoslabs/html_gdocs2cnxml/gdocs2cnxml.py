@@ -141,7 +141,7 @@ def image_puller(xml):
     etree_xml = etree.fromstring(xml)
     #if bDownloadImages:
     etree_xml, image_objects = download_images(etree_xml)
-    return xml, image_objects
+    return etree.tostring(etree_xml), image_objects
     
 # result from every step in pipeline is a string (xml) + object {...}
 # explanation of "partial" : http://stackoverflow.com/q/10547659/756056
