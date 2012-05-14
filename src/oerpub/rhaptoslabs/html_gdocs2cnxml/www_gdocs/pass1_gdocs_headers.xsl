@@ -2,10 +2,12 @@
 <xsl:stylesheet
   version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:exsl="http://exslt.org/common"
   xmlns="http://www.w3.org/1999/xhtml"
   xmlns:xh="http://www.w3.org/1999/xhtml"
   xmlns:cnhtml="http://cnxhtml"
-  exclude-result-prefixes="xh">
+  extension-element-prefixes="exsl"
+  exclude-result-prefixes="exsl xh">
 
 <xsl:output
   method="xml"
@@ -13,7 +15,7 @@
   indent="yes"/>
 
 <xsl:strip-space elements="*"/>
-<xsl:preserve-space elements="xh:p xh:span xh:li cnhtml:list xh:td xh:a"/>
+<xsl:preserve-space elements="xh:p xh:span xh:li cnhtml:list xh:td xh:a xh:h1 xh:h2 xh:h3 xh:h4 xh:h5 xh:h6"/>
 
 <!--
 This XSLT transforms headers and lists of (Google Docs) XHTML.
@@ -29,15 +31,33 @@ e.g. <h1></h1> to <cnhtml:h level="1"></cnhtml:h>
   </xsl:copy>
 </xsl:template>
 
+<!-- ======= -->
+
+<!-- Clean the title, remove comments out of title -->
+<xsl:template match="@*|node()" mode="cleantitle">
+  <xsl:copy>
+    <xsl:apply-templates select="@*|node()" mode="cleantitle"/>
+  </xsl:copy>
+</xsl:template>
+
+<!-- ignore comments in title -->
+<xsl:template match="xh:a[starts-with(@href, '#cmnt')]" mode="cleantitle"/>
+
+<!-- ======= -->
+
 <!-- Change header to <h level="x"> -->
-<xsl:template match="xh:h1|xh:h2|xh:h3|xh:h4|xh:h5|xh:h6">
-  <xsl:variable name="titlecontent">
-    <xsl:value-of select="normalize-space(.)"/>
+<xsl:template match="xh:h1|xh:h2|xh:h3|xh:h4|xh:h5|xh:h6"> 
+  <!-- get title content without comments -->
+  <xsl:variable name="title_nodeset">
+  	<xsl:apply-templates mode="cleantitle"/>
+  </xsl:variable>
+  <xsl:variable name="title_content">
+    <xsl:value-of select="normalize-space(exsl:node-set($title_nodeset))"/>
   </xsl:variable>
   
   <xsl:choose>
       <!-- convert empty headers to empty paragraphs -->
-      <xsl:when test="string-length($titlecontent) &lt;= 0">
+      <xsl:when test="string-length($title_content) &lt;= 0">
           <p/>
       </xsl:when>
       <!-- convert headings inside lists to paragraphs -->
@@ -62,9 +82,9 @@ e.g. <h1></h1> to <cnhtml:h level="1"></cnhtml:h>
               </xsl:choose>
             </xsl:attribute>
 
-            <!-- <xsl:if test="string-length($titlecontent) &gt; 0"> -->
+            <!-- <xsl:if test="string-length($title_content) &gt; 0"> -->
                 <xsl:attribute name="title">
-                  <xsl:value-of select="$titlecontent"/>
+                  <xsl:value-of select="$title_content"/>
                 </xsl:attribute>
             <!-- </xsl:if> -->
 
