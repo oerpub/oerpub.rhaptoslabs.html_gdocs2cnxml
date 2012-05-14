@@ -42,31 +42,31 @@ Output:
 <xsl:key name="kListGroup" match="cnhtml:list"
   use="generate-id(preceding-sibling::node()[not(self::cnhtml:list)][1])" />
 
-<xsl:template match="node()|@*" mode="pass5">
+<xsl:template match="node()|@*">
   <xsl:copy>
-    <xsl:apply-templates select="node()[1]|@*" mode="pass5"/>
+    <xsl:apply-templates select="node()[1]|@*"/>
   </xsl:copy>
-  <xsl:apply-templates select="following-sibling::node()[1]" mode="pass5"/>
+  <xsl:apply-templates select="following-sibling::node()[1]"/>
 </xsl:template>
 
 <!-- remove style attribute -->
-<xsl:template match="cnhtml:list/@style" mode="pass5"/>
+<xsl:template match="cnhtml:list/@style"/>
 
 <!-- remove level attribute -->
-<xsl:template match="cnhtml:list/@level" mode="pass5"/>
+<xsl:template match="cnhtml:list/@level"/>
 
-<xsl:template match="cnhtml:list[preceding-sibling::node()[1][not(self::cnhtml:list)] or not(preceding-sibling::node()[1])]" mode="pass5">
+<xsl:template match="cnhtml:list[preceding-sibling::node()[1][not(self::cnhtml:list)] or not(preceding-sibling::node()[1])]">
   <ol>
     <xsl:apply-templates mode="listgroup_pass5"
       select="key('kListGroup', generate-id(preceding-sibling::node()[1]))
                [not(@level) or @level = 1]"/>
   </ol>
-  <xsl:apply-templates select="following-sibling::node()[not(self::cnhtml:list)][1]" mode="pass5"/>
+  <xsl:apply-templates select="following-sibling::node()[not(self::cnhtml:list)][1]"/>
 </xsl:template>
 
 <xsl:template match="cnhtml:list" mode="listgroup_pass5">
   <li>
-    <xsl:apply-templates select="@*" mode="pass5"/>
+    <xsl:apply-templates select="@*"/>
     <xsl:copy-of select="node()"/> <!-- use copy-of because apply-templates gives wron result -->
     <!-- <xsl:value-of select="." /> -->
 
