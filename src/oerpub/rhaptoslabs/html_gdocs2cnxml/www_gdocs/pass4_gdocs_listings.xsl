@@ -39,14 +39,14 @@ Output:
 -->
 
 <!-- copy all other nodes -->
-<xsl:template match="node()|@*" mode="pass4">
+<xsl:template match="node()|@*">
   <xsl:copy>
-    <xsl:apply-templates select="node()|@*" mode="pass4"/>
+    <xsl:apply-templates select="node()|@*"/>
   </xsl:copy>
 </xsl:template>
 
 <!-- find every cnhtml:list element which has a preceding non-cnhtml:list element -->
-<xsl:template match="cnhtml:list[not(preceding-sibling::*[1][self::cnhtml:list])]" mode="pass4">
+<xsl:template match="cnhtml:list[not(preceding-sibling::*[1][self::cnhtml:list])]">
   <!-- now walk recursive through all lists -->
   <xsl:apply-templates select="self::cnhtml:list" mode="recurse_pass4">
     <xsl:with-param name="level1_margin" select="@margin"/>
@@ -55,10 +55,10 @@ Output:
 </xsl:template>
 
 <!-- remove other cnhtml:list elements, because they are recursive processed -->
-<xsl:template match="cnhtml:list" mode="pass4"/>
+<xsl:template match="cnhtml:list"/>
 
 <!-- remove @margin from cnhtml:list -->
-<xsl:template match="cnhtml:list/@margin" mode="pass4"/>
+<xsl:template match="cnhtml:list/@margin"/>
 
 <!-- go recursive through all following lists -->
 <xsl:template match="cnhtml:list" mode="recurse_pass4">
@@ -113,8 +113,8 @@ Output:
       <xsl:attribute name="level">
         <xsl:value-of select="$level"/>
       </xsl:attribute>
-      <xsl:apply-templates select="@*" mode="pass4"/>
-        <xsl:apply-templates mode="pass4"/>
+      <xsl:apply-templates select="@*"/>
+        <xsl:apply-templates/>
     </cnhtml:list>
 </xsl:template>
 
