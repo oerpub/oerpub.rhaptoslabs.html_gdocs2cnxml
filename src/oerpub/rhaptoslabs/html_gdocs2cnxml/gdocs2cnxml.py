@@ -78,31 +78,35 @@ def download_images(xml):
     for position, image in enumerate(imageList):
         strImageUrl = image.get('src')
         print "Download GDoc Image: " + strImageUrl  # Debugging output
-        strImageContent = urllib2.urlopen(strImageUrl).read()
-        # get Mime type from image
-        strImageMime = magic.whatis(strImageContent)
-        # only allow this three image formats
-        if strImageMime in ('image/png', 'image/jpeg', 'image/gif'):
-            image.set('mime-type', strImageMime)
-            strImageName = "gd-%04d" % (position + 1)  # gd0001.jpg
-            if strImageMime == 'image/jpeg':
-                strImageName += '.jpg'
-            elif strImageMime == 'image/png':
-                strImageName += '.png'
-            elif strImageMime == 'image/gif':
-                strImageName += '.gif'
-            #Note: SVG is currently (2012-03-08) not supported by GDocs.
-            strAlt = image.get('alt')
-            if not strAlt:
-                image.set('alt', strImageUrl) # getNameFromUrl(strImageUrl)) # TODO: getNameFromUrl does not work reliable
-            image.text = strImageName
-            # add contents of image to object
-            objects[strImageName] = strImageContent
-
-            # just for debugging
-            #myfile = open(strImageName, "wb")
-            #myfile.write(strImageContent)
-            #myfile.close
+        # TODO: This try finally block does not work when we have e.g. no network!!!
+        try:
+            strImageContent = urllib2.urlopen(strImageUrl).read()
+            # get Mime type from image
+            strImageMime = magic.whatis(strImageContent)
+            # only allow this three image formats
+            if strImageMime in ('image/png', 'image/jpeg', 'image/gif'):
+                image.set('mime-type', strImageMime)
+                strImageName = "gd-%04d" % (position + 1)  # gd0001.jpg
+                if strImageMime == 'image/jpeg':
+                    strImageName += '.jpg'
+                elif strImageMime == 'image/png':
+                    strImageName += '.png'
+                elif strImageMime == 'image/gif':
+                    strImageName += '.gif'
+                #Note: SVG is currently (2012-03-08) not supported by GDocs.
+                strAlt = image.get('alt')
+                if not strAlt:
+                    image.set('alt', strImageUrl) # getNameFromUrl(strImageUrl)) # TODO: getNameFromUrl does not work reliable
+                image.text = strImageName
+                # add contents of image to object
+                objects[strImageName] = strImageContent
+    
+                # just for debugging
+                #myfile = open(strImageName, "wb")
+                #myfile.write(strImageContent)
+                #myfile.close
+        finally:
+            pass
     return xml, objects
 
 # Initialize libxml2, e.g. transforming XHTML entities to valid XML
@@ -169,9 +173,10 @@ def gdocs_to_cnxml(content, bDownloadImages=False, debug=False):
     xml = content
     # write input file to debug dir
     if debug: # create for each pass an output file
-        filename = os.path.join(current_dir, 'gdocs_debug', 'input.htm' % (i+1)) # TODO: needs a timestamp or something
-        f = open(filename)
+        filename = os.path.join(current_dir, 'gdocs_debug', 'input.htm') # TODO: needs a timestamp or something
+        f = open(filename, 'w')
         f.write(xml)
+        f.flush()
         f.close()    
     for i, transform in enumerate(TRANSFORM_PIPELINE):
         newobjects = {}
@@ -181,9 +186,20 @@ def gdocs_to_cnxml(content, bDownloadImages=False, debug=False):
         print "== Pass: %02d | Function: %s | Objects: %s ==" % (i+1, transform, objects.keys())
         if debug: # create for each pass an output file
             filename = os.path.join(current_dir, 'gdocs_debug', 'pass%02d.xml' % (i+1)) # TODO: needs a timestamp or something
-            f = open(filename)
+            f = open(filename, 'w')
             f.write(xml)
+            f.flush()
             f.close()
+    # write objects to debug dir
+    if debug:
+        for image_filename, image in objects.iteritems():
+            image_filename = os.path.join(current_dir, 'gdocs_debug', image_filename) # TODO: needs a timestamp or something
+            image_file = open(image_filename, 'wb') # write binary, important!
+            try:
+                image_file.write(image)
+                image_file.flush()
+            finally:
+                image_file.close()
     return xml, objects
 
 if __name__ == "__main__":
