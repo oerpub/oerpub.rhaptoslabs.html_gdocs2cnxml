@@ -2,10 +2,7 @@
 .~lock.*
 Paste*
 *egg-info*
-<<<<<<< HEAD
 src/oerpub/rhaptoslabs/html_gdocs2cnxml/testbed_gdocs_output/*
-=======
 #eclipse specific
 .project
 .pydevproject
->>>>>>> rewrite_xslt_pass_processing
