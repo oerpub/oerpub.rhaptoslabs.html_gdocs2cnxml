@@ -167,13 +167,23 @@ TRANSFORM_PIPELINE = [
 def gdocs_to_cnxml(content, bDownloadImages=False, debug=False):
     objects = {}
     xml = content
+    # write input file to debug dir
+    if debug: # create for each pass an output file
+        filename = os.path.join(current_dir, 'gdocs_debug', 'input.htm' % (i+1)) # TODO: needs a timestamp or something
+        f = open(filename)
+        f.write(xml)
+        f.close()    
     for i, transform in enumerate(TRANSFORM_PIPELINE):
         newobjects = {}
         xml, newobjects = transform(xml)
         if len(newobjects) > 0:
             objects.update(newobjects) # copy newobjects into objects dict
         print "== Pass: %02d | Function: %s | Objects: %s ==" % (i+1, transform, objects.keys())
-    
+        if debug: # create for each pass an output file
+            filename = os.path.join(current_dir, 'gdocs_debug', 'pass%02d.xml' % (i+1)) # TODO: needs a timestamp or something
+            f = open(filename)
+            f.write(xml)
+            f.close()
     return xml, objects
 
 if __name__ == "__main__":
