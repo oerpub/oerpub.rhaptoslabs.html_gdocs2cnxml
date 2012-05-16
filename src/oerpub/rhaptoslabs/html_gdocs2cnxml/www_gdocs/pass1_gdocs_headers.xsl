@@ -72,7 +72,7 @@ e.g. <h1></h1> to <cnhtml:h level="1"></cnhtml:h>
             <xsl:attribute name="level" >                          <!-- insert level attribute -->
               <xsl:choose>
                 <!-- make sure that the very first heading has level 1! Otherwise transformation will loose content -->
-                <xsl:when test="generate-id((//xh:h1[1]|//xh:h2[1]|//xh:h3[1]|//xh:h4[1]|//xh:h5[1]|//xh:h6[1])[1]) = generate-id(.)">1</xsl:when>
+                <!-- <xsl:when test="generate-id((//xh:h1[1]|//xh:h2[1]|//xh:h3[1]|//xh:h4[1]|//xh:h5[1]|//xh:h6[1])[1]) = generate-id(.)">1</xsl:when> -->
                 <xsl:when test="self::xh:h1">1</xsl:when>
                 <xsl:when test="self::xh:h2">2</xsl:when>
                 <xsl:when test="self::xh:h3">3</xsl:when>
