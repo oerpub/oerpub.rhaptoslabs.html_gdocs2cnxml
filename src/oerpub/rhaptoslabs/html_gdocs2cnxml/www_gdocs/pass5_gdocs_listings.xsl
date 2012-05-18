@@ -56,10 +56,15 @@ Output:
 <xsl:template match="cnhtml:list/@level"/>
 
 <xsl:template match="cnhtml:list[preceding-sibling::node()[1][not(self::cnhtml:list)] or not(preceding-sibling::node()[1])]">
+  <xsl:variable name="ancestor_header_id"> 
+    <xsl:value-of select="generate-id(ancestor::cnhtml:h[1])"/>
+  </xsl:variable>
+  <!-- TODO: tables needs also more testings -->
   <ol>
     <xsl:apply-templates mode="listgroup_pass5"
       select="key('kListGroup', generate-id(preceding-sibling::node()[1]))
-               [not(@level) or @level = 1]"/>
+               [not(@level) or @level = 1]
+               [generate-id(ancestor::cnhtml:h[1]) = $preceding_header_id]"/>
   </ol>
   <xsl:apply-templates select="following-sibling::node()[not(self::cnhtml:list)][1]"/>
 </xsl:template>
@@ -67,7 +72,7 @@ Output:
 <xsl:template match="cnhtml:list" mode="listgroup_pass5">
   <li>
     <xsl:apply-templates select="@*"/>
-    <xsl:copy-of select="node()"/> <!-- use copy-of because apply-templates gives wron result -->
+    <xsl:copy-of select="node()"/> <!-- use copy-of because apply-templates gives wrong result -->
     <!-- <xsl:value-of select="." /> -->
 
     <xsl:variable name="vNext"
