@@ -154,6 +154,7 @@ TRANSFORM_PIPELINE = [
     premail,                                                # 2
     init_libxml2,                                           # 3
     partial(xslt, 'pass1_gdocs_headers.xsl'),               # 4
+    partial(xslt, 'pass1_part2_new_min_header_level.xsl'),
     partial(xslt, 'pass2_xhtml_gdocs_headers.xsl'),         # 5
     partial(xslt, 'pass3_gdocs_listings.xsl'),              # 6
     partial(xslt, 'pass4_gdocs_listings.xsl'),              # 7
