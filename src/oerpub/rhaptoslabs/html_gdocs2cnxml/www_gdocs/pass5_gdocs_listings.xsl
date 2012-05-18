@@ -64,7 +64,7 @@ Output:
     <xsl:apply-templates mode="listgroup_pass5"
       select="key('kListGroup', generate-id(preceding-sibling::node()[1]))
                [not(@level) or @level = 1]
-               [generate-id(ancestor::cnhtml:h[1]) = $preceding_header_id]"/>
+               [generate-id(ancestor::cnhtml:h[1]) = $ancestor_header_id]"/>
   </ol>
   <xsl:apply-templates select="following-sibling::node()[not(self::cnhtml:list)][1]"/>
 </xsl:template>

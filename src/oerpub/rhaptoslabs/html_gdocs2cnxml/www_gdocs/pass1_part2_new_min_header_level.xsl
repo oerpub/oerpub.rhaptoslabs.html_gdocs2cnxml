@@ -43,9 +43,22 @@ This XSLT transforms normalizes headers
   <xsl:variable name="temp_level">
     <xsl:value-of select="@level - $delta_level_one"/>
   </xsl:variable>
+  
+  <!-- TODO: Quickfix, first header is always level 1. Needs more logic! -->
+  <xsl:variable name="new_level">
+      <xsl:choose>
+        <xsl:when test="generate-id(.) = generate-id(//cnhtml:h[1])">
+          <xsl:value-of select="'1'"/>
+        </xsl:when>
+        <xsl:otherwise>         
+            <xsl:value-of select="$temp_level"/>
+        </xsl:otherwise>
+      </xsl:choose>
+  </xsl:variable>
+  
   <xsl:copy>
   	<xsl:attribute name="level">
-  	  <xsl:value-of select="$temp_level"/>
+  	  <xsl:value-of select="$new_level"/>
   	</xsl:attribute>
     <xsl:apply-templates select="@*|node()"/>
   </xsl:copy>
