@@ -42,6 +42,23 @@ Output:
   <xsl:apply-templates/>                <!-- just copy all children -->
 </xsl:template>
 
+<!-- Add an empty listentry for empty unordered lists -->
+<xsl:template match="xh:ol[not(child::xh:li)]">
+  <xsl:variable name="margin"
+    select="normalize-space(substring-before(substring-after(@style,'margin:'),'pt'))"/>
+  <xsl:variable name="list-style-type"
+    select="normalize-space(substring-before(substring-after(@style,'list-style-type:'),';'))"/>
+  <cnhtml:list>
+    <xsl:attribute name="margin">
+      <xsl:value-of select="$margin"/>
+    </xsl:attribute>
+    <xsl:attribute name="list-style-type">
+      <xsl:value-of select="$list-style-type"/>
+    </xsl:attribute>
+    <xsl:apply-templates/> <!-- normally nothing will be applied here -->
+  </cnhtml:list>
+</xsl:template>
+
 <!-- Rename <li> to <lists>. Add margin attribute for leveling lists in pass 3 -->
 <xsl:template match="xh:li">
   <xsl:variable name="margin"
