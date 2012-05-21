@@ -337,6 +337,7 @@ Pass1,2...4 transformation is a precondition for this pass.
 <xsl:template match="xh:table">
   <table>
     <xsl:attribute name="summary" select=""/>
+    <xsl:attribute name="pgwide">1</xsl:attribute>
     <xsl:apply-templates select="xh:tbody"/>
   </table>
 </xsl:template>
