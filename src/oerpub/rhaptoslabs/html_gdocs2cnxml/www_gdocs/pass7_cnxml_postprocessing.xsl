@@ -37,6 +37,9 @@ Deprecated:
   <xsl:apply-templates/>
 </xsl:template>
 
+<!-- remove all empty tables -->
+<xsl:template match="cnx:table[not(child::*)]"/>
+
 <!-- convert empty paragraphs to paragraphs with newline -->
 <xsl:template match="cnx:para[not(child::*|text())]">
   <para>
