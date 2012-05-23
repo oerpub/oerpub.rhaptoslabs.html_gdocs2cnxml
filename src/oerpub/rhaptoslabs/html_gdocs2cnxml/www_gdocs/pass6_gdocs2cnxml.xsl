@@ -349,6 +349,17 @@ Pass1,2...4 transformation is a precondition for this pass.
       <!-- get number of column from the first row -->
       <xsl:value-of select="count(xh:tr[1]/xh:td)"/>
     </xsl:attribute>
+    <!-- get column width -->
+    <xsl:for-each select="xh:tr[1]/xh:td">
+      <colspec>
+        <xsl:attribute name="colnum">
+          <xsl:value-of select="position()"/>
+        </xsl:attribute>
+        <xsl:attribute name="colwidth">
+          <xsl:value-of select="@width"/>
+        </xsl:attribute>
+      </colspec>
+    </xsl:for-each>
     <tbody>
       <xsl:for-each select="xh:tr">
         <row>
