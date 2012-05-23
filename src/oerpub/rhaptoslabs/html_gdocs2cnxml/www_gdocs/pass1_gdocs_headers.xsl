@@ -58,7 +58,9 @@ e.g. <h1></h1> to <cnhtml:h level="1"></cnhtml:h>
   <xsl:choose>
       <!-- convert empty headers to empty paragraphs -->
       <xsl:when test="string-length($title_content) &lt;= 0">
-          <p/>
+          <p>
+            <xsl:apply-templates/>
+          </p>
       </xsl:when>
       <!-- convert headings inside lists to paragraphs -->
       <xsl:when test="ancestor::xh:li">
