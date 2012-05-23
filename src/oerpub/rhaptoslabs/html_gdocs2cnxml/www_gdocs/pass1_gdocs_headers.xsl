@@ -12,7 +12,7 @@
 <xsl:output
   method="xml"
   encoding="UTF-8"
-  indent="yes"/>
+  indent="no"/>
 
 <xsl:strip-space elements="*"/>
 <xsl:preserve-space elements="xh:p xh:span xh:li cnhtml:list xh:td xh:a xh:h1 xh:h2 xh:h3 xh:h4 xh:h5 xh:h6"/>
