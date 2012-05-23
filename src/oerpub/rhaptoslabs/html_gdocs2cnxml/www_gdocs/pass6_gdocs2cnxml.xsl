@@ -14,7 +14,7 @@
   extension-element-prefixes="exsl"
   exclude-result-prefixes="exsl xh cnhtml cnxtra">
 
-<xsl:output method="xml" encoding="UTF-8" indent="yes"/>
+<xsl:output method="xml" encoding="UTF-8" indent="no"/>
 
 <xsl:strip-space elements="*"/>
 <xsl:preserve-space elements="xh:p xh:span xh:li cnhtml:list xh:td xh:a"/>

@@ -14,7 +14,7 @@
 <xsl:output
   method="xml"
   encoding="UTF-8"
-  indent="yes"
+  indent="no"
   cdata-section-elements="cnhtml:cnxml"/>
 
 <xsl:strip-space elements="*"/>
