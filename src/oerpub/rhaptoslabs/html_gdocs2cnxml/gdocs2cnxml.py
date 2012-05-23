@@ -116,8 +116,8 @@ def init_libxml2(xml):
     libxml2.substituteEntitiesDefault(1)
     return xml, {}
 
+# XSLT transformation with libxml2
 def xslt(xsl, xml):
-    # XSLT transformation with libxml2
     xsl = os.path.join(current_dir, 'www_gdocs', xsl) # TODO: Needs a cleaner solution
     style_doc = libxml2.parseFile(xsl)
     style = libxslt.parseStylesheetDoc(style_doc)
@@ -131,6 +131,17 @@ def xslt(xsl, xml):
     result.freeDoc()
     
     return xml_result, {}
+
+# XSLT 2.0 transformation with Saxon-B
+def xslt2(xsl, xml):
+    xsl = os.path.join(current_dir, 'www_gdocs', xsl)
+    cmd_saxon-b = ['saxonb-xslt','--mathml']
+    # run the program with subprocess and pipe the input and output to variables
+    p = subprocess.Popen(cmd_saxon-b, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    #TODO: Catch Saxon-B processing errors
+    console, error = p.communicate(strTex) # set STDIN and STDOUT and wait till the program finishes
+    output = ''
+    return output
 
 def tex2mathml_transform(xml):
     # Parse XML with etree from lxml for TeX2MathML
