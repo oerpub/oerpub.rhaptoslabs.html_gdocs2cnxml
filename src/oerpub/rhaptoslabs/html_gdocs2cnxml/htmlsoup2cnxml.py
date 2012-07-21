@@ -16,15 +16,13 @@ from readability.readability import Document
 
 current_dir = os.path.dirname(__file__)
 XHTML_ENTITIES = os.path.join(current_dir, 'www_html', 'catalog_xhtml', 'catalog.xml')
-XHTML2CNXML_XSL1 = os.path.join(current_dir, 'www_html', 'xhtml2cnxml_meta1.xsl')
-XHTML2CNXML_XSL2 = os.path.join(current_dir, 'www_html', 'xhtml2cnxml_meta2.xsl')
+
+html_title = 'Untitled'
 
 # HTML Tidy, HTML Soup to XHTML
-# Premail XHTML
-def tidy_and_premail(content):
+def tidy2xhtml(html):
     # HTML Tidy
-    # Tidy up HTML and convert it to XHTML
-    strTidiedXhtml, strErrors = tidy_document(content, options={
+    xhtml, errors = tidy_document(html, options={
         'output-xhtml': 1,     # XHTML instead of HTML4
         'indent': 0,           # Don't use indent which adds extra linespace or linefeeds which are big problems
         'tidy-mark': 0,        # No tidy meta tag in output
@@ -40,26 +38,18 @@ def tidy_and_premail(content):
         'enclose-text': 1,     # enclose text in body always with <p>...</p>
         'logical-emphasis': 1  # transforms <i> and <b> text to <em> and <strong> text
         })
-    
-    # DEBUG
-    #f=open('xhtml.xml', 'w')
-    #f.write(strTidiedXhtml)
-    #f.close
+    # TODO: parse errors from tidy process 
+    return xhtml, {}
 
-    # XHTML Premailer
-	  # Remove CSS references and place the whole CSS inside tags.
-	  # BTW: Premailer does this usually for old email clients.
-    # Use a special XHTML Premailer which does not destroy the XML structure.
-    # If Premailer fails (on complicated CSS) then return the unpremailed tidied HTML
-    try:
-        premailer = xhtmlPremailer(strTidiedXhtml)
-        strTidiedPremailedHtml = premailer.transform()
-        return strTidiedPremailedHtml
-    except:
-        return strTidiedXhtml
+# Move CSS from stylesheet inside the tags with. BTW: Premailer does this usually for old email clients.
+# Use a special XHTML Premailer which does not destroy the XML structure.
+def premail(xhtml):
+    premailer = xhtmlPremailer(xhtml)
+    premailed_xhtml = premailer.transform()
+    return premailed_xhtml, {}
 
-# Downloads images and sets metadata for further processing
-def downloadImages(xml, base_or_source_url='.'):
+# Downloads images from Google Docs and sets metadata for further processing
+def download_images(xml):
     objects = {}    # image contents will be saved here
     xpathImages = etree.XPath('//cnxtra:image', namespaces={'cnxtra':'http://cnxtra'})
     imageList = xpathImages(xml)
@@ -171,10 +161,73 @@ def xsl_transform(content, bDownloadImages, base_or_source_url='.'):
     
     return strResult2, imageObjects, html_title    
 
-def htmlsoup_to_cnxml(content, bDownloadImages=False, base_or_source_url='.'):
+def htmlsoup_to_cnxml_old(content, bDownloadImages=False, base_or_source_url='.'):
     objects = {}
     content, objects, title = xsl_transform(content, bDownloadImages, base_or_source_url)
     return content, objects, title
+
+def get_html_title(content):
+    html_title = "Untitled"
+    try:
+        title = Document(content).title()
+    except:
+        pass
+
+# result from every step in pipeline is a string (xml) + object {...}
+# explanation of "partial" : http://stackoverflow.com/q/10547659/756056
+TRANSFORM_PIPELINE = [
+    tidy2xhtml,
+    get_html_title,
+    partial(xslt, 'pass0_remove_comments.xsl'),
+    premail,
+    init_libxml2,
+    partial(xslt, 'pass1_xhtml_headers.xsl'),
+    partial(xslt, 'pass2_xhtml_gdocs_headers.xsl'),
+    partial(xslt, 'pass3_xhtml_divs.xsl'),
+    partial(xslt, 'pass4_xhtml_text.xsl'),
+    partial(xslt, 'pass6_xhtml2cnxml.xsl'),
+    image_puller,
+    add_cnxml_title,
+    partial(xslt, 'pass7_cnxml_postprocessing.xsl'),
+    partial(xslt, 'pass8_cnxml_id-generation.xsl'),
+    partial(xslt, 'pass9_cnxml_postprocessing.xsl'),
+]
+
+# the function which is called from outside to start transformation
+def htmlsoup_to_cnxml(content, bDownloadImages=False, base_or_source_url='.', debug=False):
+    objects = {}
+    xml = content
+
+    # write input file to debug dir
+    if debug: # create for each pass an output file
+        filename = os.path.join(current_dir, 'html_debug', 'input.htm') # TODO: needs a timestamp or something
+        f = open(filename, 'w')
+        f.write(xml)
+        f.flush()
+        f.close()    
+    for i, transform in enumerate(TRANSFORM_PIPELINE):
+        newobjects = {}
+        xml, newobjects = transform(xml)
+        if len(newobjects) > 0:
+            objects.update(newobjects) # copy newobjects into objects dict
+        print "== Pass: %02d | Function: %s | Objects: %s ==" % (i+1, transform, objects.keys())
+        if debug: # create for each pass an output file
+            filename = os.path.join(current_dir, 'html_debug', 'pass%02d.xml' % (i+1)) # TODO: needs a timestamp or something
+            f = open(filename, 'w')
+            f.write(xml)
+            f.flush()
+            f.close()
+    # write objects to debug dir
+    if debug:
+        for image_filename, image in objects.iteritems():
+            image_filename = os.path.join(current_dir, 'html_debug', image_filename) # TODO: needs a timestamp or something
+            image_file = open(image_filename, 'wb') # write binary, important!
+            try:
+                image_file.write(image)
+                image_file.flush()
+            finally:
+                image_file.close()
+    return xml, objects, title
 
 if __name__ == "__main__":
     f = open(sys.argv[1])
