@@ -123,23 +123,23 @@ Pass1,2...4 transformation is a precondition for this pass.
     </xsl:call-template>
 -->
 
-<!-- emphasis -->
+<!-- emphasis (also works for nested emphasis) -->
 <xsl:template name="apply-emphasis">
     <xsl:param name="style"/>
-    <xsl:param name="child_nodes"/>
+    <xsl:param name="child_node"/>
     <xsl:choose>
         <xsl:when test="contains($style, 'vertical-align:super')">
           <sup>
             <xsl:variable name="nosuper">
                 <xsl:call-template name="string-replace-all">
                   <xsl:with-param name="text" select="$style"/>
-                  <xsl:with-param name="replace" select="vertical-align:super"/>
+                  <xsl:with-param name="replace" select="'vertical-align:super'"/>
                   <!-- ignore param "by" because we want to remove the "replace" string -->
                 </xsl:call-template>                
             </xsl:variable>
             <xsl:call-template name="apply-emphasis">
                 <xsl:with-param name="style" select="$nosuper"/>
-                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+                <xsl:with-param name="child_node" select="$child_node"/>
             </xsl:call-template>
           </sup>
         </xsl:when>
@@ -153,7 +153,7 @@ Pass1,2...4 transformation is a precondition for this pass.
             </xsl:variable>
             <xsl:call-template name="apply-emphasis">
                 <xsl:with-param name="style" select="$nosub"/>
-                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+                <xsl:with-param name="child_node" select="$child_node"/>
             </xsl:call-template>
           </sub>
         </xsl:when>
@@ -167,7 +167,7 @@ Pass1,2...4 transformation is a precondition for this pass.
             </xsl:variable>
             <xsl:call-template name="apply-emphasis">
                 <xsl:with-param name="style" select="$noitalic"/>
-                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+                <xsl:with-param name="child_node" select="$child_node"/>
             </xsl:call-template>
           </emphasis>
         </xsl:when>
@@ -181,7 +181,7 @@ Pass1,2...4 transformation is a precondition for this pass.
             </xsl:variable>
             <xsl:call-template name="apply-emphasis">
                 <xsl:with-param name="style" select="$nobold"/>
-                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+                <xsl:with-param name="child_node" select="$child_node"/>
             </xsl:call-template>
           </emphasis>
         </xsl:when>
@@ -195,12 +195,12 @@ Pass1,2...4 transformation is a precondition for this pass.
             </xsl:variable>
             <xsl:call-template name="apply-emphasis">
                 <xsl:with-param name="style" select="$nounderline"/>
-                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+                <xsl:with-param name="child_node" select="$child_node"/>
             </xsl:call-template>
           </emphasis>
         </xsl:when>
         <xsl:otherwise>
-            <xsl:apply-templates select="$child_nodes"/>
+            <xsl:apply-templates select="$child_node"/>
         </xsl:otherwise>
     </xsl:choose>
 </xsl:template>
@@ -213,10 +213,16 @@ Pass1,2...4 transformation is a precondition for this pass.
       <xsl:apply-templates/>
     </xsl:when>
     <xsl:otherwise>
-        <xsl:call-template name="apply-emphasis">
-            <xsl:with-param name="style" select="@style"/>
-            <xsl:with-param name="child_nodes" select="child::node()"/>
-        </xsl:call-template>
+        <xsl:variable name='span_style'>
+          <xsl:value-of select="@style"/>
+        </xsl:variable>
+        <!-- make a for-each, just in case, because XSLT 1.0 does not support storing treeparts in variables -->
+        <xsl:for-each select="child::node()">
+          <xsl:call-template name="apply-emphasis">
+              <xsl:with-param name="style" select="$span_style"/>
+              <xsl:with-param name="child_node" select="current()"/>
+          </xsl:call-template>
+        </xsl:for-each>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
