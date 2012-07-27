@@ -14,7 +14,7 @@
   extension-element-prefixes="exsl"
   exclude-result-prefixes="exsl xh cnhtml cnxtra">
 
-<xsl:output method="xml" encoding="UTF-8" indent="yes"/>
+<xsl:output method="xml" encoding="UTF-8" indent="no"/>
 
 <xsl:strip-space elements="*"/>
 <xsl:preserve-space elements="xh:p xh:span xh:li cnhtml:list xh:td xh:a"/>
@@ -27,24 +27,24 @@ to a <cnxtra:bookmark> placeholder which is not a valid CNML tag!
 Pass1,2...4 transformation is a precondition for this pass.
 -->
 
-<xsl:template match="/" mode="pass6">
+<xsl:template match="/">
   <document>
     <xsl:attribute name="cnxml-version">0.7</xsl:attribute>
     <xsl:attribute name="module-id">new</xsl:attribute>
-     <xsl:apply-templates select="xh:html" mode="pass6"/>
+     <xsl:apply-templates select="xh:html"/>
   </document>
 </xsl:template>
 
 <!-- HTML -->
-<xsl:template match="xh:html" mode="pass6">
-  <xsl:apply-templates select="xh:head" mode="pass6"/>
+<xsl:template match="xh:html">
+  <xsl:apply-templates select="xh:head"/>
   <content>
-    <xsl:apply-templates select="xh:body" mode="pass6"/>
+    <xsl:apply-templates select="xh:body"/>
   </content>
 </xsl:template>
 
 <!-- Get the title out of the header -->
-<xsl:template match="xh:head" mode="pass6">
+<xsl:template match="xh:head">
   <!-- if document title is missing, Rhaptos creates error in metadata! -->
   <title>
     <xsl:variable name="document_title">
@@ -62,24 +62,24 @@ Pass1,2...4 transformation is a precondition for this pass.
 </xsl:template>
 
 <!-- HTML body -->
-<xsl:template match="xh:body" mode="pass6">
-  <xsl:apply-templates mode="pass6"/>
+<xsl:template match="xh:body">
+  <xsl:apply-templates/>
 </xsl:template>
 
 <!-- embedded CNXML (red text) -->
-<xsl:template match="cnhtml:cnxml" mode="pass6">
+<xsl:template match="cnhtml:cnxml">
   <xsl:value-of select="." disable-output-escaping="yes"/>
 </xsl:template>
 
 <!-- paragraphs -->
-<xsl:template match="xh:p" mode="pass6">
+<xsl:template match="xh:p">
   <para>
-    <xsl:apply-templates mode="pass6"/>
+    <xsl:apply-templates/>
   </para>
 </xsl:template>
 
 <!-- linebreaks -->
-<xsl:template match="xh:br" mode="pass6">
+<xsl:template match="xh:br">
   <xsl:choose>
     <xsl:when test="(ancestor::xh:p) or (ancestor::xh:li)">
       <newline/>
@@ -123,23 +123,23 @@ Pass1,2...4 transformation is a precondition for this pass.
     </xsl:call-template>
 -->
 
-<!-- emphasis -->
+<!-- emphasis (also works for nested emphasis) -->
 <xsl:template name="apply-emphasis">
     <xsl:param name="style"/>
-    <xsl:param name="child_nodes"/>
+    <xsl:param name="child_node"/>
     <xsl:choose>
         <xsl:when test="contains($style, 'vertical-align:super')">
           <sup>
             <xsl:variable name="nosuper">
                 <xsl:call-template name="string-replace-all">
                   <xsl:with-param name="text" select="$style"/>
-                  <xsl:with-param name="replace" select="vertical-align:super"/>
+                  <xsl:with-param name="replace" select="'vertical-align:super'"/>
                   <!-- ignore param "by" because we want to remove the "replace" string -->
                 </xsl:call-template>                
             </xsl:variable>
             <xsl:call-template name="apply-emphasis">
                 <xsl:with-param name="style" select="$nosuper"/>
-                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+                <xsl:with-param name="child_node" select="$child_node"/>
             </xsl:call-template>
           </sup>
         </xsl:when>
@@ -153,7 +153,7 @@ Pass1,2...4 transformation is a precondition for this pass.
             </xsl:variable>
             <xsl:call-template name="apply-emphasis">
                 <xsl:with-param name="style" select="$nosub"/>
-                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+                <xsl:with-param name="child_node" select="$child_node"/>
             </xsl:call-template>
           </sub>
         </xsl:when>
@@ -167,7 +167,7 @@ Pass1,2...4 transformation is a precondition for this pass.
             </xsl:variable>
             <xsl:call-template name="apply-emphasis">
                 <xsl:with-param name="style" select="$noitalic"/>
-                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+                <xsl:with-param name="child_node" select="$child_node"/>
             </xsl:call-template>
           </emphasis>
         </xsl:when>
@@ -181,7 +181,7 @@ Pass1,2...4 transformation is a precondition for this pass.
             </xsl:variable>
             <xsl:call-template name="apply-emphasis">
                 <xsl:with-param name="style" select="$nobold"/>
-                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+                <xsl:with-param name="child_node" select="$child_node"/>
             </xsl:call-template>
           </emphasis>
         </xsl:when>
@@ -195,47 +195,53 @@ Pass1,2...4 transformation is a precondition for this pass.
             </xsl:variable>
             <xsl:call-template name="apply-emphasis">
                 <xsl:with-param name="style" select="$nounderline"/>
-                <xsl:with-param name="child_nodes" select="$child_nodes"/>
+                <xsl:with-param name="child_node" select="$child_node"/>
             </xsl:call-template>
           </emphasis>
         </xsl:when>
         <xsl:otherwise>
-            <xsl:apply-templates select="$child_nodes" mode="pass6"/>
+            <xsl:apply-templates select="$child_node"/>
         </xsl:otherwise>
     </xsl:choose>
 </xsl:template>
 
 <!-- span -->
-<xsl:template match="xh:span" mode="pass6">
+<xsl:template match="xh:span">
   <xsl:choose>
     <!-- Do we have a header? Then do not apply any emphasis to the <title> -->
      <xsl:when test="parent::cnhtml:h">
-      <xsl:apply-templates mode="pass6"/>
+      <xsl:apply-templates/>
     </xsl:when>
     <xsl:otherwise>
-        <xsl:call-template name="apply-emphasis">
-            <xsl:with-param name="style" select="@style"/>
-            <xsl:with-param name="child_nodes" select="child::node()"/>
-        </xsl:call-template>
+        <xsl:variable name='span_style'>
+          <xsl:value-of select="@style"/>
+        </xsl:variable>
+        <!-- make a for-each, just in case, because XSLT 1.0 does not support storing treeparts in variables -->
+        <xsl:for-each select="child::node()">
+          <xsl:call-template name="apply-emphasis">
+              <xsl:with-param name="style" select="$span_style"/>
+              <xsl:with-param name="child_node" select="current()"/>
+          </xsl:call-template>
+        </xsl:for-each>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
 <!-- copy text from specific text-nodes -->
-<xsl:template match="xh:p/text()|xh:span/text()|xh:li/text()|xh:td/text()|xh:a/text()" mode="pass6">
+<xsl:template match="xh:p/text()|xh:span/text()|xh:li/text()|xh:td/text()|xh:a/text()">
   <xsl:value-of select="."/>
 </xsl:template>
 
 <!-- headers -->
-<xsl:template match="cnhtml:h" mode="pass6">
+<xsl:template match="cnhtml:h">
   <xsl:choose>
     <!-- do not create a section if we are inside tables -->
     <xsl:when test="ancestor::xh:td">
       <xsl:value-of select="@title"/>
-      <xsl:apply-templates mode="pass6"/>
+      <xsl:apply-templates/>
     </xsl:when>
     <xsl:when test="ancestor::xh:li">
-      <para><emphasis effect="bold"><xsl:apply-templates mode="pass6"/></emphasis></para>
+      <para><emphasis effect="bold"><xsl:apply-templates/></emphasis></para>
     </xsl:when>
     <xsl:otherwise>
 		  <!-- Check if header is empty, if yes, create no section -->
@@ -246,7 +252,7 @@ Pass1,2...4 transformation is a precondition for this pass.
 			    <title>
 			      <xsl:value-of select="@title"/>
 			    </title>
-			    <xsl:apply-templates mode="pass6"/>
+			    <xsl:apply-templates/>
 			  </section>
 		  </xsl:if>
     </xsl:otherwise>
@@ -254,7 +260,7 @@ Pass1,2...4 transformation is a precondition for this pass.
 </xsl:template>
 
 <!-- listings -->
-<xsl:template match="xh:ol" mode="pass6">
+<xsl:template match="xh:ol">
   <xsl:if test="xh:li">
     <xsl:apply-templates select="xh:li[1]" mode="walker_pass6">
       <xsl:with-param name="preceding_style" select="'unknown'"/>
@@ -263,7 +269,7 @@ Pass1,2...4 transformation is a precondition for this pass.
 </xsl:template>
 
 <!-- ignore li, instead walk through li's (look at template ol above) -->
-<xsl:template match="xh:li" mode="pass6"/>
+<xsl:template match="xh:li"/>
 
 <!-- walk through listings -->
 <xsl:template match="xh:li" mode="walker_pass6">
@@ -277,7 +283,7 @@ Pass1,2...4 transformation is a precondition for this pass.
   <xsl:choose>
     <xsl:when test="$preceding_style = @list-style-type">
       <item>
-        <xsl:apply-templates mode="pass6"/>
+        <xsl:apply-templates/>
       </item>
       <xsl:apply-templates select="$next_same_style" mode="walker_pass6">
         <xsl:with-param name="preceding_style" select="$my_style"/>
@@ -317,7 +323,7 @@ Pass1,2...4 transformation is a precondition for this pass.
           </xsl:otherwise>
         </xsl:choose>
         <item>
-          <xsl:apply-templates mode="pass6"/>
+          <xsl:apply-templates/>
         </item>
         <xsl:apply-templates select="$next_same_style" mode="walker_pass6">
           <xsl:with-param name="preceding_style" select="$my_style"/>
@@ -334,32 +340,38 @@ Pass1,2...4 transformation is a precondition for this pass.
 </xsl:template>
 
 <!-- table -->
-<xsl:template match="xh:table" mode="pass6">
+<xsl:template match="xh:table">
   <table>
     <xsl:attribute name="summary" select=""/>
-    <xsl:apply-templates select="xh:tbody" mode="pass6"/>
+    <xsl:attribute name="pgwide">1</xsl:attribute>
+    <xsl:apply-templates select="xh:tbody"/>
   </table>
 </xsl:template>
 
 <!-- table body -->
-<xsl:template match="xh:tbody" mode="pass6">
+<xsl:template match="xh:tbody">
   <tgroup>
     <xsl:attribute name="cols">
       <!-- get number of column from the first row -->
       <xsl:value-of select="count(xh:tr[1]/xh:td)"/>
     </xsl:attribute>
+    <!-- get column width -->
+    <xsl:for-each select="xh:tr[1]/xh:td">
+      <colspec>
+        <xsl:attribute name="colnum">
+          <xsl:value-of select="position()"/>
+        </xsl:attribute>
+        <xsl:attribute name="colwidth">
+          <xsl:value-of select="@width"/>
+        </xsl:attribute>
+      </colspec>
+    </xsl:for-each>
     <tbody>
       <xsl:for-each select="xh:tr">
         <row>
           <xsl:for-each select="xh:td">
             <entry>
-              <!-- Ignore paragraphs and headings, only process span -->
-              <xsl:apply-templates select="*[not(self::xh:table)]" mode="pass6"/>
-              <!-- TODO: Support nested tables? -->
-              <xsl:if test="xh:table">
-                <xsl:text>ERROR! Nested tables are not supported!</xsl:text>
-                <xsl:message>Warning: Nested tables are not supported! The nested table will be ignored!</xsl:message>
-              </xsl:if>
+              <xsl:apply-templates select="*"/>
             </entry>
           </xsl:for-each>
         </row>
@@ -369,7 +381,7 @@ Pass1,2...4 transformation is a precondition for this pass.
 </xsl:template>
 
 <!-- links -->
-<xsl:template match="xh:a" mode="pass6">
+<xsl:template match="xh:a">
   <xsl:if test="@href">
     <xsl:choose>
       <!-- internal link -->
@@ -378,7 +390,7 @@ Pass1,2...4 transformation is a precondition for this pass.
 	        <xsl:attribute name="bookmark">
 	          <xsl:value-of select="@href"/>
 	        </xsl:attribute>
-	        <xsl:apply-templates mode="pass6"/>
+	        <xsl:apply-templates/>
 	      </link>
       </xsl:when>
       <!-- external link -->
@@ -391,7 +403,7 @@ Pass1,2...4 transformation is a precondition for this pass.
 		      <xsl:if test="not(starts-with(@href, 'mailto'))">
 		        <xsl:attribute name="window">new</xsl:attribute>
 		      </xsl:if>
-		      <xsl:apply-templates mode="pass6"/>
+		      <xsl:apply-templates/>
 		    </link>
 	    </xsl:otherwise>
     </xsl:choose>
@@ -402,30 +414,30 @@ Pass1,2...4 transformation is a precondition for this pass.
   		<xsl:attribute name="name">
   			<xsl:value-of select="@name"/>
   		</xsl:attribute>
-  		<xsl:apply-templates mode="pass6"/>
+  		<xsl:apply-templates/>
   	</cnxtra:bookmark>
 	</xsl:if>
 </xsl:template>
 
 <!-- images -->
-<xsl:template match="xh:img" mode="pass6">
+<xsl:template match="xh:img">
   <cnxtra:image>
     <xsl:copy-of select="@src|@height|@width|@alt"/>
   </cnxtra:image>
 </xsl:template>
 
 <!-- remove empty images -->
-<xsl:template match="xh:img[not(@src)]" mode="pass6"/>
+<xsl:template match="xh:img[not(@src)]"/>
 
 <!-- links to footnotes -->
-<xsl:template match="xh:sup/xh:a" mode="pass6">
+<xsl:template match="xh:sup/xh:a">
   <xsl:variable name="reference">
     <xsl:value-of select="substring(@href, 2)"/>
   </xsl:variable>
   <!-- Do not create a footnote if reference is a gdocs comment -->
   <xsl:if test="not(starts-with($reference, 'cmnt'))">
 	  <footnote>
-	    <xsl:apply-templates select="//xh:div[xh:p/xh:a[@name = $reference]]/xh:p/xh:span" mode="pass6"/>
+	    <xsl:apply-templates select="//xh:div[xh:p/xh:a[@name = $reference]]/xh:p/xh:span"/>
 	  </footnote>
 	</xsl:if>
 </xsl:template>
@@ -435,7 +447,7 @@ Pass1,2...4 transformation is a precondition for this pass.
   (contains(@src, 'cht=tx')
   and contains(@src, 'chart')
   and (contains(@src, '.google.com') or contains(@src, '.googleapis.com')))
-  and (contains(@src, '?chl=') or contains(@src, '&amp;chl='))]" mode="pass6">
+  and (contains(@src, '?chl=') or contains(@src, '&amp;chl='))]">
 
   <cnxtra:tex>
     <xsl:attribute name="src">
@@ -468,12 +480,12 @@ Pass1,2...4 transformation is a precondition for this pass.
 
 <!-- underline -->
 <!--
-<xsl:template match="hr" mode="pass6">
+<xsl:template match="hr">
   <underline/>
 </xsl:template>
 -->
 
 <!-- ignore div -->
-<xsl:template match="xh:div" mode="pass6"/>
+<xsl:template match="xh:div"/>
 
 </xsl:stylesheet>

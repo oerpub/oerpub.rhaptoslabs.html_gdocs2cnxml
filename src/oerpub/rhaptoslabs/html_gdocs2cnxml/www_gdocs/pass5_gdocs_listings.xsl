@@ -10,7 +10,7 @@
 <xsl:output
   method="xml"
   encoding="UTF-8"
-  indent="yes"/>
+  indent="no"/>
 
 <xsl:strip-space elements="*"/>
 <xsl:preserve-space elements="xh:p xh:span xh:li cnhtml:list xh:td xh:a"/>
@@ -42,32 +42,37 @@ Output:
 <xsl:key name="kListGroup" match="cnhtml:list"
   use="generate-id(preceding-sibling::node()[not(self::cnhtml:list)][1])" />
 
-<xsl:template match="node()|@*" mode="pass5">
+<xsl:template match="node()|@*">
   <xsl:copy>
-    <xsl:apply-templates select="node()[1]|@*" mode="pass5"/>
+    <xsl:apply-templates select="node()[1]|@*"/>
   </xsl:copy>
-  <xsl:apply-templates select="following-sibling::node()[1]" mode="pass5"/>
+  <xsl:apply-templates select="following-sibling::node()[1]"/>
 </xsl:template>
 
 <!-- remove style attribute -->
-<xsl:template match="cnhtml:list/@style" mode="pass5"/>
+<xsl:template match="cnhtml:list/@style"/>
 
 <!-- remove level attribute -->
-<xsl:template match="cnhtml:list/@level" mode="pass5"/>
+<xsl:template match="cnhtml:list/@level"/>
 
-<xsl:template match="cnhtml:list[preceding-sibling::node()[1][not(self::cnhtml:list)] or not(preceding-sibling::node()[1])]" mode="pass5">
+<xsl:template match="cnhtml:list[preceding-sibling::node()[1][not(self::cnhtml:list)] or not(preceding-sibling::node()[1])]">
+  <xsl:variable name="ancestor_header_id"> 
+    <xsl:value-of select="generate-id(ancestor::cnhtml:h[1])"/>
+  </xsl:variable>
+  <!-- TODO: tables needs also more testings -->
   <ol>
     <xsl:apply-templates mode="listgroup_pass5"
       select="key('kListGroup', generate-id(preceding-sibling::node()[1]))
-               [not(@level) or @level = 1]"/>
+               [not(@level) or @level = 1]
+               [generate-id(ancestor::cnhtml:h[1]) = $ancestor_header_id]"/>
   </ol>
-  <xsl:apply-templates select="following-sibling::node()[not(self::cnhtml:list)][1]" mode="pass5"/>
+  <xsl:apply-templates select="following-sibling::node()[not(self::cnhtml:list)][1]"/>
 </xsl:template>
 
 <xsl:template match="cnhtml:list" mode="listgroup_pass5">
   <li>
-    <xsl:apply-templates select="@*" mode="pass5"/>
-    <xsl:copy-of select="node()"/> <!-- use copy-of because apply-templates gives wron result -->
+    <xsl:apply-templates select="@*"/>
+    <xsl:copy-of select="node()"/> <!-- use copy-of because apply-templates gives wrong result -->
     <!-- <xsl:value-of select="." /> -->
 
     <xsl:variable name="vNext"
