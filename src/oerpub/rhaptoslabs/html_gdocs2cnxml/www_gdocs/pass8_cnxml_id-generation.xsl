@@ -11,7 +11,7 @@
   version="1.0"
   exclude-result-prefixes="cnx cnxtra">
 
-<xsl:output method="xml" encoding="UTF-8" indent="yes"/>
+<xsl:output method="xml" encoding="UTF-8" indent="no"/>
 
 <xsl:strip-space elements="*"/>
 <!--

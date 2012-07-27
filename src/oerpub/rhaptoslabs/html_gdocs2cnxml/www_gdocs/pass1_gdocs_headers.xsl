@@ -12,7 +12,7 @@
 <xsl:output
   method="xml"
   encoding="UTF-8"
-  indent="yes"/>
+  indent="no"/>
 
 <xsl:strip-space elements="*"/>
 <xsl:preserve-space elements="xh:p xh:span xh:li cnhtml:list xh:td xh:a xh:h1 xh:h2 xh:h3 xh:h4 xh:h5 xh:h6"/>
@@ -58,7 +58,9 @@ e.g. <h1></h1> to <cnhtml:h level="1"></cnhtml:h>
   <xsl:choose>
       <!-- convert empty headers to empty paragraphs -->
       <xsl:when test="string-length($title_content) &lt;= 0">
-          <p/>
+          <p>
+            <xsl:apply-templates/>
+          </p>
       </xsl:when>
       <!-- convert headings inside lists to paragraphs -->
       <xsl:when test="ancestor::xh:li">
