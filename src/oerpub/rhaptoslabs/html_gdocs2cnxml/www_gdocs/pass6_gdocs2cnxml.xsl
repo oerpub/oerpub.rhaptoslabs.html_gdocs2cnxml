@@ -291,6 +291,11 @@ Pass1,2...4 transformation is a precondition for this pass.
     </xsl:when>
     <xsl:when test="$preceding_style = 'unknown'">
       <list>
+        <xsl:if test="parent::xh:ol/@start">
+          <xsl:attribute name="start-value">
+            <xsl:value-of select="parent::xh:ol/@start"/>
+          </xsl:attribute>
+        </xsl:if>
         <xsl:choose>
           <xsl:when test="$my_style = 'disc'">
             <xsl:attribute name="list-type">bulleted</xsl:attribute>
