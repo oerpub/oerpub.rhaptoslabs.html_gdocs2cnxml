@@ -212,6 +212,9 @@ Pass1,2...4 transformation is a precondition for this pass.
      <xsl:when test="parent::cnhtml:h">
       <xsl:apply-templates/>
     </xsl:when>
+    <xsl:when test="node()[self::xh:a]">
+      <xsl:apply-templates/>
+    </xsl:when>
     <xsl:otherwise>
         <xsl:variable name='span_style'>
           <xsl:value-of select="@style"/>

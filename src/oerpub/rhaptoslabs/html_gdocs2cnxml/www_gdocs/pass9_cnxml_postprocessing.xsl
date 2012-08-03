@@ -14,6 +14,7 @@
 <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
 
 <xsl:strip-space elements="*"/>
+<xsl:preserve-space elements="cnx:emphasis"/>
 
 <!--
 Post processing of CNXML
