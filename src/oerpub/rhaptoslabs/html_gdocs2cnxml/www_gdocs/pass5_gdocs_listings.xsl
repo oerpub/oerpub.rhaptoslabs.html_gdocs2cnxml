@@ -52,6 +52,9 @@ Output:
 <!-- remove style attribute -->
 <xsl:template match="cnhtml:list/@style"/>
 
+<!-- remove start-value attribute from cnhtml:list -->
+<xsl:template match="cnhtml:list/@start-value"/>
+
 <!-- remove level attribute -->
 <xsl:template match="cnhtml:list/@level"/>
 
@@ -61,6 +64,18 @@ Output:
   </xsl:variable>
   <!-- TODO: tables needs also more testings -->
   <ol>
+    <!-- add start variable. Note: key (...) looks the same as on apply-templates below. -->
+    <xsl:variable name="start">
+      <xsl:value-of select="key('kListGroup', generate-id(preceding-sibling::node()[1]))
+               [not(@level) or @level = 1]
+               [generate-id(ancestor::cnhtml:h[1]) = $ancestor_header_id][self::cnhtml:list][1]/@start-value"/>
+    </xsl:variable>
+    <xsl:if test="$start != ''">
+      <xsl:attribute name="start">
+        <xsl:value-of select="$start"/>
+      </xsl:attribute>
+    </xsl:if>
+    <!-- process list items -->
     <xsl:apply-templates mode="listgroup_pass5"
       select="key('kListGroup', generate-id(preceding-sibling::node()[1]))
                [not(@level) or @level = 1]
@@ -93,6 +108,13 @@ Output:
             " />
     <xsl:if test="$vNextLevel">
       <ol>
+        <!-- add start value -->
+        <xsl:if test="$vNextLevel[1]/@startvalue">
+          <xsl:attribute name="start">
+            <xsl:value-of select="$vNextLevel[1]/@startvalue"/>
+          </xsl:attribute>
+        </xsl:if>
+        <!-- process list items -->
         <xsl:apply-templates select="$vNextLevel" mode="listgroup_pass5"/>
       </ol>
     </xsl:if>
