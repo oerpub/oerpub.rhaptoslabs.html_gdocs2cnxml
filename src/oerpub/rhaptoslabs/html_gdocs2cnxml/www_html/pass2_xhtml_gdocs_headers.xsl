@@ -42,16 +42,16 @@ Output:
 -->
 
 <!-- Default: Copy everything -->
-<xsl:template match="@*|node()" mode="pass2">
+<xsl:template match="@*|node()">
   <xsl:copy>
-    <xsl:apply-templates select="@*|node()" mode="pass2"/>
+    <xsl:apply-templates select="@*|node()"/>
   </xsl:copy>
 </xsl:template>
 
 <!-- At the beginning of body XSLT should walk step by step through the HTML -->
-<xsl:template match="xh:body|xh:div" mode="pass2">
+<xsl:template match="xh:body|xh:div">
   <xsl:copy>
-    <xsl:apply-templates select="@*" mode="pass2"/>
+    <xsl:apply-templates select="@*"/>
     <!-- start walking with first tag in body -->
     <xsl:apply-templates select="node()[1]" mode="walker_pass2">
       <xsl:with-param name="level" select="1"/>
@@ -75,8 +75,8 @@ Output:
   <!-- header found with a level greater or the same as the current level? If yes, create a nested header. -->
   <xsl:if test="$userlevel - $level &gt;= 0">
     <cnhtml:h>
-      <xsl:apply-templates select="@*" mode="pass2"/>
-      <xsl:apply-templates mode="pass2"/>
+      <xsl:apply-templates select="@*"/>
+      <xsl:apply-templates/>
       <xsl:apply-templates select="following-sibling::node()[1]" mode="walker_pass2">
         <xsl:with-param name="level" select="$level + 1"/>
       </xsl:apply-templates>
@@ -115,7 +115,7 @@ Output:
 <!-- Copy & Walk through the HTML -->
 <xsl:template match="node()" mode="walker_pass2">
   <xsl:param name="level" select="1"/>
-  <xsl:apply-templates select="." mode="pass2"/>
+  <xsl:apply-templates select="."/>
   <xsl:if test="not(following-sibling::node()[1]/self::cnhtml:h[@level &lt; $level])">	<!-- Do not process headers with lower level. -->
     <xsl:apply-templates select="following-sibling::node()[1]" mode="walker_pass2">
       <xsl:with-param name="level" select="$level"/>

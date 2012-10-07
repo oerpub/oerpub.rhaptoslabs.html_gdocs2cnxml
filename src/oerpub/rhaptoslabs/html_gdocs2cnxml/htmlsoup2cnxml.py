@@ -183,16 +183,18 @@ TRANSFORM_PIPELINE = [
     premail,
     init_libxml2,
     partial(xslt, 'pass1_xhtml_headers.xsl'),
-    partial(xslt, 'pass2_xhtml_gdocs_headers.xsl'),
-    partial(xslt, 'pass3_xhtml_divs.xsl'),
-    partial(xslt, 'pass4_xhtml_text.xsl'),
-    partial(xslt, 'pass6_xhtml2cnxml.xsl'),
-    image_puller,
-    add_cnxml_title,
-    partial(xslt, 'pass7_cnxml_postprocessing.xsl'),
-    partial(xslt, 'pass8_cnxml_id-generation.xsl'),
-    partial(xslt, 'pass9_cnxml_postprocessing.xsl'),
-]
+    ]
+    
+#     partial(xslt, 'pass2_xhtml_gdocs_headers.xsl'),
+#     partial(xslt, 'pass3_xhtml_divs.xsl'),
+#     partial(xslt, 'pass4_xhtml_text.xsl'),
+#     partial(xslt, 'pass6_xhtml2cnxml.xsl'),
+#     image_puller,
+#     add_cnxml_title,
+#     partial(xslt, 'pass7_cnxml_postprocessing.xsl'),
+#     partial(xslt, 'pass8_cnxml_id-generation.xsl'),
+#     partial(xslt, 'pass9_cnxml_postprocessing.xsl'),
+# ]
 
 # the function which is called from outside to start transformation
 def htmlsoup_to_cnxml(content, bDownloadImages=False, base_or_source_url='.', debug=False):

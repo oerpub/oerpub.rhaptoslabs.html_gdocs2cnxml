@@ -25,9 +25,9 @@
 -->
 
 <!-- Default: copy everything -->
-<xsl:template match="@*|node()" mode="pass8">
+<xsl:template match="@*|node()">
   <xsl:copy>
-    <xsl:apply-templates select="@*|node()" mode="pass8"/>
+    <xsl:apply-templates select="@*|node()"/>
   </xsl:copy>
 </xsl:template>
 
@@ -60,7 +60,7 @@
     cnx:equation|
     cnx:commentary|
     cnx:section"
-    mode="pass8">
+   >
   <xsl:copy>
     <xsl:if test="not(@id)">
       <xsl:attribute name="id">
@@ -69,7 +69,7 @@
         <xsl:value-of select="generate-id()"/>
       </xsl:attribute>
     </xsl:if>
-    <xsl:apply-templates select="@*|node()" mode="pass8"/>
+    <xsl:apply-templates select="@*|node()"/>
   </xsl:copy>
 </xsl:template>
 
