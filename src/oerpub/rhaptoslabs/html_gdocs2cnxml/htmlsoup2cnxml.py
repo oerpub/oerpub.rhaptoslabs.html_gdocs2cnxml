@@ -62,7 +62,8 @@ def download_images(xml):
                 strImageUrl = urljoin(base_or_source_url, strImageUrl)
             try:
                 # strImageContent = urllib2.urlopen(strImageUrl).read() # this does not work for websites like e.g. Wikipedia
-                image_request = image_opener.open(strImageUrl)
+                fetch_timeout = 3 # timeout in seconds for trying to get images
+                image_request = image_opener.open(strImageUrl, None, fetch_timeout)
                 strImageContent = image_request.read()
                 # get Mime type from image
                 strImageMime = magic.whatis(strImageContent)

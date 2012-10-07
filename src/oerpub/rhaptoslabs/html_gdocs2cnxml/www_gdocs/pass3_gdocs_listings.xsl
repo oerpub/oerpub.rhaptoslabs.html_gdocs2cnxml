@@ -55,6 +55,11 @@ Output:
     <xsl:attribute name="list-style-type">
       <xsl:value-of select="$list-style-type"/>
     </xsl:attribute>
+    <xsl:if test="@start">
+      <xsl:attribute name="start-value">
+        <xsl:value-of select="@start"/>
+      </xsl:attribute>
+    </xsl:if>
     <xsl:apply-templates/> <!-- normally nothing will be applied here -->
   </cnhtml:list>
 </xsl:template>
@@ -72,6 +77,11 @@ Output:
     <xsl:attribute name="list-style-type">
       <xsl:value-of select="$list-style-type"/>
     </xsl:attribute>
+    <xsl:if test="parent::xh:ol/@start">
+      <xsl:attribute name="start-value">
+        <xsl:value-of select="parent::xh:ol/@start"/>
+      </xsl:attribute>
+    </xsl:if>
     <!-- remove rest of the list attributes like e.g. style, because they are not needed anymore -->
     <!-- <xsl:apply-templates select="@*"/> -->
     <xsl:apply-templates/>
