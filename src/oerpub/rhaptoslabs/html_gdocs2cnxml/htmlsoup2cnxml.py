@@ -13,6 +13,7 @@ from xhtmlpremailer import xhtmlPremailer
 from lxml import etree
 import magic
 from readability.readability import Document
+from functools import partial
 
 current_dir = os.path.dirname(__file__)
 XHTML_ENTITIES = os.path.join(current_dir, 'www_html', 'catalog_xhtml', 'catalog.xml')
@@ -93,6 +94,29 @@ def download_images(xml):
         else:
             print 'Warning: image url or base url not valid! One image will be skipped!'
     return xml, objects
+
+# Initialize libxml2, e.g. transforming XHTML entities to valid XML
+def init_libxml2(xml):
+    libxml2.loadCatalog(XHTML_ENTITIES)
+    libxml2.lineNumbersDefault(1)
+    libxml2.substituteEntitiesDefault(1)
+    return xml, {}
+
+def xslt(xsl, xml):
+    # XSLT transformation with libxml2
+    xsl = os.path.join(current_dir, 'www_html', xsl) # TODO: Needs a cleaner solution
+    style_doc = libxml2.parseFile(xsl)
+    style = libxslt.parseStylesheetDoc(style_doc)
+    # doc = libxml2.parseFile(afile)) # another way, just for debugging
+    doc = libxml2.parseDoc(xml)
+    result = style.applyStylesheet(doc, None)
+    # style.saveResultToFilename(os.path.join('output', docFilename + '_xyz.xml'), result, 1) # another way, just for debugging
+    xml_result = style.saveResultToString(result)
+    style.freeStylesheet()
+    doc.freeDoc()
+    result.freeDoc()
+    
+    return xml_result, {}
     
 def add_cnxml_title(etree_xml, new_title):
     title = etree_xml.xpath('/cnxml:document/cnxml:title', namespaces={'cnxml':'http://cnx.rice.edu/cnxml'})
@@ -173,13 +197,14 @@ def get_html_title(content):
         title = Document(content).title()
     except:
         pass
+    return '', {}
 
 # result from every step in pipeline is a string (xml) + object {...}
 # explanation of "partial" : http://stackoverflow.com/q/10547659/756056
 TRANSFORM_PIPELINE = [
     tidy2xhtml,
     get_html_title,
-    partial(xslt, 'pass0_remove_comments.xsl'),
+    partial(xslt, 'pass0_remove_blog_comments.xsl'),
     premail,
     init_libxml2,
     partial(xslt, 'pass1_xhtml_headers.xsl'),
