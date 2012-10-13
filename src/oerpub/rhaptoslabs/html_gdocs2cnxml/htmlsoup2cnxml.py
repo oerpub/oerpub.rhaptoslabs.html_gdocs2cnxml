@@ -110,7 +110,7 @@ def add_cnxml_title(etree_xml, new_title):
     return etree_xml
         
 # Main method. Doing all steps for the HTMLSOUP to CNXML transformation
-def xsl_transform(content, bDownloadImages, base_or_source_url='.'):
+def xsl_transform(content, bDownloadImages, base_or_source_url='.', use_readability=True):
 
     # 1 get title with readability
     html_title = "Untitled"
@@ -120,7 +120,10 @@ def xsl_transform(content, bDownloadImages, base_or_source_url='.'):
         pass        
     
     # 2 use readabilty to get content
-    readable_article = Document(content).summary()
+    if use_readability:
+        readable_article = Document(content).summary()
+    else:
+        readable_article = content
 
     # 3 tidy and premail
     strTidiedHtml = tidy_and_premail(readable_article)
@@ -176,6 +179,11 @@ def htmlsoup_to_cnxml(content, bDownloadImages=False, base_or_source_url='.'):
     objects = {}
     content, objects, title = xsl_transform(content, bDownloadImages, base_or_source_url)
     return content, objects, title
+
+def aloha_htmlsoup_to_cnxml(content):
+    objects = {}
+    content, objects, title = xsl_transform(content, bDownloadImages=False, base_or_source_url='.', use_readability=False)
+    return content
 
 if __name__ == "__main__":
     f = open(sys.argv[1])
