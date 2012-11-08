@@ -185,7 +185,7 @@ Pass1,2...4 transformation is a precondition for this pass.
 </xsl:template>
 
 <!-- copy text from specific text-nodes -->
-<xsl:template match="xh:p/text()|xh:span/text()|xh:li/text()|xh:td/text()|xh:a/text()" mode="pass6">
+<xsl:template match="xh:p/text()|xh:span/text()|xh:li/text()|xh:td/text()|xh:a/text()|xh:pre/text()" mode="pass6">
   <xsl:value-of select="."/>
 </xsl:template>
 
@@ -339,6 +339,12 @@ Pass1,2...4 transformation is a precondition for this pass.
 <!-- TODO! -->
 <xsl:template match="xh:p[cnxtra:tex]" mode="pass6"/>
 
+<xsl:template match="xh:pre" mode="pass6">
+  <code>
+    <xsl:apply-templates mode="pass6"/>
+  </code>
+</xsl:template>
+
 <!-- TODO! ignore tags -->
 <xsl:template match="
   xh:abbr
@@ -382,7 +388,6 @@ Pass1,2...4 transformation is a precondition for this pass.
 	|xh:optgroup
 	|xh:option
 	|xh:param
-	|xh:pre
 	|xh:q
 	|xh:s
 	|xh:samp
