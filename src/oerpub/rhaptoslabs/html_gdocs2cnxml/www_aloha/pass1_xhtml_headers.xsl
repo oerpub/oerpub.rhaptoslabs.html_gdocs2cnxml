@@ -34,6 +34,9 @@ Output:
   </xsl:copy>
 </xsl:template>
 
+<!-- remove main header -->
+<xsl:template match="xh:div[@title]"/>
+
 <!-- Change header to <h level="x"> -->
 <xsl:template match="xh:h1|xh:h2|xh:h3|xh:h4|xh:h5|xh:h6" mode="pass1">
   <cnhtml:h>
