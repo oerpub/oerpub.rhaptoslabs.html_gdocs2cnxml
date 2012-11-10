@@ -34,6 +34,9 @@ Output:
   </xsl:copy>
 </xsl:template>
 
+<!-- remove first header -->
+<xsl:template match="xh:h1[1]" mode="pass1"/>
+
 <!-- Change header to <h level="x"> -->
 <xsl:template match="xh:h1|xh:h2|xh:h3|xh:h4|xh:h5|xh:h6" mode="pass1">
   <cnhtml:h>
