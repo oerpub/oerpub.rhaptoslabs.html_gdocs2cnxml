@@ -339,10 +339,12 @@ Pass1,2...4 transformation is a precondition for this pass.
 <!-- TODO! -->
 <xsl:template match="xh:p[cnxtra:tex]" mode="pass6"/>
 
-<xsl:template match="xh:pre" mode="pass6">
-  <code>
-    <xsl:value-of select="."/>
-    <!-- <xsl:apply-templates mode="pass6"/> -->
+<xsl:template match="xh:pre|xh:code" mode="pass6">
+  <code display="block">
+    <xsl:for-each select="node()">
+      <xsl:value-of select="."/>
+      <xsl:text>&#xa;</xsl:text>
+    </xsl:for-each>
   </code>
 </xsl:template>
 
@@ -361,7 +363,6 @@ Pass1,2...4 transformation is a precondition for this pass.
 	|xh:caption
 	|xh:center
 	|xh:cite
-	|xh:code
 	|xh:col
 	|xh:colgroup
 	|xh:dd
