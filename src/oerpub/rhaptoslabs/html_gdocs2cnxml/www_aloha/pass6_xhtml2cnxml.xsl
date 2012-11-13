@@ -348,11 +348,9 @@ Pass1,2...4 transformation is a precondition for this pass.
   </code>
 </xsl:template>
 
-
 <!-- TODO! ignore tags -->
 <xsl:template match="
-	xh:table
-	|xh:abbr
+  xh:abbr
 	|xh:acronym
 	|xh:address
 	|xh:applet
