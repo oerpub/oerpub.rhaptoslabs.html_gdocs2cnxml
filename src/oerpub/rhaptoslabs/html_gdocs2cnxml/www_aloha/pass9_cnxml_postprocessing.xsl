@@ -52,6 +52,9 @@ Output (CNXML with a correct id linking, bookmark removed):
   </xsl:copy>
 </xsl:template>
 
+<!-- remove first para after content (redundant) -->
+<xsl:template match="/cnx:document/cnx:content/cnx:para[0]" mode="pass9"/>
+
 <!-- remove bookmark attribute -->
 <xsl:template match="cnx:link/@bookmark" mode="pass9"/>
 

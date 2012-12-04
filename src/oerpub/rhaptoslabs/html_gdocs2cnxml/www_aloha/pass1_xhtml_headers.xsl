@@ -27,15 +27,22 @@ Output:
 <cnhtml:h level="1" titlecontent="Title">Title</cnhtml:h>
 -->
 
+<!-- add <html> because it was removed from aloha -->
+<xsl:template match="/" mode="pass1">
+  <xh:html>
+    <xsl:apply-templates select="@*|node()" mode="pass1"/>
+  </xh:html>
+</xsl:template>
+
+<!-- remove Mathjax text -->
+<xsl:template match="xh:span[contains(@id, 'MathJax')]" mode="pass1"/>
+
 <!-- Default: copy everything -->
 <xsl:template match="@*|node()" mode="pass1">
   <xsl:copy>
     <xsl:apply-templates select="@*|node()" mode="pass1"/>
   </xsl:copy>
 </xsl:template>
-
-<!-- remove first header -->
-<xsl:template match="xh:h1[0]" mode="pass1"/>
 
 <!-- Change header to <h level="x"> -->
 <xsl:template match="xh:h1|xh:h2|xh:h3|xh:h4|xh:h5|xh:h6" mode="pass1">

@@ -194,7 +194,10 @@ def xsl_transform2(content, bDownloadImages, base_or_source_url='.', use_readabi
         readable_article = content
 
     # 3 tidy and premail
-    strTidiedHtml = tidy_and_premail(readable_article)
+    #strTidiedHtml = tidy_and_premail(readable_article)
+
+    # do not tidy for Aloha
+    strTidiedHtml = readable_article
 
     # 4 Load XHTML catalog files: Makes XHTML entities readable.
     libxml2.loadCatalog(XHTML_ENTITIES)

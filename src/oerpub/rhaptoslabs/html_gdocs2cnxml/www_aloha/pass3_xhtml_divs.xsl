@@ -50,9 +50,6 @@ Output
 <!-- remove comments -->
 <xsl:template match="comment()" mode="pass3"/>
 
-<!-- remove scripts -->
-<xsl:template match="xh:script" mode="pass3"/>
-
 <!-- remove iframes -->
 <xsl:template match="xh:iframe" mode="pass3"/>
 

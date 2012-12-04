@@ -35,6 +35,11 @@ Pass1,2...4 transformation is a precondition for this pass.
   </document>
 </xsl:template>
 
+<!-- copy embedded MathML -->
+<xsl:template match="xh:script[@type='math/mml']" mode="pass6">
+  <xsl:value-of select="." disable-output-escaping="yes"/>
+</xsl:template>
+
 <!-- HTML -->
 <xsl:template match="xh:html" mode="pass6">
   <xsl:apply-templates select="xh:head" mode="pass6"/>
