@@ -332,6 +332,20 @@ Pass1,2...4 transformation is a precondition for this pass.
 <!-- images -->
 <xsl:template match="xh:img" mode="pass6">
   <cnxtra:image>
+    <!-- This bit extracts the width and height from the style attribute and
+         adds it as cnxml attributes -->
+    <xsl:variable name="height" select="substring-before(substring-after(@style, 'height:'), 'px')" />
+    <xsl:variable name="width" select="substring-before(substring-after(@style, 'width:'), 'px')" />
+    <xsl:if test="$height">
+      <xsl:attribute name="height">
+        <xsl:value-of select="number($height)" />
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:if test="$width">
+      <xsl:attribute name="width">
+        <xsl:value-of select="number($width)" />
+      </xsl:attribute>
+    </xsl:if>
     <xsl:copy-of select="@src|@height|@width|@alt"/>
   </cnxtra:image>
 </xsl:template>
