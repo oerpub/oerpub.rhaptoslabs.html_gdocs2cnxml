@@ -193,12 +193,6 @@ def xsl_transform2(content, bDownloadImages, base_or_source_url='.', use_readabi
     else:
         readable_article = content
 
-    # 3 tidy and premail
-    #strTidiedHtml = tidy_and_premail(readable_article)
-
-    # do not tidy for Aloha
-    strTidiedHtml = readable_article
-
     # 4 Load XHTML catalog files: Makes XHTML entities readable.
     libxml2.loadCatalog(XHTML_ENTITIES)
     libxml2.lineNumbersDefault(1)
@@ -208,7 +202,7 @@ def xsl_transform2(content, bDownloadImages, base_or_source_url='.', use_readabi
     styleDoc1 = libxml2.parseFile(ALOHA_XSL1)
     style1 = libxslt.parseStylesheetDoc(styleDoc1)
     # doc1 = libxml2.parseFile(afile))
-    doc1 = libxml2.parseDoc(strTidiedHtml)
+    doc1 = libxml2.parseDoc(readable_article)
     result1 = style1.applyStylesheet(doc1, None)
     #style1.saveResultToFilename(os.path.join('output', docFilename + '_meta.xml'), result1, 1)
     strResult1 = style1.saveResultToString(result1)
