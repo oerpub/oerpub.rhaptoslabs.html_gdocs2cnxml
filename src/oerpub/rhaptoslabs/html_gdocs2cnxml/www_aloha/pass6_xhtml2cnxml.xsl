@@ -10,7 +10,8 @@
   xmlns:cnhtml="http://cnxhtml"
   xmlns:cnxtra="http://cnxtra"
   version="1.0"
-  exclude-result-prefixes="xh cnhtml cnxtra">
+  exclude-result-prefixes="xh cnhtml cnxtra"
+  >
 
 <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
 
@@ -37,7 +38,9 @@ Pass1,2...4 transformation is a precondition for this pass.
 
 <!-- copy embedded MathML -->
 <xsl:template match="xh:script[@type='math/mml']" mode="pass6">
-  <xsl:value-of select="." disable-output-escaping="yes"/>
+  <cnxtra:math>
+    <xsl:value-of select="." disable-output-escaping="yes"/>
+  </cnxtra:math>
 </xsl:template>
 
 <!-- HTML -->

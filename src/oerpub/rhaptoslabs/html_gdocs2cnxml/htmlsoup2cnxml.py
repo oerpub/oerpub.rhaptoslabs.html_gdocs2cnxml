@@ -20,6 +20,7 @@ XHTML2CNXML_XSL1 = resource_filename('oerpub.rhaptoslabs.html_gdocs2cnxml', 'www
 XHTML2CNXML_XSL2 = resource_filename('oerpub.rhaptoslabs.html_gdocs2cnxml', 'www_html/xhtml2cnxml_meta2.xsl')
 ALOHA_XSL1 = resource_filename('oerpub.rhaptoslabs.html_gdocs2cnxml', 'www_aloha/aloha_meta1.xsl')
 ALOHA_XSL2 = resource_filename('oerpub.rhaptoslabs.html_gdocs2cnxml', 'www_aloha/aloha_meta2.xsl')
+ALOHA_XSL3 = resource_filename('oerpub.rhaptoslabs.html_gdocs2cnxml', 'www_aloha/pass10_cnxml_change_namespace.xsl')
 
 # HTML Tidy, HTML Soup to XHTML
 # Premail XHTML
@@ -193,6 +194,9 @@ def xsl_transform2(content, bDownloadImages, base_or_source_url='.', use_readabi
     else:
         readable_article = content
 
+    # 3 tidy and premail
+    strTidiedHtml = tidy_and_premail(readable_article)
+
     # 4 Load XHTML catalog files: Makes XHTML entities readable.
     libxml2.loadCatalog(XHTML_ENTITIES)
     libxml2.lineNumbersDefault(1)
@@ -202,7 +206,7 @@ def xsl_transform2(content, bDownloadImages, base_or_source_url='.', use_readabi
     styleDoc1 = libxml2.parseFile(ALOHA_XSL1)
     style1 = libxslt.parseStylesheetDoc(styleDoc1)
     # doc1 = libxml2.parseFile(afile))
-    doc1 = libxml2.parseDoc(readable_article)
+    doc1 = libxml2.parseDoc(strTidiedHtml)
     result1 = style1.applyStylesheet(doc1, None)
     #style1.saveResultToFilename(os.path.join('output', docFilename + '_meta.xml'), result1, 1)
     strResult1 = style1.saveResultToString(result1)
@@ -237,8 +241,19 @@ def xsl_transform2(content, bDownloadImages, base_or_source_url='.', use_readabi
     style2.freeStylesheet()
     doc2.freeDoc()
     result2.freeDoc()
+
+    # add math namespacing
+    styleDoc3 = libxml2.parseFile(ALOHA_XSL3)
+    style3 = libxslt.parseStylesheetDoc(styleDoc3)
+    doc3 = libxml2.parseDoc(strResult2)
+    result3 = style3.applyStylesheet(doc3, None)
+    #style3.saveResultToFilename('tempresult.xml', result3, 0) # just for debugging
+    strResult3 = style3.saveResultToString(result3)
+    style3.freeStylesheet()
+    doc3.freeDoc()
+    result3.freeDoc()
     
-    return strResult2, imageObjects, html_title
+    return strResult3, imageObjects, html_title
 
 def htmlsoup_to_cnxml(content, bDownloadImages=False, base_or_source_url='.'):
     objects = {}

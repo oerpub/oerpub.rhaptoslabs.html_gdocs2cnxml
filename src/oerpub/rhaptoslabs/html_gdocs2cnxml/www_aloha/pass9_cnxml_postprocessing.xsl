@@ -8,8 +8,10 @@
   xmlns:m="http://www.w3.org/1998/Math/MathML"
   xmlns:q="http://cnx.rice.edu/qml/1.0"
   xmlns:cnxtra="http://cnxtra"
+  xmlns:exsl="http://exslt.org/common"
   version="1.0"
-  exclude-result-prefixes="cnx cnxtra">
+  exclude-result-prefixes="cnx cnxtra exsl"
+  extension-element-prefixes="exsl">
 
 <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
 
@@ -130,6 +132,11 @@ Output (CNXML with a correct id linking, bookmark removed):
 
 <!-- remove bookmark element placeholders -->
 <xsl:template match="cnxtra:bookmark" mode="pass9"/>
+
+<!-- do again unescaping! -->
+<xsl:template match="cnxtra:math" mode="pass9">
+  <xsl:value-of select="." disable-output-escaping="yes"/>
+</xsl:template>
 
 <!-- remove underline placeholder -->
 <!--
