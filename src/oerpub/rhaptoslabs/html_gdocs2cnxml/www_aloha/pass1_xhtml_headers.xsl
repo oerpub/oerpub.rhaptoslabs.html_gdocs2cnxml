@@ -27,13 +27,6 @@ Output:
 <cnhtml:h level="1" titlecontent="Title">Title</cnhtml:h>
 -->
 
-<!-- add <html> because it was removed from aloha -->
-<xsl:template match="/" mode="pass1">
-  <xh:html>
-    <xsl:apply-templates select="@*|node()" mode="pass1"/>
-  </xh:html>
-</xsl:template>
-
 <!-- remove Mathjax text -->
 <xsl:template match="xh:span[contains(@id, 'MathJax')]" mode="pass1"/>
 
