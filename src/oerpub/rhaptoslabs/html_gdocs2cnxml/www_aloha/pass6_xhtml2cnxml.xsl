@@ -193,7 +193,7 @@ Pass1,2...4 transformation is a precondition for this pass.
 </xsl:template>
 
 <!-- copy text from specific text-nodes -->
-<xsl:template match="xh:p/text()|xh:span/text()|xh:li/text()|xh:td/text()|xh:a/text()" mode="pass6">
+<xsl:template match="xh:p/text()|xh:span/text()|xh:li/text()|xh:td/text()|xh:th/text()|xh:a/text()" mode="pass6">
   <xsl:value-of select="."/>
 </xsl:template>
 
@@ -201,7 +201,7 @@ Pass1,2...4 transformation is a precondition for this pass.
 <xsl:template match="cnhtml:h" mode="pass6">
   <xsl:choose>
     <!-- do not create a section if we are inside tables -->
-    <xsl:when test="ancestor::xh:td">
+    <xsl:when test="ancestor::xh:td|ancestor::xh:th">
       <xsl:value-of select="@title"/>
       <xsl:apply-templates mode="pass6"/>
     </xsl:when>
@@ -271,15 +271,15 @@ Pass1,2...4 transformation is a precondition for this pass.
   <tgroup>
     <xsl:attribute name="cols">
       <!-- get number of column from the first row -->
-      <xsl:value-of select="count(xh:tr[1]/xh:td)"/>
+      <xsl:value-of select="count(xh:tr[1]/xh:td|xh:tr[1]/xh:th)"/>
     </xsl:attribute>
     <tbody>
       <xsl:for-each select="xh:tr">
         <row>
-          <xsl:for-each select="xh:td">
+          <xsl:for-each select="xh:td|xh:th">
             <entry>
               <!-- Ignore paragraphs and headings, only process span -->
-              <xsl:apply-templates select="*[not(self::xh:table)]" mode="pass6"/>
+              <xsl:apply-templates select="*[not(self::xh:table2)]" mode="pass6"/>
               <!-- TODO: Support nested tables? -->
               <xsl:if test="xh:table">
                 <xsl:text>ERROR! Nested tables are not supported!</xsl:text>
