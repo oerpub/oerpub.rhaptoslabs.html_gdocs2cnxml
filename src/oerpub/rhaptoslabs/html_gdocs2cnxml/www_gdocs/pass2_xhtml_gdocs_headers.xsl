@@ -38,7 +38,6 @@ Output:
       Heading2
     </cnhtml:h>
   </cnhtml:h>
-
 -->
 
 <!-- Default: Copy everything -->

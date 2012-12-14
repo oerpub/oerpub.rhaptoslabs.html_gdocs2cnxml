@@ -18,7 +18,9 @@
 <xsl:preserve-space elements="xh:p xh:span xh:li cnhtml:list xh:td xh:a"/>
 
 <!--
-This XSLT transforms normalizes headers
+This XSLT transforms
+normalizes headers.
+Important if headers always start at level 2 or the first header is not in level 1.
 -->
 
 <!-- Default: copy everything -->
