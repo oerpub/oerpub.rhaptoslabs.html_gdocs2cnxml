@@ -18,9 +18,6 @@ from readability.readability import Document
 XHTML_ENTITIES = resource_filename('oerpub.rhaptoslabs.html_gdocs2cnxml', 'www_html/catalog_xhtml/catalog.xml')
 XHTML2CNXML_XSL1 = resource_filename('oerpub.rhaptoslabs.html_gdocs2cnxml', 'www_html/xhtml2cnxml_meta1.xsl')
 XHTML2CNXML_XSL2 = resource_filename('oerpub.rhaptoslabs.html_gdocs2cnxml', 'www_html/xhtml2cnxml_meta2.xsl')
-ALOHA_XSL1 = resource_filename('oerpub.rhaptoslabs.html_gdocs2cnxml', 'www_aloha/aloha_meta1.xsl')
-ALOHA_XSL2 = resource_filename('oerpub.rhaptoslabs.html_gdocs2cnxml', 'www_aloha/aloha_meta2.xsl')
-ALOHA_XSL3 = resource_filename('oerpub.rhaptoslabs.html_gdocs2cnxml', 'www_aloha/pass10_cnxml_change_namespace.xsl')
 
 # HTML Tidy, HTML Soup to XHTML
 # Premail XHTML
@@ -176,94 +173,12 @@ def xsl_transform(content, bDownloadImages, base_or_source_url='.', use_readabil
     doc2.freeDoc()
     result2.freeDoc()
     
-    return strResult2, imageObjects, html_title    
-
-# Main method. Doing all steps for the HTMLSOUP to CNXML transformation
-def xsl_transform2(content, bDownloadImages, base_or_source_url='.', use_readability=True):
-
-    # 1 get title with readability
-    html_title = "Untitled"
-    try:
-        html_title = Document(content).title()
-    except:
-        pass        
-    
-    # 2 use readabilty to get content
-    if use_readability:
-        readable_article = Document(content).summary()
-    else:
-        readable_article = content
-
-    # 3 tidy and premail
-    strTidiedHtml = tidy_and_premail(readable_article)
-
-    # 4 Load XHTML catalog files: Makes XHTML entities readable.
-    libxml2.loadCatalog(XHTML_ENTITIES)
-    libxml2.lineNumbersDefault(1)
-    libxml2.substituteEntitiesDefault(1)
-
-    # 5 XSLT transformation
-    styleDoc1 = libxml2.parseFile(ALOHA_XSL1)
-    style1 = libxslt.parseStylesheetDoc(styleDoc1)
-    # doc1 = libxml2.parseFile(afile))
-    doc1 = libxml2.parseDoc(strTidiedHtml)
-    result1 = style1.applyStylesheet(doc1, None)
-    #style1.saveResultToFilename(os.path.join('output', docFilename + '_meta.xml'), result1, 1)
-    strResult1 = style1.saveResultToString(result1)
-    style1.freeStylesheet()
-    doc1.freeDoc()
-    result1.freeDoc()
-
-    # Parse XML with etree from lxml for TeX2MathML and image download
-    etreeXml = etree.fromstring(strResult1)
-
-    # 6 Convert TeX to MathML with Blahtex (not in XHTML)
-    # etreeXml = tex2mathml(etreeXml)
-
-    # 7 Optional: Download Google Docs Images
-    imageObjects = {}
-    if bDownloadImages:
-        etreeXml, imageObjects = downloadImages(etreeXml, base_or_source_url)
-        
-    # 8 add title from html
-    etreeXml = add_cnxml_title(etreeXml, html_title)
-
-    # Convert etree back to string
-    strXml = etree.tostring(etreeXml) # pretty_print=True)
-
-    # 9 Second transformation
-    styleDoc2 = libxml2.parseFile(ALOHA_XSL2)
-    style2 = libxslt.parseStylesheetDoc(styleDoc2)
-    doc2 = libxml2.parseDoc(strXml)
-    result2 = style2.applyStylesheet(doc2, None)
-    #style2.saveResultToFilename('tempresult.xml', result2, 0) # just for debugging
-    strResult2 = style2.saveResultToString(result2)
-    style2.freeStylesheet()
-    doc2.freeDoc()
-    result2.freeDoc()
-
-    # add math namespacing
-    styleDoc3 = libxml2.parseFile(ALOHA_XSL3)
-    style3 = libxslt.parseStylesheetDoc(styleDoc3)
-    doc3 = libxml2.parseDoc(strResult2)
-    result3 = style3.applyStylesheet(doc3, None)
-    #style3.saveResultToFilename('tempresult.xml', result3, 0) # just for debugging
-    strResult3 = style3.saveResultToString(result3)
-    style3.freeStylesheet()
-    doc3.freeDoc()
-    result3.freeDoc()
-    
-    return strResult3, imageObjects, html_title
+    return strResult2, imageObjects, html_title
 
 def htmlsoup_to_cnxml(content, bDownloadImages=False, base_or_source_url='.'):
     objects = {}
     content, objects, title = xsl_transform(content, bDownloadImages, base_or_source_url)
     return content, objects, title
-
-def aloha_htmlsoup_to_cnxml(content):
-    objects = {}
-    content, objects, title = xsl_transform2(content, bDownloadImages=False, base_or_source_url='.', use_readability=False)
-    return content
 
 if __name__ == "__main__":
     f = open(sys.argv[1])
