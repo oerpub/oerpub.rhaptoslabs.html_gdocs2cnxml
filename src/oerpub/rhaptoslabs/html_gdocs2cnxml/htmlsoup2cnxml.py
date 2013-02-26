@@ -4,6 +4,7 @@ import os
 import urllib2
 #from urlparse import urlparse
 from urlparse import urljoin
+from pkg_resources import resource_filename
 #import subprocess
 #from Globals import package_home
 import libxml2
@@ -14,10 +15,9 @@ from lxml import etree
 import magic
 from readability.readability import Document
 
-current_dir = os.path.dirname(__file__)
-XHTML_ENTITIES = os.path.join(current_dir, 'www_html', 'catalog_xhtml', 'catalog.xml')
-XHTML2CNXML_XSL1 = os.path.join(current_dir, 'www_html', 'xhtml2cnxml_meta1.xsl')
-XHTML2CNXML_XSL2 = os.path.join(current_dir, 'www_html', 'xhtml2cnxml_meta2.xsl')
+XHTML_ENTITIES = resource_filename('oerpub.rhaptoslabs.html_gdocs2cnxml', 'www_html/catalog_xhtml/catalog.xml')
+XHTML2CNXML_XSL1 = resource_filename('oerpub.rhaptoslabs.html_gdocs2cnxml', 'www_html/xhtml2cnxml_meta1.xsl')
+XHTML2CNXML_XSL2 = resource_filename('oerpub.rhaptoslabs.html_gdocs2cnxml', 'www_html/xhtml2cnxml_meta2.xsl')
 
 # HTML Tidy, HTML Soup to XHTML
 # Premail XHTML
@@ -110,7 +110,7 @@ def add_cnxml_title(etree_xml, new_title):
     return etree_xml
         
 # Main method. Doing all steps for the HTMLSOUP to CNXML transformation
-def xsl_transform(content, bDownloadImages, base_or_source_url='.'):
+def xsl_transform(content, bDownloadImages, base_or_source_url='.', use_readability=True):
 
     # 1 get title with readability
     html_title = "Untitled"
@@ -120,7 +120,10 @@ def xsl_transform(content, bDownloadImages, base_or_source_url='.'):
         pass        
     
     # 2 use readabilty to get content
-    readable_article = Document(content).summary()
+    if use_readability:
+        readable_article = Document(content).summary()
+    else:
+        readable_article = content
 
     # 3 tidy and premail
     strTidiedHtml = tidy_and_premail(readable_article)
@@ -180,4 +183,4 @@ def htmlsoup_to_cnxml(content, bDownloadImages=False, base_or_source_url='.'):
 if __name__ == "__main__":
     f = open(sys.argv[1])
     content = f.read()
-    print htmlsoup_to_cnxml(content)
+    print aloha_htmlsoup_to_cnxml(content)

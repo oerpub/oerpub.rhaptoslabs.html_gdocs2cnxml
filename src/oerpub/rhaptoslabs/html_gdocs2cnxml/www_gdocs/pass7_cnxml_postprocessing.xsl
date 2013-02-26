@@ -106,8 +106,8 @@ Deprecated:
       <m:math> <!-- namespace="http://www.w3.org/1998/Math/MathML"> --> <!-- Rhaptos does not want namespaces -->
         <m:semantics>
 	        <xsl:apply-templates select="cnx:blahtex/cnx:mathml/cnx:markup/*" mode="mathml_pass7"/>
-	        <m:annotation encoding="Google Chart Tools">
-	          <xsl:value-of select="@src"/>
+	        <m:annotation encoding="Latex">
+	          <xsl:value-of select="tex"/>
 	        </m:annotation>
 	      </m:semantics>
       </m:math>
