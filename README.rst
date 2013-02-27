@@ -8,8 +8,7 @@ Transforms HTML to CNXML.
 
 Transforms Google Docs documents to CNXML.
 
-
 More info
 =========
 For more info look at
-https://github.com/oerpub/oerpub.rhaptoslabs.swordpushweb-buildout
+https://github.com/oerpub/documentation/wiki
