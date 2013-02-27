@@ -105,10 +105,18 @@ Deprecated:
     <xsl:when test="cnx:blahtex/cnx:mathml/cnx:markup">
       <m:math> <!-- namespace="http://www.w3.org/1998/Math/MathML"> --> <!-- Rhaptos does not want namespaces -->
         <m:semantics>
-	        <xsl:apply-templates select="cnx:blahtex/cnx:mathml/cnx:markup/*" mode="mathml_pass7"/>
-	        <m:annotation encoding="Latex">
-	          <xsl:value-of select="tex"/>
-	        </m:annotation>
+          <!-- enclose math in mrow when we have more than one child element -->
+          <xsl:choose>
+            <xsl:when test="count(cnx:blahtex/cnx:mathml/cnx:markup/*) &gt; 1">
+	            <m:mrow>
+                <xsl:apply-templates select="cnx:blahtex/cnx:mathml/cnx:markup/*" mode="mathml_ns"/>
+              </m:mrow>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="cnx:blahtex/cnx:mathml/cnx:markup/*" mode="mathml_ns"/>
+            </xsl:otherwise>
+          </xsl:choose>
+          <xsl:apply-templates select="cnx:blahtex/cnx:annotation" mode="mathml_ns"/>
 	      </m:semantics>
       </m:math>
     </xsl:when>
@@ -121,16 +129,16 @@ Deprecated:
 </xsl:template>
 
 <!-- copy blahtex' MathML and change namespace to the right value -->
-<xsl:template match="*" mode="mathml_pass7">
+<xsl:template match="*" mode="mathml_ns">
   <xsl:element name="m:{local-name()}"> <!-- namespace="http://www.w3.org/1998/Math/MathML"> -->
-    <xsl:apply-templates select="@*|node()" mode="mathml_pass7"/>
+    <xsl:apply-templates select="@*|node()" mode="mathml_ns"/>
   </xsl:element>
 </xsl:template>
 
 <!-- copy blahtex' MathML attributes and text also -->
-<xsl:template match="@*|node()[not(self::*)]" mode="mathml_pass7">
+<xsl:template match="@*|node()[not(self::*)]" mode="mathml_ns">
   <xsl:copy>
-    <xsl:apply-templates select="@*|node()" mode="mathml_pass7"/>
+    <xsl:apply-templates select="@*|node()" mode="mathml_ns"/>
   </xsl:copy>
 </xsl:template>
 
