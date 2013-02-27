@@ -60,7 +60,19 @@ def tex2mathml(xml):
             #TODO: Catch blahtex processing errors!
             strMathMl, strErr = p.communicate(strTex) # set STDIN and STDOUT and wait till the program finishes
             mathMl = etree.fromstring(strMathMl)
+            annotation = etree.Element("annotation", encoding="math/tex")
+            annotation.text = strTex
+            mathMl.append(annotation)
             formular.append(mathMl)
+            # How blahtex output looks like. Needs further processing (semantics, enclose all math into one tag, move annotation to right position)
+            # <blahtex>
+            # <mathml>
+            # <markup>
+            # <mrow><mi>x</mi><mo lspace="0.278em" rspace="0.278em">=</mo><msup><mi>d</mi><mn>2</mn></msup></mrow>
+            # </markup>
+            # </mathml>
+            # <annotation encoding="math/tex">x={d}^{2}</annotation>
+            # </blahtex>
     else:
         print 'Error: Math will not be converted! Blahtex is only available on Linux!'
     return xml
