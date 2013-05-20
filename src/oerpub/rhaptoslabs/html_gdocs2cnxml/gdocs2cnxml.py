@@ -106,9 +106,6 @@ def download_images(xml):
                 elif strImageMime == 'image/gif':
                     strImageName += '.gif'
                 #Note: SVG is currently (2012-03-08) not supported by GDocs.
-                strAlt = image.get('alt')
-                if not strAlt:
-                    image.set('alt', strImageUrl) # getNameFromUrl(strImageUrl)) # TODO: getNameFromUrl does not work reliable
                 image.text = strImageName
                 # add contents of image to object
                 objects[strImageName] = strImageContent
