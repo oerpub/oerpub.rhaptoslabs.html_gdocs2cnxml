@@ -89,7 +89,7 @@ def downloadImages(xml, base_or_source_url='.'):
                         strImageName += '.gif'
                     strAlt = image.get('alt')
                     if not strAlt:
-                        image.set('alt', strImageUrl) # getNameFromUrl(strImageUrl))
+                        image.set('alt', "")
                     image.text = strImageName
                     # add contents of image to object
                     objects[strImageName] = strImageContent
