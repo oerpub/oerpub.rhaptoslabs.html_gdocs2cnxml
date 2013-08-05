@@ -2,22 +2,28 @@
 # It will only work with XHTML!
 # Original premailer:
 # http://www.peterbe.com/plog/premailer.py
-import re, os
 import codecs
-import lxml.html
-from lxml.cssselect import CSSSelector
 from lxml import etree
-import urlparse, urllib
+from lxml.cssselect import CSSSelector
+import os
+import re
+import urllib
+import urlparse
+import operator
 from copy import deepcopy
 
-__version__ = '0.1'
 
 __all__ = ['xhtmlPremailerError', 'xhtmlPremailer', 'transform']
+
 
 class xhtmlPremailerError(Exception):
     pass
 
-def _merge_styles(old, new, class_=''):
+
+grouping_regex = re.compile('([:\-\w]*){([^}]+)}')
+
+
+def merge_styles(old, new, class_=''):
     """
     if ::
       old = 'font-size:1px; color: red'
@@ -33,92 +39,118 @@ def _merge_styles(old, new, class_=''):
     Note: old could be something like '{...} ::first-letter{...}'
 
     """
-    news = {}
+    new_keys = set()
+    news = []
     for k, v in [x.strip().split(':', 1) for x in new.split(';') if x.strip()]:
-        news[k.strip()] = v.strip()
+        news.append((k.strip(), v.strip()))
+        new_keys.add(k.strip())
 
     groups = {}
-    grouping_regex = re.compile('([:\-\w]*){([^}]+)}')
     grouped_split = grouping_regex.findall(old)
     if grouped_split:
         for old_class, old_content in grouped_split:
-            olds = {}
-            for k, v in [x.strip().split(':', 1) for x in old_content.split(';') if x.strip()]:
-                olds[k.strip()] = v.strip()
+            olds = []
+            for k, v in [x.strip().split(':', 1) for
+                         x in old_content.split(';') if x.strip()]:
+                olds.append((k.strip(), v.strip()))
             groups[old_class] = olds
     else:
-        olds = {}
-        for k, v in [x.strip().split(':', 1) for x in old.split(';') if x.strip()]:
-            olds[k.strip()] = v.strip()
+        olds = []
+        for k, v in [x.strip().split(':', 1) for
+                     x in old.split(';') if x.strip()]:
+            olds.append((k.strip(), v.strip()))
         groups[''] = olds
 
     # Perform the merge
-
-    merged = news
-    for k, v in groups.get(class_, {}).items():
-        if k not in merged:
-            merged[k] = v
+    relevant_olds = groups.get(class_, {})
+    merged = [style for style in relevant_olds if style[0] not in new_keys] + news
     groups[class_] = merged
 
     if len(groups) == 1:
-        return '; '.join(['%s:%s' % (k, v) for (k, v) in groups.values()[0].items()])
+        return '; '.join('%s:%s' % (k, v) for
+                          (k, v) in groups.values()[0])
     else:
         all = []
         for class_, mergeable in sorted(groups.items(),
-                                        lambda x, y: cmp(x[0].count(':'), y[0].count(':'))):
+                                        lambda x, y: cmp(x[0].count(':'),
+                                                         y[0].count(':'))):
             all.append('%s{%s}' % (class_,
-                                   '; '.join(['%s:%s' % (k, v)
+                                   '; '.join('%s:%s' % (k, v)
                                               for (k, v)
-                                              in mergeable.items()])))
-        return ' '.join([x for x in all if x != '{}'])
+                                              in mergeable)))
+        return ' '.join(x for x in all if x != '{}')
 
 
-_css_comments = re.compile(r'/\*.*?\*/', re.MULTILINE|re.DOTALL)
-_regex = re.compile('((.*?){(.*?)})', re.DOTALL|re.M)
+_css_comments = re.compile(r'/\*.*?\*/', re.MULTILINE | re.DOTALL)
+_regex = re.compile('((.*?){(.*?)})', re.DOTALL | re.M)
 _semicolon_regex = re.compile(';(\s+)')
 _colon_regex = re.compile(':(\s+)')
+_element_selector_regex = re.compile(r'(^|\s)\w')
+_importants = re.compile('\s*!important')
+# These selectors don't apply to all elements. Rather, they specify
+# which elements to apply to.
+FILTER_PSEUDOSELECTORS = [':last-child', ':first-child', 'nth-child']
 
 
 class xhtmlPremailer(object):
 
     def __init__(self, html, base_url=None,
-                 exclude_pseudoclasses=False,
+                 preserve_internal_links=False,
+                 exclude_pseudoclasses=True,
                  keep_style_tags=False,
                  include_star_selectors=False,
+                 remove_classes=True,
+                 strip_important=True,
                  external_styles=None):
         self.html = html
         self.base_url = base_url
+        self.preserve_internal_links = preserve_internal_links
         self.exclude_pseudoclasses = exclude_pseudoclasses
         # whether to delete the <style> tag once it's been processed
         self.keep_style_tags = keep_style_tags
+        self.remove_classes = remove_classes
         # whether to process or ignore selectors like '* { foo:bar; }'
         self.include_star_selectors = include_star_selectors
         if isinstance(external_styles, basestring):
             external_styles = [external_styles]
         self.external_styles = external_styles
+        self.strip_important = strip_important
 
-    def _parse_style_rules(self, css_body):
+    def _parse_style_rules(self, css_body, ruleset_index):
         leftover = []
         rules = []
-        css_body = _css_comments.sub('', css_body)
+
+        css_body = _css_comments.sub('', css_body or '')
+        rule_index = 0
         for each in _regex.findall(css_body.strip()):
             __, selectors, bulk = each
 
             bulk = _semicolon_regex.sub(';', bulk.strip())
             bulk = _colon_regex.sub(':', bulk.strip())
             if bulk.endswith(';'):
-                bulk = bulk[:-1]          
-            for selector in [x.strip() for
+                bulk = bulk[:-1]
+            for selector in (x.strip() for
                              x in selectors.split(',') if x.strip() and
-                             not x.strip().startswith('@')]:                
-                if ':' in selector and self.exclude_pseudoclasses:
+                             not x.strip().startswith('@')):
+
+                if (':' in selector and self.exclude_pseudoclasses and
+                    ':' + selector.split(':', 1)[1]
+                        not in FILTER_PSEUDOSELECTORS):
                     # a pseudoclass
                     leftover.append((selector, bulk))
                     continue
                 elif selector == '*' and not self.include_star_selectors:
                     continue
 
-                rules.append((selector, bulk))
+                # Crudely calculate specificity
+                id_count = selector.count('#')
+                class_count = selector.count('.')
+                element_count = len(_element_selector_regex.findall(selector))
+
+                specificity = (id_count, class_count, element_count, ruleset_index, rule_index)
+
+                rules.append((specificity, selector, bulk))
+                rule_index += 1
 
         return rules, leftover
 
@@ -129,15 +161,13 @@ class xhtmlPremailer(object):
         if etree is None:
             return self.html
 
-        #parser = etree.HTMLParser()
-
         # Marvin Reimer: changed HTMLParser to XMLParser
         parser = etree.XMLParser()
-
-        tree = etree.fromstring(self.html.strip(), parser).getroottree()
+        stripped = self.html.strip()
+        tree = etree.fromstring(stripped, parser).getroottree()
+        page = tree.getroot()
 
         # Marvin Reimer: Do not check if Tree is valid on XML
-        page = tree.getroot()
         if page is None:
             print repr(self.html)
             raise xhtmlPremailerError("Could not parse the html")
@@ -153,21 +183,25 @@ class xhtmlPremailer(object):
 
         # Marvin Reimer:
         # Use xhtml namespace!
-        for style in CSSSelector("xhtml|style", namespaces={'xhtml': 'http://www.w3.org/1999/xhtml'})(page):
-            css_body = etree.tostring(style)
-            css_body = css_body.split('>')[1].split('</')[0]
-            these_rules, these_leftover = self._parse_style_rules(css_body)
+        for index, style in enumerate(CSSSelector("xhtml|style", namespaces={'xhtml': 'http://www.w3.org/1999/xhtml'})(page)):
+            # If we have a media attribute whose value is anything other than
+            # 'screen', ignore the ruleset.
+            media = style.attrib.get('media')
+            if media and media != 'screen':
+                continue
+
+            these_rules, these_leftover = self._parse_style_rules(style.text, index)
             rules.extend(these_rules)
 
             parent_of_style = style.getparent()
             if these_leftover:
-                style.text = '\n'.join(['%s {%s}' % (k, v) for (k, v) in these_leftover])
+                style.text = '\n'.join(['%s {%s}' % (k, v) for
+                                        (k, v) in these_leftover])
             elif not self.keep_style_tags:
                 parent_of_style.remove(style)
 
         if self.external_styles:
             for stylefile in self.external_styles:
-                print stylefile
                 if stylefile.startswith('http://'):
                     css_body = urllib.urlopen(stylefile).read()
                 elif os.path.exists(stylefile):
@@ -177,43 +211,72 @@ class xhtmlPremailer(object):
                     finally:
                         f.close()
                 else:
-                    raise ValueError(u"Could not find external style: %s" % stylefile)
-                these_rules, these_leftover = self._parse_style_rules(css_body)
+                    raise ValueError(u"Could not find external style: %s" %
+                                     stylefile)
+                these_rules, these_leftover = self._parse_style_rules(css_body, -1)
                 rules.extend(these_rules)
 
-        for selector, style in rules:
+        # rules is a tuple of (specificity, selector, styles), where specificity is a tuple
+        # ordered such that more specific rules sort larger.
+        rules.sort(key=operator.itemgetter(0))
+
+        first_time = []
+        first_time_styles = []
+        for __, selector, style in rules:
+            new_selector = selector
             class_ = ''
             if ':' in selector:
-                selector, class_ = re.split(':', selector, 1)
+                new_selector, class_ = re.split(':', selector, 1)
                 class_ = ':%s' % class_
+            # Keep filter-type selectors untouched.
+            if class_ in FILTER_PSEUDOSELECTORS:
+                class_ = ''
+            else:
+                selector = new_selector
 
             # Marvin Reimer
             # use XHTML namespace for node elements h1 -> xhtml|h1 but do not convert classes like .c1
             if not selector.startswith('.') and re.match('^xhtml\|', 'selector', re.IGNORECASE) is None:
                 selector = 'xhtml|' + selector
-            
+
             sel = CSSSelector(selector, namespaces={'xhtml': 'http://www.w3.org/1999/xhtml'})
             for item in sel(page):
-                old_style = item.attrib.get('style','')
-                new_style = _merge_styles(old_style, style, class_)
+                old_style = item.attrib.get('style', '')
+                if not item in first_time:
+                    new_style = merge_styles(old_style, style, class_)
+                    first_time.append(item)
+                    first_time_styles.append((item, old_style))
+                else:
+                    new_style = merge_styles(old_style, style, class_)
                 item.attrib['style'] = new_style
-                self._style_to_basic_html_attributes(item, new_style)
+                self._style_to_basic_html_attributes(item, new_style,
+                                                     force=True)
 
-        # now we can delete all 'class' attributes
-        for item in page.xpath('//@class'):
-            parent = item.getparent()
-            del parent.attrib['class']
+        # Re-apply initial inline styles.
+        for item, inline_style in first_time_styles:
+            old_style = item.attrib.get('style', '')
+            if not inline_style:
+                continue
+            new_style = merge_styles(old_style, inline_style, class_)
+            item.attrib['style'] = new_style
+            self._style_to_basic_html_attributes(item, new_style, force=True)
 
+        if self.remove_classes:
+            # now we can delete all 'class' attributes
+            for item in page.xpath('//@class'):
+                parent = item.getparent()
+                del parent.attrib['class']
 
         ##
         ## URLs
         ##
-
         if self.base_url:
-
             for attr in ('href', 'src'):
                 for item in page.xpath("//@%s" % attr):
                     parent = item.getparent()
+                    if attr == 'href' and self.preserve_internal_links \
+                           and parent.attrib[attr].startswith('#'):
+                        continue
                     parent.attrib[attr] = urlparse.urljoin(self.base_url,
                                                            parent.attrib[attr])
 
@@ -221,10 +284,14 @@ class xhtmlPremailer(object):
         # Do not force any encoding to LXML
         # return etree.tostring(page, pretty_print=pretty_print, xml_declaration=True, encoding='utf8')\
         # Also include xml declaration
-        return etree.tostring(page, pretty_print=pretty_print, xml_declaration=True)\
+        out = etree.tostring(page, pretty_print=pretty_print, xml_declaration=True)\
           .replace('<head/>','<head></head>')
+        if self.strip_important:
+            out = _importants.sub('', out)
+        return out
 
-    def _style_to_basic_html_attributes(self, element, style_content):
+    def _style_to_basic_html_attributes(self, element, style_content,
+                                        force=False):
         """given an element and styles like
         'background-color:red; font-family:Arial' turn some of that into HTML
         attributes. like 'bgcolor', etc.
@@ -238,33 +305,34 @@ class xhtmlPremailer(object):
 
         attributes = {}
         for key, value in [x.split(':') for x in style_content.split(';')
-                           if len(x.split(':'))==2]:
+                           if len(x.split(':')) == 2]:
             key = key.strip()
 
             if key == 'text-align':
                 attributes['align'] = value.strip()
             elif key == 'background-color':
                 attributes['bgcolor'] = value.strip()
-            elif key == 'width':
+            elif key == 'width' or key == 'height':
                 value = value.strip()
                 if value.endswith('px'):
                     value = value[:-2]
-                attributes['width'] = value
+                attributes[key] = value
             #else:
             #    print "key", repr(key)
             #    print 'value', repr(value)
 
         for key, value in attributes.items():
-            if key in element.attrib:
+            if key in element.attrib and not force:
                 # already set, don't dare to overwrite
                 continue
             element.attrib[key] = value
+
 
 def transform(html, base_url=None):
     return xhtmlPremailer(html, base_url=base_url).transform()
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     html = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml">
@@ -286,9 +354,4 @@ if __name__=='__main__':
          </body>
       </html>"""
     p = xhtmlPremailer(html)
-    premailedHTML = p.transform()
-    print("Original:")
-    print(html)
-    print
-    print("Premailed:")
-    print(premailedHTML)
+    print p.transform()
