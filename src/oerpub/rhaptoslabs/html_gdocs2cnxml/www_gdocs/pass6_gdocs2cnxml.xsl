@@ -17,7 +17,7 @@
 <xsl:output method="xml" encoding="UTF-8" indent="no"/>
 
 <xsl:strip-space elements="*"/>
-<xsl:preserve-space elements="xh:p xh:span xh:li cnhtml:list xh:td xh:a"/>
+<xsl:preserve-space elements="xh:p xh:span xh:li xh:td xh:a"/>
 
 <!--
 This XSLT transforms Google Docs HTML tags to CNXML.

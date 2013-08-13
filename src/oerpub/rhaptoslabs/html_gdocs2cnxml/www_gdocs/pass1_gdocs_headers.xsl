@@ -15,7 +15,7 @@
   indent="no"/>
 
 <xsl:strip-space elements="*"/>
-<xsl:preserve-space elements="xh:p xh:span xh:li cnhtml:list xh:td xh:a xh:h1 xh:h2 xh:h3 xh:h4 xh:h5 xh:h6"/>
+<xsl:preserve-space elements="xh:p xh:span xh:li xh:td xh:a xh:h1 xh:h2 xh:h3 xh:h4 xh:h5 xh:h6"/>
 
 <!--
 This XSLT transforms headers and lists of (Google Docs) XHTML.
