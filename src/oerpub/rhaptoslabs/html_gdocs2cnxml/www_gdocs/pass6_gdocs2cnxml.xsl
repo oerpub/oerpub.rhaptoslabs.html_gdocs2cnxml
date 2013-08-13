@@ -263,7 +263,7 @@ Pass1,2...4 transformation is a precondition for this pass.
 </xsl:template>
 
 <!-- listings -->
-<xsl:template match="xh:ol">
+<xsl:template match="xh:ol|xh:ul">
   <xsl:if test="xh:li">
     <xsl:apply-templates select="xh:li[1]" mode="walker_pass6">
       <xsl:with-param name="preceding_style" select="'unknown'"/>
@@ -282,6 +282,9 @@ Pass1,2...4 transformation is a precondition for this pass.
 
   <!-- TODO: Is this wrong? Check if next_diff_style only looks for the next different style in current <ol> block -->
   <xsl:variable name="next_diff_style" select="following-sibling::xh:li[@list-style-type != $my_style][1]"/>
+
+  <xsl:variable name="ol-ul-parent"
+    select="parent::*[self::xh:ol or self::xh:ul][1]"/>
 
   <xsl:choose>
     <xsl:when test="$preceding_style = @list-style-type">
@@ -304,45 +307,45 @@ Pass1,2...4 transformation is a precondition for this pass.
           </xsl:when>
           <xsl:when test="$my_style = 'decimal'">
             <xsl:attribute name="list-type">enumerated</xsl:attribute>
-            <xsl:if test="parent::xh:ol/@start">
+            <xsl:if test="$ol-ul-parent/@start">
               <xsl:attribute name="start-value">
-                <xsl:value-of select="parent::xh:ol/@start"/>
+                <xsl:value-of select="$ol-ul-parent/@start"/>
               </xsl:attribute>
             </xsl:if>
           </xsl:when>
           <xsl:when test="$my_style = 'upper-latin'">
             <xsl:attribute name="list-type">enumerated</xsl:attribute>
             <xsl:attribute name="number-style">upper-alpha</xsl:attribute>
-            <xsl:if test="parent::xh:ol/@start">
+            <xsl:if test="$ol-ul-parent/@start">
               <xsl:attribute name="start-value">
-                <xsl:value-of select="parent::xh:ol/@start"/>
+                <xsl:value-of select="$ol-ul-parent/@start"/>
               </xsl:attribute>
             </xsl:if>
           </xsl:when>
           <xsl:when test="$my_style = 'lower-latin'">
             <xsl:attribute name="list-type">enumerated</xsl:attribute>
             <xsl:attribute name="number-style">lower-alpha</xsl:attribute>
-            <xsl:if test="parent::xh:ol/@start">
+            <xsl:if test="$ol-ul-parent/@start">
               <xsl:attribute name="start-value">
-                <xsl:value-of select="parent::xh:ol/@start"/>
+                <xsl:value-of select="$ol-ul-parent/@start"/>
               </xsl:attribute>
             </xsl:if>            
           </xsl:when>
           <xsl:when test="$my_style = 'lower-roman'">
             <xsl:attribute name="list-type">enumerated</xsl:attribute>
             <xsl:attribute name="number-style">lower-roman</xsl:attribute>
-            <xsl:if test="parent::xh:ol/@start">
+            <xsl:if test="$ol-ul-parent/@start">
               <xsl:attribute name="start-value">
-                <xsl:value-of select="parent::xh:ol/@start"/>
+                <xsl:value-of select="$ol-ul-parent/@start"/>
               </xsl:attribute>
             </xsl:if>
           </xsl:when>
           <xsl:when test="$my_style = 'upper-roman'">
             <xsl:attribute name="list-type">enumerated</xsl:attribute>
             <xsl:attribute name="number-style">upper-roman</xsl:attribute>
-            <xsl:if test="parent::xh:ol/@start">
+            <xsl:if test="$ol-ul-parent/@start">
               <xsl:attribute name="start-value">
-                <xsl:value-of select="parent::xh:ol/@start"/>
+                <xsl:value-of select="$ol-ul-parent/@start"/>
               </xsl:attribute>
             </xsl:if>
           </xsl:when>
