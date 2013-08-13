@@ -58,12 +58,25 @@ Output:
 <!-- remove level attribute -->
 <xsl:template match="cnhtml:list/@level"/>
 
+<!-- remove unordered attribute -->
+<xsl:template match="cnhtml:list/@unordered"/>
+
 <xsl:template match="cnhtml:list[preceding-sibling::node()[1][not(self::cnhtml:list)] or not(preceding-sibling::node()[1])]">
   <xsl:variable name="ancestor_header_id"> 
     <xsl:value-of select="generate-id(ancestor::cnhtml:h[1])"/>
   </xsl:variable>
   <!-- TODO: tables needs also more testings -->
-  <ol>
+  <xsl:variable name="ol-ul">
+    <xsl:choose>
+      <xsl:when test="@unordered">
+        <xsl:text>ul</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>ol</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:element name="{$ol-ul}">
     <!-- add start variable. Note: key (...) looks the same as on apply-templates below. -->
     <xsl:variable name="start">
       <xsl:value-of select="key('kListGroup', generate-id(preceding-sibling::node()[1]))
@@ -80,7 +93,7 @@ Output:
       select="key('kListGroup', generate-id(preceding-sibling::node()[1]))
                [not(@level) or @level = 1]
                [generate-id(ancestor::cnhtml:h[1]) = $ancestor_header_id]"/>
-  </ol>
+  </xsl:element>
   <xsl:apply-templates select="following-sibling::node()[not(self::cnhtml:list)][1]"/>
 </xsl:template>
 
@@ -107,7 +120,17 @@ Output:
              ]
             " />
     <xsl:if test="$vNextLevel">
-      <ol>
+       <xsl:variable name="ol-ul">
+        <xsl:choose>
+          <xsl:when test="@unordered">
+            <xsl:text>ul</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>ol</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:element name="{$ol-ul}">
         <!-- add start value -->
         <xsl:if test="$vNextLevel[1]/@startvalue">
           <xsl:attribute name="start">
@@ -116,7 +139,7 @@ Output:
         </xsl:if>
         <!-- process list items -->
         <xsl:apply-templates select="$vNextLevel" mode="listgroup_pass5"/>
-      </ol>
+      </xsl:element>
     </xsl:if>
   </li>
 </xsl:template>
