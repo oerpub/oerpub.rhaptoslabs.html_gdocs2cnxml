@@ -38,10 +38,6 @@ Output:
 
 <!-- Remove <ol> tags. Later all <li> will be rearranged by their margin -->
 <xsl:template match="xh:ol|xh:ul">
-  <!-- add a div seperator if an ol follows immediately after an ul or an ul follows an ol. Very important for later processing-->
-  <xsl:if test="preceding-sibling::*[1][self::xh:ol|self::xh:ul]">
-    <xh:div/>
-  </xsl:if>
   <xsl:message>INFO: Removing ol</xsl:message>
   <xsl:apply-templates/>                <!-- just copy all children -->
 </xsl:template>
