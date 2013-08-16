@@ -350,7 +350,19 @@ Pass1,2...4 transformation is a precondition for this pass.
             </xsl:if>
           </xsl:when>
           <xsl:otherwise> <!-- Fail safe mode -->
-            <xsl:attribute name="list-type">bulleted</xsl:attribute>
+            <xsl:choose>
+              <xsl:when test="$ol-ul-parent/unordered">
+                <xsl:attribute name="list-type">bulleted</xsl:attribute>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:attribute name="list-type">enumerated</xsl:attribute>
+                <xsl:if test="$ol-ul-parent/@start">
+                  <xsl:attribute name="start-value">
+                    <xsl:value-of select="$ol-ul-parent/@start"/>
+                  </xsl:attribute>
+                </xsl:if>
+              </xsl:otherwise>
+            </xsl:choose>
           </xsl:otherwise>
         </xsl:choose>
         <item>
