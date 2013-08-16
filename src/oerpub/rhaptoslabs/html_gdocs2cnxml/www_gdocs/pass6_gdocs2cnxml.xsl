@@ -351,7 +351,7 @@ Pass1,2...4 transformation is a precondition for this pass.
           </xsl:when>
           <xsl:otherwise> <!-- Fail safe mode -->
             <xsl:choose>
-              <xsl:when test="$ol-ul-parent/unordered">
+              <xsl:when test="$ol-ul-parent/@unordered">
                 <xsl:attribute name="list-type">bulleted</xsl:attribute>
               </xsl:when>
               <xsl:otherwise>
