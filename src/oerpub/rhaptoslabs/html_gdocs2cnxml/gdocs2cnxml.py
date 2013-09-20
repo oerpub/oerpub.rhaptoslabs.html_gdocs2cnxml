@@ -16,6 +16,8 @@ current_dir = os.path.dirname(__file__)
 
 XHTML_ENTITIES = os.path.join(current_dir, 'www_gdocs', 'catalog_xhtml', 'catalog.xml')
 
+download_files_from_google = False
+
 # Tidy up the Google Docs HTML Soup
 def tidy2xhtml(html):
     # HTML Tidy
@@ -150,11 +152,13 @@ def tex2mathml_transform(xml):
 
 # Download Google Docs Images
 def image_puller(xml):   
-    image_objects = {}
-    etree_xml = etree.fromstring(xml)
-    #if bDownloadImages:
-    etree_xml, image_objects = download_images(etree_xml)
-    return etree.tostring(etree_xml), image_objects
+    if download_files_from_google:
+      image_objects = {}
+      etree_xml = etree.fromstring(xml)
+      etree_xml, image_objects = download_images(etree_xml)
+      return etree.tostring(etree_xml), image_objects
+    else:
+      return xml, {}
     
 # result from every step in pipeline is a string (xml) + object {...}
 # explanation of "partial" : http://stackoverflow.com/q/10547659/756056
@@ -181,6 +185,7 @@ TRANSFORM_PIPELINE = [
 def gdocs_to_cnxml(content, bDownloadImages=False, debug=False):
     objects = {}
     xml = content
+    download_files_from_google = bDownloadImages
     # write input file to debug dir
     if debug: # create for each pass an output file
         filename = os.path.join(current_dir, 'gdocs_debug', 'input.htm') # TODO: needs a timestamp or something
