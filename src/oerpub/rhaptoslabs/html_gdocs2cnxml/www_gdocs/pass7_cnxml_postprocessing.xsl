@@ -59,11 +59,8 @@ Deprecated:
 
 <!-- convert images to CNXML -->
 <xsl:template match="cnxtra:image">
-  <!-- just ignore images which cannot be uploaded -->
-  <!--
   <xsl:choose>
-  -->
-    <xsl:if test="text()">
+    <xsl:when test="text()">
       <media>
         <xsl:attribute name="alt">
           <xsl:value-of select="@alt"/>
@@ -87,13 +84,33 @@ Deprecated:
           </xsl:if>
         </image>
       </media>
-    </xsl:if>
-  <!--
+    </xsl:when>
     <xsl:otherwise>
-      <xsl:text>[Image (Upload Error)]</xsl:text>
+      <media>
+        <xsl:attribute name="alt">
+          <xsl:value-of select="@alt"/>
+        </xsl:attribute>
+        <image>
+          <xsl:attribute name="mime-type">
+            <xsl:value-of select="@mime-type"/>
+          </xsl:attribute>
+          <xsl:attribute name="src">
+            <xsl:value-of select="@src"/>
+          </xsl:attribute>
+          <xsl:if test="@height &gt; 0">
+            <xsl:attribute name="height">
+              <xsl:value-of select="@height"/>
+            </xsl:attribute>
+          </xsl:if>
+          <xsl:if test="@width &gt; 0">
+            <xsl:attribute name="width">
+              <xsl:value-of select="@width"/>
+            </xsl:attribute>
+          </xsl:if>
+        </image>
+      </media>
     </xsl:otherwise>
   </xsl:choose>
-  -->
 </xsl:template>
 
 <!-- remove empty tex nodes (this should not happen) -->
