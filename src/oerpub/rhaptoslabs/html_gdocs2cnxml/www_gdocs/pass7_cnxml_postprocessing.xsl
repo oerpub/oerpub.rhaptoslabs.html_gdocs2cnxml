@@ -38,10 +38,10 @@ Deprecated:
 <xsl:template match="cnx:list[not(@start-value)]">
   <xsl:copy>
     <xsl:variable name="count_before_start_value"
-      select="count(preceding-sibling::cnx:list[@start-value][1]/preceding-sibling::cnx:list)"/>
+      select="count(preceding-sibling::cnx:list[@start-value][1]/preceding-sibling::cnx:list/cnx:item)"/>
     <xsl:variable name="proposed_start_value"
       select="preceding-sibling::cnx:list[@start-value][1]/@start-value + 
-        count(preceding-sibling::cnx:list)-$count_before_start_value"/>
+        count(preceding-sibling::cnx:list/cnx:item)-$count_before_start_value"/>
     <xsl:if test="string(number($proposed_start_value))!='NaN'">
       <xsl:attribute name="start-value">
         <xsl:value-of select="$proposed_start_value"/>
