@@ -21,6 +21,7 @@ Post processing of CNXML
 - Convert empty paragraphs to paragraphs with newlines
 - Convert cnxtra:image to images
 - Convert cnxtra:tex from Blahtex to embedded MathML
+- Recalculate list start values
 
 Deprecated:
 - Add @IDs to elements (needs rework!)
@@ -29,6 +30,23 @@ Deprecated:
 <!-- Default: copy everything -->
 <xsl:template match="@*|node()">
   <xsl:copy>
+    <xsl:apply-templates select="@*|node()"/>
+  </xsl:copy>
+</xsl:template>
+
+<!-- recalculate list start values -->
+<xsl:template match="cnx:list[not(@start-value)]">
+  <xsl:copy>
+    <xsl:variable name="count_before_start_value"
+      select="count(preceding-sibling::cnx:list[@start-value][1]/preceding-sibling::cnx:list)"/>
+    <xsl:variable name="proposed_start_value"
+      select="preceding-sibling::cnx:list[@start-value][1]/@start-value + 
+        count(preceding-sibling::cnx:list)-$count_before_start_value"/>
+    <xsl:if test="string(number($proposed_start_value))!='NaN'">
+      <xsl:attribute name="start-value">
+        <xsl:value-of select="$proposed_start_value"/>
+      </xsl:attribute>
+    </xsl:if>
     <xsl:apply-templates select="@*|node()"/>
   </xsl:copy>
 </xsl:template>
@@ -109,14 +127,14 @@ Deprecated:
           <xsl:choose>
             <xsl:when test="count(cnx:blahtex/cnx:mathml/cnx:markup/*) &gt; 1">
 	            <m:mrow>
-                <xsl:apply-templates select="cnx:blahtex/cnx:mathml/cnx:markup/*" mode="mathml_ns"/>
+                <xsl:apply-templates select="cnx:blahtex/cnx:mathml/cnx:markup/*" mode="mathml-ns"/>
               </m:mrow>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:apply-templates select="cnx:blahtex/cnx:mathml/cnx:markup/*" mode="mathml_ns"/>
+              <xsl:apply-templates select="cnx:blahtex/cnx:mathml/cnx:markup/*" mode="mathml-ns"/>
             </xsl:otherwise>
           </xsl:choose>
-          <xsl:apply-templates select="cnx:blahtex/cnx:annotation" mode="mathml_ns"/>
+          <xsl:apply-templates select="cnx:blahtex/cnx:annotation" mode="mathml-ns"/>
 	      </m:semantics>
       </m:math>
     </xsl:when>
@@ -129,16 +147,16 @@ Deprecated:
 </xsl:template>
 
 <!-- copy blahtex' MathML and change namespace to the right value -->
-<xsl:template match="*" mode="mathml_ns">
+<xsl:template match="*" mode="mathml-ns">
   <xsl:element name="m:{local-name()}"> <!-- namespace="http://www.w3.org/1998/Math/MathML"> -->
-    <xsl:apply-templates select="@*|node()" mode="mathml_ns"/>
+    <xsl:apply-templates select="@*|node()" mode="mathml-ns"/>
   </xsl:element>
 </xsl:template>
 
 <!-- copy blahtex' MathML attributes and text also -->
-<xsl:template match="@*|node()[not(self::*)]" mode="mathml_ns">
+<xsl:template match="@*|node()[not(self::*)]" mode="mathml-ns">
   <xsl:copy>
-    <xsl:apply-templates select="@*|node()" mode="mathml_ns"/>
+    <xsl:apply-templates select="@*|node()" mode="mathml-ns"/>
   </xsl:copy>
 </xsl:template>
 
