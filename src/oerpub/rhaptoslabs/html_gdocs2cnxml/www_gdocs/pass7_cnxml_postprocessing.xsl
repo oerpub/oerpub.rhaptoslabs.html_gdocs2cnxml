@@ -35,7 +35,7 @@ Deprecated:
 </xsl:template>
 
 <!-- recalculate list start values -->
-<xsl:template match="cnx:list[not(@start-value)]">
+<xsl:template match="cnx:list[not(@start-value) and @list-type='enumerated']">
   <xsl:copy>
     <xsl:variable name="count_before_start_value"
       select="count(preceding-sibling::cnx:list[@start-value][1]/preceding-sibling::cnx:list/cnx:item)"/>
