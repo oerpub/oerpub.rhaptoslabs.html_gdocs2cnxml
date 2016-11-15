@@ -49,7 +49,7 @@ def premail(xhtml):
 
 # Use Blahtex transformation from TeX to XML. http://gva.noekeon.org/blahtexml/
 def tex2mathml(xml):
-    # Do not run blahtex if we are not on Linux!
+    # Do not run blahtex if we are not on Linux or Mac!
     if os.name == 'posix':
         xpathFormulars = etree.XPath('//cnxtra:tex[@tex]', namespaces={'cnxtra':'http://cnxtra'})
         formularList = xpathFormulars(xml)
