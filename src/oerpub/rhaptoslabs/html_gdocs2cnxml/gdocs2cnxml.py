@@ -174,15 +174,17 @@ TRANSFORM_PIPELINE = [
     partial(xslt, 'pass5_gdocs_listings.xsl'),              # 9
     partial(xslt, 'pass5_part2_gdocs_red2cnxml.xsl'),       # 10
     partial(xslt, 'pass6_gdocs2cnxml.xsl'),                 # 11
-    tex2mathml_transform,                                   # 12
-    image_puller,                                           # 13
-    partial(xslt, 'pass7_cnxml_postprocessing.xsl'),        # 14
-    partial(xslt, 'pass8_cnxml_id-generation.xsl'),         # 15
-    partial(xslt, 'pass9_cnxml_postprocessing.xsl')         # 16
+    # tex2mathml_transform,                                   # 12
+    # image_puller,                                           # 13
+    # partial(xslt, 'pass7_cnxml_postprocessing.xsl'),        # 14
+    # partial(xslt, 'pass8_cnxml_id-generation.xsl'),         # 15
+    # partial(xslt, 'pass9_cnxml_postprocessing.xsl')         # 16
 ]
 
 # the function which is called from outside to start transformation
-def gdocs_to_cnxml(content, bDownloadImages=False, debug=False):
+def gdocs_to_cnxml(content, kixcontent=None, bDownloadImages=False, debug=False):
+    if (kixcontent!=None):
+        print "We have KIX!"
     objects = {}
     xml = content
     download_files_from_google = bDownloadImages

@@ -505,6 +505,15 @@ Pass1,2...4 transformation is a precondition for this pass.
   </cnxtra:tex>
 </xsl:template>
 
+<!-- alt leer und title nicht leer -->
+
+<!-- Look for TeX Formulars from gMath and mark them -->
+<xsl:template match="xh:img[
+  contains(@src, '.googleusercontent.com') and @alt='' and @title!='']">
+
+  <cnxtra:gmath/>
+</xsl:template>
+
 
 <!-- underline -->
 <!--

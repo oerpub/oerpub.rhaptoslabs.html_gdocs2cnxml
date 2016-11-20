@@ -111,7 +111,14 @@ def main():
                     print_status('URL: ' + plain_html_url)
                     resp, html = http.request(plain_html_url)
                 except HttpError:
-                    print "Error: Failed to download Google Docs"
+                    print "Error: Failed to download Google Docs HTML"
+                try:
+                    kix_url = 'https://docs.google.com/feeds/download/documents/export/Export?id=%s&exportFormat=kix' % doc_id
+                    print_status('URL: ' + kix_url)
+                    resp, kix = http.request(kix_url)
+                except HttpError:
+                    print "Error: Failed to download Google Docs Kix"
+
 
                 # write testbed source html output
                 html_filename = os.path.join(doc_output_dir, doc_id +'.htm')
@@ -125,7 +132,7 @@ def main():
                 print_status('Transforming and get images from %s' % doc_key)
 
                 # transformation and get images
-                cnxml, objects = gdocs_to_cnxml(html, bDownloadImages=True)
+                cnxml, objects = gdocs_to_cnxml(html, kix, bDownloadImages=True)
 
                 # write testbed images
                 for image_filename, image in objects.iteritems():
