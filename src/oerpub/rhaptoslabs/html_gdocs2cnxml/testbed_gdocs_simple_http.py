@@ -132,7 +132,7 @@ def main():
                 print_status('Transforming and get images from %s' % doc_key)
 
                 # transformation and get images
-                cnxml, objects = gdocs_to_cnxml(html, kix, bDownloadImages=True)
+                cnxml, objects = gdocs_to_cnxml(html, kixcontent=kix, bDownloadImages=True)
 
                 # write testbed images
                 for image_filename, image in objects.iteritems():

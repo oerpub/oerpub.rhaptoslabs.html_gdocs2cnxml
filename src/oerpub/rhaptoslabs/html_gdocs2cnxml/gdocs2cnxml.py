@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 import sys
 import os
+import re
 import urllib2
 #from urlparse import urlparse
 import subprocess
@@ -17,6 +18,8 @@ current_dir = os.path.dirname(__file__)
 XHTML_ENTITIES = os.path.join(current_dir, 'www_gdocs', 'catalog_xhtml', 'catalog.xml')
 
 download_files_from_google = False
+
+gmath_latex = []
 
 # Tidy up the Google Docs HTML Soup
 def tidy2xhtml(html):
@@ -78,6 +81,32 @@ def tex2mathml(xml):
     else:
         print 'Error: Math will not be converted! Blahtex is only available on Linux!'
     return xml
+
+def gmath2mathml(xml):
+    # Do not run blahtex if we are not on Linux or Mac!
+    if os.name == 'posix':
+        xpathFormulars = etree.XPath('//cnxtra:gmath', namespaces={'cnxtra':'http://cnxtra'})
+        formularList = xpathFormulars(xml)
+        for position, formular in enumerate(formularList):
+            try:
+                strTex = gmath_latex[position]
+            except IndexError:
+                strTex = 'KixGdocsEerror'
+            #TODO: Ubuntu has 'blahtexml', when compiled by yourself the binary name will be 'blahtex'. This needs to be more dynamically!
+            strCmdBlahtex = ['blahtexml','--mathml']
+            # run the program with subprocess and pipe the input and output to variables
+            p = subprocess.Popen(strCmdBlahtex, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+            #TODO: Catch blahtex processing errors!
+            strMathMl, strErr = p.communicate(strTex) # set STDIN and STDOUT and wait till the program finishes
+            mathMl = etree.fromstring(strMathMl)
+            annotation = etree.Element("annotation", encoding="math/tex")
+            annotation.text = strTex
+            mathMl.append(annotation)
+            formular.append(mathMl)
+    else:
+        print 'Error: Math will not be converted! Blahtex is only available on Linux!'
+    return xml
+
 
 # Get the filename without extension form a URL
 # TODO: This does not worked reliable
@@ -148,6 +177,7 @@ def tex2mathml_transform(xml):
     etree_xml = etree.fromstring(xml)
     # Convert TeX to MathML with Blahtex
     etree_xml = tex2mathml(etree_xml)
+    etree_xml = gmath2mathml(etree_xml)
     return etree.tostring(etree_xml), {}
 
 # Download Google Docs Images
@@ -159,6 +189,18 @@ def image_puller(xml):
       return etree.tostring(etree_xml), image_objects
     else:
       return xml, {}
+
+def extract_math_from_kix(kix_content):
+    # find all gmath expressions
+    encoded_math_list = re.findall("https?:\/\/api\.gmath\.guru\/cgi-bin\/gmath\?(.*)\f.*", kix_content)
+    latex_list = []
+    # decode url encoded math to UTF-8 string
+    for encoded_math in encoded_math_list:
+        decoded_math = urllib2.unquote(encoded_math).decode('utf8')
+        # remove dpi settings for blahtex
+        cleaned_math = re.sub(r'\\dpi{\d+}', '', decoded_math)
+        latex_list.append(cleaned_math)
+    return latex_list
 
 # result from every step in pipeline is a string (xml) + object {...}
 # explanation of "partial" : http://stackoverflow.com/q/10547659/756056
@@ -174,17 +216,20 @@ TRANSFORM_PIPELINE = [
     partial(xslt, 'pass5_gdocs_listings.xsl'),              # 9
     partial(xslt, 'pass5_part2_gdocs_red2cnxml.xsl'),       # 10
     partial(xslt, 'pass6_gdocs2cnxml.xsl'),                 # 11
-    # tex2mathml_transform,                                   # 12
-    # image_puller,                                           # 13
-    # partial(xslt, 'pass7_cnxml_postprocessing.xsl'),        # 14
-    # partial(xslt, 'pass8_cnxml_id-generation.xsl'),         # 15
-    # partial(xslt, 'pass9_cnxml_postprocessing.xsl')         # 16
+    tex2mathml_transform,                                   # 12
+    image_puller,                                           # 13
+    partial(xslt, 'pass7_cnxml_postprocessing.xsl'),        # 14
+    partial(xslt, 'pass8_cnxml_id-generation.xsl'),         # 15
+    partial(xslt, 'pass9_cnxml_postprocessing.xsl')         # 16
 ]
 
 # the function which is called from outside to start transformation
 def gdocs_to_cnxml(content, kixcontent=None, bDownloadImages=False, debug=False):
-    if (kixcontent!=None):
-        print "We have KIX!"
+    global gmath_latex
+    if (kixcontent==None):
+        gmath_latex = []
+    else:
+        gmath_latex = extract_math_from_kix(kixcontent)
     objects = {}
     xml = content
     download_files_from_google = bDownloadImages

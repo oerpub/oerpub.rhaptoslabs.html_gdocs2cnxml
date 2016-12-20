@@ -510,10 +510,8 @@ Pass1,2...4 transformation is a precondition for this pass.
 <!-- Look for TeX Formulars from gMath and mark them -->
 <xsl:template match="xh:img[
   contains(@src, '.googleusercontent.com') and @alt='' and @title!='']">
-
   <cnxtra:gmath/>
 </xsl:template>
-
 
 <!-- underline -->
 <!--

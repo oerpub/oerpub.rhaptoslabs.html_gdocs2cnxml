@@ -114,10 +114,10 @@ Deprecated:
 </xsl:template>
 
 <!-- remove empty tex nodes (this should not happen) -->
-<xsl:template match="cnxtra:tex[not(node())]"/>
+<xsl:template match="cnxtra:tex[not(node())]|cnxtra:gmath[not(node())]"/>
 
 <!-- convert blahtex MathMl output to CNXML standards-->
-<xsl:template match="cnxtra:tex[node()]">
+<xsl:template match="cnxtra:tex[node()]|cnxtra:gmath[node()]">
   <xsl:choose>
     <xsl:when test="cnx:blahtex/cnx:mathml/cnx:markup">
       <m:math> <!-- namespace="http://www.w3.org/1998/Math/MathML"> --> <!-- Rhaptos does not want namespaces -->
