@@ -37,7 +37,7 @@ def tidy2xhtml(html):
         'enclose-text': 1,     # enclose text in body always with <p>...</p>
         'logical-emphasis': 1  # transforms <i> and <b> text to <em> and <strong> text
         })
-    # TODO: parse errors from tidy process 
+    # TODO: parse errors from tidy process
     return xhtml, {}
 
 # Move CSS from stylesheet inside the tags with. BTW: Premailer does this usually for old email clients.
@@ -111,7 +111,7 @@ def download_images(xml):
                 image.text = strImageName
                 # add contents of image to object
                 objects[strImageName] = strImageContent
-    
+
                 # just for debugging
                 #myfile = open(strImageName, "wb")
                 #myfile.write(strImageContent)
@@ -140,7 +140,7 @@ def xslt(xsl, xml):
     style.freeStylesheet()
     doc.freeDoc()
     result.freeDoc()
-    
+
     return xml_result, {}
 
 def tex2mathml_transform(xml):
@@ -151,7 +151,7 @@ def tex2mathml_transform(xml):
     return etree.tostring(etree_xml), {}
 
 # Download Google Docs Images
-def image_puller(xml):   
+def image_puller(xml):
     if download_files_from_google:
       image_objects = {}
       etree_xml = etree.fromstring(xml)
@@ -159,7 +159,7 @@ def image_puller(xml):
       return etree.tostring(etree_xml), image_objects
     else:
       return xml, {}
-    
+
 # result from every step in pipeline is a string (xml) + object {...}
 # explanation of "partial" : http://stackoverflow.com/q/10547659/756056
 TRANSFORM_PIPELINE = [
@@ -194,7 +194,7 @@ def gdocs_to_cnxml(content, kixcontent=None, bDownloadImages=False, debug=False)
         f = open(filename, 'w')
         f.write(xml)
         f.flush()
-        f.close()    
+        f.close()
     for i, transform in enumerate(TRANSFORM_PIPELINE):
         newobjects = {}
         xml, newobjects = transform(xml)
